@@ -11,13 +11,62 @@ config_version=5
 [application]
 
 config/name="COTR"
-config/features=PackedStringArray("4.0", "Mobile")
+config/description="In this epic adventure, players are transported to a mystical land filled with magic, dragons, and treacherous enemies. As one of three classes - mage, warrior, or archer - you'll need to battle your way through hordes of foes, dodging deadly projectiles and summoning powerful spells to turn the tide of battle.
+
+With its intense bullet hell gameplay and stunning medieval setting, this game will challenge your skills and test your strategy as you face wave after wave of enemies. Each class comes with its own unique abilities and strengths, allowing players to develop their own playstyle as they progress through the game.
+
+Whether you prefer to wield powerful spells or heavy weapons, this game has something for everyone. So gather your allies and prepare to face the ultimate challenge - the battle for the fate of the kingdom!"
+run/main_scene="res://Scenes/Maps/Main/Main.tscn"
+config/features=PackedStringArray("4.0", "C#", "Mobile")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/vsync/vsync_mode=0
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
 project/assembly_name="COTR"
 
+[editor]
+
+movie_writer/disable_vsync=true
+
+[filesystem]
+
+import/blender/enabled=false
+
+[input]
+
+"Pressed UP"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":87,"echo":false,"script":null)
+]
+}
+"Pressed DOWN"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":0,"echo":false,"script":null)
+]
+}
+"Pressed LEFT"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":65,"key_label":0,"unicode":97,"echo":false,"script":null)
+]
+}
+"Pressed RIGHT"={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":68,"key_label":0,"unicode":100,"echo":false,"script":null)
+]
+}
+
 [rendering]
 
 renderer/rendering_method="mobile"
+
+[xr]
+
+shaders/enabled=true
