@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bcvi14tyljjsh"]
+
+[ext_resource type="PackedScene" uid="uid://brn45ugr5ycne" path="res://Scenes/Actors/Actor.tscn" id="1_vbg0f"]
+[ext_resource type="PackedScene" uid="uid://4r0a53kg5j02" path="res://Scenes/Actors/Player/WeaponsManager.tscn" id="2_mlpjm"]
+[ext_resource type="Script" path="res://Scenes/Actors/Player/Player.cs" id="2_ye4xq"]
+
+[node name="Player" instance=ExtResource("1_vbg0f")]
+script = ExtResource("2_ye4xq")
+swingDuration = 0.5
+reloadDuration = 1.0
+
+[node name="WeaponsManager" parent="." index="0" instance=ExtResource("2_mlpjm")]
+
+[node name="CameraTransform" type="RemoteTransform2D" parent="." index="5"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+
+[node name="Sound" type="AudioStreamPlayer" parent="." index="7"]
