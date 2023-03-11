@@ -28,7 +28,6 @@ public partial class Player : Actor
     //private PackedScene damagePopup = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Popups/DamagePopup.tscn");
     //private GUI gui;
 
-
     private Globals globals;
     public WeaponsManager WeaponsManager { get; set; }
     public override void _Ready()
@@ -107,7 +106,6 @@ public partial class Player : Actor
         int oldGold = Stats.Gold;
         Stats.Gold += newGold;
         EmitSignal(nameof(PLayerGoldChanged), oldGold, Stats.Gold);
-
     }
 
     /// <summary>
