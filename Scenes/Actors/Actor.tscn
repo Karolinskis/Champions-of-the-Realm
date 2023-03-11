@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://brn45ugr5ycne"]
+
+[ext_resource type="Script" path="res://Scenes/Actors/Actor.cs" id="1_rrscw"]
+[ext_resource type="PackedScene" uid="uid://bb4sw2p3fpkqg" path="res://Scenes/Actors/Stats.tscn" id="2_dy5d8"]
+[ext_resource type="Texture2D" uid="uid://cguyjyjsvykoy" path="res://icon.svg" id="2_hl5h1"]
+[ext_resource type="PackedScene" uid="uid://c538ymcyia8pu" path="res://Scenes/Actors/Team.tscn" id="4_36kou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxr6t"]
+size = Vector2(128, 127)
+
+[node name="Actor" type="CharacterBody2D"]
+scale = Vector2(1, 1.00725)
+script = ExtResource("1_rrscw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_hl5h1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_cxr6t")
+
+[node name="Stats" parent="." instance=ExtResource("2_dy5d8")]
+
+[node name="Team" parent="." instance=ExtResource("4_36kou")]
