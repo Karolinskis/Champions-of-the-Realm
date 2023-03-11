@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b6rkhlbll5rit"]
+
+[ext_resource type="PackedScene" uid="uid://da60qnxssyp2n" path="res://Scenes/Actors/Troops/Infantry.tscn" id="1_gekoh"]
+
+[node name="FootmanEnemy" instance=ExtResource("1_gekoh")]
+collision_layer = 4
+collision_mask = 3
+script = null
+
+[node name="Stats" parent="." index="2"]
+Speed = 250.0
+
+[node name="Team" parent="." index="3"]
+TeamName = 2

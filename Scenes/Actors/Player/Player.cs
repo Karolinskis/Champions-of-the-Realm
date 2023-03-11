@@ -45,6 +45,7 @@ public partial class Player : Actor
         cameraTransform = GetNode<RemoteTransform2D>("CameraTransform");
         Stats = GetNode<Stats>("Stats");
         globals = GetNode<Globals>("/root/Globals");
+        team.TeamName = Team.Teams.PLAYER;
     }
 	public override void _PhysicsProcess(double delta)
 	{

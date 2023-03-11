@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://Scenes/Actors/Player/Player.cs" id="2_ye4xq"]
 
 [node name="Player" instance=ExtResource("1_vbg0f")]
+collision_mask = 0
 script = ExtResource("2_ye4xq")
 swingDuration = 0.5
 reloadDuration = 1.0

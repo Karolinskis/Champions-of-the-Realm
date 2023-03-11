@@ -1,7 +1,19 @@
-[gd_scene load_steps=2 format=3 uid="uid://boltwvpgd2pd3"]
+[gd_scene load_steps=5 format=3 uid="uid://boltwvpgd2pd3"]
 
 [ext_resource type="PackedScene" uid="uid://bcvi14tyljjsh" path="res://Scenes/Actors/Player/Player.tscn" id="1_lqawp"]
+[ext_resource type="Script" path="res://Scenes/Maps/Main/Map.cs" id="1_urlge"]
+[ext_resource type="PackedScene" uid="uid://b6rkhlbll5rit" path="res://Scenes/Actors/Troops/Infantry/FootmanEnemy.tscn" id="2_m3j16"]
+[ext_resource type="Script" path="res://Scenes/Actors/Actor.cs" id="4_qey1v"]
 
 [node name="Main" type="Node2D"]
+position = Vector2(176, 338)
+script = ExtResource("1_urlge")
 
 [node name="Player" parent="." instance=ExtResource("1_lqawp")]
+
+[node name="Footman_Enemy" parent="." instance=ExtResource("2_m3j16")]
+position = Vector2(742, 0)
+script = ExtResource("4_qey1v")
+
+[editable path="Footman_Enemy"]
+[editable path="Footman_Enemy/MeleeAI"]
