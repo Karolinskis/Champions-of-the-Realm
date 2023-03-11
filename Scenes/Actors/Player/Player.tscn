@@ -12,6 +12,12 @@ reloadDuration = 1.0
 
 [node name="WeaponsManager" parent="." index="0" instance=ExtResource("2_mlpjm")]
 
+[node name="Stats" parent="." index="3"]
+Health = 100.0
+
+[node name="Team" parent="." index="4"]
+TeamName = 1
+
 [node name="CameraTransform" type="RemoteTransform2D" parent="." index="5"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]

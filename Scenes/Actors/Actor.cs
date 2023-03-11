@@ -36,11 +36,11 @@ public partial class Actor : CharacterBody2D
 	/// Should only be fully implemented in deriveted class
 	/// </summary>
 	/// <param name="baseDamage">Amount of damage received</param>
-	/// <param name="impactPosition">Position for spawning blood particales</param>
+	/// <param name="impactPosition">Position for spawning blood particles</param>
 	public virtual void HandleHit(float baseDamage, Vector2 impactPosition) { GD.PrintErr("Calling HandleHit from Actor class!"); }
 
 	/// <summary>
-	/// Method for handeling death and removing actor from scene\
+	/// Method for handeling death and removing actor from scene
 	/// Should only be fully implemented in deriveted class
 	/// </summary>
 	public virtual void Die() { GD.PrintErr("Calling Die method from Actor class!"); }

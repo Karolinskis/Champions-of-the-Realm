@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Infantry : Actor
+public partial class Infantry : Troop
 {
 	public MeleeAI AI { get; set; }
 
@@ -9,6 +9,7 @@ public partial class Infantry : Actor
     {
         base._Ready();
         AI = GetNode<MeleeAI>("MeleeAI");
-        //AI.Initialize(this);
     }
+
+    public virtual void Attack() { }
 }

@@ -41,13 +41,13 @@ public partial class MeleeAI : Node2D
 				}
 
 				parent.RotateToward(target.GlobalPosition);
-				GD.Print(target.GlobalPosition);
 				parent.Velocity = parent.VelocityToward(target.GlobalPosition);
 				parent.MoveAndSlide();
 				
 				break;
 
 			case State.Attack:
+				parent.Call("Attack");
 				break;
 		}
 	}
@@ -62,24 +62,65 @@ public partial class MeleeAI : Node2D
 	/// </summary>
 	private void ChangeState(State newState)
 	{
-
-		if(currentState != newState) 
+		// Ignore if the state is already the same
+		if(currentState == newState) 
 		{
-			currentState = newState;
+			return;
 		}
+
+		currentState = newState;
+
+		if (currentState == State.Idle) 
+		{
+			parent.Velocity = Vector2.Zero;
+			CallDeferred("RefreshDetectionZone");
+			return;
+		}
+
+		if (currentState == State.Attack)
+		{
+			parent.Velocity = Vector2.Zero;
+			return;
+		}	
+	}
+
+	/// <summary>
+	/// Refresh the detection zone
+	/// </summary>
+	private void RefreshDetectionZone()
+	{
+		detectionZone.Monitoring = false;
+		detectionZone.Monitoring = true;
 	}
 
 	private void DetectionAreaBodyEntered(Actor actor)
 	{
-		GD.Print(actor.GetTeam().TeamName);
-		GD.Print("aaa" + parent.GetTeam().TeamName);
-		// If the entered actor is in the same team, return
-		if (parent.GetTeam().TeamName == actor.GetTeam().TeamName) 
+		if (parent.GetTeam().TeamName == actor.GetTeam().TeamName && // If the entered actor is in the same team, return
+			currentState == State.Attack && currentState == State.Engage) // Check if the actor is currently attacking 
 		{
 			return;
 		}
 		
 		target = actor;
 		ChangeState(State.Engage);
+	}
+
+	private void DetectionAreaBodyExited(Actor actor)
+	{
+		if(actor == target && target != null && !IsQueuedForDeletion())
+		{
+			target = null;
+			ChangeState(State.Idle);
+		}	
+	}
+
+	private void AttackAreaBodyEntered(Actor actor)
+	{
+		// If the entered actor is not in the same team, attack
+		if(parent.GetTeam().TeamName != actor.GetTeam().TeamName && currentState != State.Attack)
+		{
+			target = actor;
+			ChangeState(State.Attack);
+		}
 	}
 }

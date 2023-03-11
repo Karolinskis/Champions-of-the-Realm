@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://boltwvpgd2pd3"]
+[gd_scene load_steps=5 format=3 uid="uid://cumnukgfcos74"]
 
 [ext_resource type="PackedScene" uid="uid://bcvi14tyljjsh" path="res://Scenes/Actors/Player/Player.tscn" id="1_lqawp"]
 [ext_resource type="Script" path="res://Scenes/Maps/Main/Map.cs" id="1_urlge"]
@@ -15,5 +15,9 @@ script = ExtResource("1_urlge")
 position = Vector2(742, 0)
 script = ExtResource("4_qey1v")
 
+[node name="CollisionShape2D" parent="Footman_Enemy/Melee/Area2D" index="0"]
+position = Vector2(110.25, -4.96402)
+
 [editable path="Footman_Enemy"]
 [editable path="Footman_Enemy/MeleeAI"]
+[editable path="Footman_Enemy/Melee"]
