@@ -10,5 +10,5 @@ public partial class Team : Node
         PLAYER = 1,
         ENEMY = 2
     }
-    [Export] public Teams TeamName { get; set; }
+    [Export] public Teams TeamName { get; set; } = Teams.NEUTRAL;
 }
