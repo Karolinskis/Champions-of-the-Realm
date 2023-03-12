@@ -19,19 +19,13 @@ public partial class MainMenu : Godot.CanvasLayer
 		GetTree().ChangeSceneToFile("res://Scenes/Maps/Main/Main.tscn");
 	}
 
-
 	private void _on_button_settings_pressed()
 	{
-		// todo: change scene to settings
+		GetTree().ChangeSceneToFile("res://Scenes/Menus/Settings/Settings.tscn");
 	}
-
 
 	private void _on_button_quit_pressed()
 	{
 		GetTree().Quit();
-	}
-	
+	}	
 }
-
-
-

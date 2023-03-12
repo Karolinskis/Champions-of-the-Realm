@@ -1,9 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://cli46nt2i3fo0"]
+[gd_scene load_steps=4 format=3 uid="uid://cli46nt2i3fo0"]
 
 [ext_resource type="Script" path="res://Scenes/Menus/Settings/AudioContainer.cs" id="1_4goe7"]
+[ext_resource type="Script" path="res://Scenes/Menus/Settings/Settings.cs" id="1_fp025"]
 [ext_resource type="Script" path="res://Scenes/Menus/Settings/ResolutionContainer.cs" id="2_411hb"]
 
 [node name="Settings" type="Node"]
+script = ExtResource("1_fp025")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchors_preset = 15
@@ -132,3 +134,4 @@ text = "Back"
 [connection signal="toggled" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer/SFXToggle" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_sfx_toggle_toggled"]
 [connection signal="value_changed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer/SFXSlider" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_sfx_slider_value_changed"]
 [connection signal="item_selected" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer/ResolutionDropDown" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer" method="_on_resolution_drop_down_item_selected"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonBack" to="." method="_on_button_back_pressed"]
