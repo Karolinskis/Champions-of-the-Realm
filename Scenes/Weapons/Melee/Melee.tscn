@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://n7p6gc4n6gwd"]
+
+[ext_resource type="PackedScene" uid="uid://b86f45ix6ghog" path="res://Scenes/Weapons/Weapon.tscn" id="1_bweml"]
+[ext_resource type="Script" path="res://Scenes/Weapons/Melee/Melee.cs" id="2_r085i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6slnw"]
+size = Vector2(107, 114.172)
+
+[node name="Melee" instance=ExtResource("1_bweml")]
+script = ExtResource("2_r085i")
+damage = 20.0
+
+[node name="Area2D" type="Area2D" parent="." index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(110.25, -4.96401)
+shape = SubResource("RectangleShape2D_6slnw")
+
+[node name="CooldownTimer" type="Timer" parent="." index="3"]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="Area2dBodyEntered"]
+[connection signal="timeout" from="CooldownTimer" to="." method="CooldownTimerTimeout"]
