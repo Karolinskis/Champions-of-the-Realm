@@ -3,13 +3,12 @@ using System;
 
 public partial class MeleeAI : Node2D
 {
-
 	public enum State
 	{
 		Idle = 0,	// Waits for next event
 		Engage = 1,	// Engages the enemy
 		Attack = 2	// Attacks the enemy
-	};
+	}
 	
 	protected Area2D detectionZone;
 	protected Area2D attackZone;

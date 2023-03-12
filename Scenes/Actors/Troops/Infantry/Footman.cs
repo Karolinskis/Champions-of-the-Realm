@@ -35,7 +35,6 @@ public partial class Footman : Infantry
 		}
 
 		weapon.Idle();
-		
 	}
 
     public override void Attack()

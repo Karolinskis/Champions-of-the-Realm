@@ -22,6 +22,4 @@ public partial class Weapon : Node2D
 	{
 		return false;
 	}
-
-
 }

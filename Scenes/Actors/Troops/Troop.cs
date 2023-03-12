@@ -25,10 +25,9 @@ public partial class Troop : Actor
     public override void Die()
     {
         base.Die();
-		if (Stats.Gold > 0)
-		{
-
-		}
+		if (Stats.Gold > 0) 
+        {
+        }
 		EmitSignal(nameof(Died));
 		QueueFree();
     }
