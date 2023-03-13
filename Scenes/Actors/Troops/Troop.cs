@@ -11,6 +11,11 @@ public partial class Troop : Actor
 		base._Ready();
 	}
 
+    /// <summary>
+    /// Remove health from the troop
+    /// </summary>
+    /// <param name="baseDamage">Ammount of health to remove</param>
+    /// <param name="impactPosition">Position of the hit</param>
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
         base.HandleHit(baseDamage, impactPosition);
@@ -22,6 +27,9 @@ public partial class Troop : Actor
         }
     }
 
+    /// <summary>
+    /// Removes the object from the scene tree
+    /// </summary>
     public override void Die()
     {
         base.Die();

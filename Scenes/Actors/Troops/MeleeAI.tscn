@@ -17,6 +17,7 @@ collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
 shape = SubResource("CircleShape2D_0u50k")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -28,3 +29,4 @@ shape = SubResource("CircleShape2D_qjhfb")
 [connection signal="body_entered" from="DetectionArea" to="." method="DetectionAreaBodyEntered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="DetectionAreaBodyExited"]
 [connection signal="body_entered" from="AttackArea" to="." method="AttackAreaBodyEntered"]
+[connection signal="body_exited" from="AttackArea" to="." method="AttackAreaBodyExited"]
