@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcvi14tyljjsh"]
+[gd_scene load_steps=5 format=3 uid="uid://bcvi14tyljjsh"]
 
 [ext_resource type="PackedScene" uid="uid://brn45ugr5ycne" path="res://Scenes/Actors/Actor.tscn" id="1_vbg0f"]
 [ext_resource type="PackedScene" uid="uid://4r0a53kg5j02" path="res://Scenes/Actors/Player/WeaponsManager.tscn" id="2_mlpjm"]
 [ext_resource type="Script" path="res://Scenes/Actors/Player/Player.cs" id="2_ye4xq"]
+[ext_resource type="PackedScene" uid="uid://b5331g7wgjpr8" path="res://Scenes/UI/CharacterMenu/LevelSystem.tscn" id="4_sul4w"]
 
 [node name="Player" instance=ExtResource("1_vbg0f")]
 collision_mask = 7
@@ -23,3 +24,5 @@ TeamName = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
 
 [node name="Sound" type="AudioStreamPlayer" parent="." index="7"]
+
+[node name="LevelSystem" parent="." index="8" instance=ExtResource("4_sul4w")]

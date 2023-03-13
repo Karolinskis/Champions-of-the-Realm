@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5331g7wgjpr8"]
+
+[ext_resource type="Script" path="res://Scenes/UI/CharacterMenu/LevelSystem.cs" id="1_148a3"]
+
+[node name="LevelSystem" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_148a3")

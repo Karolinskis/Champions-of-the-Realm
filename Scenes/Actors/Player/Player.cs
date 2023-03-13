@@ -5,12 +5,11 @@ using Godot;
 /// </summary>
 public partial class Player : Actor
 {
-    [Signal]
-    public delegate void PlayerHealthChangedEventHandler(float newHealth);
-    [Signal]
-    public delegate void PLayerGoldChangedEventHandler(int newGold, int oldGold);
-    [Signal]
-    public delegate void DiedEventHandler();
+    [Signal] public delegate void PlayerHealthChangedEventHandler(float newHealth);
+    [Signal] public delegate void PLayerGoldChangedEventHandler(int newGold, int oldGold);
+    [Signal] public delegate void PlayerMaxHealthChangedEventHandler(int newMaxHealth);
+    [Signal] public delegate void PlayerXpChangedEventHandler(float newXp);
+    [Signal] public delegate void DiedEventHandler();
 
     [Export] float swingDuration = 0.5f; // TODO swing stab pierce hit
     [Export] float reloadDuration = 1f;
@@ -25,12 +24,15 @@ public partial class Player : Actor
     private Vector2 movementDirection = Vector2.Zero;
     private Vector2 attackDirection = Vector2.Zero;
 
+    private LevelSystem levelSystem;
+
     // TODO: lacking damagePopup scene implementation
     //private PackedScene damagePopup = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Popups/DamagePopup.tscn");
     //private GUI gui;
 
     private Globals globals;
     public WeaponsManager WeaponsManager { get; set; }
+    
     public override void _Ready()
     {
         base._Ready();
@@ -117,6 +119,17 @@ public partial class Player : Actor
         //    AddChild(popup);
         //}
     }
+
+    /// <summary>
+    /// Method for setting new player max health
+    /// </summary>
+    /// <param name="newMaxHealth">New max health value</param>
+    public void SetMaxHealth(int newMaxHealth)
+    {
+        Stats.MaxHealth = newMaxHealth;
+        EmitSignal(nameof(PlayerMaxHealthChanged), Stats.MaxHealth);
+    }
+
     /// <summary>
     /// Implemented actor's Die method
     /// </summary>
@@ -159,6 +172,11 @@ public partial class Player : Actor
         EmitSignal(nameof(PLayerGoldChanged), oldGold, Stats.Gold);
     }
 
+    public void GetXp(float obtainedXp)
+    {
+        levelSystem.GetXp(obtainedXp);
+        EmitSignal(nameof(PlayerXpChanged), levelSystem.CurrrentXp);
+    }
     // TODO: lacks WeaponsManager scene implementation
     /// <summary>
     /// Method for canceling attack
