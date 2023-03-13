@@ -5,8 +5,6 @@ using Godot;
 /// </summary>
 public partial class GUI : Control
 {
-    /// Class parameters
-    /// </summary>
     private ProgressBar healthBar;
     private Label currencyLabel;
     private Label XPLabel;

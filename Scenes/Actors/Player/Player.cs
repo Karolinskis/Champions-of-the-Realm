@@ -21,16 +21,18 @@ public partial class Player : Actor
     private AnimationPlayer animationPlayer;
     private RemoteTransform2D cameraTransform;
     private AudioStreamPlayer coinsSound;
-    private Vector2 movementDirection = Vector2.Zero;
-    private Vector2 attackDirection = Vector2.Zero;
 
-    private LevelSystem levelSystem;
+    private Vector2 movementDirection = Vector2.Zero; // Movement direction, in which player walks
+    private Vector2 attackDirection = Vector2.Zero; // Attack direction, in which player attacks
+
+    // Level system, whcih handels obtained xp, levelUp and obtaining skills
+    private LevelSystem levelSystem; 
 
     // TODO: lacking damagePopup scene implementation
     //private PackedScene damagePopup = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Popups/DamagePopup.tscn");
     //private GUI gui;
 
-    private Globals globals;
+    private Globals globals; // Object which handel Global actions (Saving, Loading)
     public WeaponsManager WeaponsManager { get; set; }
     
     public override void _Ready()

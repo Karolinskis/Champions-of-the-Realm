@@ -5,9 +5,9 @@ using Godot;
 /// </summary>
 public partial class Map : Node2D
 {
-    private Player player;
-    private PackedScene playerScene;
-    private GUI hud;
+    private Player player; // Player in the scene
+    private PackedScene playerScene; // Player resource
+    private GUI hud; // GUI in the scene
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
