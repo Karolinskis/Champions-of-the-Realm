@@ -57,8 +57,9 @@ public partial class MeleeAI : Node2D
 	// }
 	
 	/// <summary>
-	///	Changes the state of the troop
+	/// Changes the state of the troop
 	/// </summary>
+	/// <param name="newState">New state to give the troop</param>
 	private void ChangeState(State newState)
 	{
 		// Ignore if the state is already the same
@@ -92,6 +93,10 @@ public partial class MeleeAI : Node2D
 		detectionZone.Monitoring = true;
 	}
 
+	/// <summary>
+	/// Check if the entered actor is in the same team as the character
+	/// </summary>
+	/// <param name="actor">Actor to check</param>
 	private void DetectionAreaBodyEntered(Actor actor)
 	{
 		if (parent.GetTeam().TeamName == actor.GetTeam().TeamName && // If the entered actor is in the same team, return
@@ -104,6 +109,10 @@ public partial class MeleeAI : Node2D
 		ChangeState(State.Engage);
 	}
 
+	/// <summary>
+	/// If the exited actor is the current target, then idle
+	/// </summary>
+	/// <param name="actor">Actor to check</param>
 	private void DetectionAreaBodyExited(Actor actor)
 	{
 		if(actor == target && target != null && !IsQueuedForDeletion())
@@ -113,6 +122,11 @@ public partial class MeleeAI : Node2D
 		}	
 	}
 
+	/// <summary>
+	/// Check if the entered actor is not in the same team as the character
+	/// and the character is not in the Attack state, then attack the actor
+	/// </summary>
+	/// <param name="actor">Actor to check</param>
 	private void AttackAreaBodyEntered(Actor actor)
 	{
 		// If the entered actor is not in the same team, attack
@@ -120,6 +134,18 @@ public partial class MeleeAI : Node2D
 		{
 			target = actor;
 			ChangeState(State.Attack);
+		}
+	}
+
+	/// <summary>
+	/// Check if the exited actor is the target, then idle
+	/// </summary>
+	/// <param name="actor">Actor to check</param>
+	private void AttackAreaBodyExited(Actor actor)
+	{
+		if(actor == target && target != null && !IsQueuedForDeletion())
+		{
+			ChangeState(State.Engage);
 		}
 	}
 }
