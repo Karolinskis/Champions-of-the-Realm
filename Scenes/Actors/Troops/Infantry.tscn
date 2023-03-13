@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3 uid="uid://da60qnxssyp2n"]
+
+[ext_resource type="PackedScene" uid="uid://brn45ugr5ycne" path="res://Scenes/Actors/Actor.tscn" id="1_x7n0m"]
+[ext_resource type="Script" path="res://Scenes/Actors/Troops/Infantry.cs" id="2_bjvy6"]
+[ext_resource type="PackedScene" uid="uid://bxfbxcg6l8gpo" path="res://Scenes/Actors/Troops/MeleeAI.tscn" id="2_mkpo3"]
+
+[node name="Infantry" instance=ExtResource("1_x7n0m")]
+script = ExtResource("2_bjvy6")
+
+[node name="MeleeAI" parent="." index="4" instance=ExtResource("2_mkpo3")]

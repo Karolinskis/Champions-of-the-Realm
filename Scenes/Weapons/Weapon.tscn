@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b86f45ix6ghog"]
+
+[ext_resource type="Script" path="res://Scenes/Actors/Troops/Infantry/Weapon.cs" id="1_0wj5g"]
+[ext_resource type="PackedScene" uid="uid://c538ymcyia8pu" path="res://Scenes/Actors/Team.tscn" id="2_7ai1p"]
+
+[node name="Weapon" type="Node2D"]
+script = ExtResource("1_0wj5g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Team" parent="." instance=ExtResource("2_7ai1p")]

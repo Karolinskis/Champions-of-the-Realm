@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3 uid="uid://qsbiiuapp07u"]
+
+[ext_resource type="Script" path="res://Scenes/UI/HUD/GUI.cs" id="1_ujh52"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g204k"]
+bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y4lv"]
+bg_color = Color(0.411765, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+shadow_color = Color(0.172549, 0.172549, 0.172549, 0.6)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("1_ujh52")
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Rows" type="VBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TopRow" type="HBoxContainer" parent="HUD/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="CurrenctContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/TopRow"]
+layout_mode = 2
+
+[node name="CurrencyLabel" type="Label" parent="HUD/MarginContainer/Rows/TopRow/CurrenctContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Currency: 0"
+
+[node name="XPContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/TopRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="XPLabel" type="Label" parent="HUD/MarginContainer/Rows/TopRow/XPContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "XP: 0"
+
+[node name="MiddleRow" type="HBoxContainer" parent="HUD/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+mouse_filter = 2
+
+[node name="BottomRow" type="HBoxContainer" parent="HUD/MarginContainer/Rows"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="HealthContainer" type="CenterContainer" parent="HUD/MarginContainer/Rows/BottomRow"]
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="HUD/MarginContainer/Rows/BottomRow/HealthContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_g204k")
+theme_override_styles/fill = SubResource("StyleBoxFlat_8y4lv")
+step = 1.0
+value = 43.0
+show_percentage = false
+
+[node name="AmmoContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/BottomRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="MaxAmmo" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]
+layout_mode = 2
+text = "30"
+
+[node name="AmmoSep" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]
+layout_mode = 2
+text = "/"
+
+[node name="CurrentAmmo" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]
+layout_mode = 2
+text = "30"
