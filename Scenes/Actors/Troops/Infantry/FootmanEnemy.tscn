@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6rkhlbll5rit"]
+
+[ext_resource type="PackedScene" uid="uid://da60qnxssyp2n" path="res://Scenes/Actors/Troops/Infantry.tscn" id="1_gekoh"]
+[ext_resource type="Script" path="res://Scenes/Actors/Troops/Infantry/Footman.cs" id="2_1coml"]
+[ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="3_mnw54"]
+
+[node name="FootmanEnemy" instance=ExtResource("1_gekoh")]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("2_1coml")
+
+[node name="Stats" parent="." index="2"]
+Speed = 250.0
+
+[node name="Team" parent="." index="3"]
+TeamName = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+
+[node name="AttackTimer" type="Timer" parent="." index="6"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Melee" parent="." index="7" instance=ExtResource("3_mnw54")]
+
+[connection signal="timeout" from="AttackTimer" to="." method="AttackTimerTimeout"]
