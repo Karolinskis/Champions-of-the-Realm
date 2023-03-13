@@ -16,7 +16,7 @@ config/description="In this epic adventure, players are transported to a mystica
 With its intense bullet hell gameplay and stunning medieval setting, this game will challenge your skills and test your strategy as you face wave after wave of enemies. Each class comes with its own unique abilities and strengths, allowing players to develop their own playstyle as they progress through the game.
 
 Whether you prefer to wield powerful spells or heavy weapons, this game has something for everyone. So gather your allies and prepare to face the ultimate challenge - the battle for the fate of the kingdom!"
-run/main_scene="res://Scenes/Maps/Main/Main.tscn"
+run/main_scene="res://Scenes/UI/Menus/Main/MainMenu.tscn"
 config/features=PackedStringArray("4.0", "C#", "Mobile")
 config/icon="res://icon.svg"
 
