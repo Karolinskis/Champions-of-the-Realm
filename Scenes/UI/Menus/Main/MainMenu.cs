@@ -18,7 +18,6 @@ public partial class MainMenu : Control
 		GetTree().ChangeSceneToFile("res://Scenes/Maps/Main/Main.tscn");
 	}
 	
-
 	/// <summary>
 	/// Button for loading an existing save file.
 	/// </summary>
@@ -32,7 +31,6 @@ public partial class MainMenu : Control
 	/// </summary>
 	private void ButtonSettingsPressed()
 	{
-
 		Settings settingsScreen = settingsScene.Instantiate() as Settings;
 		AddChild(settingsScreen);
 		var control = GetNode<Control>("CanvasLayer/Control");
