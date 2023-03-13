@@ -1,4 +1,5 @@
 using Godot;
+
 /// <summary>
 /// Class dedicated to implement Player functionality (Missing GUI, Joystick, WeaponManager, DamagePopup)
 /// </summary>
@@ -31,7 +32,7 @@ public partial class Player : Actor
     private Globals globals;
     public WeaponsManager WeaponsManager { get; set; }
     public override void _Ready()
-	{
+    {
         base._Ready();
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         WeaponsManager = GetNode<WeaponsManager>("WeaponsManager");
@@ -45,10 +46,9 @@ public partial class Player : Actor
         cameraTransform = GetNode<RemoteTransform2D>("CameraTransform");
         Stats = GetNode<Stats>("Stats");
         globals = GetNode<Globals>("/root/Globals");
-        team.TeamName = Team.Teams.PLAYER;
     }
-	public override void _PhysicsProcess(double delta)
-	{
+    public override void _PhysicsProcess(double delta)
+    {
         base._PhysicsProcess(delta);
         direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
         if (!WeaponsManager.IsAttacking)
@@ -87,7 +87,37 @@ public partial class Player : Actor
         //    LookAt(GlobalPosition + movementDirection);
         //}
     }
+    /// <summary>
+    /// Method for handeling received damage
+    /// </summary>
+    /// <param name="baseDamage">Received damage</param>
+    /// <param name="impactPosition">Impact position for calculating impact particales direction</param>
+    public override void HandleHit(float baseDamage, Vector2 impactPosition)
+    {
+        float damage = Mathf.Clamp(baseDamage - Stats.Armour, 0, 100);
+        Stats.Health -= damage;
+        EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
+        GD.Print(Stats.Health);
+        if (Stats.Health <= 0)
+        {
+            Die();
+        }
 
+        // TODO: lacks blood and damagePopup scenes implementation
+        //else
+        //{
+        //    Blood blood = bloodScene.Instantiate() as Blood;
+        //    GetParent().AddChild(blood);
+        //    blood.GlobalPosition = GlobalPosition;
+        //    blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
+
+
+        //    DamagePopup popup = damagePopup.Instantiate() as DamagePopup;
+        //    popup.Amount = (int)damage;
+        //    popup.Type = "Damage";
+        //    AddChild(popup);
+        //}
+    }
     /// <summary>
     /// Implemented actor's Die method
     /// </summary>

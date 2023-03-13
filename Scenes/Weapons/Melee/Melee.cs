@@ -14,13 +14,13 @@ public partial class Melee : Weapon
 	/// <summary>
 	/// Represents the hitbox for the weapon
 	/// </summary>
-	private Area2D collisionShape;
+	private CollisionShape2D collisionShape;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		base._Ready();
-		collisionShape = GetNode<Area2D>("Area2D");
+		collisionShape = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
 		cooldownTimer = GetNode<Timer>("CooldownTimer");
 	}
 
@@ -45,11 +45,15 @@ public partial class Melee : Weapon
 	/// </summary>
 	public virtual void Attack()
 	{
+		if (CanAttack())
+		{
+            collisionShape.Disabled = false;
+        }
 	}
 	// Give the weapon damage to the to the object that was hit
 	public virtual void Deliver() 
 	{
-		GetNode<CollisionShape2D>("Area2D/CollisionShape2D").Disabled = true;
+		collisionShape.Disabled = true;
 		StartCooldown();
 	}
 
@@ -67,7 +71,7 @@ public partial class Melee : Weapon
 	public virtual void Area2dBodyEntered(Node body)
 	{
 		if (body is Actor actor && 
-			actor.GetTeam().TeamName != team.TeamName &&
+			actor.GetTeam() != team.TeamName &&
 			!isDelivered)
 		{
 			actor.HandleHit(damage, GlobalPosition);
@@ -90,6 +94,6 @@ public partial class Melee : Weapon
 	private void CooldownTimerTimeout()
 	{
 		isDelivered = false;
-		GetNode<CollisionShape2D>("Area2D/CollisionShape2D").Disabled = false;
+		collisionShape.Disabled = false;
 	}
 }
