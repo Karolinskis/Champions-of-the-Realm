@@ -15,6 +15,7 @@ damage = 20.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(110.25, -4.96401)
 shape = SubResource("RectangleShape2D_6slnw")
+disabled = true
 
 [node name="CooldownTimer" type="Timer" parent="." index="3"]
 one_shot = true

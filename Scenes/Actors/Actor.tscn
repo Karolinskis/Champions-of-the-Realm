@@ -6,17 +6,21 @@
 [ext_resource type="PackedScene" uid="uid://c538ymcyia8pu" path="res://Scenes/Actors/Team.tscn" id="4_36kou"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxr6t"]
-size = Vector2(128, 127)
+size = Vector2(128.144, 128.329)
 
 [node name="Actor" type="CharacterBody2D"]
 scale = Vector2(1, 1.00725)
+collision_mask = 31
+slide_on_ceiling = false
+platform_on_leave = 2
+platform_floor_layers = 4294901760
 script = ExtResource("1_rrscw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_hl5h1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
+position = Vector2(-0.0179367, 0.0706615)
 shape = SubResource("RectangleShape2D_cxr6t")
 
 [node name="Stats" parent="." instance=ExtResource("2_dy5d8")]
