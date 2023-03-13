@@ -172,6 +172,10 @@ public partial class Player : Actor
         EmitSignal(nameof(PLayerGoldChanged), oldGold, Stats.Gold);
     }
 
+    /// <summary>
+    /// Method for handeling received xp
+    /// </summary>
+    /// <param name="obtainedXp">Received xp</param>
     public void GetXp(float obtainedXp)
     {
         levelSystem.GetXp(obtainedXp);

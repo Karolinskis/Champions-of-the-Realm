@@ -1,5 +1,5 @@
 using Godot;
-using System;
+
 /// <summary>
 /// Class for handeling xp, level ups and obtaining new skills
 /// </summary>
@@ -13,9 +13,15 @@ public partial class LevelSystem : Control
 		set { CurrrentXp = value; }
 	}
 	[Export] public float LevelUpXp { get; set; }
+
 	//public override void _Ready()
 	//{
 	//}
+
+	/// <summary>
+	/// Method of handeling obtained xp
+	/// </summary>
+	/// <param name="obtainedXp"></param>
 	public void GetXp(float obtainedXp)
 	{
 		float leftXp = 0;

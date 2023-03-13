@@ -1,4 +1,8 @@
 using Godot;
+
+/// <summary>
+/// Class for implementing enviroment
+/// </summary>
 public partial class Map : Node2D
 {
     private Player player;
