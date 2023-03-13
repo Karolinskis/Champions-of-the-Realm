@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bymma0m6n4eix"]
+[gd_scene load_steps=2 format=3 uid="uid://chq6j643dyo63"]
 
-[ext_resource type="Script" path="res://Scenes/Menus/Settings/AudioContainer.cs" id="1_4goe7"]
-[ext_resource type="Script" path="res://Scenes/Menus/Settings/Settings.cs" id="1_xaj1n"]
-[ext_resource type="Script" path="res://Scenes/Menus/Settings/ResolutionContainer.cs" id="2_411hb"]
+[ext_resource type="Script" path="res://Scenes/UI/Menus/Settings/Settings.cs" id="1_xaj1n"]
 
-[node name="Settings" type="Node"]
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 0
 script = ExtResource("1_xaj1n")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -55,7 +55,6 @@ text = "Settings"
 
 [node name="AudioContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-script = ExtResource("1_4goe7")
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer"]
 layout_mode = 2
@@ -112,7 +111,6 @@ max_value = 2.08165e-12
 [node name="ResolutionContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 8
-script = ExtResource("2_411hb")
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer"]
 layout_mode = 2
@@ -129,9 +127,9 @@ layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 text = "Back"
 
-[connection signal="toggled" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer/MusicToggle" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_music_toggle_toggled"]
-[connection signal="value_changed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer/MusicSlider" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_music_slider_value_changed"]
-[connection signal="toggled" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer/SFXToggle" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_sfx_toggle_toggled"]
-[connection signal="value_changed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer/SFXSlider" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_sfx_slider_value_changed"]
-[connection signal="item_selected" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer/ResolutionDropDown" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer" method="_on_resolution_drop_down_item_selected"]
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonBack" to="." method="_on_button_back_pressed"]
+[connection signal="toggled" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer/MusicToggle" to="." method="MusicToggled"]
+[connection signal="value_changed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer/MusicSlider" to="." method="MusicSliderVolumeChanged"]
+[connection signal="toggled" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer/SFXToggle" to="." method="SfxToggled"]
+[connection signal="value_changed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer/SFXSlider" to="." method="SfxSliderVolumeChanged"]
+[connection signal="item_selected" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer/ResolutionDropDown" to="." method="ResolutionDropDownItemSelected"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonBack" to="." method="ButtonBackPressed"]
