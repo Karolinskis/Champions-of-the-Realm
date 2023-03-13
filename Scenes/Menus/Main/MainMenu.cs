@@ -18,6 +18,11 @@ public partial class MainMenu : Godot.CanvasLayer
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/Maps/Main/Main.tscn");
 	}
+	
+	private void _on_button_load_pressed()
+	{
+		// Replace with function body.
+	}
 
 	private void _on_button_settings_pressed()
 	{
@@ -27,5 +32,5 @@ public partial class MainMenu : Godot.CanvasLayer
 	private void _on_button_quit_pressed()
 	{
 		GetTree().Quit();
-	}	
+	}
 }
