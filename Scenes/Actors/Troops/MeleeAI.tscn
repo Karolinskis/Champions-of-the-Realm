@@ -6,7 +6,7 @@
 radius = 491.29
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qjhfb"]
-radius = 120.201
+radius = 37.0135
 
 [node name="MeleeAI" type="Node2D"]
 script = ExtResource("1_cy04m")

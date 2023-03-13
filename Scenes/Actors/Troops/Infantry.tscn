@@ -8,3 +8,4 @@
 script = ExtResource("2_bjvy6")
 
 [node name="MeleeAI" parent="." index="4" instance=ExtResource("2_mkpo3")]
+visible = false
