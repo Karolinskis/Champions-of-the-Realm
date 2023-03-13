@@ -2,7 +2,6 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-
 public partial class ResolutionContainer : VBoxContainer
 {
 	// todo: make sure that the selected resolution in drop down matches window resolution when resolution hasn't yet been changed.

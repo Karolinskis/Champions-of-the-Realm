@@ -33,12 +33,3 @@ public partial class MainMenu : Godot.CanvasLayer
 		GetTree().Quit();
 	}
 }
-
-
-
-
-
-
-
-
-

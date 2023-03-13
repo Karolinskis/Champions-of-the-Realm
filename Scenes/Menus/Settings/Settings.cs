@@ -18,6 +18,3 @@ public partial class Settings : Node
 		GetTree().ChangeSceneToFile("res://Scenes/Menus/Main/MainMenu.tscn");
 	}
 }
-
-
-
