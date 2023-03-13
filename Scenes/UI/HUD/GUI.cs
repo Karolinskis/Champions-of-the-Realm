@@ -3,8 +3,11 @@ using Godot;
 /// <summary>
 /// GUI class that contains graphical UI elements and methods to change them
 /// </summary>
-public partial class GUI : Control
+public partial class GUI : CanvasLayer
 {
+    /// <summary>
+    /// Class parameters
+    /// </summary>
     private ProgressBar healthBar;
     private Label currencyLabel;
     private Label XPLabel;
@@ -16,11 +19,11 @@ public partial class GUI : Control
     /// </summary>
     public override void _Ready()
     {
-        currencyLabel = GetNode<Label>("HUD/MarginContainer/Rows/TopRow/CurrenctContainer/CurrencyLabel");
-        healthBar = GetNode<ProgressBar>("HUD/MarginContainer/Rows/BottomRow/HealthContainer/HealthBar");
-        currentAmmoLabel = GetNode<Label>("HUD/MarginContainer/Rows/BottomRow/AmmoContainer/CurrentAmmo");
-        XPLabel = GetNode<Label>("HUD/MarginContainer/Rows/TopRow/XPContainer/XPLabel");
-        maxAmmoLabel = GetNode<Label>("HUD/MarginContainer/Rows/BottomRow/AmmoContainer/MaxAmmo");
+        currencyLabel = GetNode<Label>("MarginContainer/Rows/TopRow/CurrenctContainer/CurrencyLabel");
+        healthBar = GetNode<ProgressBar>("MarginContainer/Rows/BottomRow/HealthContainer/HealthBar");
+        currentAmmoLabel = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoContainer/CurrentAmmo");
+        XPLabel = GetNode<Label>("MarginContainer/Rows/TopRow/XPContainer/XPLabel");
+        maxAmmoLabel = GetNode<Label>("MarginContainer/Rows/BottomRow/AmmoContainer/MaxAmmo");
     }
 
     /// <summary>
