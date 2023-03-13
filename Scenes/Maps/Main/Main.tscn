@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bcvi14tyljjsh" path="res://Scenes/Actors/Player/Player.tscn" id="1_lqawp"]
 [ext_resource type="Script" path="res://Scenes/Maps/Main/Map.cs" id="1_urlge"]
 [ext_resource type="PackedScene" uid="uid://b6rkhlbll5rit" path="res://Scenes/Actors/Troops/Infantry/FootmanEnemy.tscn" id="2_m3j16"]
-[ext_resource type="Texture2D" uid="uid://bvkwgsieh2m7w" path="res://Sprites/Maps/Environment/Tilesets/OutsideGreen.png" id="3_xb4mq"]
-[ext_resource type="Texture2D" uid="uid://cyen004nlrs6n" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
-[ext_resource type="Texture2D" uid="uid://dmidrbsofxhab" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
+[ext_resource type="Texture2D" uid="uid://p1dw61m7ku2w" path="res://Sprites/Maps/Environment/Tilesets/OutsideGreen.png" id="3_xb4mq"]
+[ext_resource type="Texture2D" uid="uid://c515rn02x5l60" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
+[ext_resource type="Texture2D" uid="uid://ciek8ajxrca6c" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
 [ext_resource type="PackedScene" uid="uid://qsbiiuapp07u" path="res://Scenes/UI/HUD/HUD.tscn" id="5_5ce41"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubklx"]
