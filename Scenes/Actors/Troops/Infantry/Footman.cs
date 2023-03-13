@@ -7,15 +7,16 @@ public partial class Footman : Infantry
     private Timer attackTimer;
     private AnimationPlayer animationPlayer;
     private Melee weapon;
-
+    private Sprite2D sprite; // Actor texture
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         attackTimer = GetNode<Timer>("AttackTimer");
-        weapon = GetNode<Melee>("Melee");
+        weapon = GetNode<Melee>("MeleeAI/Melee");
         weapon.Initialize(Team);
+        sprite = GetNode<Sprite2D>("Sprite2D");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,7 +34,6 @@ public partial class Footman : Infantry
             weapon.Walking();
             return;
         }
-
         weapon.Idle();
     }
 

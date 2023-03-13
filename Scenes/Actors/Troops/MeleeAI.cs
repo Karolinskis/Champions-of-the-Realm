@@ -38,14 +38,14 @@ public partial class MeleeAI : Node2D
                     break;
                 }
 
-                parent.RotateToward(target.GlobalPosition);
+                Rotation = GlobalPosition.DirectionTo(target.GlobalPosition).Angle();
                 parent.Velocity = parent.VelocityToward(target.GlobalPosition);
                 parent.MoveAndSlide();
 
                 break;
 
             case State.Attack:
-                parent.RotateToward(target.GlobalPosition);
+                Rotation = GlobalPosition.DirectionTo(target.GlobalPosition).Angle();
                 parent.Attack();
                 break;
         }

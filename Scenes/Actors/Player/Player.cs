@@ -26,7 +26,7 @@ public partial class Player : Actor
     private Vector2 attackDirection = Vector2.Zero; // Attack direction, in which player attacks
 
     // Level system, whcih handels obtained xp, levelUp and obtaining skills
-    private LevelSystem levelSystem; 
+    private LevelSystem levelSystem;
 
     // TODO: lacking damagePopup scene implementation
     //private PackedScene damagePopup = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Popups/DamagePopup.tscn");
@@ -34,7 +34,7 @@ public partial class Player : Actor
 
     private Globals globals; // Object which handel Global actions (Saving, Loading)
     public WeaponsManager WeaponsManager { get; set; }
-    
+
     public override void _Ready()
     {
         base._Ready();
@@ -57,7 +57,7 @@ public partial class Player : Actor
         direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
         if (!WeaponsManager.IsAttacking)
         {
-            if (movementDirection != Vector2.Zero)
+            if (Velocity != Vector2.Zero)
             {
                 PlayWalking();
             }
@@ -206,8 +206,21 @@ public partial class Player : Actor
     /// </summary>
     public void PlayIdle()
     {
-        //animationPlayer.Play("Idle");
-        //WeaponsManager.Idle();
+        switch (animationPlayer.CurrentAnimation)
+        {
+            case ("WalkBack"):
+                animationPlayer.Play("IdleBack");
+                break;
+            case ("WalkFront"):
+                animationPlayer.Play("IdleFront");
+                break;
+            case ("WalkLeft"):
+                animationPlayer.Play("IdleLeft");
+                break;
+            case ("WalkRight"):
+                animationPlayer.Play("IdleRight");
+                break;
+        }
     }
 
     /// <summary>
@@ -215,7 +228,22 @@ public partial class Player : Actor
     /// </summary>
     public void PlayWalking()
     {
-        //animationPlayer.Play("Walking");
+        if (Input.IsActionPressed("UP"))
+        {
+            animationPlayer.Play("WalkBack");
+        }
+        else if (Input.IsActionPressed("DOWN"))
+        {
+            animationPlayer.Play("WalkFront");
+        }
+        else if (Input.IsActionPressed("LEFT"))
+        {
+            animationPlayer.Play("WalkLeft");
+        }
+        else if (Input.IsActionPressed("RIGHT"))
+        {
+            animationPlayer.Play("WalkRight");
+        }
         //WeaponsManager.Walking();
     }
 
