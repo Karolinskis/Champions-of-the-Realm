@@ -1,0 +1,137 @@
+[gd_scene load_steps=4 format=3 uid="uid://bymma0m6n4eix"]
+
+[ext_resource type="Script" path="res://Scenes/Menus/Settings/AudioContainer.cs" id="1_4goe7"]
+[ext_resource type="Script" path="res://Scenes/Menus/Settings/Settings.cs" id="1_xaj1n"]
+[ext_resource type="Script" path="res://Scenes/Menus/Settings/ResolutionContainer.cs" id="2_411hb"]
+
+[node name="Settings" type="Node"]
+script = ExtResource("1_xaj1n")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/CenterContainer"]
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Settings" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="AudioContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("1_4goe7")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer"]
+layout_mode = 2
+text = "Audio settings"
+
+[node name="MusicContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer"]
+layout_mode = 2
+
+[node name="MusicToggle" type="CheckButton" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_disabled_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.501961, 0, 1)
+text = "Music"
+
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer"]
+modulate = Color(1, 0.501961, 0, 1)
+self_modulate = Color(1, 0.501961, 0, 1)
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 4
+min_value = -30.0
+max_value = 2.08165e-12
+
+[node name="SFXContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer"]
+layout_mode = 2
+
+[node name="SFXToggle" type="CheckButton" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_pressed_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_hover_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_focus_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_disabled_color = Color(1, 0.501961, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 0.501961, 0, 1)
+theme_override_constants/h_separation = 22
+text = "SFX"
+
+[node name="SFXSlider" type="HSlider" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer"]
+modulate = Color(1, 0.501961, 0, 1)
+self_modulate = Color(1, 0.501961, 0, 1)
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/grabber_offset = 0
+min_value = -30.0
+max_value = 2.08165e-12
+
+[node name="ResolutionContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("2_411hb")
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer"]
+layout_mode = 2
+text = "Resolution"
+
+[node name="ResolutionDropDown" type="OptionButton" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer"]
+custom_minimum_size = Vector2(200, 2.08165e-12)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="ButtonBack" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+text = "Back"
+
+[connection signal="toggled" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer/MusicToggle" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_music_toggle_toggled"]
+[connection signal="value_changed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer/MusicSlider" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_music_slider_value_changed"]
+[connection signal="toggled" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer/SFXToggle" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_sfx_toggle_toggled"]
+[connection signal="value_changed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer/SFXSlider" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer" method="_on_sfx_slider_value_changed"]
+[connection signal="item_selected" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer/ResolutionDropDown" to="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer" method="_on_resolution_drop_down_item_selected"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonBack" to="." method="_on_button_back_pressed"]
