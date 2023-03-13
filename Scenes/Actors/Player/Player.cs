@@ -111,7 +111,6 @@ public partial class Player : Actor
         //    blood.GlobalPosition = GlobalPosition;
         //    blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
 
-
         //    DamagePopup popup = damagePopup.Instantiate() as DamagePopup;
         //    popup.Amount = (int)damage;
         //    popup.Type = "Damage";
