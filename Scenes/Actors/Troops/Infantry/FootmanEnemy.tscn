@@ -6,7 +6,6 @@
 
 [node name="FootmanEnemy" instance=ExtResource("1_gekoh")]
 collision_layer = 4
-collision_mask = 3
 script = ExtResource("2_1coml")
 
 [node name="CollisionShape2D" parent="." index="1"]
