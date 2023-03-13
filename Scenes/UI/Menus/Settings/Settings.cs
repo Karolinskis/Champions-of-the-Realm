@@ -5,11 +5,11 @@ using System.Collections.Generic;
 public partial class Settings : Control
 {	
 	// audio variables
-	int musicBus;
-	int sfxBus;
+	private int musicBus;
+	private int sfxBus;
 
 	// resolution variables
-	OptionButton resolutionMenu;
+	private OptionButton resolutionMenu;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
