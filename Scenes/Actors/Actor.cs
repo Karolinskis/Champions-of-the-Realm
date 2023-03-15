@@ -8,9 +8,9 @@ public partial class Actor : CharacterBody2D
 {
     public Stats Stats { get; set; }
     public Team Team { get; set; }
+    public Vector2 Direction { get; set; }
     protected CollisionShape2D collisionShape;
     //protected PackedScene bloodScene;
-    public Vector2 Direction { get; set; }
     private Vector2 knockBack = Vector2.Zero;
 
     public override void _Ready()

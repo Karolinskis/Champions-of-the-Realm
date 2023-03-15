@@ -44,6 +44,9 @@ public partial class Map : Node2D
         GetTree().ReloadCurrentScene();
     }
 
+    /// <summary>
+    /// Method for setting camera limits according to map size
+    /// </summary>
     protected void SetCameraLimits()
     {
         Rect2 mapLimits = ground.GetUsedRect();
