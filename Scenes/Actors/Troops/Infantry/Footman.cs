@@ -31,7 +31,6 @@ public partial class Footman : Infantry
 
         if (Velocity != Vector2.Zero)
         {
-            weapon.Walking();
             return;
         }
         weapon.Idle();

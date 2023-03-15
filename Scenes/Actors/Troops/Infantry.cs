@@ -13,4 +13,16 @@ public partial class Infantry : Troop
     /// Method for Attacking
     /// </summary>
     public virtual void Attack() { }
+    /// <summary>
+    /// Method for playing Idle animation
+    /// </summary>
+    public virtual void PlayIdle() { }
+    /// <summary>
+    /// Method for playing walking animation
+    /// </summary>
+    public virtual void PlayWalking(){}
+    /// <summary>
+    /// Method for play attack animation
+    /// </summary>
+    public virtual void PlayAttack() { }
 }

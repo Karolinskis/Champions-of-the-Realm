@@ -24,5 +24,6 @@ position = Vector2(-0.0179367, 0.0706615)
 shape = SubResource("RectangleShape2D_cxr6t")
 
 [node name="Stats" parent="." instance=ExtResource("2_dy5d8")]
+Speed = 150.0
 
 [node name="Team" parent="." instance=ExtResource("4_36kou")]

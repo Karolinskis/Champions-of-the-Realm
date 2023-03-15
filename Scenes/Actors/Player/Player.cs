@@ -22,8 +22,8 @@ public partial class Player : Actor
     private RemoteTransform2D cameraTransform;
     private AudioStreamPlayer coinsSound;
 
-    private Vector2 movementDirection = Vector2.Zero; // Movement direction, in which player walks
-    private Vector2 attackDirection = Vector2.Zero; // Attack direction, in which player attacks
+    private Vector2 movementDirection = Vector2.Zero; // Movement Direction, in which player walks
+    private Vector2 attackDirection = Vector2.Zero; // Attack Direction, in which player attacks
 
     // Level system, whcih handels obtained xp, levelUp and obtaining skills
     private LevelSystem levelSystem;
@@ -54,7 +54,7 @@ public partial class Player : Actor
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
-        direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
+        Direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
         if (!WeaponsManager.IsAttacking)
         {
             if (Velocity != Vector2.Zero)
@@ -66,7 +66,6 @@ public partial class Player : Actor
                 PlayIdle();
             }
         }
-        Velocity = movementDirection * Stats.Speed;
 
         // TODO: lacking Joystick scene implementation
         //attackDirection = attackJoystick.GetValue();
@@ -95,7 +94,7 @@ public partial class Player : Actor
     /// Method for handeling received damage
     /// </summary>
     /// <param name="baseDamage">Received damage</param>
-    /// <param name="impactPosition">Impact position for calculating impact particales direction</param>
+    /// <param name="impactPosition">Impact position for calculating impact particales Direction</param>
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
         float damage = Mathf.Clamp(baseDamage - Stats.Armour, 0, 100);
@@ -298,5 +297,9 @@ public partial class Player : Actor
         //{
         //    Deliver();
         //}
+    }
+    public void SetCameraTransform(NodePath cameraPath)
+    {
+        cameraTransform.RemotePath = cameraPath;
     }
 }
