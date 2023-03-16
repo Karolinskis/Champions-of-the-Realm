@@ -8,6 +8,9 @@ public partial class Map : Node2D
     private Player player; // Player in the scene
     private PackedScene playerScene; // Player resource
     private GUI hud; // GUI in the scene
+    private Camera2D camera; // Player camera
+    private TileMap ground; // Ground level
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -17,6 +20,8 @@ public partial class Map : Node2D
         // Loading nodes
         hud = GetNode<GUI>("HUD");
         player = GetNode<Player>("Player");
+        camera = GetNode<Camera2D>("Camera");
+        ground = GetNode<TileMap>("TileMapGround");
 
         // Setting signals
         player.Connect("PlayerHealthChanged", new Callable(hud, "ChangeCurrentHealth"));
@@ -25,6 +30,10 @@ public partial class Map : Node2D
         player.Connect("Died", new Callable(this, "SpawnPlayer"));
         player.Connect("PlayerXpChanged", new Callable(hud, "ChangeXP"));
         hud.Initialize(player.Stats);
+
+        // Setthing camera
+        player.SetCameraTransform(camera.GetPath());
+        SetCameraLimits();
     }
 
     /// <summary>
@@ -33,5 +42,18 @@ public partial class Map : Node2D
     public void SpawnPlayer()
     {
         GetTree().ReloadCurrentScene();
+    }
+
+    /// <summary>
+    /// Method for setting camera limits according to map size
+    /// </summary>
+    protected void SetCameraLimits()
+    {
+        Rect2 mapLimits = ground.GetUsedRect();
+        Vector2 mapCellSize = ground.TileSet.TileSize;
+        camera.LimitLeft = (int)(mapLimits.Position.X * mapCellSize.X);
+        camera.LimitRight = (int)(mapLimits.End.X * mapCellSize.X);
+        camera.LimitTop = (int)(mapLimits.Position.Y * mapCellSize.Y);
+        camera.LimitBottom = (int)(mapLimits.End.Y * mapCellSize.Y);
     }
 }

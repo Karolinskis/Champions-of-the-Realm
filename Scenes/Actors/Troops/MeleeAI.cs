@@ -39,13 +39,12 @@ public partial class MeleeAI : Node2D
                 }
 
                 Rotation = GlobalPosition.DirectionTo(target.GlobalPosition).Angle();
-                parent.Velocity = parent.VelocityToward(target.GlobalPosition);
-                parent.MoveAndSlide();
-
+                parent.Direction = parent.GlobalPosition.DirectionTo(target.GlobalPosition);
                 break;
 
             case State.Attack:
                 Rotation = GlobalPosition.DirectionTo(target.GlobalPosition).Angle();
+                parent.Direction = Vector2.Zero;
                 parent.Attack();
                 break;
         }
