@@ -10,15 +10,21 @@ size = Vector2(107, 114.172)
 script = ExtResource("2_r085i")
 damage = 20.0
 
-[node name="Area2D" type="Area2D" parent="." index="2"]
+[node name="Area2D" type="Area2D" parent="." index="1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(110.25, -4.96401)
 shape = SubResource("RectangleShape2D_6slnw")
 disabled = true
 
-[node name="CooldownTimer" type="Timer" parent="." index="3"]
+[node name="CooldownTimer" type="Timer" parent="." index="2"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="." index="3"]
+wait_time = 0.1
 one_shot = true
 
 [connection signal="body_entered" from="Area2D" to="." method="Area2dBodyEntered"]
 [connection signal="timeout" from="CooldownTimer" to="." method="CooldownTimerTimeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="AttackTimerTimeout"]

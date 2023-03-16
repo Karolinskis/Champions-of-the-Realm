@@ -20,7 +20,7 @@ public partial class Infantry : Troop
     /// <summary>
     /// Method for playing walking animation
     /// </summary>
-    public virtual void PlayWalking(){}
+    public virtual void PlayWalking() { }
     /// <summary>
     /// Method for play attack animation
     /// </summary>

@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 /// <summary>
 /// Class dedicated to implement Player functionality (Missing GUI, Joystick, WeaponManager, DamagePopup)
@@ -9,7 +10,7 @@ public partial class Player : Actor
     [Signal] public delegate void PLayerGoldChangedEventHandler(int newGold, int oldGold);
     [Signal] public delegate void PlayerMaxHealthChangedEventHandler(int newMaxHealth);
     [Signal] public delegate void PlayerXpChangedEventHandler(float newXp);
-    [Signal] public delegate void DiedEventHandler();
+    [Signal] public delegate void PlayerDiedEventHandler();
 
     [Export] float swingDuration = 0.5f; // TODO swing stab pierce hit
     [Export] float reloadDuration = 1f;
@@ -33,16 +34,16 @@ public partial class Player : Actor
     //private GUI gui;
 
     private Globals globals; // Object which handel Global actions (Saving, Loading)
-    public WeaponsManager WeaponsManager { get; set; }
+    public WeaponsManager WeaponsManager { get; set; } // For handeling weapons
 
     public override void _Ready()
     {
         base._Ready();
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         WeaponsManager = GetNode<WeaponsManager>("WeaponsManager");
+        WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
 
         // TODO: lacking weaponsManager, GUI and Joystick implementation
-        //WeaponsManager.Initialize(GetTeam());
         //gui = GetParent().GetNode<GUI>("GUI");
         //movementJoystick = gui.GetNode<Joystick>("MovementJoystick/Joystick_Button");
         //attackJoystick = gui.GetNode<Joystick>("MarginContainer/Rows/MiddleRow/MarginContainer/AttackJoystick/Joystick_Button");
@@ -66,7 +67,6 @@ public partial class Player : Actor
                 PlayIdle();
             }
         }
-
         // TODO: lacking Joystick scene implementation
         //attackDirection = attackJoystick.GetValue();
         //movementDirection = movementJoystick.GetValue();
@@ -75,7 +75,7 @@ public partial class Player : Actor
         //if (attackJoystick.OngoingDrag != -1)
         //{
         //    LookAt(GlobalPosition + attackDirection);
-        //    if (!WeaponsManager.IsAttacking && WeaponsManager.currentWeapon.CanAttack())
+        //    if (!WeaponsManager.IsAttacking && WeaponsManager.CurrentWeapon.CanAttack())
         //    {
         //        WeaponsManager.Attack();
         //        PlayAttackAnimation();
@@ -91,20 +91,38 @@ public partial class Player : Actor
         //}
     }
     /// <summary>
+    /// Method for handeling Input
+    /// </summary>
+    /// <param name="event">Input event</param>
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
+        if (@event is InputEventMouseButton eventMouseButton)
+        {
+            if (eventMouseButton.ButtonIndex == MouseButton.Left && eventMouseButton.IsPressed())
+            {
+                float angle = GetGlobalTransformWithCanvas().Origin.AngleToPoint(eventMouseButton.Position);
+                if (WeaponsManager.Attack(angle))
+                {
+                    PlayAttackAnimation(angle);
+                }
+            }
+            if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.IsPressed())
+            {
+                GD.Print("Defend");
+            }
+
+        }
+    }
+    /// <summary>
     /// Method for handeling received damage
     /// </summary>
     /// <param name="baseDamage">Received damage</param>
     /// <param name="impactPosition">Impact position for calculating impact particales Direction</param>
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
-        float damage = Mathf.Clamp(baseDamage - Stats.Armour, 0, 100);
-        Stats.Health -= damage;
+        base.HandleHit(baseDamage, impactPosition);
         EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
-        GD.Print(Stats.Health);
-        if (Stats.Health <= 0)
-        {
-            Die();
-        }
 
         // TODO: lacks blood and damagePopup scenes implementation
         //else
@@ -122,6 +140,16 @@ public partial class Player : Actor
     }
 
     /// <summary>
+    /// Implemented actor's Die method
+    /// </summary>
+    public override void Die()
+    {
+        //globals.EmitSignal("CoinsDroped", base.Stats.Gold / 3, GlobalPosition); // DefendMap
+        EmitSignal(nameof(PlayerDied));
+        base.Die();
+    }
+
+    /// <summary>
     /// Method for setting new player max health
     /// </summary>
     /// <param name="newMaxHealth">New max health value</param>
@@ -129,16 +157,6 @@ public partial class Player : Actor
     {
         Stats.MaxHealth = newMaxHealth;
         EmitSignal(nameof(PlayerMaxHealthChanged), Stats.MaxHealth);
-    }
-
-    /// <summary>
-    /// Implemented actor's Die method
-    /// </summary>
-    public override void Die()
-    {
-        //globals.EmitSignal("CoinsDroped", base.Stats.Gold / 3, GlobalPosition); // DefendMap
-        EmitSignal(nameof(Died));
-        QueueFree();
     }
 
     /// <summary>
@@ -247,29 +265,35 @@ public partial class Player : Actor
     }
 
     /// <summary>
-    /// Method for playing attack player animation
+    /// Method for playing attack animation
     /// </summary>
-    private void PlayAttackAnimation()
+    private void PlayAttackAnimation(float angle)
     {
-        //switch (WeaponsManager.currentWeapon)
-        //{
-        //    case Fists fists:
-        //        animationPlayer.Play("Punsh");
-        //        animationPlayer.PlaybackSpeed = Convert.ToSingle(animationPlayer.CurrentAnimationLength / WeaponsManager.currentWeapon.AttackDuartion);
-        //        break;
-        //    case Bow bow:
-        //        animationPlayer.Play("ShootingBow");
-        //        animationPlayer.PlaybackSpeed = 1;
-        //        break;
-        //    case Sword sword:
-        //        animationPlayer.Play("SwordSwing");
-        //        animationPlayer.PlaybackSpeed = Convert.ToSingle(animationPlayer.CurrentAnimationLength / WeaponsManager.currentWeapon.AttackDuartion);
-        //        break;
-        //    case Spear spear:
-        //        animationPlayer.Play("SpearAttack");
-        //        animationPlayer.PlaybackSpeed = Convert.ToSingle(animationPlayer.CurrentAnimationLength / WeaponsManager.currentWeapon.AttackDuartion);
-        //        break;
-        //}
+        switch (WeaponsManager.CurrentWeapon)
+        {
+            case Melee melee:
+                if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
+                {
+                    animationPlayer.Play("AttackRight");
+                    return;
+                }
+                if (angle >= -3 * Math.PI / 4 && angle <= -Math.PI / 4)
+                {
+                    animationPlayer.Play("AttackBack");
+                    return;
+                }
+                if (angle >= 3 * Math.PI / 4 || angle <= -3 * Math.PI / 4)
+                {
+                    animationPlayer.Play("AttackLeft");
+                    return;
+                }
+                if (angle >= Math.PI / 4 && angle <= 3 * Math.PI / 4)
+                {
+                    animationPlayer.Play("AttackFront");
+                    return;
+                }
+                break;
+        }
     }
 
     /// <summary>
@@ -278,11 +302,11 @@ public partial class Player : Actor
     /// </summary>
     public void Walking()
     {
-        //if (currentWeapon is Melee melee)
+        //if (CurrentWeapon is Melee melee)
         //{
         //    melee.Walking();
         //}
-        //else if (currentWeapon is Bow bow)
+        //else if (CurrentWeapon is Bow bow)
         //{
         //    bow.Walking();
         //}
@@ -293,7 +317,7 @@ public partial class Player : Actor
     /// </summary>
     private void AttackTimerTimeout()
     {
-        //if (currentWeapon is Melee)
+        //if (CurrentWeapon is Melee)
         //{
         //    Deliver();
         //}

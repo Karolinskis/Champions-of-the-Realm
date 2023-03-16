@@ -38,13 +38,24 @@ public partial class Actor : CharacterBody2D
     /// </summary>
     /// <param name="baseDamage">Amount of damage received</param>
     /// <param name="impactPosition">Position for spawning blood particles</param>
-    public virtual void HandleHit(float baseDamage, Vector2 impactPosition) { GD.PrintErr("Calling HandleHit from Actor class!"); }
+    public virtual void HandleHit(float baseDamage, Vector2 impactPosition)
+    {
+        float damage = Mathf.Clamp(baseDamage - Stats.Armour, 0, 100);
+        Stats.Health -= damage;
+        if (Stats.Health <= 0)
+        {
+            Die();
+        }
+    }
 
     /// <summary>
     /// Method for handeling death and removing actor from scene
     /// Should only be fully implemented in deriveted class
     /// </summary>
-    public virtual void Die() { GD.PrintErr("Calling Die method from Actor class!"); }
+    public virtual void Die()
+    {
+        QueueFree();
+    }
 
     /// <summary>
     /// Method for handeling received knockback

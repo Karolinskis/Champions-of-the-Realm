@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Troop : Actor
 {
-    [Signal] public delegate void DiedEventHandler();
+    [Signal] public delegate void TroopDiedEventHandler();
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -18,12 +18,6 @@ public partial class Troop : Actor
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
         base.HandleHit(baseDamage, impactPosition);
-        float damage = Mathf.Clamp(baseDamage - Stats.Armour, 0, Stats.MaxHealth);
-        Stats.Health -= damage;
-        if (Stats.Health <= 0)
-        {
-            Die();
-        }
     }
 
     /// <summary>
@@ -31,11 +25,10 @@ public partial class Troop : Actor
     /// </summary>
     public override void Die()
     {
-        base.Die();
         if (Stats.Gold > 0)
         {
         }
-        EmitSignal(nameof(Died));
-        QueueFree();
+        EmitSignal(nameof(TroopDied));
+        base.Die();
     }
 }

@@ -15,7 +15,7 @@ public partial class Footman : Infantry
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         attackTimer = GetNode<Timer>("AttackTimer");
         weapon = GetNode<Melee>("MeleeAI/Melee");
-        weapon.Initialize(Team);
+        weapon.Initialize(Team.TeamName);
         sprite = GetNode<Sprite2D>("Sprite2D");
     }
 
