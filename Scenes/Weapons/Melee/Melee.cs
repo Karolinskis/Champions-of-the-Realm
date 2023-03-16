@@ -25,7 +25,6 @@ public partial class Melee : Weapon
         collisionShape = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
         cooldownTimer = GetNode<Timer>("CooldownTimer");
         attackTimer = GetNode<Timer>("AttackTimer");
-
     }
 
     /// <summary>

@@ -111,7 +111,6 @@ public partial class Player : Actor
             {
                 GD.Print("Defend");
             }
-
         }
     }
     /// <summary>
