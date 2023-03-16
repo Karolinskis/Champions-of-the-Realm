@@ -298,6 +298,10 @@ public partial class Player : Actor
         //    Deliver();
         //}
     }
+    /// <summary>
+    /// Method for connecting camera with player
+    /// </summary>
+    /// <param name="cameraPath">Path of the camera</param>
     public void SetCameraTransform(NodePath cameraPath)
     {
         cameraTransform.RemotePath = cameraPath;

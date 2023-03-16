@@ -6,8 +6,9 @@ using System;
 /// </summary>
 public partial class Actor : CharacterBody2D
 {
-    public Stats Stats { get; set; }
-    public Team Team { get; set; }
+    // 
+    public Stats Stats { get; set; }  // Property for defining actor stats
+    public Team Team { get; set; } // Property for defining actor team
     public Vector2 Direction { get; set; }
     protected CollisionShape2D collisionShape;
     //protected PackedScene bloodScene;
