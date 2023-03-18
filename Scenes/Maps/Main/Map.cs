@@ -27,7 +27,7 @@ public partial class Map : Node2D
         player.Connect("PlayerHealthChanged", new Callable(hud, "ChangeCurrentHealth"));
         player.Connect("PLayerGoldChanged", new Callable(hud, "ChangeCurrency"));
         player.Connect("PlayerMaxHealthChanged", new Callable(hud, "ChangeMaxHealth"));
-        player.Connect("Died", new Callable(this, "SpawnPlayer"));
+        player.Connect("PlayerDied", new Callable(this, "SpawnPlayer"));
         player.Connect("PlayerXpChanged", new Callable(hud, "ChangeXP"));
         hud.Initialize(player.Stats);
 
