@@ -6021,7 +6021,6 @@ physics_layer_0/physics_material = SubResource("PhysicsMaterial_3xowt")
 sources/0 = SubResource("TileSetAtlasSource_fx80q")
 
 [node name="Main" type="Node2D"]
-position = Vector2(176, 338)
 script = ExtResource("1_urlge")
 
 [node name="TileMapGround" type="TileMap" parent="."]
@@ -6042,6 +6041,9 @@ layer_0/tile_data = PackedInt32Array(-851977, 655360, 23, -786441, 1048576, 23, 
 [node name="Player" parent="." instance=ExtResource("1_lqawp")]
 slide_on_ceiling = true
 
+[node name="FootmanEnemy" parent="." instance=ExtResource("2_m3j16")]
+position = Vector2(601, -66)
+
 [node name="TileMapObstacles" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_7gmga")
 format = 2
@@ -6049,7 +6051,6 @@ layer_0/tile_data = PackedInt32Array(1376271, 720896, 6, 1441831, 720896, 6, 190
 
 [node name="HUD" parent="." instance=ExtResource("5_5ce41")]
 
-[node name="FootmanEnemy" parent="." instance=ExtResource("2_m3j16")]
-position = Vector2(601, -66)
-
 [node name="Camera" type="Camera2D" parent="."]
+process_callback = 0
+position_smoothing_enabled = true

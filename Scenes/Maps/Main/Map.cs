@@ -51,9 +51,10 @@ public partial class Map : Node2D
     {
         Rect2 mapLimits = ground.GetUsedRect();
         Vector2 mapCellSize = ground.TileSet.TileSize;
-        camera.LimitLeft = (int)(mapLimits.Position.X * mapCellSize.X);
-        camera.LimitRight = (int)(mapLimits.End.X * mapCellSize.X);
-        camera.LimitTop = (int)(mapLimits.Position.Y * mapCellSize.Y);
-        camera.LimitBottom = (int)(mapLimits.End.Y * mapCellSize.Y);
+        // 96px (two tiles of obstacle tilemap)
+        camera.LimitLeft = (int)(mapLimits.Position.X * mapCellSize.X) - 96;
+        camera.LimitRight = (int)(mapLimits.End.X * mapCellSize.X) - 96;
+        camera.LimitTop = (int)(mapLimits.Position.Y * mapCellSize.Y) - 96;
+        camera.LimitBottom = (int)(mapLimits.End.Y * mapCellSize.Y) - 96;
     }
 }
