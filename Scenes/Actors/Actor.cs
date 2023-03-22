@@ -6,23 +6,18 @@ using System;
 /// </summary>
 public partial class Actor : CharacterBody2D
 {
-    // 
     public Stats Stats { get; set; }  // Property for defining actor stats
     public Team Team { get; set; } // Property for defining actor team
     public Vector2 Direction { get; set; }
     protected CollisionShape2D collisionShape;
     //protected PackedScene bloodScene;
     private Vector2 knockBack = Vector2.Zero;
-
     public override void _Ready()
     {
         base._Ready();
         Stats = GetNode<Stats>("Stats");
         Team = GetNode<Team>("Team");
         collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
-
-        // TODO: Can't implement blood particales, because blood scene is missing
-        //bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Impact/Blood.tscn");
     }
     public override void _PhysicsProcess(double delta)
     {
