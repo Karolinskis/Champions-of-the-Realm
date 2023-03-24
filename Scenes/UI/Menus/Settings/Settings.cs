@@ -103,7 +103,7 @@ public partial class Settings : Control
 	private void ButtonBackPressed()
 	{
 		var parent = GetParent();
-		var control = parent.GetNode<Control>("CanvasLayer/Control");
+		Control control = parent.GetNode<Control>("CanvasLayer/Control");
 		control.Show();
 		QueueFree();
 	}

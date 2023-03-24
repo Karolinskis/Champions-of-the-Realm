@@ -1,14 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://iq8ol3bmxqrn"]
+[gd_scene load_steps=2 format=3 uid="uid://f5ysv0qhu6ww"]
 
-[ext_resource type="Script" path="res://Scenes/UI/Menus/Main/MainMenu.cs" id="1_dfesn"]
+[ext_resource type="Script" path="res://Scenes/UI/Menus/Pause/PauseMenu.cs" id="1_5ap10"]
 
-[node name="MainMenu" type="Control"]
+[node name="PauseMenu" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_dfesn")
+script = ExtResource("1_5ap10")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
@@ -28,14 +30,21 @@ grow_vertical = 2
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -107.0
+offset_right = 176.0
+offset_bottom = 107.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/CenterContainer"]
 show_behind_parent = true
+custom_minimum_size = Vector2(2.08165e-12, 2.08165e-12)
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer"]
@@ -50,16 +59,29 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Title" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
-text = "Champions of the realm"
+text = "Paused"
 
-[node name="ButtonStartNew" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ButtonResume" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
-text = "Start new game"
+text = "Resume"
+
+[node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ButtonSave" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+text = "Save game"
 
 [node name="ButtonLoad" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -71,12 +93,17 @@ layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 text = "Settings"
 
+[node name="HSeparator3" type="HSeparator" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
 [node name="ButtonQuit" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 text = "Quit"
 
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonStartNew" to="." method="ButtonStartNewPressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonResume" to="." method="ButtonResumePressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonSave" to="." method="ButtonSavePressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonLoad" to="." method="ButtonLoadPressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonSettings" to="." method="ButtonSettingsPressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonQuit" to="." method="ButtonQuitPressed"]
