@@ -4,10 +4,12 @@ using System;
 public partial class Infantry : Troop
 {
     public MeleeAI AI { get; set; } // MeleeAI for Infantry troops
+    protected PackedScene bloodScene; // blood particales
     public override void _Ready()
     {
         base._Ready();
         AI = GetNode<MeleeAI>("MeleeAI");
+        bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
     }
     /// <summary>
     /// Method for Attacking
