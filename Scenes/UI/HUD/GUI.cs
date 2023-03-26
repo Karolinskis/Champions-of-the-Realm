@@ -97,6 +97,11 @@ public partial class GUI : Control
         goldTween.SetEase(Tween.EaseType.Out);
         goldTween.TweenMethod(new Callable(this, "ChangeGoldText"), oldCurrency, newCurrency, 0.6f);
     }
+
+    /// <summary>
+    /// Method to change the text of currency label
+    /// </summary>
+    /// <param name="value"></param>
     private void ChangeGoldText(int value)
     {
         currencyLabel.Text = value.ToString();
@@ -114,6 +119,10 @@ public partial class GUI : Control
         xpTween.TweenMethod(new Callable(this, "ChangeXPText"), oldXP, newXP, 0.6f);
     }
 
+    /// <summary>
+    /// Method to change the text of xp label
+    /// </summary>
+    /// <param name="value"></param>
     private void ChangeXPText(int value)
     {
         XPLabel.Text = value.ToString();
