@@ -44,7 +44,6 @@ public partial class GUI : Control
         ChangeXP(0, 100);
     }
 
-
     /// <summary>
     /// Method to initialize player with values
     /// </summary>
