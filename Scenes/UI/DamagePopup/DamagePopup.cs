@@ -33,8 +33,8 @@ public partial class DamagePopup : Marker2D
                 break;
         }
         Random rand = new Random();
-        float sideMovementx = rand.Next() % 81 - 61;
-        float sideMovementy = rand.Next() % 81 - 61;
+        float sideMovementx = (rand.Next() % 81) - 61;
+        float sideMovementy = (rand.Next() % 81) - 61;
         velocity = new Vector2(10, 0);
         tween = CreateTween();
         tween.TweenProperty(this, "scale", maxSize, 0.7f);
