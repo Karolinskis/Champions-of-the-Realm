@@ -50,6 +50,10 @@ public partial class DamagePopup : Marker2D
         Rotation = -parentRotation;
         Position -= velocity * Convert.ToSingle(delta);
     }
+
+    /// <summary>
+    /// Method for removing damage popup from screen when the animation is finished
+    /// </summary>
     private void TweenAllCompleted()
     {
         QueueFree();
