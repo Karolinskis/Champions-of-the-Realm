@@ -30,6 +30,9 @@ public partial class Player : Actor
     private LevelSystem levelSystem;
 
     private PackedScene bloodScene;
+    private PackedScene damagePopup;
+
+    private bool canPause = true; // variable for deciding whether pausing is allowed.
 
     private bool canPause = true; // variable for deciding whether pausing is allowed.
 
@@ -47,6 +50,7 @@ public partial class Player : Actor
         WeaponsManager = GetNode<WeaponsManager>("WeaponsManager");
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
         bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
+        damagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
         // TODO: lacking weaponsManager, GUI and Joystick implementation
         //gui = GetParent().GetNode<GUI>("GUI");
         //movementJoystick = gui.GetNode<Joystick>("MovementJoystick/Joystick_Button");
@@ -130,7 +134,23 @@ public partial class Player : Actor
                 }
             }
         }
+        else if (@event is InputEventKey eventKeyboardKey)
+        {
+            if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
+            {
+                if (canPause)
+                {
+                    canPause = false;
+                    GetParent().Call("Pause");
+                }
+                else
+                {
+                    canPause = true;
+                }
+            }
+        }
     }
+
     /// <summary>
     /// Method for handeling received damage
     /// </summary>
@@ -145,11 +165,10 @@ public partial class Player : Actor
         blood.GlobalPosition = GlobalPosition;
         blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
 
-        // TODO: lacks blood and damagePopup scenes implementation
-        //    DamagePopup popup = damagePopup.Instantiate() as DamagePopup;
-        //    popup.Amount = (int)damage;
-        //    popup.Type = "Damage";
-        //    AddChild(popup);
+        DamagePopup popup = damagePopup.Instantiate() as DamagePopup;
+        popup.Amount = (int)baseDamage;
+        popup.Type = "Damage";
+        AddChild(popup);
     }
 
     /// <summary>

@@ -41,7 +41,6 @@ public partial class Map : Node2D
     }
 
     /// <summary>
-    /// Method for loading game over screen on player death.
     /// Pauses this scene
     /// </summary>
     public void Pause()
@@ -51,7 +50,7 @@ public partial class Map : Node2D
     }
 
     /// <summary>
-    /// Method for loading game over screen on player death.
+    /// Realoading scene after player death
     /// </summary>
     public void ShowGameOver()
     {
