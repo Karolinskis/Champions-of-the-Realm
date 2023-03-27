@@ -134,21 +134,6 @@ public partial class Player : Actor
                 }
             }
         }
-        else if (@event is InputEventKey eventKeyboardKey)
-        {
-            if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
-            {
-                if (canPause)
-                {
-                    canPause = false;
-                    GetParent().Call("Pause");
-                }
-                else
-                {
-                    canPause = true;
-                }
-            }
-        }
     }
 
     /// <summary>
