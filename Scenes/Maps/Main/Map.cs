@@ -7,6 +7,8 @@ public partial class Map : Node2D
 {
     private Player player; // Player in the scene
     private PackedScene playerScene; // Player resource
+    private GameOver gameOver;  // gameOver in the scene
+    private PackedScene gameOverScene;  // gameOver resource
     private GUI hud; // GUI in the scene
     private Camera2D camera; // Player camera
     private TileMap ground; // Ground level
@@ -16,6 +18,7 @@ public partial class Map : Node2D
     {
         // Loading resources
         playerScene = ResourceLoader.Load<PackedScene>("res://Scenes/Actors/Player/Player.tscn");
+        gameOverScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/GameOver/GameOver.tscn");
 
         // Loading nodes
         hud = GetNode<GUI>("HUD");
@@ -27,8 +30,8 @@ public partial class Map : Node2D
         player.Connect("PlayerHealthChanged", new Callable(hud, "ChangeCurrentHealth"));
         player.Connect("PLayerGoldChanged", new Callable(hud, "ChangeCurrency"));
         player.Connect("PlayerMaxHealthChanged", new Callable(hud, "ChangeMaxHealth"));
-        player.Connect("PlayerDied", new Callable(this, "SpawnPlayer"));
         player.Connect("PlayerXpChanged", new Callable(hud, "ChangeXP"));
+        player.Connect("PlayerDied", new Callable(this, "ShowGameOver"));
         hud.Initialize(player.Stats);
 
         // Setthing camera
@@ -37,11 +40,13 @@ public partial class Map : Node2D
     }
 
     /// <summary>
-    /// Realoading scene after player death
+    /// Method for loading game over screen on player death.
     /// </summary>
-    public void SpawnPlayer()
+    public void ShowGameOver()
     {
-        GetTree().ReloadCurrentScene();
+        gameOver = gameOverScene.Instantiate() as GameOver;
+		AddChild(gameOver);
+        GetTree().Paused = true;
     }
 
     /// <summary>
