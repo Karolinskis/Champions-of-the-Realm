@@ -18,6 +18,7 @@ public partial class Player : Actor
     //TODO: lacking Joystick scene implementation
     //private Joystick movementJoystick;
     //private Joystick attackJoystick;
+    public WeaponsManager WeaponsManager { get; set; } // For handeling weapons
 
     private AnimationPlayer animationPlayer;
     private RemoteTransform2D cameraTransform;
@@ -28,7 +29,6 @@ public partial class Player : Actor
 
     // Level system, whcih handels obtained xp, levelUp and obtaining skills
     private LevelSystem levelSystem;
-
     private PackedScene bloodScene;
     private PackedScene damagePopup;
 
@@ -39,8 +39,9 @@ public partial class Player : Actor
     //private GUI gui;
 
     private Globals globals; // Object which handel Global actions (Saving, Loading)
-    public WeaponsManager WeaponsManager { get; set; } // For handeling weapons
-    private Timer defendTimer;
+
+    // Timer for increasing player armour for certain amount of time
+    private Timer defendTimer; 
 
     public override void _Ready()
     {
@@ -59,7 +60,7 @@ public partial class Player : Actor
         Stats = GetNode<Stats>("Stats");
         globals = GetNode<Globals>("/root/Globals");
 
-        defendTimer = GetNode<Timer>("DefendTimer");
+        defendTimer = GetNode<Timer>("DefendTimer"); // Timer for 
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -345,7 +346,7 @@ public partial class Player : Actor
     }
 
     /// <summary>
-    /// Method for handling defend timer timout by setting defualt values
+    /// Method for handling defend timer timeout by setting default values
     /// </summary>
     private void DefendTimerTimeout()
     {
