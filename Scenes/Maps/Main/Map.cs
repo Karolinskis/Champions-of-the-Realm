@@ -42,6 +42,7 @@ public partial class Map : Node2D
 
     /// <summary>
     /// Method for loading game over screen on player death.
+    /// Pauses this scene
     /// </summary>
     public void Pause()
     {
@@ -55,7 +56,7 @@ public partial class Map : Node2D
     public void ShowGameOver()
     {
         GameOver gameOver = gameOverScene.Instantiate() as GameOver;
-		AddChild(gameOver);
+		    AddChild(gameOver);
     }
 
     /// <summary>
