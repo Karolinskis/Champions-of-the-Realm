@@ -5,7 +5,6 @@ public partial class PauseMenu : Control
 {
 	private PackedScene settingsScene;	// Settings resources.
 	private Control control;
-	private bool canResume = true; // variable for deciding if we can resume
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,16 +29,8 @@ public partial class PauseMenu : Control
         {
             if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
             {
-				if (canResume)
-				{
-					canResume = false;
-					GetTree().Paused = false;
-					QueueFree();
-				}
-				else
-				{
-					canResume = true;
-				}
+				GetTree().Paused = false;
+				QueueFree();
             }
         }
     }
