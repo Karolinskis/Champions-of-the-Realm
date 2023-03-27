@@ -20,20 +20,20 @@ public partial class PauseMenu : Control
 	}
 
 	/// <summary>
-    /// Method for handeling Input
-    /// </summary>
-    /// <param name="event">Input event</param>
-    public override void _Input(InputEvent @event)
-    {
-        if (@event is InputEventKey eventKeyboardKey)
-        {
-            if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
-            {
+    	/// Method for handeling Input
+    	/// </summary>
+    	/// <param name="event">Input event</param>
+    	public override void _Input(InputEvent @event)
+    	{
+        	if (@event is InputEventKey eventKeyboardKey)
+        	{
+            		if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
+            		{
 				GetTree().Paused = false;
 				QueueFree();
-            }
-        }
-    }
+            		}
+        	}
+    	}
 
 	/// <summary>
 	/// Button for resuming the game.
