@@ -45,7 +45,7 @@ public partial class PauseMenu : Control
 				{
 					paused = true;
 					mapInstance.Pause();
-            		control.Show();
+					control.Show();
 				}
 				else
 				{
@@ -66,6 +66,7 @@ public partial class PauseMenu : Control
 	/// </summary>
 	private void ButtonResumePressed()
 	{
+		paused = false;
 		mapInstance.Resume();
 		control.Hide();
 	}
