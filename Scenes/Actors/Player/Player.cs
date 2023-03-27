@@ -18,25 +18,27 @@ public partial class Player : Actor
     //TODO: lacking Joystick scene implementation
     //private Joystick movementJoystick;
     //private Joystick attackJoystick;
-    public WeaponsManager WeaponsManager { get; set; } // For handeling weapons
+
+    /// <summary>
+    /// Weapons manager for handeling weapons
+    /// </summary>
+    public WeaponsManager WeaponsManager { get; set; }
 
     private AnimationPlayer animationPlayer;
-    private RemoteTransform2D cameraTransform;
-    private AudioStreamPlayer coinsSound;
+
+    // Camera transform for setting camera movement according to player movement
+    private RemoteTransform2D cameraTransform; 
+    private AudioStreamPlayer coinsSound; // Sound which is played when currency is received
 
     private Vector2 movementDirection = Vector2.Zero; // Movement Direction, in which player walks
     private Vector2 attackDirection = Vector2.Zero; // Attack Direction, in which player attacks
 
     // Level system, whcih handels obtained xp, levelUp and obtaining skills
     private LevelSystem levelSystem;
-    private PackedScene bloodScene;
-    private PackedScene damagePopup;
+    private PackedScene bloodScene; // Blood scene for emiting blood particales
+    private PackedScene damagePopup; // DamagePopup scene for showing received damage
 
     private bool canPause = true; // variable for deciding whether pausing is allowed.
-
-    // TODO: lacking damagePopup scene implementation
-    //private PackedScene damagePopup = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Popups/DamagePopup.tscn");
-    //private GUI gui;
 
     private Globals globals; // Object which handel Global actions (Saving, Loading)
 
@@ -51,15 +53,9 @@ public partial class Player : Actor
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
         bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
         damagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
-        // TODO: lacking weaponsManager, GUI and Joystick implementation
-        //gui = GetParent().GetNode<GUI>("GUI");
-        //movementJoystick = gui.GetNode<Joystick>("MovementJoystick/Joystick_Button");
-        //attackJoystick = gui.GetNode<Joystick>("MarginContainer/Rows/MiddleRow/MarginContainer/AttackJoystick/Joystick_Button");
-
         cameraTransform = GetNode<RemoteTransform2D>("CameraTransform");
         Stats = GetNode<Stats>("Stats");
         globals = GetNode<Globals>("/root/Globals");
-
         defendTimer = GetNode<Timer>("DefendTimer");
     }
     public override void _PhysicsProcess(double delta)
@@ -77,28 +73,6 @@ public partial class Player : Actor
                 PlayIdle();
             }
         }
-        // TODO: lacking Joystick scene implementation
-        //attackDirection = attackJoystick.GetValue();
-        //movementDirection = movementJoystick.GetValue();
-
-        ////Joystick implementation
-        //if (attackJoystick.OngoingDrag != -1)
-        //{
-        //    LookAt(GlobalPosition + attackDirection);
-        //    if (!WeaponsManager.IsAttacking && WeaponsManager.CurrentWeapon.CanAttack())
-        //    {
-        //        WeaponsManager.Attack();
-        //        PlayAttackAnimation();
-        //    }
-        //}
-        //else if (attackJoystick.OngoingDrag == -1 && WeaponsManager.IsAttacking)
-        //{
-        //    WeaponsManager.Deliver();
-        //}
-        //else
-        //{
-        //    LookAt(GlobalPosition + movementDirection);
-        //}
     }
     /// <summary>
     /// Method for handeling Input
@@ -120,10 +94,10 @@ public partial class Player : Actor
             if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.IsPressed() && defendTimer.IsStopped())
             {
                 Stats.Armour += 10;
-                Modulate = new Color("50aaff");
+                Modulate = new Color("50aaff"); // Defend color
                 defendTimer.Start();
             }
-        } 
+        }
         else if (@event is InputEventKey eventKeyboardKey)
         {
             if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
@@ -351,7 +325,7 @@ public partial class Player : Actor
     private void DefendTimerTimeout()
     {
         Stats.Armour -= 10;
-        Modulate = new Color("ffffff");
+        Modulate = new Color("ffffff"); // default color
     }
 
     /// <summary>
