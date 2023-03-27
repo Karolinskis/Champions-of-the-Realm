@@ -40,6 +40,7 @@ public partial class Player : Actor
 
     private Globals globals; // Object which handel Global actions (Saving, Loading)
     public WeaponsManager WeaponsManager { get; set; } // For handeling weapons
+    private Timer defendTimer;
 
     public override void _Ready()
     {
@@ -57,6 +58,8 @@ public partial class Player : Actor
         cameraTransform = GetNode<RemoteTransform2D>("CameraTransform");
         Stats = GetNode<Stats>("Stats");
         globals = GetNode<Globals>("/root/Globals");
+
+        defendTimer = GetNode<Timer>("DefendTimer");
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -105,7 +108,7 @@ public partial class Player : Actor
         base._Input(@event);
         if (@event is InputEventMouseButton eventMouseButton)
         {
-            if (eventMouseButton.ButtonIndex == MouseButton.Left && eventMouseButton.IsPressed())
+            if (eventMouseButton.ButtonIndex == MouseButton.Left && eventMouseButton.IsPressed() && defendTimer.IsStopped())
             {
                 float angle = GetGlobalTransformWithCanvas().Origin.AngleToPoint(eventMouseButton.Position);
                 if (WeaponsManager.Attack(angle))
@@ -113,9 +116,11 @@ public partial class Player : Actor
                     PlayAttackAnimation(angle);
                 }
             }
-            if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.IsPressed())
+            if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.IsPressed() && defendTimer.IsStopped())
             {
-                GD.Print("Defend");
+                Stats.Armour += 10;
+                Modulate = new Color("50aaff");
+                defendTimer.Start();
             }
         } 
         else if (@event is InputEventKey eventKeyboardKey)
@@ -338,6 +343,16 @@ public partial class Player : Actor
         //    Deliver();
         //}
     }
+
+    /// <summary>
+    /// Method for handling defend timer timout by setting defualt values
+    /// </summary>
+    private void DefendTimerTimeout()
+    {
+        Stats.Armour -= 10;
+        Modulate = new Color("ffffff");
+    }
+
     /// <summary>
     /// Method for connecting camera with player
     /// </summary>
