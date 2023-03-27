@@ -7,7 +7,6 @@ public partial class Map : Node2D
 {
     private Player player; // Player in the scene
     private PackedScene playerScene; // Player resource
-    private GameOver gameOver;  // gameOver in the scene
     private PackedScene gameOverScene;  // gameOver resource
     private GUI hud; // GUI in the scene
     private Camera2D camera; // Player camera
@@ -44,9 +43,8 @@ public partial class Map : Node2D
     /// </summary>
     public void ShowGameOver()
     {
-        gameOver = gameOverScene.Instantiate() as GameOver;
+        GameOver gameOver = gameOverScene.Instantiate() as GameOver;
 		AddChild(gameOver);
-        GetTree().Paused = true;
     }
 
     /// <summary>
