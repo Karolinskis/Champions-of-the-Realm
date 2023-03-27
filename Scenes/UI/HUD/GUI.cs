@@ -14,7 +14,6 @@ public partial class GUI : Control
     private Label maxAmmoLabel;
     private Tween healthTween;
     private StyleBoxFlat barStyle;
-    private Sprite2D goldenCoin;
 
     private Color healthyColor = new Color("#69a300");
     private Color injuredColor = new Color("ffa300");
@@ -38,7 +37,6 @@ public partial class GUI : Control
         XPLabel = GetNode<Label>("HUD/MarginContainer/Rows/TopRow/XPContainer/XPLabel");
         maxAmmoLabel = GetNode<Label>("HUD/MarginContainer/Rows/BottomRow/AmmoContainer/MaxAmmo");
         barStyle = (StyleBoxFlat)healthBar.Get("theme_override_styles/fill");
-        goldenCoin = GetNode<Sprite2D>("HUD/MarginContainer/Rows/TopRow/CurrenctContainer/CurrencyLabel/GoldenCoin");
     }
 
     /// <summary>
