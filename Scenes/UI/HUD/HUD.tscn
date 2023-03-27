@@ -1,9 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://qsbiiuapp07u"]
+[gd_scene load_steps=6 format=3 uid="uid://xpy4rcjasw1t"]
 
 [ext_resource type="Script" path="res://Scenes/UI/HUD/GUI.cs" id="1_ujh52"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g204k"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_not3w"]
 bg_color = Color(0.188235, 0.188235, 0.188235, 1)
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d8hd"]
+bg_color = Color(0.411765, 0, 0, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yi0l6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -11,7 +25,7 @@ border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y4lv"]
-bg_color = Color(0.411765, 0, 0, 1)
+bg_color = Color(0.411765, 0.639216, 0, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3
@@ -52,20 +66,30 @@ mouse_filter = 2
 [node name="CurrenctContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/TopRow"]
 layout_mode = 2
 
+[node name="CurrencyText" type="Label" parent="HUD/MarginContainer/Rows/TopRow/CurrenctContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Currency:"
+
 [node name="CurrencyLabel" type="Label" parent="HUD/MarginContainer/Rows/TopRow/CurrenctContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Currency: 0"
+text = "0"
 
 [node name="XPContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/TopRow"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
+[node name="XPText" type="Label" parent="HUD/MarginContainer/Rows/TopRow/XPContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "XP:"
+
 [node name="XPLabel" type="Label" parent="HUD/MarginContainer/Rows/TopRow/XPContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "XP: 0"
+text = "0"
 
 [node name="MiddleRow" type="HBoxContainer" parent="HUD/MarginContainer/Rows"]
 layout_mode = 2
@@ -81,14 +105,24 @@ mouse_filter = 2
 [node name="HealthContainer" type="CenterContainer" parent="HUD/MarginContainer/Rows/BottomRow"]
 layout_mode = 2
 
+[node name="HealthBar2" type="ProgressBar" parent="HUD/MarginContainer/Rows/BottomRow/HealthContainer"]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_not3w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5d8hd")
+step = 1.0
+value = 95.0
+show_percentage = false
+
 [node name="HealthBar" type="ProgressBar" parent="HUD/MarginContainer/Rows/BottomRow/HealthContainer"]
 custom_minimum_size = Vector2(200, 40)
 layout_mode = 2
 mouse_filter = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_g204k")
+theme_override_styles/background = SubResource("StyleBoxFlat_yi0l6")
 theme_override_styles/fill = SubResource("StyleBoxFlat_8y4lv")
 step = 1.0
-value = 43.0
+value = 95.0
 show_percentage = false
 
 [node name="AmmoContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/BottomRow"]
