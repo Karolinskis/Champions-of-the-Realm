@@ -33,15 +33,15 @@ public partial class DamagePopup : Marker2D
                 break;
         }
         Random rand = new Random();
-        float sideMovementx = (rand.Next() % 81) - 61;
-        float sideMovementy = (rand.Next() % 81) - 61;
-        velocity = new Vector2(10, 0);
+        float sideMovementx = (rand.Next() % 81) - 61; //side movement variable
+        float sideMovementy = (rand.Next() % 81) - 61; //side movement variable
+        velocity = new Vector2(10, 0); //velocity vector
         tween = CreateTween();
-        tween.TweenProperty(this, "scale", maxSize, 0.7f);
-        tween.Chain().TweenProperty(this, "scale", new Vector2(0.1f, 0.1f), 0.7f).SetDelay(0.3f);
-        tween.SetTrans(Tween.TransitionType.Linear);
-        tween.SetEase(Tween.EaseType.Out);
-        tween.TweenCallback(new Callable(this, "TweenAllCompleted"));
+        tween.TweenProperty(this, "scale", maxSize, 0.7f); //tween to scale the popup to 70%
+        tween.Chain().TweenProperty(this, "scale", new Vector2(0.1f, 0.1f), 0.7f).SetDelay(0.3f); //tween to scale the vector with velocity
+        tween.SetTrans(Tween.TransitionType.Linear); //trainsition type linear
+        tween.SetEase(Tween.EaseType.Out); //ease type out
+        tween.TweenCallback(new Callable(this, "TweenAllCompleted")); //callint method to remove the popup
     }
     public override void _PhysicsProcess(double delta)
     {
