@@ -117,7 +117,7 @@ public partial class Player : Actor
             {
                 GD.Print("Defend");
             }
-        }
+        } 
         else if (@event is InputEventKey eventKeyboardKey)
         {
             if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
