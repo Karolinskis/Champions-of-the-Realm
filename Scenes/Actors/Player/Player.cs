@@ -31,7 +31,7 @@ public partial class Player : Actor
 
     private PackedScene bloodScene;
 
-    private bool canPause = false; // variable for deciding whether pausing is allowed.
+    private bool canPause = true; // variable for deciding whether pausing is allowed.
 
     // TODO: lacking damagePopup scene implementation
     //private PackedScene damagePopup = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Popups/DamagePopup.tscn");

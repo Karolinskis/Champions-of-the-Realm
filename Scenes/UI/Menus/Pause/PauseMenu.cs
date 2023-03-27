@@ -82,6 +82,15 @@ public partial class PauseMenu : Control
 	/// <summary>
 	/// Button for quitting the game.
 	/// </summary>
+	private void ButtonQuitMainMenuPressed()
+	{
+		GetTree().Paused = false;
+		GetTree().ChangeSceneToFile("res://Scenes/UI/Menus/Main/MainMenu.tscn");
+	}
+
+	/// <summary>
+	/// Button for quitting the game.
+	/// </summary>
 	private void ButtonQuitPressed()
 	{
 		GetTree().Quit();
