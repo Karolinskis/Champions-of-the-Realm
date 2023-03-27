@@ -31,6 +31,8 @@ public partial class Player : Actor
 
     private PackedScene bloodScene;
 
+    private bool canPause = true; // variable for deciding whether pausing is allowed.
+
     // TODO: lacking damagePopup scene implementation
     //private PackedScene damagePopup = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Popups/DamagePopup.tscn");
     //private GUI gui;
@@ -112,6 +114,20 @@ public partial class Player : Actor
             if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.IsPressed())
             {
                 GD.Print("Defend");
+            }
+        } else if (@event is InputEventKey eventKeyboardKey)
+        {
+            if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
+            {
+                if (canPause)
+                {
+                    canPause = false;
+                    GetParent().Call("Pause");
+                }
+                else
+                {
+                    canPause = true;
+                }
             }
         }
     }

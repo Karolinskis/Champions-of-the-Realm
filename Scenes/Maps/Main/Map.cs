@@ -7,6 +7,7 @@ public partial class Map : Node2D
 {
     private Player player; // Player in the scene
     private PackedScene playerScene; // Player resource
+    private PackedScene PauseMenuScene; // Pause menu resource
     private PackedScene gameOverScene;  // gameOver resource
     private GUI hud; // GUI in the scene
     private Camera2D camera; // Player camera
@@ -18,7 +19,8 @@ public partial class Map : Node2D
         // Loading resources
         playerScene = ResourceLoader.Load<PackedScene>("res://Scenes/Actors/Player/Player.tscn");
         gameOverScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/GameOver/GameOver.tscn");
-
+        PauseMenuScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Pause/PauseMenu.tscn");
+        
         // Loading nodes
         hud = GetNode<GUI>("HUD");
         player = GetNode<Player>("Player");
@@ -29,13 +31,22 @@ public partial class Map : Node2D
         player.Connect("PlayerHealthChanged", new Callable(hud, "ChangeCurrentHealth"));
         player.Connect("PLayerGoldChanged", new Callable(hud, "ChangeCurrency"));
         player.Connect("PlayerMaxHealthChanged", new Callable(hud, "ChangeMaxHealth"));
-        player.Connect("PlayerXpChanged", new Callable(hud, "ChangeXP"));
         player.Connect("PlayerDied", new Callable(this, "ShowGameOver"));
+        player.Connect("PlayerXpChanged", new Callable(hud, "ChangeXP"));
         hud.Initialize(player.Stats);
 
         // Setthing camera
         player.SetCameraTransform(camera.GetPath());
         SetCameraLimits();
+    }
+
+    /// <summary>
+    /// Method for loading game over screen on player death.
+    /// </summary>
+    public void Pause()
+    {
+        PauseMenu pauseMenu = PauseMenuScene.Instantiate() as PauseMenu;
+        AddChild(pauseMenu);
     }
 
     /// <summary>
