@@ -6,7 +6,6 @@ using Godot;
 public partial class Map : Node2D
 {
     private Player player; // Player in the scene
-    private PauseMenu pauseMenu; // Pause menu in the scene
     private PackedScene playerScene; // Player resource
     private PackedScene PauseMenuScene; // Pause menu resource
     private GUI hud; // GUI in the scene
@@ -44,7 +43,7 @@ public partial class Map : Node2D
     /// </summary>
     public void Pause()
     {
-        pauseMenu = PauseMenuScene.Instantiate() as PauseMenu;
+        PauseMenu pauseMenu = PauseMenuScene.Instantiate() as PauseMenu;
         AddChild(pauseMenu);
     }
 
