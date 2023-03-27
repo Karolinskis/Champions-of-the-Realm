@@ -19,21 +19,21 @@ public partial class PauseMenu : Control
 		settingsScene = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Menus/Settings/Settings.tscn");
 	}
 
-   /// <summary>
-   /// Method for handeling Input
-   /// </summary>
-   /// <param name="event">Input event</param>
-   public override void _Input(InputEvent @event)
-   {
-        if (@event is InputEventKey eventKeyboardKey)
-        {
-            if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
-            {
-		            GetTree().Paused = false;
-		            QueueFree();
-            }
-        }
-   }
+   	/// <summary>
+   	/// Method for handeling Input
+   	/// </summary>
+   	/// <param name="event">Input event</param>
+   	public override void _Input(InputEvent @event)
+   	{	
+        	if (@event is InputEventKey eventKeyboardKey)
+        	{
+            		if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
+            		{
+				GetTree().Paused = false;
+				QueueFree();
+            		}
+        	}
+   	}
 
 	/// <summary>
 	/// Button for resuming the game.
