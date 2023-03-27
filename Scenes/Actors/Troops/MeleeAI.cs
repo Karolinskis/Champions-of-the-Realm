@@ -90,26 +90,24 @@ public partial class MeleeAI : Node2D
     /// <summary>
     /// Check if the entered actor is in the same team as the character
     /// </summary>
-    /// <param name="actor">Actor to check</param>
-    private void DetectionAreaBodyEntered(Actor actor)
+    /// <param name="body">Actor to check</param>
+    private void DetectionAreaBodyEntered(Node body)
     {
-        if (parent.GetTeam() == actor.GetTeam() && // If the entered actor is in the same team, return
-            currentState == State.Attack && currentState == State.Engage) // Check if the actor is currently attacking 
+        if (body is Actor actor && actor.GetTeam() != parent.GetTeam() &&
+            currentState != State.Engage && currentState != State.Attack)
         {
-            return;
+            target = actor;
+            ChangeState(State.Engage);
         }
-
-        target = actor;
-        ChangeState(State.Engage);
     }
 
     /// <summary>
     /// If the exited actor is the current target, then idle
     /// </summary>
-    /// <param name="actor">Actor to check</param>
-    private void DetectionAreaBodyExited(Actor actor)
+    /// <param name="body">Actor to check</param>
+    private void DetectionAreaBodyExited(Node body)
     {
-        if (actor == target && target != null && !IsQueuedForDeletion())
+        if (body == target && target != null && !IsQueuedForDeletion())
         {
             target = null;
             ChangeState(State.Idle);
@@ -120,14 +118,15 @@ public partial class MeleeAI : Node2D
     /// Check if the entered actor is not in the same team as the character
     /// and the character is not in the Attack state, then attack the actor
     /// </summary>
-    /// <param name="actor">Actor to check</param>
-    private void AttackAreaBodyEntered(Actor actor)
+    /// <param name="body">Actor to check</param>
+    private void AttackAreaBodyEntered(Node body)
     {
-        // If the entered actor is not in the same team, attack
-        if (parent.GetTeam() != actor.GetTeam() && currentState != State.Attack)
+        // If the entered body is an actor and is not in the same team, attack
+        if (body is Actor actor && parent.GetTeam() != actor.GetTeam() && currentState != State.Attack)
         {
             target = actor;
             ChangeState(State.Attack);
+
         }
     }
 
@@ -135,9 +134,10 @@ public partial class MeleeAI : Node2D
     /// Check if the exited actor is the target, then idle
     /// </summary>
     /// <param name="actor">Actor to check</param>
-    private void AttackAreaBodyExited(Actor actor)
+    private void AttackAreaBodyExited(Node body)
     {
-        if (actor == target && target != null && !IsQueuedForDeletion())
+        if (body is Actor actor && actor == target &&
+            target != null && !IsQueuedForDeletion())
         {
             ChangeState(State.Engage);
         }
