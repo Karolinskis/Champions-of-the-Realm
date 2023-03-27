@@ -6,46 +6,46 @@ using System.Linq;
 // Class dedicated for storing weapons with switching functionality
 public partial class WeaponsManager : Node2D
 {
-[Signal]
-	public delegate void WeaponChangedEventHandler(Weapon newWeapon);
+    [Signal]
+    public delegate void WeaponChangedEventHandler(Weapon newWeapon);
 
-	/// <summary>
-	/// Current weapon the player is holding
-	/// </summary>
-	/// <value>Weapon object</value>
-	public Weapon CurrentWeapon { get; set; }
+    /// <summary>
+    /// Current weapon the player is holding
+    /// </summary>
+    /// <value>Weapon object</value>
+    public Weapon CurrentWeapon { get; set; }
 
-	/// <summary>
-	/// All the weapons the player has
-	/// </summary>
-	public Weapon[] weapons;
+    /// <summary>
+    /// All the weapons the player has
+    /// </summary>
+    public Weapon[] weapons;
 
     /// <summary>
     /// Check if the actor is currently attacking
     /// </summary>
-	public bool IsAttacking { get; set; } = false;
+    public bool IsAttacking { get; set; } = false;
 
     // Team of the actor
     private Team.Teams team;
 
     // Time of attack
-	private Timer attackTimer;
+    private Timer attackTimer;
 
     public override void _Ready()
     {
         CurrentWeapon = GetNode<Weapon>("Melee");		
-		attackTimer = GetNode<Timer>("Melee/AttackTimer");
+        attackTimer = GetNode<Timer>("Melee/AttackTimer");
 
         int weaponAmmount = 2;
-		Weapon[] weapons = GetChildren()
-			.OfType<Weapon>()
+        Weapon[] weapons = GetChildren()
+            .OfType<Weapon>()
             .Take(weaponAmmount)
-			.Select(weapon =>
-			{
-				weapon.Hide();
-				return weapon;
-			})
-			.ToArray();
+            .Select(weapon =>
+            {
+                weapon.Hide();
+                return weapon;
+            })
+            .ToArray();
         
         CurrentWeapon.Hide();
     }
