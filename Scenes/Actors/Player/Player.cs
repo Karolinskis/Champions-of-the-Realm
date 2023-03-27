@@ -60,7 +60,7 @@ public partial class Player : Actor
         Stats = GetNode<Stats>("Stats");
         globals = GetNode<Globals>("/root/Globals");
 
-        defendTimer = GetNode<Timer>("DefendTimer"); // Timer for 
+        defendTimer = GetNode<Timer>("DefendTimer");
     }
     public override void _PhysicsProcess(double delta)
     {
