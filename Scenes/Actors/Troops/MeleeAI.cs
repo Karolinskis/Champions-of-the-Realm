@@ -126,7 +126,6 @@ public partial class MeleeAI : Node2D
         {
             target = actor;
             ChangeState(State.Attack);
-
         }
     }
 
