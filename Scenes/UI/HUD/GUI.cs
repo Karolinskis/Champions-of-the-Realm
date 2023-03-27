@@ -85,7 +85,6 @@ public partial class GUI : Control
     private void ChangeCurrency(int oldCurrency, int newCurrency)
     {
         Tween goldTween = CreateTween();
-        Tween coinTween = CreateTween();
         goldTween.SetTrans(Tween.TransitionType.Expo);
         goldTween.SetEase(Tween.EaseType.Out);
         goldTween.TweenMethod(new Callable(this, "ChangeGoldText"), oldCurrency, newCurrency, 0.6f);
