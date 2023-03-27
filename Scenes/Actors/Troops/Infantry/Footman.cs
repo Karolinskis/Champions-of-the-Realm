@@ -46,6 +46,19 @@ public partial class Footman : Infantry
         }
     }
 
+    /// <summary>
+    /// Method for handeling received damage
+    /// </summary>
+    /// <param name="baseDamage">amount of received damage</param>
+    /// <param name="impactPosition">position for calculating particles casting direciton</param>
+    public override void HandleHit(float baseDamage, Vector2 impactPosition)
+    {
+        base.HandleHit(baseDamage, impactPosition);
+        Blood blood = bloodScene.Instantiate() as Blood;
+        GetParent().AddChild(blood);
+        blood.GlobalPosition = GlobalPosition;
+        blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
+    }
     private void AttackTimerTimeout()
     {
         isAttacking = false;

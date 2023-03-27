@@ -29,8 +29,9 @@ public partial class Player : Actor
     // Level system, whcih handels obtained xp, levelUp and obtaining skills
     private LevelSystem levelSystem;
 
-    //
-    private bool canPause = true; // variable for _input to decide if to allow incoming input.
+    private PackedScene bloodScene;
+
+    private bool canPause = false; // variable for deciding whether pausing is allowed.
 
     // TODO: lacking damagePopup scene implementation
     //private PackedScene damagePopup = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Popups/DamagePopup.tscn");
@@ -45,7 +46,7 @@ public partial class Player : Actor
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         WeaponsManager = GetNode<WeaponsManager>("WeaponsManager");
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
-
+        bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
         // TODO: lacking weaponsManager, GUI and Joystick implementation
         //gui = GetParent().GetNode<GUI>("GUI");
         //movementJoystick = gui.GetNode<Joystick>("MovementJoystick/Joystick_Button");
@@ -136,25 +137,21 @@ public partial class Player : Actor
     /// Method for handeling received damage
     /// </summary>
     /// <param name="baseDamage">Received damage</param>
-    /// <param name="impactPosition">Impact position for calculating impact particales Direction</param>
+    /// <param name="impactPosition">Impact position for calculating impact particles Direction</param>
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
         base.HandleHit(baseDamage, impactPosition);
         EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
+        Blood blood = bloodScene.Instantiate() as Blood;
+        GetParent().AddChild(blood);
+        blood.GlobalPosition = GlobalPosition;
+        blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
 
         // TODO: lacks blood and damagePopup scenes implementation
-        //else
-        //{
-        //    Blood blood = bloodScene.Instantiate() as Blood;
-        //    GetParent().AddChild(blood);
-        //    blood.GlobalPosition = GlobalPosition;
-        //    blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
-
         //    DamagePopup popup = damagePopup.Instantiate() as DamagePopup;
         //    popup.Amount = (int)damage;
         //    popup.Type = "Damage";
         //    AddChild(popup);
-        //}
     }
 
     /// <summary>
