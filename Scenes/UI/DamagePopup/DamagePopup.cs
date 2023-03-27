@@ -3,8 +3,6 @@ using System;
 
 public partial class DamagePopup : Marker2D
 {
-    // Called when the node enters the scene tree for the first time.
-
     private Label label;
     private Tween tween;
     public int Amount { get; set; } = 0;
@@ -15,6 +13,10 @@ public partial class DamagePopup : Marker2D
     private Color damageColor = new Color("c11f1f");
     Vector2 maxSize = new Vector2(1, 1);
     private CharacterBody2D parent;
+
+    /// <summary>
+    /// Called when the node enters the scene tree for the first time.
+    /// </summary>
     public override void _Ready()
     {
         label = GetNode<Label>("FloatingText");
