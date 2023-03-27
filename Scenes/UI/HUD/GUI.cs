@@ -29,7 +29,7 @@ public partial class GUI : Control
     /// <summary>
     /// Ready method called when the node enters the scene tree for the first time.
     /// </summary>
-    public override async void _Ready()
+    public override void _Ready()
     {
         currencyLabel = GetNode<Label>("HUD/MarginContainer/Rows/TopRow/CurrenctContainer/CurrencyLabel");
         healthBar = GetNode<ProgressBar>("HUD/MarginContainer/Rows/BottomRow/HealthContainer/HealthBar");
@@ -39,9 +39,6 @@ public partial class GUI : Control
         maxAmmoLabel = GetNode<Label>("HUD/MarginContainer/Rows/BottomRow/AmmoContainer/MaxAmmo");
         barStyle = (StyleBoxFlat)healthBar.Get("theme_override_styles/fill");
         goldenCoin = GetNode<Sprite2D>("HUD/MarginContainer/Rows/TopRow/CurrenctContainer/CurrencyLabel/GoldenCoin");
-        await ToSignal(GetTree().CreateTimer(1), "timeout");
-        ChangeCurrency(0, 100);
-        ChangeXP(0, 100);
     }
 
     /// <summary>
@@ -69,8 +66,6 @@ public partial class GUI : Control
         healthTween.SetEase(Tween.EaseType.In);
         healthTween.SetParallel(true);
         healthTween.SetTrans(Tween.TransitionType.Linear);
-        //healthTween.TweenProperty(healthBar, "value", newHealthPoints, 0.1f);
-        //healthTween.SetTrans(Tween.TransitionType.Quart);
         healthBar.Value = newHealthPoints;
         healthTween.TweenProperty(healthBarUnder, "value", newHealthPoints, 0.4f).SetDelay(0.1f);
     }
