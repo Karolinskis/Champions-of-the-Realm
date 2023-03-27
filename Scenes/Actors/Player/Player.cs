@@ -29,6 +29,9 @@ public partial class Player : Actor
     // Level system, whcih handels obtained xp, levelUp and obtaining skills
     private LevelSystem levelSystem;
 
+    //
+    private bool canPause = true; // variable for _input to decide if to allow incoming input.
+
     // TODO: lacking damagePopup scene implementation
     //private PackedScene damagePopup = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Popups/DamagePopup.tscn");
     //private GUI gui;
@@ -112,7 +115,23 @@ public partial class Player : Actor
                 GD.Print("Defend");
             }
         }
+        else if (@event is InputEventKey eventKeyboardKey)
+        {
+            if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
+            {
+                if (canPause)
+                {
+                    canPause = false;
+                    GetParent().Call("Pause");
+                }
+                else
+                {
+                    canPause = true;
+                }
+            }
+        }
     }
+
     /// <summary>
     /// Method for handeling received damage
     /// </summary>

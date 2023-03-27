@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cumnukgfcos74"]
+[gd_scene load_steps=18 format=3 uid="uid://cumnukgfcos74"]
 
 [ext_resource type="PackedScene" uid="uid://bcvi14tyljjsh" path="res://Scenes/Actors/Player/Player.tscn" id="1_lqawp"]
 [ext_resource type="Script" path="res://Scenes/Maps/Main/Map.cs" id="1_urlge"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://bxcr2yyvqdqr1" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
 [ext_resource type="Texture2D" uid="uid://ddvcctov6iai4" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
 [ext_resource type="PackedScene" uid="uid://qsbiiuapp07u" path="res://Scenes/UI/HUD/HUD.tscn" id="5_5ce41"]
-[ext_resource type="PackedScene" uid="uid://f5ysv0qhu6ww" path="res://Scenes/UI/Menus/Pause/PauseMenu.tscn" id="8_81svw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubklx"]
 texture = ExtResource("5_0sqop")
@@ -6055,6 +6054,3 @@ layer_0/tile_data = PackedInt32Array(1376271, 720896, 6, 1441831, 720896, 6, 190
 [node name="Camera" type="Camera2D" parent="."]
 process_callback = 0
 position_smoothing_enabled = true
-
-[node name="PauseMenu" parent="." instance=ExtResource("8_81svw")]
-visible = true
