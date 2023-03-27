@@ -19,7 +19,7 @@ public partial class PauseMenu : Control
 		settingsScene = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Menus/Settings/Settings.tscn");
 	}
 
-	/// <summary>
+    /// <summary>
     /// Method for handeling Input
     /// </summary>
     /// <param name="event">Input event</param>
@@ -29,8 +29,8 @@ public partial class PauseMenu : Control
         {
             if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
             {
-				GetTree().Paused = false;
-				QueueFree();
+		GetTree().Paused = false;
+		QueueFree();
             }
         }
     }
