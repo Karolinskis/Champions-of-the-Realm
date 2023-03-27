@@ -55,7 +55,7 @@ public partial class Map : Node2D
     public void ShowGameOver()
     {
         GameOver gameOver = gameOverScene.Instantiate() as GameOver;
-		    AddChild(gameOver);
+	AddChild(gameOver);
     }
 
     /// <summary>
