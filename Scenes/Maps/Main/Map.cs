@@ -7,6 +7,7 @@ public partial class Map : Node2D
 {
     private Player player; // Player in the scene
     private PackedScene playerScene; // Player resource
+    private PackedScene PauseMenuScene; // Pause menu resource
     private GUI hud; // GUI in the scene
     private Camera2D camera; // Player camera
     private TileMap ground; // Ground level
@@ -16,7 +17,8 @@ public partial class Map : Node2D
     {
         // Loading resources
         playerScene = ResourceLoader.Load<PackedScene>("res://Scenes/Actors/Player/Player.tscn");
-
+        PauseMenuScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Pause/PauseMenu.tscn");
+        
         // Loading nodes
         hud = GetNode<GUI>("HUD");
         player = GetNode<Player>("Player");
@@ -34,6 +36,15 @@ public partial class Map : Node2D
         // Setthing camera
         player.SetCameraTransform(camera.GetPath());
         SetCameraLimits();
+    }
+
+    /// <summary>
+    /// Pauses this scene
+    /// </summary>
+    public void Pause()
+    {
+        PauseMenu pauseMenu = PauseMenuScene.Instantiate() as PauseMenu;
+        AddChild(pauseMenu);
     }
 
     /// <summary>

@@ -33,7 +33,7 @@ public partial class MainMenu : Control
 	{
 		Settings settingsScreen = settingsScene.Instantiate() as Settings;
 		AddChild(settingsScreen);
-		var control = GetNode<Control>("CanvasLayer/Control");
+		Control control = GetNode<Control>("CanvasLayer/Control");
 		control.Hide();
 	}
 
