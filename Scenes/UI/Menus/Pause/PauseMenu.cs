@@ -17,7 +17,6 @@ public partial class PauseMenu : Control
 		control = GetNodeOrNull<Control>("CanvasLayer/Control");
 		globals = GetNode<Globals>("/root/Globals");
 
-
 		// Loading settings scene
 		settingsScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Settings/Settings.tscn");
 	}
