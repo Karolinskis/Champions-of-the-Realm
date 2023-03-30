@@ -44,7 +44,6 @@ public partial class Map : Node2D
 				break;
 			default:
 				break;
-
 		}
 		SetCameraLimits(); // Setting camera limits so the camera won't go beyond borders
 	}
