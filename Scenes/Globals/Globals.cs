@@ -9,16 +9,16 @@ public partial class Globals : Node
 {
 	private const string SaveDir = "user://saves/"; // save files directory path
 	private string savePath = SaveDir + "save.dat"; // save file path
-	public enum LoadingForm
+	public enum LoadingForms
 	{
 		New,
 		Save,
 		Load
 	}
-	public LoadingForm loadingForm { get; set; } = LoadingForm.New;
+	public LoadingForms LoadingForm { get; set; } = LoadingForms.New;
 
-
-	public override void _Ready()
+    public Dictionary<string, Variant> Player { get; set; } // For transfering player between scenes
+    public override void _Ready()
 	{
 	}
 
