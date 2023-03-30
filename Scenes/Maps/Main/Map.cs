@@ -46,6 +46,7 @@ public partial class Map : Node2D
 				break;
 		}
 		SetCameraLimits(); // Setting camera limits so the camera won't go beyond borders
+		GetTree().CurrentScene = this;
 	}
 
 	/// <summary>
@@ -110,7 +111,7 @@ public partial class Map : Node2D
 		player = playerScene.Instantiate<Player>();
 		player.Position = playerSpawn.Position;
 		AddChild(player);
-		//player.Load(save)
+		player.Load(save);
 		player.SetCameraTransform(camera.GetPath());
 		player.Connect("PlayerDied", new Callable(this, "ShowGameOver"));
 

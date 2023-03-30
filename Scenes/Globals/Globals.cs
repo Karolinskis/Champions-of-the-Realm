@@ -31,7 +31,7 @@ public partial class Globals : Node
 	{
 		if (!DirAccess.DirExistsAbsolute(SaveDir)) // Checks if directory exists
 		{
-			DirAccess.MakeDirRecursiveAbsolute(SaveDir);
+			DirAccess.MakeDirRecursiveAbsolute(SaveDir); // if not create one
 		}
 		// opening file and encrpypting file with password
 		FileAccess saveFile = FileAccess.OpenEncryptedWithPass(savePath, FileAccess.ModeFlags.Write, "nekompiliuoja");
@@ -53,6 +53,7 @@ public partial class Globals : Node
 			GD.Print(data); // for debugging purposes
 			saveFile.StoreLine(Json.Stringify(data)); // parsing dictionary to JSON file
 		}
+		saveFile.Close();
 		return true;
 	}
 	/// <summary>
@@ -79,7 +80,7 @@ public partial class Globals : Node
 			// Giving small amount of time to fully remove all unwanted nodes (It takes time to free from memory)
 			await ToSignal(GetTree().CreateTimer(0.00001f), "timeout"); // TODO implement better solution, without async
 		}
-		FileAccess saveFile = FileAccess.OpenEncryptedWithPass(savePath, Godot.FileAccess.ModeFlags.Read, "nekompiliuoja");
+		FileAccess saveFile = FileAccess.OpenEncryptedWithPass(savePath, FileAccess.ModeFlags.Read, "nekompiliuoja");
 		if (saveFile.GetError() != Error.Ok) // Checking if saveFile was loaded without any errors
 		{
 			GD.PushError("Failed to load data!"); // for debuging purposes
@@ -96,6 +97,7 @@ public partial class Globals : Node
 			GetNode(data["Parent"].ToString()).AddChild(newObject);
 			newObject.Call("Load", data);
 		}
+		saveFile.Close();
 		// Calling method to load player inside scene
 		GetTree().CurrentScene.Call("LoadSavedPlayer");
 	}

@@ -211,7 +211,7 @@ public partial class WeaponsManager : Node2D
                 if (weapons[i] is Melee)
                 {
                     data.Add(itemid + "Type", "Melee");
-                    data.Add(itemid + "Filename", weapons[i].Name);
+                    data.Add(itemid + "Filename", weapons[i].SceneFilePath);
                 }
             }
             else
@@ -238,7 +238,7 @@ public partial class WeaponsManager : Node2D
             if ((string)data[itemid + "Type"] == "Melee")
             {
                 var newObjectScene = ResourceLoader.Load<PackedScene>(data[itemid + "Filename"].ToString());
-                CurrentWeapon = newObjectScene.Instantiate() as Weapon;
+                CurrentWeapon = newObjectScene.Instantiate<Weapon>();
                 AddWeapon(CurrentWeapon, i);
             }
         }
