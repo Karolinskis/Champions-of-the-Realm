@@ -1,4 +1,4 @@
-[gd_scene load_steps=172 format=3 uid="uid://bcvi14tyljjsh"]
+[gd_scene load_steps=173 format=3 uid="uid://bcvi14tyljjsh"]
 
 [ext_resource type="PackedScene" uid="uid://brn45ugr5ycne" path="res://Scenes/Actors/Actor.tscn" id="1_vbg0f"]
 [ext_resource type="PackedScene" uid="uid://4r0a53kg5j02" path="res://Scenes/Actors/Player/WeaponsManager.tscn" id="2_mlpjm"]
@@ -156,6 +156,7 @@
 [ext_resource type="Texture2D" uid="uid://dmhw52wko4jo5" path="res://Sprites/Actors/Player/PlayerAttack/RightAttacking/MainAttackRight9.png" id="154_farwl"]
 [ext_resource type="Texture2D" uid="uid://dc2wg635jcfv0" path="res://Sprites/Actors/Player/PlayerAttack/RightAttacking/MainAttackRight10.png" id="155_8oe7n"]
 [ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="156_3ah46"]
+[ext_resource type="PackedScene" uid="uid://b5331g7wgjpr8" path="res://Scenes/UI/CharacterMenu/LevelSystem.tscn" id="157_i8vkq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pkm35"]
 size = Vector2(38.5625, 22.8344)
@@ -405,6 +406,7 @@ shape = SubResource("CapsuleShape2D_4udlr")
 
 [node name="Stats" parent="." index="3"]
 _Health = 100.0
+Armour = 5.0
 
 [node name="Team" parent="." index="4"]
 TeamName = 1
@@ -420,6 +422,9 @@ libraries = {
 
 [node name="DefendTimer" type="Timer" parent="." index="8"]
 one_shot = true
+
+[node name="LevelSystem" parent="." index="9" instance=ExtResource("157_i8vkq")]
+visible = false
 
 [connection signal="timeout" from="DefendTimer" to="." method="DefendTimerTimeout"]
 

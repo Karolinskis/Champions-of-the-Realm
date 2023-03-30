@@ -4,9 +4,12 @@ using System;
 public partial class MainMenu : Control
 {
 	private PackedScene settingsScene;
+	private Globals globals; // global variables and functionality
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		globals = GetNode<Globals>("/root/Globals");
 		settingsScene = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Menus/Settings/Settings.tscn");
 	}
 	
@@ -15,6 +18,7 @@ public partial class MainMenu : Control
 	/// </summary>
 	private void ButtonStartNewPressed()
 	{
+		globals.LoadingForm = Globals.LoadingForms.New;
 		GetTree().ChangeSceneToFile("res://Scenes/Maps/Main/Main.tscn");
 	}
 	
@@ -23,7 +27,9 @@ public partial class MainMenu : Control
 	/// </summary>
 	private void ButtonLoadPressed()
 	{
-		// Replace with function body.
+		globals.LoadingForm = Globals.LoadingForms.Save;
+		globals.LoadGame(); // Changing scene through globals
+		QueueFree(); // Removing main menu
 	}
 
 	/// <summary>
