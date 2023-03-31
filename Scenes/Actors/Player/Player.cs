@@ -14,7 +14,7 @@ public partial class Player : Actor
     [Signal] public delegate void PlayerXpChangedEventHandler(float newXp);
     [Signal] public delegate void PlayerDiedEventHandler();
 
-    [Export] float swingDuration = 0.5f; // TODO swing stab pierce hit
+    [Export] float swingDuration = 0.5f; // TODO: swing stab pierce hit
     [Export] float reloadDuration = 1f;
 
     //TODO: lacking Joystick scene implementation
@@ -82,6 +82,7 @@ public partial class Player : Actor
             }
         }
     }
+
     /// <summary>
     /// Method for handeling Input
     /// </summary>
@@ -204,6 +205,7 @@ public partial class Player : Actor
         levelSystem.GetXp(obtainedXp);
         EmitSignal(nameof(PlayerXpChanged), levelSystem.CurrrentXp);
     }
+
     // TODO: lacks WeaponsManager scene implementation
     /// <summary>
     /// Method for canceling attack
@@ -344,6 +346,7 @@ public partial class Player : Actor
     {
         cameraTransform.RemotePath = cameraPath;
     }
+
     /// <summary>
     /// Method for parsing Player data to dictionary
     /// </summary>

@@ -14,8 +14,8 @@ public partial class Map : Node2D
     protected GUI hud; // GUI in the scene
     protected Camera2D camera; // Player camera
     protected TileMap ground; // Ground level
-
     protected Marker2D playerSpawn;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -43,6 +43,7 @@ public partial class Map : Node2D
                 SpawnPlayer();
                 break;
             default:
+                GD.PushError("Map instantiated without loading form!");
                 break;
         }
         SetCameraLimits(); // Setting camera limits so the camera won't go beyond borders
@@ -80,6 +81,10 @@ public partial class Map : Node2D
         camera.LimitTop = (int)(mapLimits.Position.Y * mapCellSize.Y) - 96;
         camera.LimitBottom = (int)(mapLimits.End.Y * mapCellSize.Y) - 96;
     }
+
+    /// <summary>
+    /// Method for spawning new player, setting camera path and connecting signals to hud
+    /// </summary>
     protected void SpawnPlayer()
     {
         player = playerScene.Instantiate<Player>();
@@ -102,6 +107,7 @@ public partial class Map : Node2D
         globals.Player = player.Save();
         //globals.SaveGame(); // for debuging purposes
     }
+
     /// <summary>
     /// Method for loading saved player
     /// </summary>
@@ -125,6 +131,7 @@ public partial class Map : Node2D
         hud.Initialize(player.Stats);
         globals.Player = player.Save(); // loading player to globals
     }
+
     /// <summary>
     /// Method for transfering player between scenes/levels
     /// </summary>

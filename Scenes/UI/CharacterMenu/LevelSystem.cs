@@ -25,7 +25,7 @@ public partial class LevelSystem : Control
         {
             Level++; // LevelUp
             leftXp = CurrrentXp + obtainedXp - LevelUpXp;
-            // TODO call signals
+            // TODO: call signals
         }
         CurrrentXp = leftXp;
     }
@@ -53,6 +53,6 @@ public partial class LevelSystem : Control
         Level = (int)data["Level"];
         CurrrentXp = (float)data["CurrrentXp"];
         LevelUpXp = (float)data["LevelUpXp"];
-        //TODO call signals
+        // TODO: call signals
     }
 }

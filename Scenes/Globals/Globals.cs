@@ -10,9 +10,11 @@ public partial class Globals : Node
     private const string SaveDir = "user://saves/"; // save files directory path
     private string savePath = SaveDir + "save.dat"; // save file path
 
-    // Loading forms which indicate how map scenes should be loaded
-    // (Loading new game, loading from save file or just certain scenes,
-    // for example when map level is switched)
+    /// <summary>
+    /// Loading forms which indicate how map scenes should be loaded
+    /// (Loading new game, loading from save file or just certain scenes,
+    /// for example when map level is switched)
+    /// </summary>
     public enum LoadingForms
     {
         New,
@@ -26,7 +28,7 @@ public partial class Globals : Node
     /// <summary>
     /// Method which saves all nodes in Persist group by parsing dictionary to JSON file
     /// </summary>
-    /// <returns>If saved successfully</returns>
+    /// <returns>Returns true, if saved successfully, otherwise false</returns>
     public bool SaveGame()
     {
         if (!DirAccess.DirExistsAbsolute(SaveDir)) // Checks if directory exists
@@ -56,6 +58,7 @@ public partial class Globals : Node
         saveFile.Close();
         return true;
     }
+
     /// <summary>
     /// Method for loading saved game and its state from JSON file
     /// </summary>
@@ -64,7 +67,7 @@ public partial class Globals : Node
         // Checking if save path exists
         if (!FileAccess.FileExists(savePath))
         {
-            // TODO in future scene shouldn't be changed
+            // TODO: in future scene shouldn't be changed
             GetTree().ChangeSceneToFile("res://Scenes/UI/Menus/Main/MainMenu.tscn");
             return;
         }
@@ -78,7 +81,7 @@ public partial class Globals : Node
         if (saveNodes.Count > 0)
         {
             // Giving small amount of time to fully remove all unwanted nodes (It takes time to free from memory)
-            await ToSignal(GetTree().CreateTimer(0.00001f), "timeout"); // TODO implement better solution, without async
+            await ToSignal(GetTree().CreateTimer(0.00001f), "timeout"); // TODO: implement better solution, without async
         }
         FileAccess saveFile = FileAccess.OpenEncryptedWithPass(savePath, FileAccess.ModeFlags.Read, "nekompiliuoja");
         if (saveFile.GetError() != Error.Ok) // Checking if saveFile was loaded without any errors
