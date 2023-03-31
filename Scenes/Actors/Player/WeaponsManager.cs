@@ -34,7 +34,7 @@ public partial class WeaponsManager : Node2D
 
     public override void _Ready()
     {
-        CurrentWeapon = GetNode<Weapon>("Melee");		
+        CurrentWeapon = GetNode<Weapon>("Melee");
         attackTimer = GetNode<Timer>("Melee/AttackTimer");
 
         int weaponAmmount = 2;
@@ -47,7 +47,7 @@ public partial class WeaponsManager : Node2D
                 return weapon;
             })
             .ToArray();
-        
+
         CurrentWeapon.Hide();
     }
 
