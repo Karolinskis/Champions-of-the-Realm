@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +34,11 @@ public partial class WeaponsManager : Node2D
 
     public override void _Ready()
     {
-        CurrentWeapon = GetNode<Weapon>("Melee");		
+        CurrentWeapon = GetNode<Weapon>("Melee");
         attackTimer = GetNode<Timer>("Melee/AttackTimer");
 
         int weaponAmmount = 2;
-        Weapon[] weapons = GetChildren()
+        weapons = GetChildren()
             .OfType<Weapon>()
             .Take(weaponAmmount)
             .Select(weapon =>
@@ -46,7 +47,7 @@ public partial class WeaponsManager : Node2D
                 return weapon;
             })
             .ToArray();
-        
+
         CurrentWeapon.Hide();
     }
 
@@ -90,7 +91,7 @@ public partial class WeaponsManager : Node2D
     /// </summary>
     public void ChangeWeapon()
     {
-        int index = Array.IndexOf(weapons, CurrentWeapon);
+        int index = System.Array.IndexOf(weapons, CurrentWeapon);
         for (int i = index; i < weapons.Length - 1; i++)
         {
             if (weapons[i + 1] != null)
@@ -197,9 +198,9 @@ public partial class WeaponsManager : Node2D
     /// Save the current weapon loadout
     /// </summary>
     /// <returns>Returns the dictionary of all weapons currently in the loadout</returns>
-    public Dictionary<string, Variant> Save()
+    public Godot.Collections.Dictionary<string, Variant> Save()
     {
-        Dictionary<string, Variant> data = new Dictionary<string, Variant>();
+        Godot.Collections.Dictionary<string, Variant> data = new Godot.Collections.Dictionary<string, Variant>();
 
         for (int i = 0; i < weapons.Length; i++)
         {
@@ -210,7 +211,7 @@ public partial class WeaponsManager : Node2D
                 if (weapons[i] is Melee)
                 {
                     data.Add(itemid + "Type", "Melee");
-                    data.Add(itemid + "Filename", weapons[i].Name);
+                    data.Add(itemid + "Filename", weapons[i].SceneFilePath);
                 }
             }
             else
@@ -226,7 +227,7 @@ public partial class WeaponsManager : Node2D
     /// Load the current weapon loadout
     /// </summary>
     /// <param name="data">Loads all the saved weapons to the loadout</param>
-    public void Load(Dictionary<string, Variant> data)
+    public void Load(Godot.Collections.Dictionary<string, Variant> data)
     {
         Weapon setWeapon = new Weapon();
 
@@ -236,8 +237,8 @@ public partial class WeaponsManager : Node2D
 
             if ((string)data[itemid + "Type"] == "Melee")
             {
-                var newObjectScene = (PackedScene)ResourceLoader.Load(data[itemid + "Filename"].ToString());
-                CurrentWeapon = newObjectScene.Instantiate() as Weapon;
+                var newObjectScene = ResourceLoader.Load<PackedScene>(data[itemid + "Filename"].ToString());
+                CurrentWeapon = newObjectScene.Instantiate<Weapon>();
                 AddWeapon(CurrentWeapon, i);
             }
         }

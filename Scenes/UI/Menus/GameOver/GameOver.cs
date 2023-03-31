@@ -3,11 +3,14 @@ using System;
 
 public partial class GameOver : Control
 {
+	private Globals globals; // global variables and functionality
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		GetTree().Paused = true;
-	}
+        globals = GetNode<Globals>("/root/Globals");
+    }
 	
 	/// <summary>
 	/// Button for restarting scene.
@@ -23,8 +26,11 @@ public partial class GameOver : Control
 	/// </summary>
 	private void ButtonLoadPressed()
 	{
-		// todo: waiting for save/load functionality.
-	}
+        globals.LoadingForm = Globals.LoadingForms.Save;
+        globals.LoadGame(); // Changing scene through globals
+        GetTree().Paused = false; // resuming process
+        QueueFree(); // removing pauseMenu
+    }
 
 	/// <summary>
 	/// Button for quitting to main menu.

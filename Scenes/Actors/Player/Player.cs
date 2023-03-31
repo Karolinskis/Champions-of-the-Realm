@@ -1,8 +1,9 @@
 using Godot;
+using Godot.Collections;
 using System;
 
 /// <summary>
-/// Class dedicated to implement Player functionality (Missing GUI, Joystick, WeaponManager, DamagePopup)
+/// Class dedicated to implement Player functionality
 /// </summary>
 public partial class Player : Actor
 {
@@ -12,7 +13,7 @@ public partial class Player : Actor
     [Signal] public delegate void PlayerXpChangedEventHandler(float newXp);
     [Signal] public delegate void PlayerDiedEventHandler();
 
-    [Export] float swingDuration = 0.5f; // TODO swing stab pierce hit
+    [Export] float swingDuration = 0.5f; // TODO: swing stab pierce hit
     [Export] float reloadDuration = 1f;
 
     //TODO: lacking Joystick scene implementation
@@ -27,7 +28,7 @@ public partial class Player : Actor
     private AnimationPlayer animationPlayer;
 
     // Camera transform for setting camera movement according to player movement
-    private RemoteTransform2D cameraTransform; 
+    private RemoteTransform2D cameraTransform;
     private AudioStreamPlayer coinsSound; // Sound which is played when currency is received
 
     private Vector2 movementDirection = Vector2.Zero; // Movement Direction, in which player walks
@@ -43,20 +44,26 @@ public partial class Player : Actor
     private Globals globals; // Object which handel Global actions (Saving, Loading)
 
     // Timer for increasing player armour for certain amount of time
-    private Timer defendTimer; 
+    private Timer defendTimer;
 
     public override void _Ready()
     {
         base._Ready();
-        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
-        WeaponsManager = GetNode<WeaponsManager>("WeaponsManager");
-        WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
+        // Loading packed scenes
         bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
         damagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
+
+        // Getting nodes
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        WeaponsManager = GetNode<WeaponsManager>("WeaponsManager");
         cameraTransform = GetNode<RemoteTransform2D>("CameraTransform");
         Stats = GetNode<Stats>("Stats");
         globals = GetNode<Globals>("/root/Globals");
         defendTimer = GetNode<Timer>("DefendTimer");
+        levelSystem = GetNode<LevelSystem>("LevelSystem");
+
+        // Initializing nodes
+        WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -74,6 +81,7 @@ public partial class Player : Actor
             }
         }
     }
+
     /// <summary>
     /// Method for handeling Input
     /// </summary>
@@ -196,6 +204,7 @@ public partial class Player : Actor
         levelSystem.GetXp(obtainedXp);
         EmitSignal(nameof(PlayerXpChanged), levelSystem.CurrrentXp);
     }
+
     // TODO: lacks WeaponsManager scene implementation
     /// <summary>
     /// Method for canceling attack
@@ -335,5 +344,49 @@ public partial class Player : Actor
     public void SetCameraTransform(NodePath cameraPath)
     {
         cameraTransform.RemotePath = cameraPath;
+    }
+
+    /// <summary>
+    /// Method for parsing Player data to dictionary
+    /// </summary>
+    /// <returns>Dictionary filled with data to save</returns>
+    public Dictionary<string, Variant> Save()
+    {
+        return new Dictionary<string, Variant>()
+        {
+            { "Filename", SceneFilePath },
+            { "Parent", GetParent().GetPath() },
+            { "PosX", Position.X },
+            { "PosY", Position.Y },
+            { "Stats.Health", Stats.Health },
+            { "Stats.MaxHealth", Stats.MaxHealth },
+            { "Stats.DamageMultiplier", Stats.DamageMultiplier },
+            { "Stats.Armour", Stats.Armour },
+            { "Stats.Speed", Stats.Speed },
+            { "Stats.Gold", Stats.Gold },
+            { "WeaponsManager", WeaponsManager.Save() },
+            { "LevelSystem", levelSystem.Save() }
+        };
+    }
+
+    /// <summary>
+    /// Method for loading Player data from dictionary
+    /// </summary>
+    /// <param name="data">Dictionary filled with read data</param>
+    public virtual void Load(Dictionary<string, Variant> data)
+    {
+        Position = new Vector2((float)data["PosX"], (float)data["PosY"]);
+        Stats.Health = (float)data["Stats.Health"];
+        Stats.MaxHealth = (float)data["Stats.MaxHealth"];
+        Stats.DamageMultiplier = (float)data["Stats.DamageMultiplier"];
+        Stats.Armour = (float)data["Stats.Armour"];
+        Stats.Speed = (float)data["Stats.Speed"];
+        Stats.Gold = (int)data["Stats.Gold"];
+        WeaponsManager.Load(new Dictionary<string, Variant>((Dictionary)data["WeaponsManager"]));
+        levelSystem.Load(new Dictionary<string, Variant>((Dictionary)data["LevelSystem"]));
+        EmitSignal(nameof(PLayerGoldChanged), Stats.Gold, Stats.Gold);
+        EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
+        EmitSignal(nameof(PlayerMaxHealthChanged), Stats.MaxHealth);
+        EmitSignal(nameof(PlayerXpChanged));
     }
 }
