@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 using System;
-using static Team;
 
 /// <summary>
 /// Class dedicated to implement Player functionality
