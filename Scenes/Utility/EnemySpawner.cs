@@ -1,12 +1,17 @@
 using Godot;
 
 /// <summary>
-/// Enemy spawner class
+/// Enemy spawner class to spawn enemies in a random position in the map. It is possible to set a custom start and end time,
+/// set a delay between spawns and change the amount of enemies that are spawned.
 /// </summary>
 public partial class EnemySpawner : Node2D
 {
-    [Export] public Godot.Collections.Array<SpawnInfo> Spawns { get; set; } //Export array to store spawn point info
-    private int time; //time variable
+    /// <summary>
+    /// //Export array to store spawn point info
+    /// </summary>
+    /// <value>Array of SpawnInfo objects</value>
+    [Export] public Godot.Collections.Array<SpawnInfo> Spawns { get; set; } 
+    private int time; //variable to keep count of the time that has passed since spawning started
 
     private float limitLeft = 20f; //map coordinates limit left
     private float limitRight; //map coordinates limit right
