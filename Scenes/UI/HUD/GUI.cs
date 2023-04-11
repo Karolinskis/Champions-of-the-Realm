@@ -51,7 +51,7 @@ public partial class GUI : Control
     /// <summary>
     /// Method to initialize player with values
     /// </summary>
-    /// <param name="stats">Player stats object</param>
+    /// <param name="player">Player object</param>
     public void Initialize(Player player)
     {
         player.Connect("PlayerHealthChanged", new Callable(this, "ChangeCurrentHealth"));
@@ -163,10 +163,10 @@ public partial class GUI : Control
     }
 
     /// <summary>
-    /// 
+    /// Change current item in index to given weapon
     /// </summary>
-    /// <param name="index"></param>
-    /// <param name="weapon"></param>
+    /// <param name="index">Index to change</param>
+    /// <param name="weapon">Weapon to change to</param>
     private void ChangeItem(int index, Weapon weapon = null)
     {
         if (weapon is null)
@@ -178,9 +178,9 @@ public partial class GUI : Control
     }
 
     /// <summary>
-    /// 
+    /// Switch item in index
     /// </summary>
-    /// <param name="index"></param>
+    /// <param name="index">Index to switch from</param>
     private void SwitchItem(int index)
     {
         currentItemIndex = index;

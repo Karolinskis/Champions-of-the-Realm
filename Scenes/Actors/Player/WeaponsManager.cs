@@ -190,6 +190,10 @@ public partial class WeaponsManager : Node2D
         }
     }
 
+    /// <summary>
+    /// Get current wepaon array
+    /// </summary>
+    /// <returns>Returns the current weapons array</returns>
     public Weapon[] GetWeapons()
     {
         return weapons;
