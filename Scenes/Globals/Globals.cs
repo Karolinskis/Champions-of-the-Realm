@@ -104,4 +104,19 @@ public partial class Globals : Node
         // Calling method to load player inside scene
         GetTree().CurrentScene.Call("LoadSavedPlayer");
     }
+
+    /// <summary>
+    /// Method to generate a random floating point between two numbers
+    /// </summary>
+    /// <param name="min">minimum value</param>
+    /// <param name="max">maximum value</param>
+    /// <returns>floating point in between given values</returns>
+    public static float GetRandomFloat(float min, float max)
+    {
+        Random rand = new Random();
+        float range = max - min;
+        double sample = rand.NextDouble();
+        double scaled = (sample * range) + min;
+        return (float)scaled;
+    }
 }
