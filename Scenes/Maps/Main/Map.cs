@@ -15,7 +15,7 @@ public partial class Map : Node2D
     protected Camera2D camera; // Player camera
     protected TileMap ground; // Ground level
     protected Marker2D playerSpawn;
-    protected EnemySpawner enemySpawner;
+    protected EnemySpawner enemySpawner; //Enemy spawner
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
