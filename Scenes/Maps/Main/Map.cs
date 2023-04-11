@@ -15,6 +15,7 @@ public partial class Map : Node2D
     protected Camera2D camera; // Player camera
     protected TileMap ground; // Ground level
     protected Marker2D playerSpawn;
+    protected EnemySpawner enemySpawner;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -30,6 +31,7 @@ public partial class Map : Node2D
         camera = GetNode<Camera2D>("Camera");
         ground = GetNode<TileMap>("TileMapGround");
         playerSpawn = GetNode<Marker2D>("PlayerSpawn");
+        enemySpawner = GetNode<EnemySpawner>("EnemySpawner");
 
         // Checking loading state
         switch (globals.LoadingForm)
@@ -47,6 +49,7 @@ public partial class Map : Node2D
                 break;
         }
         SetCameraLimits(); // Setting camera limits so the camera won't go beyond borders
+        SetEnemySpawnLimits();
         GetTree().CurrentScene = this;
     }
 
@@ -80,6 +83,19 @@ public partial class Map : Node2D
         camera.LimitRight = (int)(mapLimits.End.X * mapCellSize.X) - 96;
         camera.LimitTop = (int)(mapLimits.Position.Y * mapCellSize.Y) - 96;
         camera.LimitBottom = (int)(mapLimits.End.Y * mapCellSize.Y) - 96;
+    }
+
+    /// <summary>
+    /// Method for setting enemy spawn limites according to map size
+    /// </summary>
+    protected void SetEnemySpawnLimits()
+    {
+        Rect2 mapLimits = ground.GetUsedRect();
+        Vector2 mapCellSize = ground.TileSet.TileSize;
+        float limitRight = (mapLimits.End.X * mapCellSize.X) - 48;
+        float limitBottom = (mapLimits.End.Y * mapCellSize.Y) - 48;
+
+        enemySpawner.Initialize(new Vector2(limitRight, limitBottom));
     }
 
     /// <summary>

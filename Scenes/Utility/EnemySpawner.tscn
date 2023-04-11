@@ -1,8 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://7efuq2vnsuig"]
+[gd_scene load_steps=3 format=3 uid="uid://7efuq2vnsuig"]
 
 [ext_resource type="Script" path="res://Scenes/Utility/EnemySpawner.cs" id="1_6bf7b"]
+[ext_resource type="Resource" uid="uid://dr1qu2aepa0nu" path="res://Scenes/Utility/SpawnInfo.tres" id="2_susyt"]
 
 [node name="EnemySpawner" type="Node2D"]
 script = ExtResource("1_6bf7b")
+Spawns = Array[Resource]([ExtResource("2_susyt")])
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

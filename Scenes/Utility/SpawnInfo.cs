@@ -1,13 +1,19 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Class to contain spawn information
+/// </summary>
 public partial class SpawnInfo : Resource
 {
-	[Export] public int timeStart { get; set; }
-	[Export] public int timeEnd { get; set; }
-    [Export] public Resource enemy { get; set; }
-    [Export] public int enemyNum { get; set; }
-    [Export] public int enemySpawnDelay { get; set; }
+    /// <summary>
+    /// Class parameters
+    /// </summary>
+    [Export] public float TimeStart { get; set; }
+    [Export] public float TimeEnd { get; set; }
+    [Export] public PackedScene Enemy { get; set; }
+    [Export] public int EnemyNum { get; set; }
+    [Export] public float EnemySpawnDelay { get; set; }
 
     public int spawnDelayCounter = 0;
 }

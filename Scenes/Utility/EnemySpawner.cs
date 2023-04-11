@@ -2,48 +2,75 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Enemy spawner class
+/// </summary>
 public partial class EnemySpawner : Node2D
 {
-	[Export] public Godot.Collections.Array<SpawnInfo> spawns { get; set; }
-	private PackedScene enemyScene;
+	[Export] public Godot.Collections.Array<SpawnInfo> Spawns { get; set; }
 	private int time;
+
+	private float limitLeft = 20f;
+	private float limitRight;
+	private float limitTop = 20f;
+	private float limitBottom;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		enemyScene = ResourceLoader.Load<PackedScene>("res://Scenes/Actors/Troops/Infantry/FootmanEnemy.tscn");
 		time = 0;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	/// <summary>
+	/// Initialize method for initializing limit values
+	/// </summary>
+	/// <param name="vector">Vector with limit values</param>
+	public void Initialize(Vector2 vector)
 	{
+		limitRight = vector.X;
+		limitBottom = vector.Y;
 	}
 
-	public void OnTimerTimeout()
+	/// <summary>
+	/// Method to get a random position for the spawn point
+	/// </summary>
+	/// <returns></returns>
+	private Vector2 GetRandomPosition()
+	{
+		float x = Globals.GetRandomFloat(limitLeft, limitRight);
+        float y = Globals.GetRandomFloat(limitTop, limitBottom);
+		GD.Print(limitTop);
+        GD.Print(limitBottom);
+
+        return new Vector2(x, y);
+    }
+
+	/// <summary>
+	/// Method to spawn enemy on timer timeout
+	/// </summary>
+	private void OnTimerTimeout()
 	{
 		time++;
-		var enemySpawns = spawns;
-		foreach(var i in enemySpawns)
+		foreach(var i in Spawns)
 		{
-			if (time >= i.timeStart && time <= i.timeEnd)
+			if (time >= i.TimeStart && time <= i.TimeEnd)
 			{
-				if (i.spawnDelayCounter < i.enemySpawnDelay) i.spawnDelayCounter++;
+				if (i.spawnDelayCounter < i.EnemySpawnDelay) i.spawnDelayCounter++;
 				else
 				{
-                    i.spawnDelayCounter = 0;
-					var newEnemy = enemyScene;
+					i.spawnDelayCounter = 0;
+
+                    PackedScene enemyScene = i.Enemy;
 					int counter = 0;
-					while (counter < i.enemyNum)
+					while (counter < i.EnemyNum)
 					{
-						var enemySpawn = newEnemy.Instantiate();
-						//reikia nustatyt position (galimai random, bet kol kas preset) enemy spawnui
-						//enemySpawn.GlobalPosition = position
+						var enemySpawn = enemyScene.Instantiate<Actor>();
 						AddChild(enemySpawn);
+						enemySpawn.GlobalPosition = GetRandomPosition();
 						counter++;
 					}
-                }
-            }
+				}
+			}
 		}
 	}
 }
