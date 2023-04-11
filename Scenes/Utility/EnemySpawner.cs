@@ -31,7 +31,7 @@ public partial class EnemySpawner : Node2D
     /// <summary>
     /// Method to get a random position for the spawn point
     /// </summary>
-    /// <returns></returns>
+    /// <returns>2D vector to reporesent the position of the spawn point</returns>
     private Vector2 GetRandomPosition()
     {
         float x = Globals.GetRandomFloat(limitLeft, limitRight);
