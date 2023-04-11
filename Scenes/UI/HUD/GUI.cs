@@ -54,6 +54,7 @@ public partial class GUI : Control
     /// <param name="player">Player object</param>
     public void Initialize(Player player)
     {
+        // Initializing player stats
         player.Connect("PlayerHealthChanged", new Callable(this, "ChangeCurrentHealth"));
         player.Connect("PLayerGoldChanged", new Callable(this, "ChangeCurrency"));
         player.Connect("PlayerMaxHealthChanged", new Callable(this, "ChangeMaxHealth"));
@@ -63,6 +64,7 @@ public partial class GUI : Control
         ChangeMaxHealth(player.Stats.MaxHealth);
         ChangeCurrency(0, player.Stats.Gold);
 
+        // Initializing hot-bar inventory
         player.WeaponsManager.Connect("WeaponChanged", new Callable(this, "ChangeItem"));
         player.WeaponsManager.Connect("WeaponSwitched", new Callable(this, "SwitchItem"));
 
