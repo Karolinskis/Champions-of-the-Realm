@@ -36,8 +36,6 @@ public partial class EnemySpawner : Node2D
     {
         float x = Globals.GetRandomFloat(limitLeft, limitRight);
         float y = Globals.GetRandomFloat(limitTop, limitBottom);
-        GD.Print(limitTop);
-        GD.Print(limitBottom);
 
         return new Vector2(x, y);
     }
