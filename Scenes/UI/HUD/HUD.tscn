@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://xpy4rcjasw1t"]
+[gd_scene load_steps=7 format=3 uid="uid://xpy4rcjasw1t"]
 
 [ext_resource type="Script" path="res://Scenes/UI/HUD/GUI.cs" id="1_ujh52"]
+[ext_resource type="PackedScene" uid="uid://dj2jplbqn401k" path="res://Scenes/UI/HUD/IntentoryItems.tscn" id="2_yhl6b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_not3w"]
 bg_color = Color(0.188235, 0.188235, 0.188235, 1)
@@ -125,9 +126,48 @@ step = 1.0
 value = 95.0
 show_percentage = false
 
+[node name="InventoryContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/BottomRow"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/MarginContainer/Rows/BottomRow/InventoryContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="IntentoryItems" parent="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_yhl6b")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+keep_pressed_outside = true
+icon = null
+expand_icon = true
+
+[node name="IntentoryItems2" parent="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_yhl6b")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+keep_pressed_outside = true
+icon = null
+expand_icon = true
+
+[node name="IntentoryItems3" parent="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_yhl6b")]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+keep_pressed_outside = true
+icon = null
+expand_icon = true
+
 [node name="AmmoContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/BottomRow"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 10
 alignment = 2
 
 [node name="MaxAmmo" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]

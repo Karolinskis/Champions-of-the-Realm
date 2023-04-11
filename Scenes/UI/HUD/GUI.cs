@@ -22,6 +22,9 @@ public partial class GUI : Control
     private float injuredZone = 0.5f;
     private float dyingZone = 0.2f;
 
+    private Button[] itemArray;
+    private int currentItemIndex;
+
     Color originalColor = new Color("#690000");
     Color hightlightColor = new Color("#460000");
 
@@ -37,17 +40,34 @@ public partial class GUI : Control
         XPLabel = GetNode<Label>("HUD/MarginContainer/Rows/TopRow/XPContainer/XPLabel");
         maxAmmoLabel = GetNode<Label>("HUD/MarginContainer/Rows/BottomRow/AmmoContainer/MaxAmmo");
         barStyle = (StyleBoxFlat)healthBar.Get("theme_override_styles/fill");
+        
+        itemArray = new Button[3];
+
+        itemArray[0] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems");
+        itemArray[1] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems2");
+        itemArray[2] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems3");
     }
 
     /// <summary>
     /// Method to initialize player with values
     /// </summary>
     /// <param name="stats">Player stats object</param>
-    public void Initialize(Stats stats)
+    public void Initialize(Player player)
     {
-        ChangeCurrentHealth(stats.Health);
-        ChangeMaxHealth(stats.MaxHealth);
-        ChangeCurrency(0, stats.Gold);
+
+        ChangeCurrentHealth(player.Stats.Health);
+        ChangeMaxHealth(player.Stats.MaxHealth);
+        ChangeCurrency(0, player.Stats.Gold);
+
+        player.WeaponsManager.Connect("WeaponChanged", new Callable(this, "ChangeItem"));
+        player.WeaponsManager.Connect("WeaponSwitched", new Callable(this, "SwitchItem"));
+
+        Weapon[] weaponsArray = player.WeaponsManager.GetWeapons();
+
+        for (int i = 0; i < weaponsArray.Length; i++)
+        {
+            ChangeItem(i, weaponsArray[i]);
+        }
     }
 
     /// <summary>
@@ -136,5 +156,29 @@ public partial class GUI : Control
     private void ChangeMaxAmmo(float newAmmo)
     {
         maxAmmoLabel.Text = newAmmo.ToString();
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="index"></param>
+    /// <param name="weapon"></param>
+    private void ChangeItem(int index, Weapon weapon = null)
+    {
+        if (weapon is null)
+        {
+            itemArray[index].Icon = null;
+        }
+
+        itemArray[index].Icon = weapon.Icon;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="index"></param>
+    private void SwitchItem(int index)
+    {
+        currentItemIndex = index;
     }
 }

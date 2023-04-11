@@ -4,6 +4,7 @@ using System;
 public partial class Weapon : Node2D
 {
     [Export] protected float damage { get; set; }
+    [Export] public Texture2D Icon { get; set; }
 
     protected Team.Teams team;
 
