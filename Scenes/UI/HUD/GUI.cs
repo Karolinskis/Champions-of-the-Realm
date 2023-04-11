@@ -22,6 +22,9 @@ public partial class GUI : Control
     private float injuredZone = 0.5f;
     private float dyingZone = 0.2f;
 
+    private Button[] itemArray;
+    private int currentItemIndex;
+
     Color originalColor = new Color("#690000");
     Color hightlightColor = new Color("#460000");
 
@@ -37,17 +40,40 @@ public partial class GUI : Control
         XPLabel = GetNode<Label>("HUD/MarginContainer/Rows/TopRow/XPContainer/XPLabel");
         maxAmmoLabel = GetNode<Label>("HUD/MarginContainer/Rows/BottomRow/AmmoContainer/MaxAmmo");
         barStyle = (StyleBoxFlat)healthBar.Get("theme_override_styles/fill");
+        
+        itemArray = new Button[3];
+
+        itemArray[0] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems");
+        itemArray[1] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems2");
+        itemArray[2] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems3");
     }
 
     /// <summary>
     /// Method to initialize player with values
     /// </summary>
-    /// <param name="stats">Player stats object</param>
-    public void Initialize(Stats stats)
+    /// <param name="player">Player object</param>
+    public void Initialize(Player player)
     {
-        ChangeCurrentHealth(stats.Health);
-        ChangeMaxHealth(stats.MaxHealth);
-        ChangeCurrency(0, stats.Gold);
+        // Initializing player stats
+        player.Connect("PlayerHealthChanged", new Callable(this, "ChangeCurrentHealth"));
+        player.Connect("PLayerGoldChanged", new Callable(this, "ChangeCurrency"));
+        player.Connect("PlayerMaxHealthChanged", new Callable(this, "ChangeMaxHealth"));
+        player.Connect("PlayerXpChanged", new Callable(this, "ChangeXP"));
+
+        ChangeCurrentHealth(player.Stats.Health);
+        ChangeMaxHealth(player.Stats.MaxHealth);
+        ChangeCurrency(0, player.Stats.Gold);
+
+        // Initializing hot-bar inventory
+        player.WeaponsManager.Connect("WeaponChanged", new Callable(this, "ChangeItem"));
+        player.WeaponsManager.Connect("WeaponSwitched", new Callable(this, "SwitchItem"));
+
+        Weapon[] weaponsArray = player.WeaponsManager.GetWeapons();
+
+        for (int i = 0; i < weaponsArray.Length; i++)
+        {
+            ChangeItem(i, weaponsArray[i]);
+        }
     }
 
     /// <summary>
@@ -136,5 +162,29 @@ public partial class GUI : Control
     private void ChangeMaxAmmo(float newAmmo)
     {
         maxAmmoLabel.Text = newAmmo.ToString();
+    }
+
+    /// <summary>
+    /// Change current item in index to given weapon
+    /// </summary>
+    /// <param name="index">Index to change</param>
+    /// <param name="weapon">Weapon to change to</param>
+    private void ChangeItem(int index, Weapon weapon = null)
+    {
+        if (weapon is null)
+        {
+            itemArray[index].Icon = null;
+        }
+
+        itemArray[index].Icon = weapon.Icon;
+    }
+
+    /// <summary>
+    /// Switch item in index
+    /// </summary>
+    /// <param name="index">Index to switch from</param>
+    private void SwitchItem(int index)
+    {
+        currentItemIndex = index;
     }
 }

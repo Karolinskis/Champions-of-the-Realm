@@ -7,8 +7,8 @@ using System.Linq;
 // Class dedicated for storing weapons with switching functionality
 public partial class WeaponsManager : Node2D
 {
-    [Signal]
-    public delegate void WeaponChangedEventHandler(Weapon newWeapon);
+    [Signal] public delegate void WeaponChangedEventHandler(int index, Weapon newWeapon);
+    [Signal] public delegate void WeaponSwitchedEventHandler(int index);
 
     /// <summary>
     /// Current weapon the player is holding
@@ -61,6 +61,11 @@ public partial class WeaponsManager : Node2D
         team = setTeam;
         weapon.Initialize(team);
         CurrentWeapon = weapon;
+        
+        for (int i = 0; i < weapons.Length; i++)
+        {
+            EmitSignal(nameof(WeaponChanged), i, weapons[i]); 
+        }
     }
 
     /// <summary>
@@ -75,6 +80,8 @@ public partial class WeaponsManager : Node2D
         AddChild(weapon);
         weapons[index] = weapon;
         weapon.Hide();
+
+        EmitSignal(nameof(WeaponChanged), index, weapons[index]); 
     }
 
     /// <summary>
@@ -181,6 +188,15 @@ public partial class WeaponsManager : Node2D
         {
             melee.Walking();
         }
+    }
+
+    /// <summary>
+    /// Get current wepaon array
+    /// </summary>
+    /// <returns>Returns the current weapons array</returns>
+    public Weapon[] GetWeapons()
+    {
+        return weapons;
     }
 
     /// <summary>
