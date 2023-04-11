@@ -54,6 +54,10 @@ public partial class GUI : Control
     /// <param name="stats">Player stats object</param>
     public void Initialize(Player player)
     {
+        player.Connect("PlayerHealthChanged", new Callable(this, "ChangeCurrentHealth"));
+        player.Connect("PLayerGoldChanged", new Callable(this, "ChangeCurrency"));
+        player.Connect("PlayerMaxHealthChanged", new Callable(this, "ChangeMaxHealth"));
+        player.Connect("PlayerXpChanged", new Callable(this, "ChangeXP"));
 
         ChangeCurrentHealth(player.Stats.Health);
         ChangeMaxHealth(player.Stats.MaxHealth);

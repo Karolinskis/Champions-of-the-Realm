@@ -93,14 +93,7 @@ public partial class Map : Node2D
         player.SetCameraTransform(camera.GetPath());
         player.Connect("PlayerDied", new Callable(this, "ShowGameOver"));
 
-        // Connecting signals
-        // TODO: COTR-72 Further code (Connecting signals) might be more readable
-        // if moved to GUI.Initialize method
-        player.Connect("PlayerHealthChanged", new Callable(hud, "ChangeCurrentHealth"));
-        player.Connect("PLayerGoldChanged", new Callable(hud, "ChangeCurrency"));
-        player.Connect("PlayerMaxHealthChanged", new Callable(hud, "ChangeMaxHealth"));
-        player.Connect("PlayerXpChanged", new Callable(hud, "ChangeXP"));
-        hud.Initialize(player.Stats);
+        hud.Initialize(player);
 
         // Alternative: hud.Initialize(player);
 
@@ -121,14 +114,7 @@ public partial class Map : Node2D
         player.SetCameraTransform(camera.GetPath());
         player.Connect("PlayerDied", new Callable(this, "ShowGameOver"));
 
-        // Connecting signals
-        // TODO: COTR-72 Further code (Connecting signals) might be more readable
-        // if moved to GUI.Initialize method
-        player.Connect("PlayerHealthChanged", new Callable(hud, "ChangeCurrentHealth"));
-        player.Connect("PLayerGoldChanged", new Callable(hud, "ChangeCurrency"));
-        player.Connect("PlayerMaxHealthChanged", new Callable(hud, "ChangeMaxHealth"));
-        player.Connect("PlayerXpChanged", new Callable(hud, "ChangeXP"));
-        hud.Initialize(player.Stats);
+        hud.Initialize(player);
         globals.Player = player.Save(); // loading player to globals
     }
 
@@ -141,16 +127,9 @@ public partial class Map : Node2D
         player.Position = playerSpawn.Position;
         AddChild(player);
         player.SetCameraTransform(camera.GetPath());
-
-        // Connecting signals
-        // TODO: COTR-72 Further code (Connecting signals) might be more readable
-        // if moved to GUI.Initialize method
         player.Connect("PlayerDied", new Callable(this, "ShowGameOver"));
-        player.Connect("PlayerHealthChanged", new Callable(hud, "ChangeCurrentHealth"));
-        player.Connect("PLayerGoldChanged", new Callable(hud, "ChangeCurrency"));
-        player.Connect("PlayerMaxHealthChanged", new Callable(hud, "ChangeMaxHealth"));
-        player.Connect("PlayerXpChanged", new Callable(hud, "ChangeXP"));
-        hud.Initialize(player.Stats);
+        
+        hud.Initialize(player);
 
         player.Load(globals.Player);
         player = GetNode<Player>("Player");
