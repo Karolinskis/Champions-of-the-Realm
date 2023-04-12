@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://iq8ol3bmxqrn"]
+[gd_scene load_steps=3 format=3 uid="uid://iq8ol3bmxqrn"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Main/MainMenu.cs" id="1_dfesn"]
+[ext_resource type="Texture2D" uid="uid://r1h550w2u4bd" path="res://Sprites/UI/MainMenu/Menus_Detailed.png" id="2_3hnfr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -8,11 +9,16 @@ anchors_preset = 0
 script = ExtResource("1_dfesn")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 2048.0
+offset_bottom = 1152.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.625, 0.625)
+texture = ExtResource("2_3hnfr")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -26,7 +32,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+[node name="GridContainer" type="VBoxContainer" parent="CanvasLayer/Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,49 +40,61 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/CenterContainer"]
-show_behind_parent = true
+[node name="TopRow" type="HBoxContainer" parent="CanvasLayer/Control/GridContainer"]
+custom_minimum_size = Vector2(0, 240)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer"]
+[node name="MiddleRow" type="HBoxContainer" parent="CanvasLayer/Control/GridContainer"]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/GridContainer/MiddleRow"]
 custom_minimum_size = Vector2(250, 200)
 layout_mode = 2
-theme_override_constants/margin_left = 16
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 5
 
-[node name="Title" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="Title" type="Label" parent="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 32
 text = "Champions of the realm"
 
-[node name="ButtonStartNew" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonStartNew" type="Button" parent="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 text = "Start new game"
 
-[node name="ButtonLoad" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonLoad" type="Button" parent="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 text = "Load game"
 
-[node name="ButtonSettings" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonSettings" type="Button" parent="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 text = "Settings"
 
-[node name="ButtonQuit" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="ButtonQuit" type="Button" parent="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 text = "Quit"
 
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonStartNew" to="." method="ButtonStartNewPressed"]
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonLoad" to="." method="ButtonLoadPressed"]
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonSettings" to="." method="ButtonSettingsPressed"]
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonQuit" to="." method="ButtonQuitPressed"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/GridContainer/MiddleRow"]
+show_behind_parent = true
+layout_mode = 2
+
+[node name="BottomRow" type="HBoxContainer" parent="CanvasLayer/Control/GridContainer"]
+custom_minimum_size = Vector2(0, 240)
+layout_mode = 2
+
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer/ButtonStartNew" to="." method="ButtonStartNewPressed"]
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer/ButtonLoad" to="." method="ButtonLoadPressed"]
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer/ButtonSettings" to="." method="ButtonSettingsPressed"]
+[connection signal="pressed" from="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer/ButtonQuit" to="." method="ButtonQuitPressed"]
