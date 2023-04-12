@@ -5,11 +5,13 @@ public partial class MainMenu : Control
 {
     private PackedScene settingsScene;
     private Globals globals; // global variables and functionality
+    private LoadingScreen loadingScreen; // Loading screen scene used for switching between scenes.
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");
+        loadingScreen = GetNode<LoadingScreen>("/root/LoadingScreen");
         settingsScene = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Menus/Settings/Settings.tscn");
     }
 
@@ -19,7 +21,8 @@ public partial class MainMenu : Control
     private void ButtonStartNewPressed()
     {
         globals.LoadingForm = Globals.LoadingForms.New;
-        GetTree().ChangeSceneToFile("res://Scenes/Maps/Main/Main.tscn");
+        loadingScreen.ChangeScene("res://Scenes/Maps/Main/Main.tscn");
+        QueueFree();
     }
 
     /// <summary>

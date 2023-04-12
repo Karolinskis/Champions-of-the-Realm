@@ -23,14 +23,15 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://Scenes/Globals/Globals.cs"
+LoadingScreen="*res://Scenes/UI/Menus/Loading/LoadingScreen.tscn"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/vsync/vsync_mode=0
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=0
 
 [dotnet]
 
@@ -82,8 +83,8 @@ PAUSE={
 
 [rendering]
 
-renderer/rendering_method="mobile"
 textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
 
 [xr]
 

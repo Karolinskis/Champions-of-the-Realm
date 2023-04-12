@@ -6,6 +6,7 @@ public partial class PauseMenu : Control
     private PackedScene settingsScene;	// Settings resources.
     private Control control;
     private Globals globals;
+    private LoadingScreen loadingScreen; // Global scene that is used to switch between resource intensive scenes.
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -16,6 +17,7 @@ public partial class PauseMenu : Control
         // To be used for showing/hiding pause menu.
         control = GetNodeOrNull<Control>("CanvasLayer/Control");
         globals = GetNode<Globals>("/root/Globals");
+        loadingScreen = GetNode<LoadingScreen>("/root/LoadingScreen");
 
         // Loading settings scene
         settingsScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Settings/Settings.tscn");
@@ -81,7 +83,8 @@ public partial class PauseMenu : Control
     private void ButtonQuitMainMenuPressed()
     {
         GetTree().Paused = false;
-        GetTree().ChangeSceneToFile("res://Scenes/UI/Menus/Main/MainMenu.tscn");
+        loadingScreen.ChangeScene("res://Scenes/UI/Menus/Main/MainMenu.tscn");
+        GetParent().QueueFree(); // Using GetParent() since pause menu is a child of Map.tscn
     }
 
     /// <summary>
