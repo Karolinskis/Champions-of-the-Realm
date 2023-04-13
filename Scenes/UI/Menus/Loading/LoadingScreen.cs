@@ -15,27 +15,28 @@ public partial class LoadingScreen : Control
 		control = GetNode<Control>("CanvasLayer/Control/");
 		loadingBar = GetNode<ProgressBar>("CanvasLayer/Control/ColorRect/CenterContainer/PanelContainer/VBoxContainer/ProgressBar");
 		animationPlayer = GetNode<AnimationPlayer>("CanvasLayer/Control/LoadingAnimation");
-        control.Hide();
+		control.Hide();
 	}
 
-	/// <summary>
-	/// Used for switching to a different scene.
-	/// </summary>
-    /// <param name="scenePath">Path to the next scene</param>
-	public async void ChangeScene(string scenePath)
+	public void UpdateLoadingBar(int value)
 	{
-		// Loading screen entry animation.
-    	control.Show();
-    	animationPlayer.Play("TransIn");
+		loadingBar.Value = value;
+	}
+
+	public async void LoadNewScene(string scenePath)
+	{
+		control.Show();
+		// Loading screen is loaded.
+		animationPlayer.Play("TransIn");
 		await WaitForAnimationFinished(animationPlayer);
 
-		// new scene is loaded.
+		// New scene is loaded.
 		InitializeResourceLoader(scenePath);
 
-		// Loading screen exit animation.
-    	animationPlayer.Play("TransOut");
+		// Loading is done.
+		animationPlayer.Play("TransOut");
 		await WaitForAnimationFinished(animationPlayer);
-    	control.Hide();
+		QueueFree();
 	}
 
 	/// <summary>
@@ -50,7 +51,7 @@ public partial class LoadingScreen : Control
 		{
 			// Updates the loading bar progress.
 			sceneLoadStatus = (int)ResourceLoader.LoadThreadedGetStatus(scenePath, loadingBarStatus);
-			loadingBar.Value = (int)loadingBarStatus[0] * 100;
+            UpdateLoadingBar((int)loadingBarStatus[0] * 100);
 			// Loads the new scene once everything has been loaded.
 			if (sceneLoadStatus == 3)
 			{

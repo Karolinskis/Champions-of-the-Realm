@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Threading.Tasks;
 
 /// <summary>
 /// Class for handling global actions (Scene switching, save/load functionality)
@@ -24,6 +25,9 @@ public partial class Globals : Node
     public LoadingForms LoadingForm { get; set; } = LoadingForms.New;
 
     public Dictionary<string, Variant> Player { get; set; } // For transfering player between scenes
+
+    private PackedScene loadingScreenScene;
+    private LoadingScreen loadingScreen;
 
     /// <summary>
     /// Method which saves all nodes in Persist group by parsing dictionary to JSON file
@@ -119,4 +123,17 @@ public partial class Globals : Node
         double scaled = (sample * range) + min;
         return (float)scaled;
     }
+
+	/// <summary>
+	/// Loads loading screen scene which is used to load a new scene and deletes itself after it's done.
+	/// </summary>
+    /// <param name="scenePath">Path to the next scene</param>
+	public void ChangeScene(string scenePath)
+	{
+        // Loading screen is loaded.
+        loadingScreenScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Loading/LoadingScreen.tscn");
+        loadingScreen = loadingScreenScene.Instantiate() as LoadingScreen;
+        AddChild(loadingScreen);
+        loadingScreen.LoadNewScene(scenePath);
+	}
 }

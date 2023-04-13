@@ -4,14 +4,12 @@ using System;
 public partial class GameOver : Control
 {
 	private Globals globals; // global variables and functionality
-	private LoadingScreen loadingScreen; // Loading screen scene that is used for switching between scenes.
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		GetTree().Paused = true;
         globals = GetNode<Globals>("/root/Globals");
-		loadingScreen = GetNode<LoadingScreen>("/root/LoadingScreen");
     }
 	
 	/// <summary>
@@ -40,7 +38,7 @@ public partial class GameOver : Control
 	private void ButtonQuitMainPressed()
 	{
 		GetTree().Paused = false;
-		loadingScreen.ChangeScene("res://Scenes/UI/Menus/Main/MainMenu.tscn");
+		globals.ChangeScene("res://Scenes/UI/Menus/Main/MainMenu.tscn");
 		GetParent().QueueFree(); // Using GetParent() since gameover screen is a child of Map.tscn
 	}
 
