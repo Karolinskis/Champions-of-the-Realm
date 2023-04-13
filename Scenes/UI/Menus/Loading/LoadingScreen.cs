@@ -15,11 +15,19 @@ public partial class LoadingScreen : Control
 		animationPlayer = GetNode<AnimationPlayer>("CanvasLayer/Control/LoadingAnimation");
 	}
 
+	/// <summary>
+	/// Updates loading bar progress.
+	/// </summary>
+	/// <param name="value">Loading bar progress.</param>
 	public void UpdateLoadingBar(int value)
 	{
 		loadingBar.Value = value;
 	}
 
+	/// <summary>
+	/// Loads a new scene.
+	/// </summary>
+	/// <param name="scenePath">New scene path</param>
 	public void LoadNewScene(string scenePath)
 	{
 		nextScene = scenePath;
@@ -50,6 +58,9 @@ public partial class LoadingScreen : Control
 		}
 	}
 
+	/// <summary>
+	/// Deletes this scene.
+	/// </summary>
 	public void DeleteScene()
 	{
 		QueueFree();
