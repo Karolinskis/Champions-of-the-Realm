@@ -9,7 +9,6 @@ public partial class LoadingScreen : Control
 	private Godot.Collections.Array loadingBarStatus = new Godot.Collections.Array();	// First element will contain percentage of completion of loading.
 	private AnimationPlayer animationPlayer;	// animation player node
 	private TaskCompletionSource<bool> animationFinishedTask;	// stores information on whether animation finished playing.
-
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -22,7 +21,8 @@ public partial class LoadingScreen : Control
 	/// <summary>
 	/// Used for switching to a different scene.
 	/// </summary>
-	public async Task ChangeScene(string scenePath)
+    /// <param name="scenePath">Path to the next scene</param>
+	public async void ChangeScene(string scenePath)
 	{
 		// Loading screen entry animation.
     	control.Show();
@@ -39,8 +39,9 @@ public partial class LoadingScreen : Control
 	}
 
 	/// <summary>
-	/// Loads a new scene while showing progress on a loading bar.
+	/// Loads new scene bit by bit, allowing the use of a loading bar to show progress.
 	/// </summary>
+    /// <param name="scenePath">Path to the next scene</param>
 	public void InitializeResourceLoader(string scenePath)
 	{
 		int sceneLoadStatus = 0; // gets values from LoadThreadedGetStatus() method.
@@ -64,6 +65,7 @@ public partial class LoadingScreen : Control
 	/// <summary>
 	/// Pauses the ChangeScene method until the current animation has finished playing.
 	/// </summary>
+    /// <param name="animationPlayer">Animation player</param>
     public async Task WaitForAnimationFinished(AnimationPlayer animationPlayer)
     {
         animationFinishedTask = new TaskCompletionSource<bool>();
@@ -73,6 +75,7 @@ public partial class LoadingScreen : Control
 	/// <summary>
 	/// Receiver method for animation_finished signal.
 	/// </summary>
+    /// <param name="anim_name">Name of the animation that has finished</param>
     public void OnAnimationFinished(string anim_name)
     {
         animationFinishedTask.SetResult(true);
