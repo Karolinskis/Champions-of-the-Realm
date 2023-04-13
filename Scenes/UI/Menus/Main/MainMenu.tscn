@@ -5,20 +5,25 @@
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_dfesn")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 2048.0
-offset_bottom = 1152.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.625, 0.625)
+
+[node name="TextureRect" type="TextureRect" parent="PanelContainer"]
+layout_mode = 2
 texture = ExtResource("2_3hnfr")
+expand_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -85,10 +90,6 @@ text = "Settings"
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 text = "Quit"
-
-[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/GridContainer/MiddleRow"]
-show_behind_parent = true
-layout_mode = 2
 
 [node name="BottomRow" type="HBoxContainer" parent="CanvasLayer/Control/GridContainer"]
 custom_minimum_size = Vector2(0, 240)
