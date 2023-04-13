@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Threading.Tasks;
 
 /// <summary>
 /// Class for handling global actions (Scene switching, save/load functionality)
