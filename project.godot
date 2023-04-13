@@ -23,7 +23,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 Globals="*res://Scenes/Globals/Globals.cs"
-LoadingScreen="*res://Scenes/UI/Menus/Loading/LoadingScreen.tscn"
 
 [display]
 
