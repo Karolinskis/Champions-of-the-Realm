@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bn1ghqgy1xmbf"]
+[gd_scene load_steps=6 format=3 uid="uid://bn1ghqgy1xmbf"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Loading/LoadingScreen.cs" id="1_sg3yx"]
 
@@ -17,6 +17,20 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"InitializeResourceLoader"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_2y83s"]
 resource_name = "TransOut"
@@ -33,9 +47,39 @@ tracks/0/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"DeleteScene"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_qre75"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cldw8"]
 _data = {
+"RESET": SubResource("Animation_qre75"),
 "TransIn": SubResource("Animation_k03ux"),
 "TransOut": SubResource("Animation_2y83s")
 }
@@ -68,6 +112,7 @@ libraries = {
 }
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
