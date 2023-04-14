@@ -7,21 +7,22 @@ public partial class LoadingScreen : Control
 	private Godot.Collections.Array loadingBarStatus = new Godot.Collections.Array();	// First element will contain percentage of completion of loading.
 	private AnimationPlayer animationPlayer;	// animation player node
 	private string nextScene; // stores next scene path
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		control = GetNode<Control>("CanvasLayer/Control/");
-		loadingBar = GetNode<ProgressBar>("CanvasLayer/Control/ColorRect/CenterContainer/PanelContainer/VBoxContainer/ProgressBar");
+		loadingBar = GetNode<ProgressBar>("CanvasLayer/Control/TextureRect/CenterContainer/PanelContainer/VBoxContainer/ProgressBar");
 		animationPlayer = GetNode<AnimationPlayer>("CanvasLayer/Control/LoadingAnimation");
 	}
 
 	/// <summary>
-	/// Updates loading bar progress.
+	/// Called every frame. Used for updating fake loading bar.
 	/// </summary>
 	/// <param name="value">Loading bar progress.</param>
-	public void UpdateLoadingBar(int value)
+	public override void _Process(double delta)
 	{
-		loadingBar.Value = value;
+		loadingBar.Value += delta*100;
 	}
 
 	/// <summary>
@@ -39,15 +40,14 @@ public partial class LoadingScreen : Control
 	/// </summary>
 	public void InitializeResourceLoader()
 	{
-		int sceneLoadStatus = 0; // gets values from LoadThreadedGetStatus() method.
+		ResourceLoader.ThreadLoadStatus sceneLoadStatus = 0; // gets values from LoadThreadedGetStatus() method.
 		ResourceLoader.LoadThreadedRequest(nextScene);	// Begin loading
 		while (true)
 		{
 			// Updates the loading bar progress.
-			sceneLoadStatus = (int)ResourceLoader.LoadThreadedGetStatus(nextScene, loadingBarStatus);
-            UpdateLoadingBar((int)loadingBarStatus[0] * 100);
+			sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene, loadingBarStatus);
 			// Loads the new scene once everything has been loaded.
-			if (sceneLoadStatus == 3)
+			if (sceneLoadStatus == ResourceLoader.ThreadLoadStatus.Loaded)
 			{
 				var loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
             	var newRootNode = loadedScene.Instantiate();

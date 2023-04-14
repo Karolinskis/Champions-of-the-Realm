@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://iq8ol3bmxqrn"]
+[gd_scene load_steps=2 format=3 uid="uid://iq8ol3bmxqrn"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Main/MainMenu.cs" id="1_dfesn"]
-[ext_resource type="Texture2D" uid="uid://r1h550w2u4bd" path="res://Sprites/UI/MainMenu/Menus_Detailed.png" id="2_3hnfr"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -22,7 +21,6 @@ grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="PanelContainer"]
 layout_mode = 2
-texture = ExtResource("2_3hnfr")
 expand_mode = 1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

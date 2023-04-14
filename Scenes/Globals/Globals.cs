@@ -25,8 +25,7 @@ public partial class Globals : Node
 
     public Dictionary<string, Variant> Player { get; set; } // For transfering player between scenes
 
-    private PackedScene loadingScreenScene;
-    private LoadingScreen loadingScreen;
+    PackedScene loadingScreenScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Loading/LoadingScreen.tscn"); // Loading scene resource
 
     /// <summary>
     /// Method which saves all nodes in Persist group by parsing dictionary to JSON file
@@ -130,8 +129,7 @@ public partial class Globals : Node
 	public void ChangeScene(string scenePath)
 	{
         // Loading screen is loaded.
-        loadingScreenScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Loading/LoadingScreen.tscn");
-        loadingScreen = loadingScreenScene.Instantiate() as LoadingScreen;
+        LoadingScreen loadingScreen = loadingScreenScene.Instantiate() as LoadingScreen;
         AddChild(loadingScreen);
         loadingScreen.LoadNewScene(scenePath);
 	}
