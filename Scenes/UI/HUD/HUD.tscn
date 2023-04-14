@@ -4,18 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://dj2jplbqn401k" path="res://Scenes/UI/HUD/IntentoryItems.tscn" id="2_yhl6b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_not3w"]
-bg_color = Color(0.188235, 0.188235, 0.188235, 1)
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+bg_color = Color(0.6, 0.6, 0.6, 0)
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0, 0, 0, 0.298039)
+shadow_size = 2
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5d8hd"]
 bg_color = Color(0.411765, 0, 0, 1)
-border_width_left = 3
-border_width_top = 3
-border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yi0l6"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -24,6 +28,10 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y4lv"]
 bg_color = Color(0.411765, 0.639216, 0, 1)
@@ -32,6 +40,10 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 shadow_color = Color(0.172549, 0.172549, 0.172549, 0.6)
 
 [node name="HUD" type="Control"]
