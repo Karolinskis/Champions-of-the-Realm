@@ -19,6 +19,8 @@ public partial class LoadingScreen : Control
     /// <summary>
     /// Animates the loading bar.
     /// </summary>
+    /// <param name="progress">max progress</param>
+    /// <param name="duration">duration of the tween.</param>
     private void AnimateLoadingBar(float progress, double duration)
     {
         Tween loadingTween = CreateTween();
