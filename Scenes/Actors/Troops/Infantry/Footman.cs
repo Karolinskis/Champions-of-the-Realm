@@ -35,7 +35,7 @@ public partial class Footman : Infantry
             PlayWalking();
             return;
         }
-        // If not attacking nor moving playing ilde animation
+        // If not attacking nor moving playing idle animation
         weapon.Idle();
     }
 
@@ -54,7 +54,7 @@ public partial class Footman : Infantry
 
     /// <summary>
     /// Method for playing Idle animation 
-    /// Playing idle animation after attacking implemented using animation player track
+    /// Playing idle animation after attacking is implemented using animation player track
     /// </summary>
     public override void PlayIdle()
     {
