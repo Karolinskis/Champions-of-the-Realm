@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection.Metadata;
 
 public partial class Footman : Infantry
 {
@@ -25,12 +26,13 @@ public partial class Footman : Infantry
         base._PhysicsProcess(delta);
         if (isAttacking)
         {
-            // For animation
+            PlayAttacking();
             return;
         }
 
         if (Velocity != Vector2.Zero)
         {
+            PlayWalking();
             return;
         }
         weapon.Idle();
@@ -47,6 +49,50 @@ public partial class Footman : Infantry
     }
 
     /// <summary>
+    /// Method for playing Idle animation
+    /// </summary>
+    public override void PlayIdle() 
+    {
+
+    }
+
+    /// <summary>
+    /// Method for playing walking animation
+    /// </summary>
+    public override void PlayWalking() 
+    {
+        float angle = Direction.Angle();
+        if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
+        {
+            animationPlayer.Play("WalkRight");
+            return;
+        }
+        if (angle >= -3 * Math.PI / 4 && angle <= -Math.PI / 4)
+        {
+            animationPlayer.Play("WalkBack");
+            return;
+        }
+        if (angle >= 3 * Math.PI / 4 || angle <= -3 * Math.PI / 4)
+        {
+            animationPlayer.Play("WalkLeft");
+            return;
+        }
+        if (angle >= Math.PI / 4 && angle <= 3 * Math.PI / 4)
+        {
+            animationPlayer.Play("WalkFront");
+            return;
+        }
+    }
+
+    /// <summary>
+    /// Method for play attack animation
+    /// </summary>
+    public override void PlayAttacking()
+    {
+    
+    }
+
+    /// <summary>
     /// Method for handeling received damage
     /// </summary>
     /// <param name="baseDamage">amount of received damage</param>
@@ -59,6 +105,10 @@ public partial class Footman : Infantry
         blood.GlobalPosition = GlobalPosition;
         blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
     }
+
+    /// <summary>
+    /// Method for handling attack timer timeout
+    /// </summary>
     private void AttackTimerTimeout()
     {
         isAttacking = false;
