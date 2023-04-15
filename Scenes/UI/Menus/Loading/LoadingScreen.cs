@@ -39,8 +39,8 @@ public partial class LoadingScreen : Control
     /// </summary>
     public void InitializeResourceLoader()
     {
-        ResourceLoader.ThreadLoadStatus sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
         ResourceLoader.LoadThreadedRequest(nextScene);  // Begin loading
+        ResourceLoader.ThreadLoadStatus sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
         while (sceneLoadStatus != ResourceLoader.ThreadLoadStatus.Loaded)
         {
             // Updates the loading bar progress.
