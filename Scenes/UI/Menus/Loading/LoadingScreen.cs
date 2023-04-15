@@ -4,7 +4,6 @@ public partial class LoadingScreen : Control
 {
 	private Control control;	// control node
 	private ProgressBar loadingBar; // loading bar node
-	private Godot.Collections.Array loadingBarStatus = new Godot.Collections.Array();	// First element will contain percentage of completion of loading.
 	private AnimationPlayer animationPlayer;	// animation player node
 	private string nextScene; // stores next scene path
 
@@ -45,12 +44,12 @@ public partial class LoadingScreen : Control
 		while (true)
 		{
 			// Updates the loading bar progress.
-			sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene, loadingBarStatus);
+			sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
 			// Loads the new scene once everything has been loaded.
 			if (sceneLoadStatus == ResourceLoader.ThreadLoadStatus.Loaded)
 			{
 				var loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
-            			var newRootNode = loadedScene.Instantiate();
+            	var newRootNode = loadedScene.Instantiate();
 				GetNode("/root").AddChild(newRootNode);
 				animationPlayer.Play("TransOut");
 				break;
