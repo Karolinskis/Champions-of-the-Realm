@@ -13,18 +13,18 @@ public partial class LoadingScreen : Control
         control = GetNode<Control>("CanvasLayer/Control/");
         loadingBar = GetNode<ProgressBar>("CanvasLayer/Control/TextureRect/CenterContainer/PanelContainer/VBoxContainer/ProgressBar");
         animationPlayer = GetNode<AnimationPlayer>("CanvasLayer/Control/LoadingAnimation");
-        AnimateLoadingBar();
+        AnimateLoadingBar(95, 1.5);
     }
 
     /// <summary>
     /// Animates the loading bar.
     /// </summary>
-    private void AnimateLoadingBar()
+    private void AnimateLoadingBar(float progress, double duration)
     {
         Tween loadingTween = CreateTween();
         loadingTween.SetTrans(Tween.TransitionType.Expo);
         loadingTween.SetEase(Tween.EaseType.Out);
-        loadingTween.TweenMethod(new Callable(this, "ChangeLoadingBarValue"), 0, 100, 4.5f);
+        loadingTween.TweenMethod(new Callable(this, "ChangeLoadingBarValue"), loadingBar.Value, progress, duration);
     }
 
     /// <summary>
@@ -66,6 +66,7 @@ public partial class LoadingScreen : Control
                     PackedScene loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
                     Node newRootNode = loadedScene.Instantiate();
                     GetNode("/root").AddChild(newRootNode);
+                    AnimateLoadingBar(100, 1.5);
                     animationPlayer.Play("TransOut");
                     break;
 
