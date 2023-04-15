@@ -133,3 +133,4 @@ public partial class Globals : Node
         loadingScreen.LoadNewScene(scenePath);
 	}
 }
+
