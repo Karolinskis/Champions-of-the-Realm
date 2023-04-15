@@ -13,15 +13,27 @@ public partial class LoadingScreen : Control
         control = GetNode<Control>("CanvasLayer/Control/");
         loadingBar = GetNode<ProgressBar>("CanvasLayer/Control/TextureRect/CenterContainer/PanelContainer/VBoxContainer/ProgressBar");
         animationPlayer = GetNode<AnimationPlayer>("CanvasLayer/Control/LoadingAnimation");
+        AnimateLoadingBar();
     }
 
     /// <summary>
-    /// Called every frame. Used for updating fake loading bar.
+    /// Animates the fake loading bar.
     /// </summary>
-    /// <param name="delta">Loading bar progress.</param>
-    public override void _Process(double delta)
+    private void AnimateLoadingBar()
     {
-        loadingBar.Value += delta * 100;
+        Tween loadingTween = CreateTween();
+        loadingTween.SetTrans(Tween.TransitionType.Expo);
+        loadingTween.SetEase(Tween.EaseType.Out);
+        loadingTween.TweenMethod(new Callable(this, "ChangeLoadingBarValue"), 0, 100, 4.5f);
+    }
+
+    /// <summary>
+    /// Changes value of the loading bar.
+    /// </summary>
+    /// <param name="value">new loading bar value.</param>
+    private void ChangeLoadingBarValue(int value)
+    {
+        loadingBar.Value = value;
     }
 
     /// <summary>
@@ -37,13 +49,13 @@ public partial class LoadingScreen : Control
     /// <summary>
     /// Loads new scene bit by bit, allowing the use of a loading bar to show progress.
     /// </summary>
-    public void InitializeResourceLoader()
+    private void InitializeResourceLoader()
     {
+        //LoadProgress();
         ResourceLoader.LoadThreadedRequest(nextScene);  // Begin loading
         ResourceLoader.ThreadLoadStatus sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
         while (sceneLoadStatus != ResourceLoader.ThreadLoadStatus.Loaded)
         {
-            // Updates the loading bar progress.
             sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
             // Loads the new scene once everything has been loaded.
             switch (sceneLoadStatus)
@@ -52,8 +64,8 @@ public partial class LoadingScreen : Control
                 break;
 
                 case ResourceLoader.ThreadLoadStatus.Loaded:
-                    var loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
-                    var newRootNode = loadedScene.Instantiate();
+                    PackedScene loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
+                    Node newRootNode = loadedScene.Instantiate();
                     GetNode("/root").AddChild(newRootNode);
                     animationPlayer.Play("TransOut");
                     break;
