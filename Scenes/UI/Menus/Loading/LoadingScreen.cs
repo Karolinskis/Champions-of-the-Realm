@@ -17,7 +17,7 @@ public partial class LoadingScreen : Control
     }
 
     /// <summary>
-    /// Animates the fake loading bar.
+    /// Animates the loading bar.
     /// </summary>
     private void AnimateLoadingBar()
     {
@@ -51,7 +51,6 @@ public partial class LoadingScreen : Control
     /// </summary>
     private void InitializeResourceLoader()
     {
-        //LoadProgress();
         ResourceLoader.LoadThreadedRequest(nextScene);  // Begin loading
         ResourceLoader.ThreadLoadStatus sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
         while (sceneLoadStatus != ResourceLoader.ThreadLoadStatus.Loaded)
