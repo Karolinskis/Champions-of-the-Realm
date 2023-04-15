@@ -124,7 +124,8 @@ public partial class Globals : Node
 
     /// <summary>
     /// Loads loading screen scene which is used to load a new scene and deletes itself after it's done.
-    /// </summary>/// <param name="scenePath">Path to the next scene</param>
+    /// </summary>
+    /// <param name="scenePath">Path to the next scene</param>
     public void ChangeScene(string scenePath)
     {
         // Loading screen is loaded.
