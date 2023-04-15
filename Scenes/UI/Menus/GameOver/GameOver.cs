@@ -11,7 +11,7 @@ public partial class GameOver : Control
 	GetTree().Paused = true;
         globals = GetNode<Globals>("/root/Globals");
     }
-	
+
     /// <summary>
     /// Button for restarting scene.
     /// </summary>
@@ -20,7 +20,7 @@ public partial class GameOver : Control
         GetTree().Paused = false;
 	GetTree().ReloadCurrentScene();
     }
-	
+
     /// <summary>
     /// Button for loading an existing save file.
     /// </summary>
@@ -31,17 +31,17 @@ public partial class GameOver : Control
         GetTree().Paused = false; // resuming process
         QueueFree(); // removing pauseMenu
     }
-    
+
     /// <summary>
     /// Button for quitting to main menu.
     /// </summary>
     private void ButtonQuitMainPressed()
     {
         GetTree().Paused = false;
-	globals.ChangeScene("res://Scenes/UI/Menus/Main/MainMenu.tscn");
-	GetParent().QueueFree(); // Using GetParent() since gameover screen is a child of Map.tscn
+        globals.ChangeScene("res://Scenes/UI/Menus/Main/MainMenu.tscn");
+        GetParent().QueueFree(); // Using GetParent() since gameover screen is a child of Map.tscn
     }
-    
+
     /// <summary>
     /// Button for quiting to desktop.
     /// </summary>
