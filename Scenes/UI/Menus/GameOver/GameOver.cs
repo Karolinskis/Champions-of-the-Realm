@@ -38,8 +38,8 @@ public partial class GameOver : Control
     private void ButtonQuitMainPressed()
     {
         GetTree().Paused = false;
-	    globals.ChangeScene("res://Scenes/UI/Menus/Main/MainMenu.tscn");
-	    GetParent().QueueFree(); // Using GetParent() since gameover screen is a child of Map.tscn
+	globals.ChangeScene("res://Scenes/UI/Menus/Main/MainMenu.tscn");
+	GetParent().QueueFree(); // Using GetParent() since gameover screen is a child of Map.tscn
     }
     
     /// <summary>
