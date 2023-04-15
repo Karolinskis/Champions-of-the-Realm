@@ -26,7 +26,7 @@ public partial class GUI : Control
     private Button[] itemArray;
     private int currentItemIndex;
 
-    private Vector2 baseGoldCoinCoordinates;
+    private Vector2 baseGoldCoinCoordinates; //Saving starting coordinates to reset gold coin position to them after tweening
 
     Color originalColor = new Color("#690000");
     Color hightlightColor = new Color("#460000");
@@ -120,11 +120,13 @@ public partial class GUI : Control
         goldenCoinSprite.Set("modulate", new Color(1,1,1,1));
         goldenCoinSprite.Set("position", new Vector2(baseGoldCoinCoordinates.X, baseGoldCoinCoordinates.Y));
 
+        //Tweening gold text
         Tween goldTween = CreateTween();
         goldTween.SetTrans(Tween.TransitionType.Expo);
         goldTween.SetEase(Tween.EaseType.Out);
         goldTween.TweenMethod(new Callable(this, "ChangeGoldText"), oldCurrency, newCurrency, 0.6f);
 
+        //Tweening golden coin sprite
         Tween coinTween = CreateTween().SetParallel(true);
         coinTween.SetTrans(Tween.TransitionType.Quart);
         coinTween.TweenProperty(goldenCoinSprite, "position",   
