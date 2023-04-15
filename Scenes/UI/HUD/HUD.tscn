@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://xpy4rcjasw1t"]
+[gd_scene load_steps=8 format=3 uid="uid://xpy4rcjasw1t"]
 
 [ext_resource type="Script" path="res://Scenes/UI/HUD/GUI.cs" id="1_ujh52"]
+[ext_resource type="Texture2D" uid="uid://bkdy38u5jlvjk" path="res://Sprites/UI/Currency/GoldenCoin.png" id="2_fw1db"]
 [ext_resource type="PackedScene" uid="uid://dj2jplbqn401k" path="res://Scenes/UI/HUD/IntentoryItems.tscn" id="2_yhl6b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_not3w"]
@@ -28,10 +29,10 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8y4lv"]
 bg_color = Color(0.411765, 0.639216, 0, 1)
@@ -40,10 +41,10 @@ border_width_top = 3
 border_width_right = 3
 border_width_bottom = 3
 border_color = Color(0, 0, 0, 1)
-corner_radius_top_left = 15
-corner_radius_top_right = 15
-corner_radius_bottom_right = 15
-corner_radius_bottom_left = 15
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 shadow_color = Color(0.172549, 0.172549, 0.172549, 0.6)
 
 [node name="HUD" type="Control"]
@@ -88,6 +89,11 @@ text = "Currency:"
 layout_mode = 2
 size_flags_vertical = 0
 text = "0"
+
+[node name="GoldenCoinSprite" type="Sprite2D" parent="HUD/MarginContainer/Rows/TopRow/CurrenctContainer"]
+position = Vector2(-15, 12)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("2_fw1db")
 
 [node name="XPContainer" type="HBoxContainer" parent="HUD/MarginContainer/Rows/TopRow"]
 layout_mode = 2
