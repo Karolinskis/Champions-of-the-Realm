@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Reflection.Metadata;
 
 public partial class Footman : Infantry
 {
@@ -26,17 +25,20 @@ public partial class Footman : Infantry
         base._PhysicsProcess(delta);
         if (isAttacking)
         {
+            // If attacking playing attacking animation
             PlayAttacking();
             return;
         }
         if (Velocity != Vector2.Zero)
         {
+            // If moving playing walking animation
             PlayWalking();
             return;
         }
+        // If not attacking nor moving playing ilde animation
         weapon.Idle();
     }
-    
+
     /// <summary>
     /// Method for handling attack
     /// </summary>
@@ -79,6 +81,8 @@ public partial class Footman : Infantry
     public override void PlayWalking()
     {
         float angle = Direction.Angle();
+
+        // Choosing which animation to play for certain angle
         if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
         {
             animationPlayer.Play("WalkRight");
@@ -107,6 +111,8 @@ public partial class Footman : Infantry
     public override void PlayAttacking()
     {
         float angle = AI.Rotation;
+
+        // Choosing which animation to play for certain angle
         if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
         {
             animationPlayer.Play("AttackRight");
