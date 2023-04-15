@@ -130,12 +130,6 @@ public partial class Globals : Node
         // Loading screen is loaded.
         Node loadingScreen = loadingScreenScene.Instantiate();
         AddChild(loadingScreen);
-<<<<<<< HEAD
         loadingScreen.Call("LoadNewScene", scenePath);
 	}
 }
-=======
-        loadingScreen.LoadNewScene(scenePath);
-    }
-}
->>>>>>> 74fb5db8bbce4d6dbf6c51604f79c638d49e98d5
