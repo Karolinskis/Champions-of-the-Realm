@@ -38,7 +38,6 @@ public partial class Player : Actor
     private LevelSystem levelSystem;
     private PackedScene bloodScene; // Blood scene for emiting blood particales
     private PackedScene damagePopup; // DamagePopup scene for showing received damage
-    private PackedScene trail;
 
     private bool canPause = true; // variable for deciding whether pausing is allowed.
 
@@ -47,13 +46,14 @@ public partial class Player : Actor
     // Timer for increasing player armour for certain amount of time
     private Timer defendTimer;
 
+    private GpuParticles2D walkingTrail;
+
     public override void _Ready()
     {
         base._Ready();
         // Loading packed scenes
         bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
         damagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
-        trail = ResourceLoader.Load<PackedScene>("res://Particles/Trails/WalkingTrail.tscn");
 
         // Getting nodes
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -63,6 +63,7 @@ public partial class Player : Actor
         globals = GetNode<Globals>("/root/Globals");
         defendTimer = GetNode<Timer>("DefendTimer");
         levelSystem = GetNode<LevelSystem>("LevelSystem");
+        walkingTrail = GetNode<GpuParticles2D>("WalkingTrail");
 
         // Initializing nodes
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
