@@ -28,7 +28,7 @@ public partial class Infantry : Troop
     public virtual void PlayWalking() { }
 
     /// <summary>
-    /// Method for play attack animation
+    /// Method for playing attacking animation
     /// </summary>
     public virtual void PlayAttacking() { }
 }

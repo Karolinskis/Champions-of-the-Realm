@@ -25,17 +25,17 @@ public partial class Footman : Infantry
         base._PhysicsProcess(delta);
         if (isAttacking)
         {
-            // If attacking playing attacking animation
+            // If attacking, play attacking animation
             PlayAttacking();
             return;
         }
         if (Velocity != Vector2.Zero)
         {
-            // If moving playing walking animation
+            // If moving, play walking animation
             PlayWalking();
             return;
         }
-        // If not attacking nor moving playing idle animation
+        // If not attacking nor moving, play idle animation
         weapon.Idle();
     }
 
@@ -136,7 +136,7 @@ public partial class Footman : Infantry
     }
 
     /// <summary>
-    /// Method for handeling received damage
+    /// Method for handling received damage
     /// </summary>
     /// <param name="baseDamage">amount of received damage</param>
     /// <param name="impactPosition">position for calculating particles casting direciton</param>
