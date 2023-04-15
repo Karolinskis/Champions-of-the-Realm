@@ -18,7 +18,7 @@ public partial class LoadingScreen : Control
 	/// <summary>
 	/// Called every frame. Used for updating fake loading bar.
 	/// </summary>
-	/// <param name="value">Loading bar progress.</param>
+	/// <param name="delta">Loading bar progress.</param>
 	public override void _Process(double delta)
 	{
 		loadingBar.Value += delta*100;
