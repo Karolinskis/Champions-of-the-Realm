@@ -108,13 +108,8 @@ public partial class Map : Node2D
         AddChild(player);
         player.SetCameraTransform(camera.GetPath());
         player.Connect("PlayerDied", new Callable(this, "ShowGameOver"));
-
         hud.Initialize(player);
-
-        // Alternative: hud.Initialize(player);
-
         globals.Player = player.Save();
-        //globals.SaveGame(); // for debuging purposes
     }
 
     /// <summary>

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://42w5olted1ub"]
+
+[ext_resource type="PackedScene" uid="uid://cvnskhmqn2gqr" path="res://Scenes/Utility/Loot/Coin/Coin.tscn" id="1_ft83g"]
+[ext_resource type="Texture2D" uid="uid://clh07xwvrmrwl" path="res://Sprites/Loot/GoldenCoin.png" id="2_uwrot"]
+
+[node name="Coin" instance=ExtResource("1_ft83g")]
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_uwrot")
