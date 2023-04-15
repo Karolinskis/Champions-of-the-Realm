@@ -39,17 +39,16 @@ public partial class LoadingScreen : Control
     /// </summary>
     public void InitializeResourceLoader()
     {
-        ResourceLoader.ThreadLoadStatus sceneLoadStatus = 0; // gets values from LoadThreadedGetStatus() method.
         ResourceLoader.LoadThreadedRequest(nextScene);  // Begin loading
         while (sceneLoadStatus != ResourceLoader.ThreadLoadStatus.Loaded)
         {
             // Updates the loading bar progress.
-            sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
+            ResourceLoader.ThreadLoadStatus sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
             // Loads the new scene once everything has been loaded.
             switch (sceneLoadStatus)
             {
-				 case ResourceLoader.ThreadLoadStatus.InProgress:
-					break;
+                case ResourceLoader.ThreadLoadStatus.InProgress:
+                break;
 
                 case ResourceLoader.ThreadLoadStatus.Loaded:
                     var loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
@@ -67,7 +66,7 @@ public partial class LoadingScreen : Control
                     return;
 
                 default:
-					 GD.PrintErr("State doesn't exist.");
+                GD.PrintErr("State doesn't exist.");
                     return;
             }
         }
