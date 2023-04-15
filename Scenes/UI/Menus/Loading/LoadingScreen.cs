@@ -50,7 +50,7 @@ public partial class LoadingScreen : Control
 			if (sceneLoadStatus == ResourceLoader.ThreadLoadStatus.Loaded)
 			{
 				var loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
-            	var newRootNode = loadedScene.Instantiate();
+            			var newRootNode = loadedScene.Instantiate();
 				GetNode("/root").AddChild(newRootNode);
 				animationPlayer.Play("TransOut");
 				break;

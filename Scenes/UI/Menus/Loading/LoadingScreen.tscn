@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bn1ghqgy1xmbf"]
+[gd_scene load_steps=7 format=3 uid="uid://cyr2k81xmtc6"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Loading/LoadingScreen.cs" id="1_sg3yx"]
-[ext_resource type="Texture2D" uid="uid://cxhgroa06bm1a" path="res://Scenes/UI/Menus/Loading/Menus_Abstract.jpeg" id="2_i170a"]
+[ext_resource type="Texture2D" uid="uid://cxhgroa06bm1a" path="res://Sprites/UI/LoadingScreen/Menus_Abstract.jpeg" id="2_ihjaj"]
 
 [sub_resource type="Animation" id="Animation_qre75"]
 length = 0.001
@@ -121,10 +121,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_i170a")
+texture = ExtResource("2_ihjaj")
 expand_mode = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control/TextureRect"]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

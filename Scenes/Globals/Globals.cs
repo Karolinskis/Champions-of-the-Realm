@@ -122,15 +122,20 @@ public partial class Globals : Node
         return (float)scaled;
     }
 
-	/// <summary>
-	/// Loads loading screen scene which is used to load a new scene and deletes itself after it's done.
-	/// </summary>
-    /// <param name="scenePath">Path to the next scene</param>
-	public void ChangeScene(string scenePath)
-	{
+    /// <summary>
+    /// Loads loading screen scene which is used to load a new scene and deletes itself after it's done.
+    /// </summary>/// <param name="scenePath">Path to the next scene</param>
+    public void ChangeScene(string scenePath)
+    {
         // Loading screen is loaded.
-        LoadingScreen loadingScreen = loadingScreenScene.Instantiate() as LoadingScreen;
+        Node loadingScreen = loadingScreenScene.Instantiate();
         AddChild(loadingScreen);
-        loadingScreen.LoadNewScene(scenePath);
+<<<<<<< HEAD
+        loadingScreen.Call("LoadNewScene", scenePath);
 	}
 }
+=======
+        loadingScreen.LoadNewScene(scenePath);
+    }
+}
+>>>>>>> 74fb5db8bbce4d6dbf6c51604f79c638d49e98d5

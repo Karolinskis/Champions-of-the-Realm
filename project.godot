@@ -28,7 +28,6 @@ Globals="*res://Scenes/Globals/Globals.cs"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/vsync/vsync_mode=0
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/vsync/vsync_mode=0
