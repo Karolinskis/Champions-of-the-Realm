@@ -14,10 +14,10 @@ public partial class LootManager : Node2D
     {
         base._Ready();
         // Loading coin scenes
-        goldenCoinScene = (PackedScene)ResourceLoader.Load("res://Scenes/Utility/Coin/GoldenCoin.tscn");
-        silverCoinScene = (PackedScene)ResourceLoader.Load("res://Scenes/Utility/Coin/SilverCoin.tscn");
-        bronzeCoinScene = (PackedScene)ResourceLoader.Load("res://Scenes/Utility/Coin/BronzeCoin.tscn");
-
+        goldenCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coin/GoldenCoin.tscn");
+        silverCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coin/SilverCoin.tscn");
+        bronzeCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coin/BronzeCoin.tscn");
+		
         // Creating and filling coin pools.
         goldenCoinsPool = new ObjectPool<Coin>();
         silverCoinsPool = new ObjectPool<Coin>();
@@ -41,7 +41,7 @@ public partial class LootManager : Node2D
             AddChild(temp);
             temp.RemoveFromScene();
         }
-        HandleCoinsSpawned(1, new Vector2(400, 400));
+        //HandleCoinsSpawned(1, new Vector2(400, 400)); For debugging purposes
     }
 
     /// <summary>
@@ -104,7 +104,6 @@ public partial class LootManager : Node2D
     /// <param name="coin">Gold coin scene</param>
     private void ReleaseGoldenCoin(Coin coin)
     {
-        coin.Gold = 50;
         goldenCoinsPool.Release(coin);
     }
 
@@ -114,7 +113,6 @@ public partial class LootManager : Node2D
     /// <param name="coin">Silver coin scene</param>
     private void ReleaseSilverCoin(Coin coin)
     {
-        coin.Gold = 10;
         silverCoinsPool.Release(coin);
     }
 
@@ -124,7 +122,6 @@ public partial class LootManager : Node2D
     /// <param name="coin">Bronze coin scene</param>
     private void ReleaseBronzeCoin(Coin coin)
     {
-        coin.Gold = 1;
         bronzeCoinsPool.Release(coin);
     }
 }
