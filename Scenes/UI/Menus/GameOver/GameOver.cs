@@ -5,10 +5,10 @@ public partial class GameOver : Control
 {
     private Globals globals; // global variables and functionality
 
-     // Called when the node enters the scene tree for the first time.
+    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-	GetTree().Paused = true;
+        GetTree().Paused = true;
         globals = GetNode<Globals>("/root/Globals");
     }
 
@@ -18,7 +18,7 @@ public partial class GameOver : Control
     private void ButtonRestartPressed()
     {
         GetTree().Paused = false;
-	GetTree().ReloadCurrentScene();
+        GetTree().ReloadCurrentScene();
     }
 
     /// <summary>
