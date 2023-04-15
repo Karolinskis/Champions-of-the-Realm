@@ -46,26 +46,26 @@ public partial class LoadingScreen : Control
             // Updates the loading bar progress.
             sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
             // Loads the new scene once everything has been loaded.
-			switch (sceneLoadStatus)
-			{
-				case ResourceLoader.ThreadLoadStatus.Loaded:
-					var loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
-					var newRootNode = loadedScene.Instantiate();
-					GetNode("/root").AddChild(newRootNode);
-					animationPlayer.Play("TransOut");
-					break;
+            switch (sceneLoadStatus)
+            {
+                case ResourceLoader.ThreadLoadStatus.Loaded:
+                    var loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
+                    var newRootNode = loadedScene.Instantiate();
+                    GetNode("/root").AddChild(newRootNode);
+                    animationPlayer.Play("TransOut");
+                    break;
 
-				case ResourceLoader.ThreadLoadStatus.Failed:
-					GD.PrintErr("Resource loading failed.");
-					break;
+                case ResourceLoader.ThreadLoadStatus.Failed:
+                    GD.PrintErr("Resource loading failed.");
+                    return;
 
-				case ResourceLoader.ThreadLoadStatus.InvalidResource:
-					GD.PrintErr("Cannot load, invalid resource.");
-					break;
+                case ResourceLoader.ThreadLoadStatus.InvalidResource:
+                    GD.PrintErr("Cannot load, invalid resource.");
+                    return;
 
-				default:
-					break;
-			}
+                default:
+                    break;
+            }
         }
     }
 
