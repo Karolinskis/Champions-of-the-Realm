@@ -128,8 +128,8 @@ public partial class Globals : Node
     public void ChangeScene(string scenePath)
     {
         // Loading screen is loaded.
-        Node loadingScreen = loadingScreenScene.Instantiate();
+        LoadingScreen loadingScreen = loadingScreenScene.Instantiate<LoadingScreen>();
         AddChild(loadingScreen);
-        loadingScreen.Call("LoadNewScene", scenePath);
+        loadingScreen.LoadNewScene(scenePath);
 	}
 }
