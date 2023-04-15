@@ -48,6 +48,9 @@ public partial class LoadingScreen : Control
             // Loads the new scene once everything has been loaded.
             switch (sceneLoadStatus)
             {
+				 case ResourceLoader.ThreadLoadStatus.InProgress:
+					break;
+
                 case ResourceLoader.ThreadLoadStatus.Loaded:
                     var loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
                     var newRootNode = loadedScene.Instantiate();
@@ -64,7 +67,8 @@ public partial class LoadingScreen : Control
                     return;
 
                 default:
-                    break;
+					 GD.PrintErr("State doesn't exist.");
+                    return;
             }
         }
     }
