@@ -47,7 +47,8 @@ public partial class LootManager : Node2D
     /// <summary>
     /// Handles dropped coins.
     /// </summary>
-    /// <param name="coin">Silver coin scene</param>
+    /// <param name="coin">Silver coin scene.</param>
+    /// <param name="position">Coin position.</param>
     public void HandleCoinsSpawned(int coins, Vector2 position)
     {
         Coin temp;
@@ -120,7 +121,7 @@ public partial class LootManager : Node2D
     /// <summary>
     /// Method for releasing bronze coin to pool (made non-usable).
     /// </summary>
-    /// <param name="save">Bronze coin scene</param>
+    /// <param name="coin">Bronze coin scene</param>
     private void ReleaseBronzeCoin(Coin coin)
     {
         coin.Gold = 1;
