@@ -66,7 +66,7 @@ public partial class LoadingScreen : Control
                     return;
 
                 default:
-                GD.PrintErr("State doesn't exist.");
+                    GD.PrintErr("State doesn't exist.");
                     return;
             }
         }
