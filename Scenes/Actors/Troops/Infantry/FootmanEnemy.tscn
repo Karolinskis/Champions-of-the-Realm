@@ -433,7 +433,7 @@ collision_layer = 4
 script = ExtResource("2_1coml")
 
 [node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("145_khn78")
+texture = ExtResource("120_gt4jb")
 
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(0, 8.93522)
@@ -460,7 +460,6 @@ libraries = {
 }
 
 [node name="AttackTimer" type="Timer" parent="." index="6"]
-wait_time = 2.0
 one_shot = true
 
 [connection signal="timeout" from="AttackTimer" to="." method="AttackTimerTimeout"]

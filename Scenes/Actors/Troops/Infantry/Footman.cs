@@ -29,7 +29,6 @@ public partial class Footman : Infantry
             PlayAttacking();
             return;
         }
-
         if (Velocity != Vector2.Zero)
         {
             PlayWalking();
@@ -37,7 +36,10 @@ public partial class Footman : Infantry
         }
         weapon.Idle();
     }
-
+    
+    /// <summary>
+    /// Method for handling attack
+    /// </summary>
     public override void Attack()
     {
         if (!isAttacking && weapon.CanAttack())
@@ -49,37 +51,32 @@ public partial class Footman : Infantry
     }
 
     /// <summary>
-    /// Method for playing Idle animation
+    /// Method for playing Idle animation 
+    /// Playing idle animation after attacking implemented using animation player track
     /// </summary>
-    public override void PlayIdle() 
+    public override void PlayIdle()
     {
-        float angle = AI.Rotation;
-        if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
+        switch (animationPlayer.CurrentAnimation)
         {
-            animationPlayer.Play("AttackRight");
-            return;
-        }
-        if (angle >= -3 * Math.PI / 4 && angle <= -Math.PI / 4)
-        {
-            animationPlayer.Play("AttackBack");
-            return;
-        }
-        if (angle >= 3 * Math.PI / 4 || angle <= -3 * Math.PI / 4)
-        {
-            animationPlayer.Play("AttackLeft");
-            return;
-        }
-        if (angle >= Math.PI / 4 && angle <= 3 * Math.PI / 4)
-        {
-            animationPlayer.Play("AttackFront");
-            return;
+            case "WalkRight":
+                animationPlayer.Play("IdleRight");
+                break;
+            case "WalkBack":
+                animationPlayer.Play("IdleRight");
+                break;
+            case "WalkLeft":
+                animationPlayer.Play("IdleLeft");
+                break;
+            case "WalkFront":
+                animationPlayer.Play("IdleFront");
+                break;
         }
     }
 
     /// <summary>
     /// Method for playing walking animation
     /// </summary>
-    public override void PlayWalking() 
+    public override void PlayWalking()
     {
         float angle = Direction.Angle();
         if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
@@ -105,7 +102,7 @@ public partial class Footman : Infantry
     }
 
     /// <summary>
-    /// Method for play attack animation
+    /// Method for playing attack animation
     /// </summary>
     public override void PlayAttacking()
     {
