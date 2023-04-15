@@ -19,7 +19,8 @@ public partial class MainMenu : Control
     private void ButtonStartNewPressed()
     {
         globals.LoadingForm = Globals.LoadingForms.New;
-        GetTree().ChangeSceneToFile("res://Scenes/Maps/Main/Main.tscn");
+        globals.ChangeScene("res://Scenes/Maps/Main/Main.tscn");
+        QueueFree();
     }
 
     /// <summary>
