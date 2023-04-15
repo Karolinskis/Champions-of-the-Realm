@@ -53,7 +53,27 @@ public partial class Footman : Infantry
     /// </summary>
     public override void PlayIdle() 
     {
-
+        float angle = AI.Rotation;
+        if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
+        {
+            animationPlayer.Play("AttackRight");
+            return;
+        }
+        if (angle >= -3 * Math.PI / 4 && angle <= -Math.PI / 4)
+        {
+            animationPlayer.Play("AttackBack");
+            return;
+        }
+        if (angle >= 3 * Math.PI / 4 || angle <= -3 * Math.PI / 4)
+        {
+            animationPlayer.Play("AttackLeft");
+            return;
+        }
+        if (angle >= Math.PI / 4 && angle <= 3 * Math.PI / 4)
+        {
+            animationPlayer.Play("AttackFront");
+            return;
+        }
     }
 
     /// <summary>
@@ -89,7 +109,27 @@ public partial class Footman : Infantry
     /// </summary>
     public override void PlayAttacking()
     {
-    
+        float angle = AI.Rotation;
+        if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
+        {
+            animationPlayer.Play("AttackRight");
+            return;
+        }
+        if (angle >= -3 * Math.PI / 4 && angle <= -Math.PI / 4)
+        {
+            animationPlayer.Play("AttackBack");
+            return;
+        }
+        if (angle >= 3 * Math.PI / 4 || angle <= -3 * Math.PI / 4)
+        {
+            animationPlayer.Play("AttackLeft");
+            return;
+        }
+        if (angle >= Math.PI / 4 && angle <= 3 * Math.PI / 4)
+        {
+            animationPlayer.Play("AttackFront");
+            return;
+        }
     }
 
     /// <summary>
