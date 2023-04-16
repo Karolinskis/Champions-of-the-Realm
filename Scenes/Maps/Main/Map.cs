@@ -38,7 +38,6 @@ public partial class Map : Node2D
         // Connecting signals
         globals.Connect("CoinsDroped", new Callable(lootManager, "HandleCoinsSpawned"));
 
-
         // Checking loading state
         switch (globals.LoadingForm)
         {
