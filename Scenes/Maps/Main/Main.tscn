@@ -1,14 +1,12 @@
-[gd_scene load_steps=20 format=3 uid="uid://cumnukgfcos74"]
+[gd_scene load_steps=18 format=3 uid="uid://cumnukgfcos74"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/Main/Map.cs" id="1_urlge"]
-[ext_resource type="Texture2D" uid="uid://gf1vexxq0mqg" path="res://Sprites/Maps/Environment/Tilesets/OutsideGreen.png" id="3_xb4mq"]
-[ext_resource type="Texture2D" uid="uid://es70hjfkkb2e" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
-[ext_resource type="Texture2D" uid="uid://cf3ld0a5163ws" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
+[ext_resource type="Texture2D" uid="uid://dnec4fivhe02t" path="res://Sprites/Maps/Environment/Tilesets/OutsideGreen.png" id="3_xb4mq"]
+[ext_resource type="Texture2D" uid="uid://6ayxbq1x2pfe" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
+[ext_resource type="Texture2D" uid="uid://c053anlp585xx" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
 [ext_resource type="PackedScene" uid="uid://xpy4rcjasw1t" path="res://Scenes/UI/HUD/HUD.tscn" id="5_5ce41"]
 [ext_resource type="PackedScene" uid="uid://7efuq2vnsuig" path="res://Scenes/Utility/EnemySpawner.tscn" id="7_i7fgq"]
-[ext_resource type="PackedScene" uid="uid://cfp2lr0id67xl" path="res://Scenes/Utility/Loot/Coins/GoldenCoin.tscn" id="7_vs5ai"]
-[ext_resource type="PackedScene" uid="uid://clju2dtj6rgxr" path="res://Scenes/Utility/Loot/Coins/BronzeCoin.tscn" id="8_wy4hn"]
-[ext_resource type="PackedScene" uid="uid://bo65uol8i8cei" path="res://Scenes/Utility/Loot/Coins/SilverCoin.tscn" id="9_os21f"]
+[ext_resource type="PackedScene" uid="uid://b4ilybs3djksi" path="res://Scenes/Utility/Loot/LootManager.tscn" id="7_tdyjp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubklx"]
 texture = ExtResource("5_0sqop")
@@ -5981,14 +5979,5 @@ position_smoothing_enabled = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("7_i7fgq")]
 
-[node name="Coin" parent="." instance=ExtResource("7_vs5ai")]
-position = Vector2(102, 223)
-scale = Vector2(0.5, 0.5)
-
-[node name="Coin2" parent="." instance=ExtResource("8_wy4hn")]
-position = Vector2(201, 217)
-scale = Vector2(0.5, 0.5)
-
-[node name="Coin3" parent="." instance=ExtResource("9_os21f")]
-position = Vector2(257, 148)
-scale = Vector2(0.5, 0.5)
+[node name="LootManager" parent="." instance=ExtResource("7_tdyjp")]
+position = Vector2(-300, -1000)

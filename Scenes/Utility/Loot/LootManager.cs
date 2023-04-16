@@ -41,7 +41,7 @@ public partial class LootManager : Node2D
             AddChild(temp);
             temp.RemoveFromScene();
         }
-        //HandleCoinsSpawned(1, new Vector2(400, 400)); For debugging purposes
+        //HandleCoinsSpawned(159, new Vector2(400, 400)); //For debugging purposes
     }
 
     /// <summary>

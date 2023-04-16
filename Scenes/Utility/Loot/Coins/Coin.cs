@@ -78,7 +78,7 @@ public partial class Coin : CharacterBody2D, IPoolable
     /// </summary>
     public void AddToScene()
     {
-        movementDirection += GlobalPosition;
+        movementDirection = new Vector2(Globals.GetRandomFloat(-25, 25), Globals.GetRandomFloat(-25, 25));
         timer.Start();
         Move();
         Show();
