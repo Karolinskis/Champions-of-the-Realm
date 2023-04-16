@@ -2,8 +2,8 @@ using Godot;
 using System;
 public partial class LootManager : Node2D
 {
-    [Export] private int goldenCount = 20; // Max amount of gold coins in a scene.
-    [Export] private int silverCount = 100; // Max amount of silver coins in a scene.
+    [Export] private int goldenCount = 100; // Max amount of gold coins in a scene.
+    [Export] private int silverCount = 100; // Max amount of silver and bronze coins in a scene.
     private PackedScene goldenCoinScene; // Gold coin resource
     private PackedScene silverCoinScene; // Silver coin resource
     private PackedScene bronzeCoinScene; // Bronze coin resource
@@ -52,7 +52,7 @@ public partial class LootManager : Node2D
     public void HandleCoinsSpawned(int coins, Vector2 position)
     {
         Coin temp;
-        for (int i = 0; i < 2; i++)
+        while (coins > 0)
         {
             if (coins >= 50)
             {
@@ -77,24 +77,6 @@ public partial class LootManager : Node2D
                 return;
             }
             temp.AddToScene();
-        }
-        if (coins >= 50)
-        {
-            temp = goldenCoinsPool.Get();
-            temp.Gold = coins;
-            temp.GlobalPosition = position;
-        }
-        else if (coins >= 10)
-        {
-            temp = silverCoinsPool.Get();
-            temp.Gold = coins;
-            temp.GlobalPosition = position;
-        }
-        else if (coins > 0)
-        {
-            temp = bronzeCoinsPool.Get();
-            temp.Gold = coins;
-            temp.GlobalPosition = position;
         }
     }
 
