@@ -130,17 +130,20 @@ public partial class Player : Actor
     /// <param name="impactPosition">Impact position for calculating impact particles Direction</param>
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
-        base.HandleHit(baseDamage, impactPosition);
-        EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
+        // Showing blood
         Blood blood = bloodScene.Instantiate() as Blood;
         GetParent().AddChild(blood);
         blood.GlobalPosition = GlobalPosition;
         blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
 
+        // Showing inflicted damage
         DamagePopup popup = damagePopup.Instantiate() as DamagePopup;
         popup.Amount = (int)baseDamage;
         popup.Type = "Damage";
         AddChild(popup);
+
+        base.HandleHit(baseDamage, impactPosition);
+        EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
     }
 
     /// <summary>
@@ -148,7 +151,6 @@ public partial class Player : Actor
     /// </summary>
     public override void Die()
     {
-        //globals.EmitSignal("CoinsDroped", base.Stats.Gold / 3, GlobalPosition); // DefendMap
         EmitSignal(nameof(PlayerDied));
         base.Die();
     }

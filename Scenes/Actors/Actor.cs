@@ -37,6 +37,10 @@ public partial class Actor : CharacterBody2D
     {
         float damage = Mathf.Clamp(baseDamage - Stats.Armour, 0, 100);
         Stats.Health -= damage;
+        if (Stats.Health <= 0)
+        {
+            Die();
+        }
     }
 
     /// <summary>

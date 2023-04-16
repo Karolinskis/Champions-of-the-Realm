@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://iq8ol3bmxqrn"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Main/MainMenu.cs" id="1_dfesn"]
-[ext_resource type="Texture2D" uid="uid://cqnpf75ukgqq0" path="res://Sprites/UI/MainMenu/Menus_Detailed.png" id="2_3hnfr"]
+[ext_resource type="Texture2D" uid="uid://bglfmdm70im81" path="res://Sprites/UI/MainMenu/Menus_Detailed.png" id="2_3hnfr"]
 [ext_resource type="AudioStream" uid="uid://6h5peo4tccka" path="res://Sounds/Music/MainMenuMusic.mp3" id="3_dqi8g"]
 
 [node name="MainMenu" type="Control"]
