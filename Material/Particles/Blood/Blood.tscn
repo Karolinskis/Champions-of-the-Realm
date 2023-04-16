@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://ckxnbmc0nxmth"]
 
 [ext_resource type="Material" uid="uid://yp33yv1adjbn" path="res://Material/Particles/ParticlesMaterial/Blood.tres" id="1_kg7tj"]
-[ext_resource type="Texture2D" uid="uid://c5ywetliu64fg" path="res://Material/Particles/Textures/BloodTexture.png" id="2_h4rnx"]
+[ext_resource type="Texture2D" uid="uid://bbir0ernxaopk" path="res://Material/Particles/Textures/BloodTexture.png" id="2_h4rnx"]
 [ext_resource type="Script" path="res://Material/Particles/Blood/Blood.cs" id="3_lktku"]
 
 [node name="Blood" type="GPUParticles2D"]

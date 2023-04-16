@@ -77,12 +77,16 @@ public partial class Player : Actor
             if (Velocity != Vector2.Zero)
             {
                 PlayWalking();
+                walkingTrail.Emitting = true;
+                return;
             }
             else
             {
                 PlayIdle();
+                walkingTrail.Emitting = false;
             }
         }
+        walkingTrail.Emitting = false;
     }
 
     /// <summary>
