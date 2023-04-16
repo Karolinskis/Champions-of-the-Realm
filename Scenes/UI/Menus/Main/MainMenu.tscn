@@ -97,6 +97,7 @@ custom_minimum_size = Vector2(0, 240)
 layout_mode = 2
 
 [node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
 stream = ExtResource("3_dqi8g")
 autoplay = true
 bus = &"New Bus"
