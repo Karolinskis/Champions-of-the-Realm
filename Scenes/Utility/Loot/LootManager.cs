@@ -51,26 +51,30 @@ public partial class LootManager : Node2D
     /// <param name="position">Coin position.</param>
     public void HandleCoinsSpawned(int coins, Vector2 position)
     {
+        GD.Print(coins);
         Coin temp;
         while (coins > 0)
         {
-            if (coins >= 50)
+            if (coins >= 100)
             {
                 temp = goldenCoinsPool.Get();
                 temp.GlobalPosition = position;
-                coins -= 50;
+                coins -= 100;
+                continue;
             }
-            else if (coins >= 10)
+            else if (coins >= 25)
             {
                 temp = silverCoinsPool.Get();
                 temp.GlobalPosition = position;
-                coins -= 10;
+                coins -= 25;
+                continue;
             }
             else
             {
                 temp = bronzeCoinsPool.Get();
                 temp.GlobalPosition = position;
                 coins -= 1;
+                continue;
             }
             temp.AddToScene();
         }

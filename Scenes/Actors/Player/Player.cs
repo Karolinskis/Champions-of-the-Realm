@@ -124,7 +124,7 @@ public partial class Player : Actor
     }
 
     /// <summary>
-    /// Method for handeling received damage
+    /// Method for handling received damage
     /// </summary>
     /// <param name="baseDamage">Received damage</param>
     /// <param name="impactPosition">Impact position for calculating impact particles Direction</param>
@@ -147,7 +147,7 @@ public partial class Player : Actor
     }
 
     /// <summary>
-    /// Implemented actor's Die method
+    /// Handling player death
     /// </summary>
     public override void Die()
     {

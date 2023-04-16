@@ -14,7 +14,23 @@ public partial class Troop : Actor
     }
 
     /// <summary>
-    /// Removes the object from the scene tree
+    /// Method for handling received damage
+    /// Should only be fully implemented in deriveted class
+    /// </summary>
+    /// <param name="baseDamage">Amount of damage received</param>
+    /// <param name="impactPosition">Position for spawning blood particles</param>
+    public override void HandleHit(float baseDamage, Vector2 impactPosition)
+    {
+        float damage = Mathf.Clamp(baseDamage - Stats.Armour, 0, 100);
+        Stats.Health -= damage;
+        if (Stats.Health <= 0)
+        {
+            Die();
+        }
+    }
+
+    /// <summary>
+    /// Handling troop death and removing from scene tree
     /// </summary>
     public override void Die()
     {

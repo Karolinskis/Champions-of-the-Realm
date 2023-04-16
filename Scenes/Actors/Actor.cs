@@ -28,7 +28,7 @@ public partial class Actor : CharacterBody2D
     }
 
     /// <summary>
-    /// Method for handeling received damage
+    /// Method for handling received damage
     /// Should only be fully implemented in deriveted class
     /// </summary>
     /// <param name="baseDamage">Amount of damage received</param>
@@ -44,7 +44,7 @@ public partial class Actor : CharacterBody2D
     }
 
     /// <summary>
-    /// Method for handeling death and removing actor from scene
+    /// Method for handling death and removing actor from scene
     /// Should only be fully implemented in deriveted class
     /// </summary>
     public virtual void Die()
@@ -53,7 +53,7 @@ public partial class Actor : CharacterBody2D
     }
 
     /// <summary>
-    /// Method for handeling received knockback
+    /// Method for handling received knockback
     /// </summary>
     /// <param name="amount">Amount of knockback</param>
     /// <param name="impactPosition">Position of knockback received</param>
@@ -84,7 +84,7 @@ public partial class Actor : CharacterBody2D
     }
 
     /// <summary>
-    /// Method for handeling actor rotation
+    /// Method for handling actor rotation
     /// </summary>
     /// <param name="location">Location to rotate to</param>
     public void RotateToward(Vector2 location)
@@ -101,7 +101,7 @@ public partial class Actor : CharacterBody2D
         Rotation = r;
     }
     /// <summary>
-    /// Old implementation for handeling actor rotation
+    /// Old implementation for handling actor rotation
     /// </summary>
     /// <param name="location">Location to rotate to</param>
     public void RotateTowardLerp(Vector2 location)
