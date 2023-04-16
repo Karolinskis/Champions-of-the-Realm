@@ -29,7 +29,6 @@ public partial class Actor : CharacterBody2D
 
     /// <summary>
     /// Method for handling received damage
-    /// Should only be fully implemented in deriveted class
     /// </summary>
     /// <param name="baseDamage">Amount of damage received</param>
     /// <param name="impactPosition">Position for spawning blood particles</param>
@@ -45,7 +44,6 @@ public partial class Actor : CharacterBody2D
 
     /// <summary>
     /// Method for handling death and removing actor from scene
-    /// Should only be fully implemented in deriveted class
     /// </summary>
     public virtual void Die()
     {

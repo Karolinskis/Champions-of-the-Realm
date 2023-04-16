@@ -15,7 +15,6 @@ public partial class Troop : Actor
 
     /// <summary>
     /// Method for handling received damage
-    /// Should only be fully implemented in deriveted class
     /// </summary>
     /// <param name="baseDamage">Amount of damage received</param>
     /// <param name="impactPosition">Position for spawning blood particles</param>
