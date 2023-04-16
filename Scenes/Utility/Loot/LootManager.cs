@@ -66,15 +66,11 @@ public partial class LootManager : Node2D
                 temp.GlobalPosition = position;
                 coins -= 10;
             }
-            else if (coins > 0)
+            else
             {
                 temp = bronzeCoinsPool.Get();
                 temp.GlobalPosition = position;
                 coins -= 1;
-            }
-            else
-            {
-                return;
             }
             temp.AddToScene();
         }

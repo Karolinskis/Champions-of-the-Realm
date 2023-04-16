@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bumxfnc7chimv" path="res://Sprites/Loot/Coins/BronzeCoin.png" id="1_rmj1r"]
 
 [node name="Coin" instance=ExtResource("1_bg7w7")]
-Gold = 25
+Gold = 1
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("1_rmj1r")

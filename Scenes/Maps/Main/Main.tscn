@@ -5983,9 +5983,12 @@ position_smoothing_enabled = true
 
 [node name="Coin" parent="." instance=ExtResource("7_vs5ai")]
 position = Vector2(102, 223)
+scale = Vector2(0.5, 0.5)
 
 [node name="Coin2" parent="." instance=ExtResource("8_wy4hn")]
 position = Vector2(201, 217)
+scale = Vector2(0.5, 0.5)
 
 [node name="Coin3" parent="." instance=ExtResource("9_os21f")]
 position = Vector2(257, 148)
+scale = Vector2(0.5, 0.5)
