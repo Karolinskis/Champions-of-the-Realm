@@ -14,6 +14,7 @@ public partial class GUI : Control
     private Label maxAmmoLabel;
     private Tween healthTween;
     private StyleBoxFlat barStyle;
+    private Sprite2D goldenCoinSprite;
 
     private Color healthyColor = new Color("#69a300");
     private Color injuredColor = new Color("ffa300");
@@ -24,6 +25,8 @@ public partial class GUI : Control
 
     private Button[] itemArray;
     private int currentItemIndex;
+
+    private Vector2 baseGoldCoinCoordinates; //Saving starting coordinates to reset gold coin position to them after tweening
 
     Color originalColor = new Color("#690000");
     Color hightlightColor = new Color("#460000");
@@ -40,7 +43,11 @@ public partial class GUI : Control
         XPLabel = GetNode<Label>("HUD/MarginContainer/Rows/TopRow/XPContainer/XPLabel");
         maxAmmoLabel = GetNode<Label>("HUD/MarginContainer/Rows/BottomRow/AmmoContainer/MaxAmmo");
         barStyle = (StyleBoxFlat)healthBar.Get("theme_override_styles/fill");
-        
+        goldenCoinSprite = GetNode<Sprite2D>("HUD/MarginContainer/Rows/TopRow/CurrenctContainer/GoldenCoinSprite");
+
+        baseGoldCoinCoordinates.X = goldenCoinSprite.Position.X;
+        baseGoldCoinCoordinates.Y = goldenCoinSprite.Position.Y; 
+
         itemArray = new Button[3];
 
         itemArray[0] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems");
@@ -105,15 +112,26 @@ public partial class GUI : Control
     }
 
     /// <summary>
-    /// Method to change the currency value
+    /// Method to change the currency value and play specific animations
     /// </summary>
     /// <param name="newCurrency">New currency value</param>
     private void ChangeCurrency(int oldCurrency, int newCurrency)
     {
+        goldenCoinSprite.Set("modulate", new Color(1,1,1,1));
+        goldenCoinSprite.Set("position", new Vector2(baseGoldCoinCoordinates.X, baseGoldCoinCoordinates.Y));
+
+        //Tweening gold text
         Tween goldTween = CreateTween();
         goldTween.SetTrans(Tween.TransitionType.Expo);
         goldTween.SetEase(Tween.EaseType.Out);
         goldTween.TweenMethod(new Callable(this, "ChangeGoldText"), oldCurrency, newCurrency, 0.6f);
+
+        //Tweening golden coin sprite
+        Tween coinTween = CreateTween().SetParallel(true);
+        coinTween.SetTrans(Tween.TransitionType.Quart);
+        coinTween.TweenProperty(goldenCoinSprite, "position",   
+            new Vector2(goldenCoinSprite.Position.X, goldenCoinSprite.Position.Y-10), 1f);
+        coinTween.TweenProperty(goldenCoinSprite, "modulate:a", 0, 0.5f).SetDelay(0.5f);
     }
 
     /// <summary>

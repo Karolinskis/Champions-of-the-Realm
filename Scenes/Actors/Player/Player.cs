@@ -64,6 +64,7 @@ public partial class Player : Actor
         defendTimer = GetNode<Timer>("DefendTimer");
         levelSystem = GetNode<LevelSystem>("LevelSystem");
         walkingTrail = GetNode<GpuParticles2D>("WalkingTrail");
+        coinsSound = GetNode<AudioStreamPlayer>("CoinsSound");
 
         // Initializing nodes
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
@@ -131,31 +132,33 @@ public partial class Player : Actor
     }
 
     /// <summary>
-    /// Method for handeling received damage
+    /// Method for handling received damage
     /// </summary>
     /// <param name="baseDamage">Received damage</param>
     /// <param name="impactPosition">Impact position for calculating impact particles Direction</param>
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
-        base.HandleHit(baseDamage, impactPosition);
-        EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
+        // Showing blood
         Blood blood = bloodScene.Instantiate() as Blood;
         GetParent().AddChild(blood);
         blood.GlobalPosition = GlobalPosition;
         blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
 
+        // Showing inflicted damage
         DamagePopup popup = damagePopup.Instantiate() as DamagePopup;
         popup.Amount = (int)baseDamage;
         popup.Type = "Damage";
         AddChild(popup);
+
+        base.HandleHit(baseDamage, impactPosition);
+        EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
     }
 
     /// <summary>
-    /// Implemented actor's Die method
+    /// Handling player death
     /// </summary>
     public override void Die()
     {
-        //globals.EmitSignal("CoinsDroped", base.Stats.Gold / 3, GlobalPosition); // DefendMap
         EmitSignal(nameof(PlayerDied));
         base.Die();
     }
@@ -178,6 +181,7 @@ public partial class Player : Actor
     {
         int oldGold = Stats.Gold;
         Stats.Gold += newGold;
+        coinsSound.Play();
         EmitSignal(nameof(PLayerGoldChanged), oldGold, Stats.Gold);
     }
 

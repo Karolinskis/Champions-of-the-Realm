@@ -9,6 +9,7 @@ public partial class Globals : Node
 {
     private const string SaveDir = "user://saves/"; // save files directory path
     private string savePath = SaveDir + "save.dat"; // save file path
+    [Signal] public delegate void CoinsDropedEventHandler(int coins, Marker2D position);
 
     /// <summary>
     /// Loading forms which indicate how map scenes should be loaded
