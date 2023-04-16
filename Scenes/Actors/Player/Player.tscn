@@ -157,6 +157,7 @@
 [ext_resource type="Texture2D" uid="uid://dmqmvp320v54s" path="res://Sprites/Actors/Player/PlayerAttack/RightAttacking/MainAttackRight10.png" id="155_8oe7n"]
 [ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="156_3ah46"]
 [ext_resource type="PackedScene" uid="uid://b5331g7wgjpr8" path="res://Scenes/UI/CharacterMenu/LevelSystem.tscn" id="157_i8vkq"]
+[ext_resource type="PackedScene" uid="uid://dja0qhoksthgh" path="res://Particles/Trails/WalkingTrail.tscn" id="158_hq1he"]
 [ext_resource type="AudioStream" uid="uid://biykiuktb61pl" path="res://Sounds/SFX/Utility/Loot/coins.mp3" id="157_kwdsl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pkm35"]
@@ -454,34 +455,41 @@ shape = SubResource("RectangleShape2D_pkm35")
 [node name="AttackTimer" parent="WeaponsManager/Melee" index="3"]
 wait_time = 1.0
 
+[node name="WalkingTrail" parent="." index="1" instance=ExtResource("158_hq1he")]
+position = Vector2(0, 26)
+scale = Vector2(1.00239, 1)
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("117_cdvvg")
 [node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("9_jabxl")
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, 7.94242)
 shape = SubResource("CapsuleShape2D_4udlr")
 
-[node name="Stats" parent="." index="3"]
+[node name="Stats" parent="." index="4"]
 _Health = 100.0
 Armour = 5.0
 
-[node name="Team" parent="." index="4"]
+[node name="Team" parent="." index="5"]
 TeamName = 1
 
-[node name="CameraTransform" type="RemoteTransform2D" parent="." index="5"]
+[node name="CameraTransform" type="RemoteTransform2D" parent="." index="6"]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="6"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="7"]
 libraries = {
 "": SubResource("AnimationLibrary_naqt1")
 }
 
+[node name="Sound" type="AudioStreamPlayer" parent="." index="8"]
 [node name="CoinsSound" type="AudioStreamPlayer" parent="." index="7"]
 stream = ExtResource("157_kwdsl")
 
-[node name="DefendTimer" type="Timer" parent="." index="8"]
+[node name="DefendTimer" type="Timer" parent="." index="9"]
 one_shot = true
 
-[node name="LevelSystem" parent="." index="9" instance=ExtResource("157_i8vkq")]
+[node name="LevelSystem" parent="." index="10" instance=ExtResource("157_i8vkq")]
 visible = false
 
 [connection signal="timeout" from="DefendTimer" to="." method="DefendTimerTimeout"]

@@ -46,6 +46,8 @@ public partial class Player : Actor
     // Timer for increasing player armour for certain amount of time
     private Timer defendTimer;
 
+    private GpuParticles2D walkingTrail;
+
     public override void _Ready()
     {
         base._Ready();
@@ -61,6 +63,7 @@ public partial class Player : Actor
         globals = GetNode<Globals>("/root/Globals");
         defendTimer = GetNode<Timer>("DefendTimer");
         levelSystem = GetNode<LevelSystem>("LevelSystem");
+        walkingTrail = GetNode<GpuParticles2D>("WalkingTrail");
         coinsSound = GetNode<AudioStreamPlayer>("CoinsSound");
 
         // Initializing nodes
@@ -75,12 +78,16 @@ public partial class Player : Actor
             if (Velocity != Vector2.Zero)
             {
                 PlayWalking();
+                walkingTrail.Emitting = true;
+                return;
             }
             else
             {
                 PlayIdle();
+                walkingTrail.Emitting = false;
             }
         }
+        walkingTrail.Emitting = false;
     }
 
     /// <summary>
