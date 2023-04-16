@@ -3,8 +3,8 @@ using System;
 
 public partial class Coin : CharacterBody2D, IPoolable
 {
-    [Signal] public delegate void CoinRemovedEventHandler(Coin coin);
-    [Export] public int Gold { get; set; } = 0;
+    [Signal] public delegate void CoinRemovedEventHandler(Coin coin); // coin removed handler.
+    [Export] public int Gold { get; set; } = 0; // coin value
     private Vector2 movementDirection = new Vector2(-100, -100); // coin movement direction
     private Area2D takeArea; // coin pickup area
     private Area2D slideArea; // coin slide area
