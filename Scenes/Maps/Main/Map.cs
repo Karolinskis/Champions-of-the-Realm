@@ -16,6 +16,7 @@ public partial class Map : Node2D
     protected TileMap ground; // Ground level
     protected Marker2D playerSpawn;
     protected EnemySpawner enemySpawner; //Enemy spawner
+    protected LootManager lootManager; // Loot manager
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -32,6 +33,10 @@ public partial class Map : Node2D
         ground = GetNode<TileMap>("TileMapGround");
         playerSpawn = GetNode<Marker2D>("PlayerSpawn");
         enemySpawner = GetNode<EnemySpawner>("EnemySpawner");
+        lootManager = GetNode<LootManager>("LootManager");
+
+        // Connecting signals
+        globals.Connect("CoinsDroped", new Callable(lootManager, "HandleCoinsSpawned"));
 
         // Checking loading state
         switch (globals.LoadingForm)

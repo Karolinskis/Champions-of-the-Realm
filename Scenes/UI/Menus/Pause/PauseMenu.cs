@@ -81,7 +81,8 @@ public partial class PauseMenu : Control
     private void ButtonQuitMainMenuPressed()
     {
         GetTree().Paused = false;
-        GetTree().ChangeSceneToFile("res://Scenes/UI/Menus/Main/MainMenu.tscn");
+        globals.ChangeScene("res://Scenes/UI/Menus/Main/MainMenu.tscn");
+        GetParent().QueueFree(); // Using GetParent() since pause menu is a child of Map.tscn
     }
 
     /// <summary>

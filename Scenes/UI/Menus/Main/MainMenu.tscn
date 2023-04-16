@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://iq8ol3bmxqrn"]
+[gd_scene load_steps=4 format=3 uid="uid://iq8ol3bmxqrn"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Main/MainMenu.cs" id="1_dfesn"]
-[ext_resource type="Texture2D" uid="uid://0te2pm83grlv" path="res://Sprites/UI/MainMenu/Menus_Detailed.png" id="2_3hnfr"]
+[ext_resource type="Texture2D" uid="uid://c7jenstntkwho" path="res://Sprites/UI/MainMenu/Menus_Detailed.png" id="2_3hnfr"]
+[ext_resource type="AudioStream" uid="uid://6h5peo4tccka" path="res://Sounds/Music/MainMenuMusic.mp3" id="3_dqi8g"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -94,6 +95,12 @@ text = "Quit"
 [node name="BottomRow" type="HBoxContainer" parent="CanvasLayer/Control/GridContainer"]
 custom_minimum_size = Vector2(0, 240)
 layout_mode = 2
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("3_dqi8g")
+autoplay = true
+bus = &"New Bus"
 
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer/ButtonStartNew" to="." method="ButtonStartNewPressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GridContainer/MiddleRow/MarginContainer/VBoxContainer/ButtonLoad" to="." method="ButtonLoadPressed"]

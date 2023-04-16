@@ -1,4 +1,4 @@
-[gd_scene load_steps=173 format=3 uid="uid://bcvi14tyljjsh"]
+[gd_scene load_steps=174 format=3 uid="uid://bcvi14tyljjsh"]
 
 [ext_resource type="PackedScene" uid="uid://brn45ugr5ycne" path="res://Scenes/Actors/Actor.tscn" id="1_vbg0f"]
 [ext_resource type="PackedScene" uid="uid://4r0a53kg5j02" path="res://Scenes/Actors/Player/WeaponsManager.tscn" id="2_mlpjm"]
@@ -157,6 +157,7 @@
 [ext_resource type="Texture2D" uid="uid://dmqmvp320v54s" path="res://Sprites/Actors/Player/PlayerAttack/RightAttacking/MainAttackRight10.png" id="155_8oe7n"]
 [ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="156_3ah46"]
 [ext_resource type="PackedScene" uid="uid://b5331g7wgjpr8" path="res://Scenes/UI/CharacterMenu/LevelSystem.tscn" id="157_i8vkq"]
+[ext_resource type="AudioStream" uid="uid://biykiuktb61pl" path="res://Sounds/SFX/Utility/Loot/coins.mp3" id="157_kwdsl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pkm35"]
 size = Vector2(38.5625, 22.8344)
@@ -179,6 +180,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("117_cdvvg"), ExtResource("118_0kdjh"), ExtResource("119_o1d52"), ExtResource("120_a7vd4"), ExtResource("121_acvlx"), ExtResource("122_edemm"), ExtResource("123_4i385"), ExtResource("124_kfk55"), ExtResource("125_5rwwq"), ExtResource("126_wm33k")]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["IdleBack", -1, 1.0, false],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_q5oyk"]
 resource_name = "AttackFront"
@@ -193,6 +208,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("127_ow48c"), ExtResource("128_ie2tx"), ExtResource("129_sjir8"), ExtResource("130_nrj68"), ExtResource("131_rwu36"), ExtResource("132_g4i01"), ExtResource("133_isvac"), ExtResource("134_fcml2"), ExtResource("135_6gig7"), ExtResource("136_dmuuv")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["IdleFront", -1, 1.0, false],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_50j3t"]
@@ -209,6 +238,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [ExtResource("137_0r1gs"), ExtResource("138_hyjii"), ExtResource("139_8v12q"), ExtResource("140_od2dw"), ExtResource("141_ydl26"), ExtResource("142_e50g4"), ExtResource("143_23mtd"), ExtResource("144_jtqar"), ExtResource("145_6c01g"), ExtResource("146_g587c")]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["IdleLeft", -1, 1.0, false],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_mlvx5"]
 resource_name = "AttackRight"
@@ -223,6 +266,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [ExtResource("4_qi82x"), ExtResource("147_ux6fm"), ExtResource("148_lg4b5"), ExtResource("149_h541n"), ExtResource("150_7mb35"), ExtResource("151_tojkr"), ExtResource("152_v0jiw"), ExtResource("153_0asnn"), ExtResource("154_farwl"), ExtResource("155_8oe7n")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["IdleRight", -1, 1.0, false],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_6rfhl"]
@@ -398,7 +455,7 @@ shape = SubResource("RectangleShape2D_pkm35")
 wait_time = 1.0
 
 [node name="Sprite2D" parent="." index="1"]
-texture = ExtResource("117_cdvvg")
+texture = ExtResource("9_jabxl")
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 7.94242)
@@ -418,7 +475,8 @@ libraries = {
 "": SubResource("AnimationLibrary_naqt1")
 }
 
-[node name="Sound" type="AudioStreamPlayer" parent="." index="7"]
+[node name="CoinsSound" type="AudioStreamPlayer" parent="." index="7"]
+stream = ExtResource("157_kwdsl")
 
 [node name="DefendTimer" type="Timer" parent="." index="8"]
 one_shot = true
