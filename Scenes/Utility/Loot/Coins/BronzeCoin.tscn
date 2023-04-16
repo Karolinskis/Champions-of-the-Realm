@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://7u4jhp3i4goh"]
+
+[ext_resource type="Texture2D" uid="uid://bumxfnc7chimv" path="res://Sprites/Loot/Coins/BronzeCoin.png" id="1_rmj1r"]
+
+[node name="Coin"]
+
+[node name="Sprite2D" parent="." index="2"]
+texture = ExtResource("1_rmj1r")

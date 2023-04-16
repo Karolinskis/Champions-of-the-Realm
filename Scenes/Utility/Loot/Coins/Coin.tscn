@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvnskhmqn2gqr"]
+[gd_scene load_steps=5 format=3 uid="uid://d35qnivci7pps"]
 
-[ext_resource type="Script" path="res://Scenes/Utility/Loot/Coin/Coin.cs" id="1_k4kgk"]
+[ext_resource type="Script" path="res://Scenes/Utility/Loot/Coins/Coin.cs" id="1_n6sng"]
 
 [sub_resource type="CircleShape2D" id="1"]
 radius = 12.0
@@ -15,7 +15,7 @@ radius = 8.0
 scale = Vector2(0.5, 0.5)
 collision_layer = 32
 collision_mask = 8
-script = ExtResource("1_k4kgk")
+script = ExtResource("1_n6sng")
 
 [node name="Area2DTake" type="Area2D" parent="."]
 collision_layer = 32

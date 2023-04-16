@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://es70hjfkkb2e" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
 [ext_resource type="Texture2D" uid="uid://cf3ld0a5163ws" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
 [ext_resource type="PackedScene" uid="uid://xpy4rcjasw1t" path="res://Scenes/UI/HUD/HUD.tscn" id="5_5ce41"]
-[ext_resource type="PackedScene" uid="uid://iugd1x5j81dy" path="res://Scenes/Utility/Loot/Coin/BronzeCoin.tscn" id="7_boyfc"]
 [ext_resource type="PackedScene" uid="uid://7efuq2vnsuig" path="res://Scenes/Utility/EnemySpawner.tscn" id="7_i7fgq"]
+[ext_resource type="PackedScene" path="res://Scenes/Utility/Loot/Coins/GoldenCoin.tscn" id="7_vs5ai"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubklx"]
 texture = ExtResource("5_0sqop")
@@ -5979,5 +5979,5 @@ position_smoothing_enabled = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("7_i7fgq")]
 
-[node name="Coin" parent="." instance=ExtResource("7_boyfc")]
-position = Vector2(168, 148)
+[node name="Coin" parent="." instance=ExtResource("7_vs5ai")]
+position = Vector2(102, 223)

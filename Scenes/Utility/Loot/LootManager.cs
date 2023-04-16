@@ -14,10 +14,10 @@ public partial class LootManager : Node2D
     {
         base._Ready();
         // Loading coin scenes
-        goldenCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coin/GoldenCoin.tscn");
-        silverCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coin/SilverCoin.tscn");
-        bronzeCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coin/BronzeCoin.tscn");
-		
+        goldenCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coins/GoldenCoin.tscn");
+        silverCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coins/SilverCoin.tscn");
+        bronzeCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coins/BronzeCoin.tscn");
+
         // Creating and filling coin pools.
         goldenCoinsPool = new ObjectPool<Coin>();
         silverCoinsPool = new ObjectPool<Coin>();
