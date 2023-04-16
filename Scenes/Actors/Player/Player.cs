@@ -61,6 +61,7 @@ public partial class Player : Actor
         globals = GetNode<Globals>("/root/Globals");
         defendTimer = GetNode<Timer>("DefendTimer");
         levelSystem = GetNode<LevelSystem>("LevelSystem");
+        coinsSound = GetNode<AudioStreamPlayer>("CoinsSound");
 
         // Initializing nodes
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
@@ -173,6 +174,7 @@ public partial class Player : Actor
     {
         int oldGold = Stats.Gold;
         Stats.Gold += newGold;
+        coinsSound.Play();
         EmitSignal(nameof(PLayerGoldChanged), oldGold, Stats.Gold);
     }
 
