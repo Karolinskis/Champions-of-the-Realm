@@ -6,7 +6,8 @@
 .import/
 
 # Don't ignore music imports, so that the music can loop
-!.mp3.import
+!/Sounds/Music/*
+
 
 #export.cfg
 #export_presets.cfg
