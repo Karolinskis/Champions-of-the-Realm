@@ -1,14 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://cumnukgfcos74"]
+[gd_scene load_steps=20 format=3 uid="uid://cumnukgfcos74"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/Main/Map.cs" id="1_urlge"]
-
-[ext_resource type="PackedScene" path="res://Scenes/Utility/Loot/Coins/GoldenCoin.tscn" id="7_vs5ai"]
-[ext_resource type="Texture2D" uid="uid://bj2cnv1by5ly2" path="res://Sprites/Maps/Environment/Tilesets/OutsideGreen.png" id="3_xb4mq"]
-[ext_resource type="Texture2D" uid="uid://dqwxc718gu4ev" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
-[ext_resource type="Texture2D" uid="uid://dh0wx88kykq0c" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
+[ext_resource type="Texture2D" uid="uid://gf1vexxq0mqg" path="res://Sprites/Maps/Environment/Tilesets/OutsideGreen.png" id="3_xb4mq"]
+[ext_resource type="Texture2D" uid="uid://es70hjfkkb2e" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
+[ext_resource type="Texture2D" uid="uid://cf3ld0a5163ws" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
 [ext_resource type="PackedScene" uid="uid://xpy4rcjasw1t" path="res://Scenes/UI/HUD/HUD.tscn" id="5_5ce41"]
 [ext_resource type="PackedScene" uid="uid://7efuq2vnsuig" path="res://Scenes/Utility/EnemySpawner.tscn" id="7_i7fgq"]
-[ext_resource type="AudioStream" uid="uid://c44glv1lfvabr" path="res://Sounds/Music/IdleMusic.mp3" id="7_oon0h"]
+[ext_resource type="PackedScene" uid="uid://cfp2lr0id67xl" path="res://Scenes/Utility/Loot/Coins/GoldenCoin.tscn" id="7_vs5ai"]
+[ext_resource type="PackedScene" uid="uid://clju2dtj6rgxr" path="res://Scenes/Utility/Loot/Coins/BronzeCoin.tscn" id="8_wy4hn"]
+[ext_resource type="PackedScene" uid="uid://bo65uol8i8cei" path="res://Scenes/Utility/Loot/Coins/SilverCoin.tscn" id="9_os21f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubklx"]
 texture = ExtResource("5_0sqop")
@@ -5981,15 +5981,11 @@ position_smoothing_enabled = true
 
 [node name="EnemySpawner" parent="." instance=ExtResource("7_i7fgq")]
 
-
 [node name="Coin" parent="." instance=ExtResource("7_vs5ai")]
 position = Vector2(102, 223)
 
-[node name="InActionMusic" type="AudioStreamPlayer" parent="."]
-process_mode = 3
+[node name="Coin2" parent="." instance=ExtResource("8_wy4hn")]
+position = Vector2(201, 217)
 
-[node name="IdleMusic" type="AudioStreamPlayer" parent="."]
-process_mode = 3
-stream = ExtResource("7_oon0h")
-autoplay = true
-bus = &"New Bus"
+[node name="Coin3" parent="." instance=ExtResource("9_os21f")]
+position = Vector2(257, 148)

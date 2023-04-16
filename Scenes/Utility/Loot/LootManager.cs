@@ -24,19 +24,19 @@ public partial class LootManager : Node2D
         bronzeCoinsPool = new ObjectPool<Coin>();
         for (int i = 0; i < goldenCount; i++)
         {
-            Coin temp = goldenCoinScene.Instantiate() as Coin;
+            Coin temp = goldenCoinScene.Instantiate<Coin>();
             temp.Connect("CoinRemoved", new Callable(this, "ReleaseGoldenCoin"));
             AddChild(temp);
             temp.RemoveFromScene();
         }
         for (int i = 0; i < silverCount; i++)
         {
-            Coin temp = silverCoinScene.Instantiate() as Coin;
+            Coin temp = silverCoinScene.Instantiate<Coin>();
             temp.Connect("CoinRemoved", new Callable(this, "ReleaseSilverCoin"));
             AddChild(temp);
             temp.RemoveFromScene();
 
-            temp = bronzeCoinScene.Instantiate() as Coin;
+            temp = bronzeCoinScene.Instantiate<Coin>();
             temp.Connect("CoinRemoved", new Callable(this, "ReleaseBronzeCoin"));
             AddChild(temp);
             temp.RemoveFromScene();

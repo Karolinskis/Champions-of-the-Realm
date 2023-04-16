@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://bo65uol8i8cei"]
 
 [ext_resource type="PackedScene" uid="uid://d35qnivci7pps" path="res://Scenes/Utility/Loot/Coins/Coin.tscn" id="1_2cpl8"]
 [ext_resource type="Texture2D" uid="uid://usxo2r5uyrky" path="res://Sprites/Loot/Coins/SilverCoin.png" id="2_npf7u"]
 
 [node name="Coin" instance=ExtResource("1_2cpl8")]
+Gold = 25
 
 [node name="Sprite2D" parent="." index="2"]
 texture = ExtResource("2_npf7u")
