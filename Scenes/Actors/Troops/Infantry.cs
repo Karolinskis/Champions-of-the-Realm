@@ -5,11 +5,13 @@ public partial class Infantry : Troop
 {
     public MeleeAI AI { get; set; } // MeleeAI for Infantry troops
     protected PackedScene bloodScene; // blood particales
+    protected PackedScene damagePopup; // For displaying inflicted damage
     public override void _Ready()
     {
         base._Ready();
         AI = GetNode<MeleeAI>("MeleeAI");
         bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
+        damagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
     }
 
     /// <summary>
@@ -39,10 +41,18 @@ public partial class Infantry : Troop
     /// <param name="impactPosition">position for calculating particles casting direciton</param>
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
+        // Showing blood
         Blood blood = bloodScene.Instantiate() as Blood;
         GetParent().AddChild(blood);
         blood.GlobalPosition = GlobalPosition;
         blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
+
+        // Showing inflicted damage
+        DamagePopup popup = damagePopup.Instantiate() as DamagePopup;
+        popup.Amount = (int)baseDamage;
+        popup.Type = "Damage";
+        AddChild(popup);
+
         base.HandleHit(baseDamage, impactPosition);
     }
 }

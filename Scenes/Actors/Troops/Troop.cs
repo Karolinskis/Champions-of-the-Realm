@@ -16,10 +16,12 @@ public partial class Troop : Actor
     /// <summary>
     /// Method for handling received damage
     /// </summary>
-    /// <param name="baseDamage">amount of received damage</param>
-    /// <param name="impactPosition">position for calculating particles casting direciton</param>
+    /// <param name="baseDamage">Amount of damage received</param>
+    /// <param name="impactPosition">Position for spawning blood particles</param>
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
+        float damage = Mathf.Clamp(baseDamage - Stats.Armour, 0, 100);
+        Stats.Health -= damage;
         if (Stats.Health <= 0)
         {
             Die();
@@ -27,14 +29,15 @@ public partial class Troop : Actor
     }
 
     /// <summary>
-    /// Removes the object from the scene tree
+    /// Handling troop death and removing from scene tree
     /// </summary>
     public override void Die()
     {
         if (Stats.Gold > 0)
         {
+            // Random gold amount is droped
             Random rand = new Random();
-            globals.EmitSignal("CoinsDroped", rand.Next(1, Stats.Gold), GlobalPosition);
+            globals.EmitSignal("CoinsDroped", rand.Next(Stats.Gold / 4, Stats.Gold), GlobalPosition);
         }
         EmitSignal(nameof(TroopDied));
         base.Die();

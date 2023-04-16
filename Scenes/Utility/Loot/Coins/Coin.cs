@@ -83,7 +83,8 @@ public partial class Coin : CharacterBody2D, IPoolable
     /// </summary>
     public void AddToScene()
     {
-        movementDirection = new Vector2(Globals.GetRandomFloat(-25, 25), Globals.GetRandomFloat(-25, 25));
+        // Makes coin drop more explosive
+        movementDirection = GlobalPosition + new Vector2(Globals.GetRandomFloat(-30, 30), Globals.GetRandomFloat(-30, 30));
         timer.Start();
         Move();
         Show();

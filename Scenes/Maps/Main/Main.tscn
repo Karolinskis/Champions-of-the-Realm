@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://cumnukgfcos74"]
+[gd_scene load_steps=20 format=3 uid="uid://cumnukgfcos74"]
 
 [ext_resource type="Script" path="res://Scenes/Maps/Main/Map.cs" id="1_urlge"]
-[ext_resource type="Texture2D" uid="uid://dnec4fivhe02t" path="res://Sprites/Maps/Environment/Tilesets/OutsideGreen.png" id="3_xb4mq"]
-[ext_resource type="Texture2D" uid="uid://6ayxbq1x2pfe" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
-[ext_resource type="Texture2D" uid="uid://c053anlp585xx" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
+[ext_resource type="Texture2D" uid="uid://qwp45qnxtqnn" path="res://Sprites/Maps/Environment/Tilesets/OutsideGreen.png" id="3_xb4mq"]
+[ext_resource type="Texture2D" uid="uid://cmne5pj827ojn" path="res://Sprites/Maps/Environment/Tilesets/Liquid.png" id="4_7w0p4"]
+[ext_resource type="Texture2D" uid="uid://ccihvirj6gwwm" path="res://Sprites/Maps/Environment/Tilesets/Outside4.png" id="5_0sqop"]
 [ext_resource type="PackedScene" uid="uid://xpy4rcjasw1t" path="res://Scenes/UI/HUD/HUD.tscn" id="5_5ce41"]
 [ext_resource type="PackedScene" uid="uid://7efuq2vnsuig" path="res://Scenes/Utility/EnemySpawner.tscn" id="7_i7fgq"]
 [ext_resource type="PackedScene" uid="uid://b4ilybs3djksi" path="res://Scenes/Utility/Loot/LootManager.tscn" id="7_tdyjp"]
+[ext_resource type="AudioStream" uid="uid://id8036uqggyh" path="res://Sounds/Music/InActionMusic.mp3" id="8_60mcr"]
+[ext_resource type="AudioStream" uid="uid://c44glv1lfvabr" path="res://Sounds/Music/IdleMusic.mp3" id="9_ocq58"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ubklx"]
 texture = ExtResource("5_0sqop")
@@ -5981,3 +5983,14 @@ position_smoothing_enabled = true
 
 [node name="LootManager" parent="." instance=ExtResource("7_tdyjp")]
 position = Vector2(-300, -1000)
+
+[node name="InActionMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("8_60mcr")
+bus = &"New Bus"
+
+[node name="IdleMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("9_ocq58")
+autoplay = true
+bus = &"New Bus"

@@ -41,7 +41,7 @@ public partial class LootManager : Node2D
             AddChild(temp);
             temp.RemoveFromScene();
         }
-        //HandleCoinsSpawned(159, new Vector2(400, 400)); //For debugging purposes
+        HandleCoinsSpawned(159, new Vector2(400, 400)); //For debugging purposes
     }
 
     /// <summary>
@@ -54,17 +54,17 @@ public partial class LootManager : Node2D
         Coin temp;
         while (coins > 0)
         {
-            if (coins >= 50)
+            if (coins >= 100)
             {
                 temp = goldenCoinsPool.Get();
                 temp.GlobalPosition = position;
-                coins -= 50;
+                coins -= 100;
             }
-            else if (coins >= 10)
+            else if (coins >= 25)
             {
                 temp = silverCoinsPool.Get();
                 temp.GlobalPosition = position;
-                coins -= 10;
+                coins -= 25;
             }
             else
             {
