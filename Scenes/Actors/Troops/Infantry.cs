@@ -11,20 +11,24 @@ public partial class Infantry : Troop
         AI = GetNode<MeleeAI>("MeleeAI");
         bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
     }
+
     /// <summary>
     /// Method for Attacking
     /// </summary>
     public virtual void Attack() { }
+
     /// <summary>
     /// Method for playing Idle animation
     /// </summary>
     public virtual void PlayIdle() { }
+
     /// <summary>
     /// Method for playing walking animation
     /// </summary>
     public virtual void PlayWalking() { }
+
     /// <summary>
-    /// Method for play attack animation
+    /// Method for playing attacking animation
     /// </summary>
-    public virtual void PlayAttack() { }
+    public virtual void PlayAttacking() { }
 }
