@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://d35qnivci7pps"]
+
+[ext_resource type="Script" path="res://Scenes/Utility/Loot/Coins/Coin.cs" id="1_n6sng"]
+
+[sub_resource type="CircleShape2D" id="1"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="2"]
+radius = 62.0
+
+[sub_resource type="CircleShape2D" id="3"]
+radius = 8.0
+
+[node name="Coin" type="CharacterBody2D"]
+collision_layer = 32
+collision_mask = 8
+script = ExtResource("1_n6sng")
+
+[node name="Area2DTake" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DTake"]
+shape = SubResource("1")
+
+[node name="Area2DSlide" type="Area2D" parent="."]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DSlide"]
+shape = SubResource("2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 45.0
+one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("3")
+
+[connection signal="body_entered" from="Area2DTake" to="." method="Area2DBodyEntered"]
+[connection signal="body_entered" from="Area2DSlide" to="." method="Area2DSlideBodyEntered"]
+[connection signal="body_exited" from="Area2DSlide" to="." method="Area2DSlideBodyExited"]
+[connection signal="timeout" from="Timer" to="." method="TimerTimeout"]
