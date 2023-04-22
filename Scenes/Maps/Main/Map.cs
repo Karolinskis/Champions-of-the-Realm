@@ -11,7 +11,7 @@ public partial class Map : Node2D
     protected PackedScene playerScene; // Player resource
     protected PackedScene PauseMenuScene; // Pause menu resource
     protected PackedScene gameOverScene;  // gameOver resource
-    protected PackedScene shopScene;
+    protected PackedScene shopScene; // item shop resouce
     protected GUI hud; // GUI in the scene
     protected Camera2D camera; // Player camera
     protected TileMap ground; // Ground level
@@ -105,6 +105,9 @@ public partial class Map : Node2D
         enemySpawner.Initialize(new Vector2(limitRight, limitBottom));
     }
 
+    /// <summary>
+    /// Loads shop window.
+    /// </summary>
     public void LoadShop()
     {
         Shop shopScreen = shopScene.Instantiate<Shop>();
@@ -130,7 +133,7 @@ public partial class Map : Node2D
         globals.Player = player.Save();
         //globals.SaveGame(); // for debuging purposes
 
-        LoadShop();
+        LoadShop(); // Loading shop
     }
 
     /// <summary>
@@ -149,7 +152,7 @@ public partial class Map : Node2D
         hud.Initialize(player);
         globals.Player = player.Save(); // loading player to globals
 
-        LoadShop();
+        LoadShop(); // Loading shop
     }
 
     /// <summary>
@@ -168,7 +171,7 @@ public partial class Map : Node2D
         player.Load(globals.Player);
         player = GetNode<Player>("Player");
 
-        LoadShop();
+        LoadShop(); // Loading shop
     }
 
     /// <summary>
