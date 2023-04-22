@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://03dlj425qsyb" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="3_70sy7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6slnw"]
-size = Vector2(107, 114.172)
+size = Vector2(65.5, 29.086)
 
 [node name="Melee" instance=ExtResource("1_bweml")]
 script = ExtResource("2_r085i")
@@ -15,7 +15,6 @@ Icon = ExtResource("3_70sy7")
 [node name="Area2D" type="Area2D" parent="." index="1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(110.25, -4.96401)
 shape = SubResource("RectangleShape2D_6slnw")
 disabled = true
 
