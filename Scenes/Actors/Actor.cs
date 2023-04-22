@@ -21,7 +21,7 @@ public partial class Actor : CharacterBody2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        knockBack = knockBack.MoveToward(Vector2.Zero, Convert.ToSingle(delta + 10));
+        knockBack = knockBack.MoveToward(Vector2.Zero, Convert.ToSingle(delta * 150));
         Velocity = Direction * Stats.Speed;
         Velocity += knockBack;
         MoveAndSlide();
@@ -58,8 +58,9 @@ public partial class Actor : CharacterBody2D
     public void HandleKnockback(float amount, Vector2 impactPosition)
     {
         Vector2 direction = (impactPosition.DirectionTo(GlobalPosition));
-        float strenght = Mathf.Clamp(amount, 5f, 20000f);
-        knockBack = direction * strenght;
+        amount *= 100f;
+        amount = Mathf.Clamp(amount, 5f, 2000f);
+        knockBack = direction * amount;
     }
 
     /// <summary>
