@@ -1,67 +1,54 @@
 using Godot;
 using System;
 
-public partial class Shop : Control
+public partial class Shop : CanvasLayer
 {
     private Globals globals; // global variables and functionality
-
-    private Label DamageLabel;
-    private ProgressBar DamageBar;
-    private Label KnockbackLabel;
-    private ProgressBar KnockbackBar;
-
+    private Player player;  // Player character
+    private TabBar weaponTab;   // Weapon type tab
+    private PackedScene weaponSlot = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Shop/WeaponSlot.tscn"); // Weapon slot resource
+    [Export] private Godot.Collections.Array<PackedScene> weapons; // Weapons array
+    
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");
-
-        // Damage bar and label nodes
-        DamageBar = GetNode<ProgressBar>(
-            "CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/DamagePanel/VBoxContainer/DamageLevelBar"
-        );
-        DamageLabel = GetNode<Label>(
-            "CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/DamagePanel/VBoxContainer/CurrentDamage"
-        );
-
-        KnockbackBar = GetNode<ProgressBar>(
-            "CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/KnockbackPanel/VBoxContainer/KnockbackLevelBar"
-        );
-        KnockbackLabel = GetNode<Label>(
-            "CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/KnockbackPanel/VBoxContainer/CurrentKnockback"
-        );
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-    }
-
-    private void ButtonStartPressed()
-    {
-        globals.ChangeScene("res://Scenes/Maps/Main/Main.tscn");
-        QueueFree();
+        weaponTab = GetNode<TabBar>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Melee"); // loading melee weapons tab
+        InitializeWeapons();    // loading weapons into their slots.
     }
 
     /// <summary>
-    /// Button for loading an existing save file.
+    /// Method for loading player.
     /// </summary>
-    private void ButtonBackPressed()
+    /// <param name="p">Player</param>
+    public void Initialize(Player p)
     {
-        var parent = GetParent();
-        Control control = parent.GetNode<Control>("CanvasLayer/Control");
-        control.Show();
+        this.player = p;
+    }
+
+    /// <summary>
+    /// Loads new weapons into the shop
+    /// </summary>
+    public void InitializeWeapons()
+    {
+        foreach (PackedScene weaponScene in weapons)
+        {
+            if (weaponScene != null)
+            {
+                Weapon weapon = weaponScene.Instantiate<Weapon>();
+                WeaponSlot slot = weaponSlot.Instantiate<WeaponSlot>();
+                slot.Initialize(weapon);
+                weaponTab.AddChild(slot);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Quits shop.
+    /// </summary>
+    private void ButtonStartPressed()
+    {
+        // TODO: start new wave
         QueueFree();
-    }
-
-    private void UpgradeDamageButtonPressed()
-    {
-        DamageBar.Value += 25;
-        DamageLabel.Text = "Current: " + (100+DamageBar.Value) + "%";
-    }
-
-    private void UpgradeKnockbackButtonPressed()
-    {
-        KnockbackBar.Value += 25;
-        KnockbackLabel.Text = "Current: " + (100+KnockbackBar.Value) + "%";
     }
 }

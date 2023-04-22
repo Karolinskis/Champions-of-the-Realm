@@ -4,7 +4,6 @@ using System;
 public partial class MainMenu : Control
 {
     private PackedScene settingsScene;
-    private PackedScene shopScene;
     private Globals globals; // global variables and functionality
     protected bool LoadNew;
 
@@ -12,8 +11,7 @@ public partial class MainMenu : Control
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");
-        settingsScene = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Menus/Settings/Settings.tscn");
-        shopScene = (PackedScene)ResourceLoader.Load("res://Scenes/UI/Menus/Shop/Shop.tscn");
+        settingsScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Settings/Settings.tscn");
     }
 
     /// <summary>
@@ -22,10 +20,8 @@ public partial class MainMenu : Control
     private void ButtonStartNewPressed()
     {
         globals.LoadingForm = Globals.LoadingForms.New;
-        Shop shopScreen = shopScene.Instantiate() as Shop;
-        AddChild(shopScreen);
-        Control control = GetNode<Control>("CanvasLayer/Control");
-        control.Hide(); 
+        globals.ChangeScene("res://Scenes/Maps/Main/Main.tscn");
+        QueueFree();
     }
 
     /// <summary>
