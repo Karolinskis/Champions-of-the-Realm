@@ -147,7 +147,6 @@ public partial class Globals : Node
         return data;
     }
 
-
     /// <summary>
     /// Method to generate a random floating point between two numbers
     /// </summary>
