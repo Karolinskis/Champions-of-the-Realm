@@ -79,6 +79,7 @@ public partial class Melee : Weapon
             !isDelivered)
         {
             actor.HandleHit(damage, GlobalPosition);
+            actor.HandleKnockback(knockback, GlobalPosition);
             CallDeferred("Deliver");
             isDelivered = true;
         }
