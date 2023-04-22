@@ -243,8 +243,6 @@ public partial class Player : Actor
     {
         Vector2 mouseCords = GetGlobalMousePosition();
         float angle = GetAngleTo(mouseCords);
-        GD.Print(angle);
-
         if (angle >= -Math.PI / 2 && angle <= Math.PI / 2)
         {
             WeaponsManager.Scale = new Vector2(Scale.X, 1);
