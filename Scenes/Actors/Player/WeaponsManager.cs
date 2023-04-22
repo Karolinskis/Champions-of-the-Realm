@@ -48,7 +48,7 @@ public partial class WeaponsManager : Node2D
             })
             .ToArray();
 
-        //CurrentWeapon.Hide();
+        CurrentWeapon.Hide();
     }
 
     /// <summary>

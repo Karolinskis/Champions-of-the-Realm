@@ -73,7 +73,7 @@ public partial class Player : Actor
     {
         base._PhysicsProcess(delta);
 
-        RotateWeapon();
+        RotateWeapon(); // Rotating weapon according to mouse position
 
         Direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
         if (!WeaponsManager.IsAttacking)
@@ -306,10 +306,7 @@ public partial class Player : Actor
     /// <summary>
     /// Method for playing attack animation
     /// </summary>
-    private void PlayAttackAnimation(float angle)
-    {
-
-    }
+    private void PlayAttackAnimation(float angle) { }
 
     /// <summary>
     /// Method for playing walking animation,
