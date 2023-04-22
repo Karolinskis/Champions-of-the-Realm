@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://brn45ugr5ycne" path="res://Scenes/Actors/Actor.tscn" id="1_vbg0f"]
 [ext_resource type="PackedScene" uid="uid://4r0a53kg5j02" path="res://Scenes/Actors/Player/WeaponsManager.tscn" id="2_mlpjm"]
 [ext_resource type="Script" path="res://Scenes/Actors/Player/Player.cs" id="2_ye4xq"]
+
 [ext_resource type="Texture2D" uid="uid://38nigih1xhey" path="res://Sprites/Actors/Player/PlayerAttack/RightAttacking/MainAttackRight1.png" id="4_qi82x"]
 [ext_resource type="Texture2D" uid="uid://ds52se3iiuqrw" path="res://Sprites/Actors/Player/PlayerIdle/IdleFront/PlayerIdleFront1.png" id="5_gq5a5"]
 [ext_resource type="Texture2D" uid="uid://y41008byxosx" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="5_ylgbr"]
@@ -159,6 +160,7 @@
 [ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="156_3ah46"]
 [ext_resource type="PackedScene" uid="uid://b5331g7wgjpr8" path="res://Scenes/UI/CharacterMenu/LevelSystem.tscn" id="157_i8vkq"]
 [ext_resource type="AudioStream" uid="uid://bcc0hmevl0186" path="res://Sounds/SFX/Utility/Loot/coins.mp3" id="157_kwdsl"]
+
 [ext_resource type="PackedScene" uid="uid://dja0qhoksthgh" path="res://Particles/Trails/WalkingTrail.tscn" id="158_hq1he"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4udlr"]
@@ -437,7 +439,15 @@ reloadDuration = 1.0
 [node name="WeaponsManager" parent="." index="0" instance=ExtResource("2_mlpjm")]
 
 [node name="Melee" parent="WeaponsManager" index="0" instance=ExtResource("156_3ah46")]
+
 position = Vector2(0.000889077, -28.7265)
+
+damage = 50.0
+
+[node name="Area2D" parent="WeaponsManager/Melee" index="1"]
+collision_layer = 0
+collision_mask = 7
+
 
 [node name="Sprite2D" type="Sprite2D" parent="WeaponsManager" index="1"]
 position = Vector2(0, -38.755)
@@ -459,6 +469,7 @@ shape = SubResource("CapsuleShape2D_4udlr")
 [node name="Stats" parent="." index="4"]
 _Health = 100.0
 Armour = 5.0
+Gold = 50
 
 [node name="Team" parent="." index="5"]
 TeamName = 1

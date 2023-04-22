@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dj2jplbqn401k"]
 
-[ext_resource type="Texture2D" uid="uid://dqbj3wym53sw7" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="1_kg3kc"]
+[ext_resource type="Texture2D" uid="uid://03dlj425qsyb" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="1_kg3kc"]
 
 [node name="IntentoryItems" type="Button"]
 icon = ExtResource("1_kg3kc")

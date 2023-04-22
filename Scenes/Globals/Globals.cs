@@ -80,7 +80,7 @@ public partial class Globals : Node
         {
             saveNode.QueueFree(); // removing all unwanted save nodes
         }
-        GetTree().CurrentScene.QueueFree();
+        GetTree().CurrentScene.QueueFree(); // Big bug
         if (saveNodes.Count > 0)
         {
             // Giving small amount of time to fully remove all unwanted nodes (It takes time to free from memory)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://cxrn3bt2jbpg0"]
 
 [ext_resource type="Script" path="res://Scenes/UI/HUD/GUI.cs" id="1_ujh52"]
-[ext_resource type="Texture2D" uid="uid://bkdy38u5jlvjk" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_s8hb3"]
+[ext_resource type="Texture2D" uid="uid://4qv2mdpra4vb" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_s8hb3"]
 [ext_resource type="PackedScene" uid="uid://dj2jplbqn401k" path="res://Scenes/UI/HUD/IntentoryItems.tscn" id="2_yhl6b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_not3w"]
