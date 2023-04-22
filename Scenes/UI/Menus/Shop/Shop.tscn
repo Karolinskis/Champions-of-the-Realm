@@ -1,0 +1,205 @@
+[gd_scene load_steps=4 format=3 uid="uid://syfmsjeuejk6"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Menus/Shop/Shop.cs" id="1_6wyba"]
+[ext_resource type="Texture2D" uid="uid://4qv2mdpra4vb" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_xuusi"]
+[ext_resource type="Texture2D" uid="uid://03dlj425qsyb" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="3_cbk2o"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6wyba")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control/CenterContainer"]
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Shop" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Item shop"
+
+[node name="CurrenctContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CurrencyText" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Currency:"
+
+[node name="CurrencyLabel" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "0"
+
+[node name="GoldenCoinSprite" type="Sprite2D" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer"]
+position = Vector2(-15, 12)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("2_xuusi")
+
+[node name="TabContainer" type="TabContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+tab_alignment = 1
+
+[node name="Sword" type="TabBar" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+layout_mode = 2
+
+[node name="DamagePanel" type="Panel" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword"]
+custom_minimum_size = Vector2(155, 169)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 155.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/DamagePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/DamagePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Damage"
+
+[node name="UpgradeDamageButton" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/DamagePanel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("3_cbk2o")
+expand_icon = true
+
+[node name="DamageLevelBar" type="ProgressBar" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/DamagePanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+show_percentage = false
+
+[node name="CurrentDamage" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/DamagePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Current: 100%"
+
+[node name="NextLevelCost1" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/DamagePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Upgrade cost:"
+
+[node name="KnockbackPanel" type="Panel" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword"]
+custom_minimum_size = Vector2(155, 169)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 160.0
+offset_right = 315.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/KnockbackPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/KnockbackPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Knockback"
+
+[node name="UpgradeKnockbackButton" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/KnockbackPanel/VBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+icon = ExtResource("3_cbk2o")
+expand_icon = true
+
+[node name="KnockbackLevelBar" type="ProgressBar" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/KnockbackPanel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+show_percentage = false
+
+[node name="CurrentKnockback" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/KnockbackPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Current: 100%"
+
+[node name="NextLevelCost2" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/KnockbackPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Upgrade cost:"
+
+[node name="FreePanel" type="Panel" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword"]
+custom_minimum_size = Vector2(155, 169)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_right = 475.0
+grow_vertical = 2
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 390
+
+[node name="ButtonBack" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+text = "Back"
+
+[node name="ButtonStart" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+text = "Start"
+
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/DamagePanel/VBoxContainer/UpgradeDamageButton" to="." method="UpgradeDamageButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Sword/KnockbackPanel/VBoxContainer/UpgradeKnockbackButton" to="." method="UpgradeKnockbackButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/ButtonBack" to="." method="ButtonBackPressed"]
+[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/ButtonStart" to="." method="ButtonStartPressed"]
