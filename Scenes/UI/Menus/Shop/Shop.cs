@@ -3,11 +3,11 @@ using System;
 
 public partial class Shop : CanvasLayer
 {
+    [Export] private Godot.Collections.Array<PackedScene> weapons; // Weapons array
     private Globals globals; // global variables and functionality
     private Player player;  // Player character
     private TabBar weaponTab;   // Weapon type tab
     private PackedScene weaponSlot = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Shop/WeaponSlot.tscn"); // Weapon slot resource
-    [Export] private Godot.Collections.Array<PackedScene> weapons; // Weapons array
     
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -15,6 +15,7 @@ public partial class Shop : CanvasLayer
         globals = GetNode<Globals>("/root/Globals");
         weaponTab = GetNode<TabBar>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Melee"); // loading melee weapons tab
         InitializeWeapons();    // loading weapons into their slots.
+        GetTree().Paused = true;
     }
 
     /// <summary>
@@ -49,6 +50,7 @@ public partial class Shop : CanvasLayer
     private void ButtonStartPressed()
     {
         // TODO: start new wave
+        GetTree().Paused = false;
         QueueFree();
     }
 }

@@ -78,6 +78,7 @@ layout_mode = 2
 tab_alignment = 1
 
 [node name="Melee" type="TabBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+process_mode = 3
 layout_mode = 2
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
