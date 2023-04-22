@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/Weapons/Melee/Melee.cs" id="2_r085i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6slnw"]
-size = Vector2(107, 114.172)
+size = Vector2(65.5, 29.086)
 
 [node name="Melee" instance=ExtResource("1_bweml")]
 script = ExtResource("2_r085i")
@@ -14,7 +14,6 @@ knockback = 2.0
 [node name="Area2D" type="Area2D" parent="." index="1"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(110.25, -4.96401)
 shape = SubResource("RectangleShape2D_6slnw")
 disabled = true
 

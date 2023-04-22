@@ -72,6 +72,9 @@ public partial class Player : Actor
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
+
+        RotateWeapon();
+
         Direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
         if (!WeaponsManager.IsAttacking)
         {
@@ -233,6 +236,26 @@ public partial class Player : Actor
         //WeaponsManager.ChangeWeapon();
     }
 
+    /// <summary>
+    /// Method for rotating weapons manager according to mouse position
+    /// </summary>
+    private void RotateWeapon()
+    {
+        Vector2 mouseCords = GetGlobalMousePosition();
+        float angle = GetAngleTo(mouseCords);
+        GD.Print(angle);
+
+        if (angle >= -Math.PI / 2 && angle <= Math.PI / 2)
+        {
+            WeaponsManager.Scale = new Vector2(Scale.X, 1);
+        }
+        else
+        {
+            WeaponsManager.Scale = new Vector2(Scale.X, -1);
+        }
+        WeaponsManager.Rotation = angle;
+    }
+
     // TODO: lacks WeaponsManager scene implementation and animations
     /// <summary>
     /// Method for playing Idle player animation
@@ -285,31 +308,7 @@ public partial class Player : Actor
     /// </summary>
     private void PlayAttackAnimation(float angle)
     {
-        switch (WeaponsManager.CurrentWeapon)
-        {
-            case Melee melee:
-                if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
-                {
-                    animationPlayer.Play("AttackRight");
-                    return;
-                }
-                if (angle >= -3 * Math.PI / 4 && angle <= -Math.PI / 4)
-                {
-                    animationPlayer.Play("AttackBack");
-                    return;
-                }
-                if (angle >= 3 * Math.PI / 4 || angle <= -3 * Math.PI / 4)
-                {
-                    animationPlayer.Play("AttackLeft");
-                    return;
-                }
-                if (angle >= Math.PI / 4 && angle <= 3 * Math.PI / 4)
-                {
-                    animationPlayer.Play("AttackFront");
-                    return;
-                }
-                break;
-        }
+
     }
 
     /// <summary>
