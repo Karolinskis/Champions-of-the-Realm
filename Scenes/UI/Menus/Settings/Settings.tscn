@@ -73,6 +73,7 @@ theme_override_colors/font_hover_pressed_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_focus_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0.501961, 0, 1)
+button_pressed = true
 text = "Music"
 
 [node name="MusicSlider" type="HSlider" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer"]
@@ -97,6 +98,7 @@ theme_override_colors/font_focus_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0.501961, 0, 1)
 theme_override_constants/h_separation = 22
+button_pressed = true
 text = "SFX"
 
 [node name="SFXSlider" type="HSlider" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/SFXContainer"]

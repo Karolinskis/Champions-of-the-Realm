@@ -1,0 +1,97 @@
+[gd_scene load_steps=6 format=3 uid="uid://syfmsjeuejk6"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Menus/Shop/Shop.cs" id="1_6wyba"]
+[ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="2_i1utb"]
+[ext_resource type="Texture2D" uid="uid://4qv2mdpra4vb" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_xuusi"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3ob0"]
+bg_color = Color(0, 0, 0, 0.796078)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dvb5c"]
+content_margin_left = 20.0
+
+[node name="Shop" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_6wyba")
+weapons = Array[PackedScene]([ExtResource("2_i1utb")])
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+custom_minimum_size = Vector2(1024, 640)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_d3ob0")
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Shop" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 32
+text = "Item shop"
+
+[node name="CurrenctContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dvb5c")
+
+[node name="CurrencyText" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer/PanelContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/line_spacing = 0
+text = "Currency:"
+
+[node name="GoldenCoinSprite" type="Sprite2D" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer/PanelContainer"]
+position = Vector2(7, 12)
+scale = Vector2(1.7, 1.7)
+texture = ExtResource("2_xuusi")
+
+[node name="CurrencyLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "0"
+
+[node name="TabContainer" type="TabContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 200)
+layout_mode = 2
+tab_alignment = 1
+
+[node name="Melee" type="TabBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
+process_mode = 3
+layout_mode = 2
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 390
+
+[node name="ButtonStart" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+text = "Start"
+
+[connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/ButtonStart" to="." method="ButtonStartPressed"]
