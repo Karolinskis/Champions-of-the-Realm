@@ -9,6 +9,7 @@ public partial class Globals : Node
 {
     private const string SaveDir = "user://saves/"; // save files directory path
     private string savePath = SaveDir + "save.dat"; // save file path
+    private string settingsPath = SaveDir + "settings.dat"; // settings file path
     [Signal] public delegate void CoinsDropedEventHandler(int coins, Marker2D position);
 
     /// <summary>
@@ -107,6 +108,45 @@ public partial class Globals : Node
         // Calling method to load player inside scene
         GetTree().CurrentScene.Call("LoadSavedPlayer");
     }
+
+    /// <summary>
+    /// Method for saving settings values such as resolution and volume.
+    /// </summary>
+    /// <param name="data">Dictionary for storing Resolution and volume bus values</param>
+    /// <returns>False if failed to save else true</returns>
+    public bool SaveSettings(Godot.Collections.Dictionary<string, Variant> data)
+    {
+        FileAccess saveFile = FileAccess.Open(settingsPath, FileAccess.ModeFlags.Write);
+        if (saveFile.GetError() != Error.Ok)
+        {
+            GD.PushError("Failed to save settings!");
+            return false;
+        }
+        saveFile.StoreLine(Json.Stringify(data));
+        saveFile.Close();
+        return true;
+    }
+
+    /// <summary>
+    /// Method for loading resolution and settings values.
+    /// </summary>
+    public Dictionary<string, Variant> LoadSettings()
+    {
+        if (!FileAccess.FileExists(settingsPath))
+        {
+            return null;
+            //GD.PushError("Settings save file doesn't exist!");
+        }
+        FileAccess saveFile = FileAccess.Open(settingsPath, FileAccess.ModeFlags.Read);
+        Dictionary<string, Variant> data = (Dictionary<string, Variant>)Json.ParseString(saveFile.GetLine());
+        Vector2I size = new Vector2I((int)data["ResolutionX"], (int)data["ResolutionY"]);
+        DisplayServer.WindowSetSize(size);
+        AudioServer.SetBusVolumeDb(1, (int)data["MusicBusValue"]);
+        AudioServer.SetBusVolumeDb(2, (int)data["SfxBusValue"]); 
+        saveFile.Close();
+        return data;
+    }
+
 
     /// <summary>
     /// Method to generate a random floating point between two numbers

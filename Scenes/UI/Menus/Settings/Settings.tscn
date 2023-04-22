@@ -82,7 +82,7 @@ self_modulate = Color(1, 0.501961, 0, 1)
 custom_minimum_size = Vector2(200, 2.08165e-12)
 layout_mode = 2
 size_flags_vertical = 4
-min_value = -30.0
+min_value = -70.0
 max_value = 2.08165e-12
 
 [node name="SFXContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer"]
@@ -108,7 +108,7 @@ custom_minimum_size = Vector2(200, 2.08165e-12)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/grabber_offset = 0
-min_value = -30.0
+min_value = -70.0
 max_value = 2.08165e-12
 
 [node name="ResolutionContainer" type="VBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
