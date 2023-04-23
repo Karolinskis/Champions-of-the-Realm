@@ -22,7 +22,6 @@ public partial class Infantry : Troop
             GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt3.mp3"),
             GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt4.mp3")
         };
-
     }
 
     // Audio
