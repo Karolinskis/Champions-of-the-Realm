@@ -28,3 +28,5 @@ shape = SubResource("RectangleShape2D_cxr6t")
 Speed = 150.0
 
 [node name="Team" parent="." instance=ExtResource("4_36kou")]
+
+[node name="DamageSoundPlayer" type="AudioStreamPlayer2D" parent="."]
