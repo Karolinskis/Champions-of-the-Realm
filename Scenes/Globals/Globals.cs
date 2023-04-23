@@ -135,7 +135,6 @@ public partial class Globals : Node
         if (!FileAccess.FileExists(settingsPath))
         {
             return null;
-            //GD.PushError("Settings save file doesn't exist!");
         }
         FileAccess saveFile = FileAccess.Open(settingsPath, FileAccess.ModeFlags.Read);
         Dictionary<string, Variant> data = (Dictionary<string, Variant>)Json.ParseString(saveFile.GetLine());

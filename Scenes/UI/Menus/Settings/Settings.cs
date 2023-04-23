@@ -16,10 +16,22 @@ public partial class Settings : Control
     private OptionButton resolutionMenu;
     private Globals globals;
 
+    // Resolution values for drop down menu.
+    private Dictionary<string, Vector2I> Resolutions = new Dictionary<string, Vector2I>
+    {
+        { "1920x1080", new Vector2I(1920, 1080) },
+        { "1600x900", new Vector2I(1600, 900) },
+        { "1366x768", new Vector2I(1366, 768) },
+        { "1280x720", new Vector2I(1280, 720) },
+        { "1024x768", new Vector2I(1024, 768) },
+        { "800x600", new Vector2I(800, 600) }
+    };
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");
+
         // audio
         musicBus = AudioServer.GetBusIndex("New Bus");      // audio buses should be named Music and SFX, but I crash while renaming them so it will stay like this for now.
         sfxBus = AudioServer.GetBusIndex("New Bus 2");
@@ -80,16 +92,6 @@ public partial class Settings : Control
         Save();
     }
 
-    private Dictionary<string, Vector2I> Resolutions = new Dictionary<string, Vector2I>
-    {
-        { "1920x1080", new Vector2I(1920, 1080) },
-        { "1600x900", new Vector2I(1600, 900) },
-        { "1366x768", new Vector2I(1366, 768) },
-        { "1280x720", new Vector2I(1280, 720) },
-        { "1024x768", new Vector2I(1024, 768) },
-        { "800x600", new Vector2I(800, 600) }
-    };
-
     /// <summary>
     /// Adds dictionary items to the resolution drop down menu
     /// </summary>
@@ -119,7 +121,7 @@ public partial class Settings : Control
     /// </summary>
     private void ButtonBackPressed()
     {
-        var parent = GetParent();
+        Node parent = GetParent();
         Control control = parent.GetNode<Control>("CanvasLayer/Control");
         control.Show();
         QueueFree();

@@ -42,7 +42,7 @@ public partial class MainMenu : Control
     private void ButtonSettingsPressed()
     {
         data = globals.LoadSettings();
-        Settings settingsScreen = settingsScene.Instantiate() as Settings;
+        Settings settingsScreen = settingsScene.Instantiate<Settings>();
         AddChild(settingsScreen);
         if (data != null)
         {
