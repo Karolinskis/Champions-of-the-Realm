@@ -5,16 +5,18 @@ using System.Linq;
 
 public partial class Settings : Control
 {
+    // globals
+    private Globals globals;
+
     // audio variables
     private int musicBus;
     private int sfxBus;
     private Slider musicSlider;
     private Slider sfxSlider;
-    int resolutionIndex = 3;
 
     // resolution variables
     private OptionButton resolutionMenu;
-    private Globals globals;
+    int resolutionIndex = 3;
 
     // Resolution values for drop down menu.
     private Dictionary<string, Vector2I> Resolutions = new Dictionary<string, Vector2I>
