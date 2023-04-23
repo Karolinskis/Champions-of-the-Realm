@@ -48,12 +48,23 @@ public partial class Player : Actor
 
     private GpuParticles2D walkingTrail;
 
+    // Audio
+    private AudioStreamPlayer2D damage;
+    private AudioStream[] damageSounds;
+
     public override void _Ready()
     {
         base._Ready();
         // Loading packed scenes
         bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
         damagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
+
+        // Load audio streams
+        damageSounds = new AudioStream[]
+        {
+            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Player/Damage/PlayerHurt1.mp3"),
+            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Player/Damage/PlayerHurt2.mp3")
+        };
 
         // Getting nodes
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -65,6 +76,7 @@ public partial class Player : Actor
         levelSystem = GetNode<LevelSystem>("LevelSystem");
         walkingTrail = GetNode<GpuParticles2D>("WalkingTrail");
         coinsSound = GetNode<AudioStreamPlayer>("CoinsSound");
+        damage = GetNode<AudioStreamPlayer2D>("Damage");
 
         // Initializing nodes
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
@@ -152,6 +164,11 @@ public partial class Player : Actor
         popup.Amount = (int)baseDamage;
         popup.Type = "Damage";
         AddChild(popup);
+
+        // Play hit sound
+        int damageIndex = new Random().Next(0, damageSounds.Length);
+        damage.Stream = damageSounds[damageIndex];
+        damage.Play();
 
         base.HandleHit(baseDamage, impactPosition);
         EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
