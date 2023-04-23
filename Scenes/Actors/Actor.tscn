@@ -29,4 +29,4 @@ Speed = 150.0
 
 [node name="Team" parent="." instance=ExtResource("4_36kou")]
 
-[node name="Damage" type="AudioStreamPlayer2D" parent="."]
+[node name="DamageSoundPlayer" type="AudioStreamPlayer2D" parent="."]

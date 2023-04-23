@@ -49,7 +49,7 @@ public partial class Player : Actor
     private GpuParticles2D walkingTrail;
 
     // Audio
-    private AudioStreamPlayer2D damage;
+    private AudioStreamPlayer2D damagePlayer;
     private AudioStream[] damageSounds;
 
     public override void _Ready()
@@ -76,7 +76,7 @@ public partial class Player : Actor
         levelSystem = GetNode<LevelSystem>("LevelSystem");
         walkingTrail = GetNode<GpuParticles2D>("WalkingTrail");
         coinsSound = GetNode<AudioStreamPlayer>("CoinsSound");
-        damage = GetNode<AudioStreamPlayer2D>("Damage");
+        damagePlayer = GetNode<AudioStreamPlayer2D>("DamageSoundPlayer");
 
         // Initializing nodes
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
@@ -167,8 +167,8 @@ public partial class Player : Actor
 
         // Play hit sound
         int damageIndex = new Random().Next(0, damageSounds.Length);
-        damage.Stream = damageSounds[damageIndex];
-        damage.Play();
+        damagePlayer.Stream = damageSounds[damageIndex];
+        damagePlayer.Play();
 
         base.HandleHit(baseDamage, impactPosition);
         EmitSignal(nameof(PlayerHealthChanged), Stats.Health);

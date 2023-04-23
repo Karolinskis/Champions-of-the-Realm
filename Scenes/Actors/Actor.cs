@@ -13,10 +13,6 @@ public partial class Actor : CharacterBody2D
     //protected PackedScene bloodScene;
     private Vector2 knockBack = Vector2.Zero;
 
-    // Audio
-    private AudioStreamPlayer2D damage;
-    private AudioStream[] damageSounds;
-
     public override void _Ready()
     {
         base._Ready();
@@ -24,14 +20,6 @@ public partial class Actor : CharacterBody2D
         Team = GetNode<Team>("Team");
         collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
 
-        // Load audio streams
-        damageSounds = new AudioStream[]
-        {
-            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt1.mp3"),
-            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt2.mp3"),
-            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt3.mp3"),
-            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt4.mp3")
-        };
     }
     public override void _PhysicsProcess(double delta)
     {
