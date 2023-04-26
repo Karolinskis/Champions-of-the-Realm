@@ -100,7 +100,7 @@ public partial class Map : Node2D
         float limitRight = (mapLimits.End.X * mapCellSize.X) - 48;
         float limitBottom = (mapLimits.End.Y * mapCellSize.Y) - 48;
 
-        enemySpawner.Initialize(new Vector2(limitRight, limitBottom));
+        enemySpawner.Initialize(new Vector2(limitRight, limitBottom), player);
     }
 
     /// <summary>

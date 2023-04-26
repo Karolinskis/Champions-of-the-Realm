@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 /// <summary>
 /// Enemy spawner class to spawn enemies in a random position in the map. It is possible to set a custom start and end time,
@@ -10,7 +11,11 @@ public partial class EnemySpawner : Node2D
     /// //Export array to store spawn point info
     /// </summary>
     /// <value>Array of SpawnInfo objects</value>
-    [Export] public Godot.Collections.Array<SpawnInfo> Spawns { get; set; } 
+    [Export] public Godot.Collections.Array<PackedScene> Enemies { get; set; }
+
+    private Timer timer;
+    private Player target;
+
     private int time; //variable to keep count of the time that has passed since spawning started
 
     private float limitLeft = 20f; //map coordinates limit left
@@ -18,14 +23,27 @@ public partial class EnemySpawner : Node2D
     private float limitTop = 20f; //map coordinates limit top
     private float limitBottom; //map coordinates limit bottom
 
-    /// <summary>
-    /// Initialize method for initializing limit values
-    /// </summary>
-    /// <param name="vector">Vector with limit values</param>
-    public void Initialize(Vector2 vector)
+	/// <summary>
+	/// Called when the node enters the scene tree for the first time.
+	/// </summary>
+	public override void _Ready()
     {
-        limitRight = vector.X;
-        limitBottom = vector.Y;
+        base._Ready();
+        timer = GetNode<Timer>("Timer");
+    }
+
+	/// <summary>
+	/// Initialize method for initializing limit values
+	/// </summary>
+	/// <param name="vector">Vector with limit values</param>
+	public void Initialize(Vector2 vector, Player player)
+    {
+        limitRight = vector.X; //Setting right limit of the map
+        limitBottom = vector.Y; //Setting bottom limit of the map
+
+        target = player; //Setting target object for the enemies
+
+        timer.Start(); //Starting the timer
     }
 
     /// <summary>
@@ -46,26 +64,18 @@ public partial class EnemySpawner : Node2D
     private void OnTimerTimeout()
     {
         time++;
-        foreach (var i in Spawns)
+        if(time >= 10 && timer.WaitTime > 0.2) //Every 10 seconds the timer wait time is decreased so that enemies spawn more often
         {
-            if (time >= i.TimeStart && time <= i.TimeEnd)
-            {
-                if (i.spawnDelayCounter < i.EnemySpawnDelay) i.spawnDelayCounter++;
-                else
-                {
-                    i.spawnDelayCounter = 0;
-
-                    PackedScene enemyScene = i.Enemy;
-                    int counter = 0;
-                    while (counter < i.EnemyNum)
-                    {
-                        var enemySpawn = enemyScene.Instantiate<Actor>();
-                        AddChild(enemySpawn);
-                        enemySpawn.GlobalPosition = GetRandomPosition();
-                        counter++;
-                    }
-                }
-            }
+            time = 0;
+            timer.WaitTime -= 0.1;
         }
+
+        var random = new Random();
+        int spawn = random.Next(0, Enemies.Count); //Generating random index of which enemy to spawn
+
+        var enemyScene = Enemies[spawn].Instantiate<Infantry>();
+		//TODO: enemyScene.AI. 
+		enemyScene.GlobalPosition = GetRandomPosition();
+		AddChild(enemyScene);
     }
 }
