@@ -12,7 +12,21 @@ public partial class Infantry : Troop
         AI = GetNode<MeleeAI>("MeleeAI");
         bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
         damagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
+        damagePlayer = GetNode<AudioStreamPlayer2D>("DamageSoundPlayer");
+
+        // Load audio streams
+        damageSounds = new AudioStream[]
+        {
+            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt1.mp3"),
+            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt2.mp3"),
+            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt3.mp3"),
+            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Enemy/Damage/EnemyHurt4.mp3")
+        };
     }
+
+    // Audio
+    private AudioStreamPlayer2D damagePlayer;
+    private AudioStream[] damageSounds;
 
     /// <summary>
     /// Method for Attacking
@@ -52,6 +66,11 @@ public partial class Infantry : Troop
         popup.Amount = (int)baseDamage;
         popup.Type = "Damage";
         AddChild(popup);
+
+        // Play hit sound
+        int damageIndex = new Random().Next(0, damageSounds.Length);
+        damagePlayer.Stream = damageSounds[damageIndex];
+        damagePlayer.Play();
 
         base.HandleHit(baseDamage, impactPosition);
     }

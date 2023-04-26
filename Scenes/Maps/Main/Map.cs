@@ -11,6 +11,7 @@ public partial class Map : Node2D
     protected PackedScene playerScene; // Player resource
     protected PackedScene PauseMenuScene; // Pause menu resource
     protected PackedScene gameOverScene;  // gameOver resource
+    protected PackedScene shopScene; // item shop resouce
     protected GUI hud; // GUI in the scene
     protected Camera2D camera; // Player camera
     protected TileMap ground; // Ground level
@@ -25,6 +26,7 @@ public partial class Map : Node2D
         playerScene = ResourceLoader.Load<PackedScene>("res://Scenes/Actors/Player/Player.tscn");
         gameOverScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/GameOver/GameOver.tscn");
         PauseMenuScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Pause/PauseMenu.tscn");
+        shopScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Shop/Shop.tscn");
 
         // Loading nodes
         globals = GetNode<Globals>("/root/Globals");
@@ -104,6 +106,16 @@ public partial class Map : Node2D
     }
 
     /// <summary>
+    /// Loads shop window.
+    /// </summary>
+    public void LoadShop()
+    {
+        Shop shopScreen = shopScene.Instantiate<Shop>();
+        AddChild(shopScreen);
+        shopScreen.Initialize(player);
+    }
+
+    /// <summary>
     /// Method for spawning new player, setting camera path and connecting signals to hud
     /// </summary>
     protected void SpawnPlayer()
@@ -120,6 +132,8 @@ public partial class Map : Node2D
 
         globals.Player = player.Save();
         //globals.SaveGame(); // for debuging purposes
+
+        LoadShop(); // Loading shop
     }
 
     /// <summary>
@@ -137,6 +151,8 @@ public partial class Map : Node2D
 
         hud.Initialize(player);
         globals.Player = player.Save(); // loading player to globals
+
+        LoadShop(); // Loading shop
     }
 
     /// <summary>
@@ -154,6 +170,8 @@ public partial class Map : Node2D
 
         player.Load(globals.Player);
         player = GetNode<Player>("Player");
+
+        LoadShop(); // Loading shop
     }
 
     /// <summary>

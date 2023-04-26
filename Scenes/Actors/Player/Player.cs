@@ -48,12 +48,23 @@ public partial class Player : Actor
 
     private GpuParticles2D walkingTrail;
 
+    // Audio
+    private AudioStreamPlayer2D damagePlayer;
+    private AudioStream[] damageSounds;
+
     public override void _Ready()
     {
         base._Ready();
         // Loading packed scenes
         bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
         damagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
+
+        // Load audio streams
+        damageSounds = new AudioStream[]
+        {
+            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Player/Damage/PlayerHurt1.mp3"),
+            GD.Load<AudioStream>("res://Sounds/SFX/Characters/Player/Damage/PlayerHurt2.mp3")
+        };
 
         // Getting nodes
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
@@ -65,6 +76,7 @@ public partial class Player : Actor
         levelSystem = GetNode<LevelSystem>("LevelSystem");
         walkingTrail = GetNode<GpuParticles2D>("WalkingTrail");
         coinsSound = GetNode<AudioStreamPlayer>("CoinsSound");
+        damagePlayer = GetNode<AudioStreamPlayer2D>("DamageSoundPlayer");
 
         // Initializing nodes
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
@@ -72,6 +84,9 @@ public partial class Player : Actor
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
+
+        RotateWeapon(); // Rotating weapon according to mouse position
+
         Direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
         if (!WeaponsManager.IsAttacking)
         {
@@ -149,6 +164,11 @@ public partial class Player : Actor
         popup.Amount = (int)baseDamage;
         popup.Type = "Damage";
         AddChild(popup);
+
+        // Play hit sound
+        int damageIndex = new Random().Next(0, damageSounds.Length);
+        damagePlayer.Stream = damageSounds[damageIndex];
+        damagePlayer.Play();
 
         base.HandleHit(baseDamage, impactPosition);
         EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
@@ -233,6 +253,24 @@ public partial class Player : Actor
         //WeaponsManager.ChangeWeapon();
     }
 
+    /// <summary>
+    /// Method for rotating weapons manager according to mouse position
+    /// </summary>
+    private void RotateWeapon()
+    {
+        Vector2 mouseCords = GetGlobalMousePosition();
+        float angle = GetAngleTo(mouseCords);
+        if (angle >= -Math.PI / 2 && angle <= Math.PI / 2)
+        {
+            WeaponsManager.Scale = new Vector2(Scale.X, 1);
+        }
+        else
+        {
+            WeaponsManager.Scale = new Vector2(Scale.X, -1);
+        }
+        WeaponsManager.Rotation = angle;
+    }
+
     // TODO: lacks WeaponsManager scene implementation and animations
     /// <summary>
     /// Method for playing Idle player animation
@@ -283,34 +321,7 @@ public partial class Player : Actor
     /// <summary>
     /// Method for playing attack animation
     /// </summary>
-    private void PlayAttackAnimation(float angle)
-    {
-        switch (WeaponsManager.CurrentWeapon)
-        {
-            case Melee melee:
-                if (angle >= -Math.PI / 4 && angle <= Math.PI / 4)
-                {
-                    animationPlayer.Play("AttackRight");
-                    return;
-                }
-                if (angle >= -3 * Math.PI / 4 && angle <= -Math.PI / 4)
-                {
-                    animationPlayer.Play("AttackBack");
-                    return;
-                }
-                if (angle >= 3 * Math.PI / 4 || angle <= -3 * Math.PI / 4)
-                {
-                    animationPlayer.Play("AttackLeft");
-                    return;
-                }
-                if (angle >= Math.PI / 4 && angle <= 3 * Math.PI / 4)
-                {
-                    animationPlayer.Play("AttackFront");
-                    return;
-                }
-                break;
-        }
-    }
+    private void PlayAttackAnimation(float angle) { }
 
     /// <summary>
     /// Method for playing walking animation,

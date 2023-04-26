@@ -7,6 +7,8 @@ public partial class PauseMenu : Control
     private Control control;
     private Globals globals;
 
+    private Godot.Collections.Dictionary<string, Variant> data; // Dictionary containing settings data
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -19,6 +21,7 @@ public partial class PauseMenu : Control
 
         // Loading settings scene
         settingsScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Settings/Settings.tscn");
+        data = globals.LoadSettings();
     }
 
     /// <summary>
@@ -70,8 +73,19 @@ public partial class PauseMenu : Control
     /// </summary>
     private void ButtonSettingsPressed()
     {
-        Settings settingsScreen = settingsScene.Instantiate() as Settings;
+        data = globals.LoadSettings();
+        Settings settingsScreen = settingsScene.Instantiate<Settings>();
         AddChild(settingsScreen);
+        if (data != null)
+        {
+            // Setting resolution drop down and volume sliders
+            int resolution = (int)data["ResolutionIndex"];
+            int musicBusValue = (int)data["MusicBusValue"];
+            int sfxBusValue = (int)data["SfxBusValue"];
+            settingsScreen.ResolutionDropDownItemSelected(resolution);
+            settingsScreen.SetSliderValues(musicBusValue, sfxBusValue);
+        }
+        Control control = GetNode<Control>("CanvasLayer/Control");
         control.Hide();
     }
 
