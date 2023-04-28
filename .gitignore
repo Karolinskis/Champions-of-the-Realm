@@ -26,3 +26,6 @@ mono_crash.*.json
 .directory
 .DS_Store
 *~
+
+# Ignore all visual studio IDE files
+.vs/
