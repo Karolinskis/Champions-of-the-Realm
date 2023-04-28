@@ -12,6 +12,7 @@ public partial class Actor : CharacterBody2D
     protected CollisionShape2D collisionShape;
     //protected PackedScene bloodScene;
     private Vector2 knockBack = Vector2.Zero;
+
     public override void _Ready()
     {
         base._Ready();
@@ -19,6 +20,7 @@ public partial class Actor : CharacterBody2D
         Team = GetNode<Team>("Team");
         collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
     }
+    
     public override void _PhysicsProcess(double delta)
     {
         knockBack = knockBack.MoveToward(Vector2.Zero, Convert.ToSingle(delta * 150));

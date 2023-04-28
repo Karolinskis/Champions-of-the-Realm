@@ -66,10 +66,11 @@ public partial class LoadingScreen : Control
 
                 case ResourceLoader.ThreadLoadStatus.Loaded:
                     PackedScene loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
-                    Node newRootNode = loadedScene.Instantiate();
+                    Node newRootNode = loadedScene.Instantiate<Node>();
                     GetNode("/root").AddChild(newRootNode);
                     AnimateLoadingBar(100, 1.5);
                     animationPlayer.Play("TransOut");
+                    //GetTree().Paused = true; todo
                     break;
 
                 case ResourceLoader.ThreadLoadStatus.Failed:

@@ -20,8 +20,12 @@ public partial class MeleeAI : Node2D
     public override void _Ready()
     {
         parent = GetParent<Infantry>();
-        detectionZone = GetNode<Area2D>("DetectionArea");
         attackZone = GetNode<Area2D>("AttackArea");
+        target = GetNode<Actor>("/root/Main/Player");
+        if (target is not null)
+        {
+            currentState = State.Engage;
+        }
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,11 +37,10 @@ public partial class MeleeAI : Node2D
                 break;
 
             case State.Engage:
-                if (target is null) // Check to see if we actualy have a target
+                if (target is null || !IsInstanceValid(target)) // Check to see if we actualy have a target
                 {
                     break;
                 }
-
                 Rotation = GlobalPosition.DirectionTo(target.GlobalPosition).Angle();
                 parent.Direction = parent.GlobalPosition.DirectionTo(target.GlobalPosition);
                 break;
@@ -75,42 +78,6 @@ public partial class MeleeAI : Node2D
         {
             parent.Velocity = Vector2.Zero;
             return;
-        }
-    }
-
-    /// <summary>
-    /// Refresh the detection zone
-    /// </summary>
-    private void RefreshDetectionZone()
-    {
-        detectionZone.Monitoring = false;
-        detectionZone.Monitoring = true;
-    }
-
-    /// <summary>
-    /// Check if the entered actor is in the same team as the character
-    /// </summary>
-    /// <param name="body">Actor to check</param>
-    private void DetectionAreaBodyEntered(Node body)
-    {
-        if (body is Actor actor && actor.GetTeam() != parent.GetTeam() &&
-            currentState != State.Engage && currentState != State.Attack)
-        {
-            target = actor;
-            ChangeState(State.Engage);
-        }
-    }
-
-    /// <summary>
-    /// If the exited actor is the current target, then idle
-    /// </summary>
-    /// <param name="body">Actor to check</param>
-    private void DetectionAreaBodyExited(Node body)
-    {
-        if (body == target && target != null && !IsQueuedForDeletion())
-        {
-            target = null;
-            ChangeState(State.Idle);
         }
     }
 
