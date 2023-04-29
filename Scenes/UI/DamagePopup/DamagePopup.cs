@@ -21,6 +21,7 @@ public partial class DamagePopup : Marker2D
         label = GetNode<Label>("FloatingText");
         label.Text = Amount.ToString();
         parent = GetParent() as CharacterBody2D;
+
         switch (Type)
         {
             case "Heal":
@@ -33,6 +34,7 @@ public partial class DamagePopup : Marker2D
                 label.Set("theme_override_colors/font_color", damageColor);
                 break;
         }
+
         Random rand = new Random();
         float sideMovementx = (rand.Next() % 81) - 61; //side movement variable
         float sideMovementy = (rand.Next() % 81) - 61; //side movement variable

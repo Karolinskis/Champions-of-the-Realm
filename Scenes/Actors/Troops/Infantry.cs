@@ -5,6 +5,7 @@ public partial class Infantry : Troop
     public MeleeAI AI { get; set; } // MeleeAI for Infantry troops
     protected PackedScene bloodScene; // blood particales
     protected PackedScene damagePopup; // For displaying inflicted damage
+
     public override void _Ready()
     {
         base._Ready();

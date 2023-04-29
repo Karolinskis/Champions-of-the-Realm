@@ -91,6 +91,7 @@ public partial class Melee : Weapon
     {
         isDelivered = false;
     }
+
     private void AttackTimerTimeout()
     {
         Deliver();

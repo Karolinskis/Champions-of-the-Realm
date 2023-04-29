@@ -56,6 +56,7 @@ public partial class Map : Node2D
                 GD.PushError("Map instantiated without loading form!");
                 break;
         }
+
         SetCameraLimits(); // Setting camera limits so the camera won't go beyond borders
         SetEnemySpawnLimits();
         GetTree().CurrentScene = this;

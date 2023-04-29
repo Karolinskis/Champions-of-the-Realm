@@ -43,6 +43,7 @@ public partial class MainMenu : Control
         data = globals.LoadSettings();
         Settings settingsScreen = settingsScene.Instantiate<Settings>();
         AddChild(settingsScreen);
+        
         if (data != null)
         {
             // Setting resolution drop down and volume sliders
@@ -52,6 +53,7 @@ public partial class MainMenu : Control
             settingsScreen.ResolutionDropDownItemSelected(resolution);
             settingsScreen.SetSliderValues(musicBusValue, sfxBusValue);
         }
+
         Control control = GetNode<Control>("CanvasLayer/Control");
         control.Hide();
     }

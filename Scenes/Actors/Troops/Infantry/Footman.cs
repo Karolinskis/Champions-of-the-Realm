@@ -7,6 +7,7 @@ public partial class Footman : Infantry
     private AnimationPlayer animationPlayer;
     private Melee weapon;
     private Sprite2D sprite; // Actor texture
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {

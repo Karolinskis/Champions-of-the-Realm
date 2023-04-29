@@ -10,9 +10,11 @@ public partial class LootManager : Node2D
     private ObjectPool<Coin> goldenCoinsPool; // Gold coin pool
     private ObjectPool<Coin> silverCoinsPool; // Silver coin pool
     private ObjectPool<Coin> bronzeCoinsPool; // Bronze coin pool
+
     public override void _Ready()
     {
         base._Ready();
+
         // Loading coin scenes
         goldenCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coins/GoldenCoin.tscn");
         silverCoinScene = ResourceLoader.Load<PackedScene>("res://Scenes/Utility/Loot/Coins/SilverCoin.tscn");
@@ -22,6 +24,7 @@ public partial class LootManager : Node2D
         goldenCoinsPool = new ObjectPool<Coin>();
         silverCoinsPool = new ObjectPool<Coin>();
         bronzeCoinsPool = new ObjectPool<Coin>();
+
         for (int i = 0; i < goldenCount; i++)
         {
             Coin temp = goldenCoinScene.Instantiate<Coin>();
@@ -29,6 +32,7 @@ public partial class LootManager : Node2D
             AddChild(temp);
             temp.RemoveFromScene();
         }
+
         for (int i = 0; i < silverCount; i++)
         {
             Coin temp = silverCoinScene.Instantiate<Coin>();
@@ -41,6 +45,7 @@ public partial class LootManager : Node2D
             AddChild(temp);
             temp.RemoveFromScene();
         }
+
         HandleCoinsSpawned(159, new Vector2(400, 400)); //For debugging purposes
     }
 
@@ -52,6 +57,7 @@ public partial class LootManager : Node2D
     public void HandleCoinsSpawned(int coins, Vector2 position)
     {
         Coin temp;
+
         while (coins > 0)
         {
             if (coins >= 100)
@@ -72,6 +78,7 @@ public partial class LootManager : Node2D
                 temp.GlobalPosition = position;
                 coins -= 1;
             }
+
             temp.AddToScene();
         }
     }
