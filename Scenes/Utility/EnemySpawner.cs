@@ -18,6 +18,11 @@ public partial class EnemySpawner : Node2D
 
     private int time; //variable to keep count of the time that has passed since spawning started
 
+	/// <summary>
+	/// Export variable to change how far from the player enemies should spawn
+	/// </summary>
+	[Export] public int enemySpawnDistanceLimit = 400;
+
     private float limitLeft = 20f; //map coordinates limit left
     private float limitRight; //map coordinates limit right
     private float limitTop = 20f; //map coordinates limit top
@@ -47,15 +52,17 @@ public partial class EnemySpawner : Node2D
     }
 
     /// <summary>
-    /// Method to get a random position for the spawn point
+    /// Method to get a random enemy spawn position which is within the bounds of the map
     /// </summary>
-    /// <returns>2D vector to reporesent the position of the spawn point</returns>
-    private Vector2 GetRandomPosition()
+    /// <returns>Vector2 object with position coordinates</returns>
+    private Vector2 GetEnemSpawnPosition()
     {
-        float x = Globals.GetRandomFloat(limitLeft, limitRight);
-        float y = Globals.GetRandomFloat(limitTop, limitBottom);
+        Vector2 position = Globals.GetRandomPositionWithinRadius(target.Position, enemySpawnDistanceLimit);
 
-        return new Vector2(x, y);
+        position.X = Math.Clamp(position.X, limitLeft, limitRight);
+        position.Y = Math.Clamp(position.Y, limitTop, limitBottom);
+
+        return position;
     }
 
     /// <summary>
@@ -75,7 +82,9 @@ public partial class EnemySpawner : Node2D
 
         Infantry enemyScene = Enemies[spawn].Instantiate<Infantry>();
         //TODO: enemyScene.AI. 
-        enemyScene.GlobalPosition = GetRandomPosition();
+
+        enemyScene.GlobalPosition = GetEnemSpawnPosition();
+
         AddChild(enemyScene);
     }
 }

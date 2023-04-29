@@ -61,10 +61,10 @@ public partial class WeaponsManager : Node2D
         team = setTeam;
         weapon.Initialize(team);
         CurrentWeapon = weapon;
-        
+
         for (int i = 0; i < weapons.Length; i++)
         {
-            EmitSignal(nameof(WeaponChanged), i, weapons[i]); 
+            EmitSignal(nameof(WeaponChanged), i, weapons[i]);
         }
     }
 
@@ -81,7 +81,7 @@ public partial class WeaponsManager : Node2D
         weapons[index] = weapon;
         weapon.Hide();
 
-        EmitSignal(nameof(WeaponChanged), index, weapons[index]); 
+        EmitSignal(nameof(WeaponChanged), index, weapons[index]);
     }
 
     /// <summary>
