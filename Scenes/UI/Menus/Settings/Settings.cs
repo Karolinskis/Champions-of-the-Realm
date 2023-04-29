@@ -28,7 +28,6 @@ public partial class Settings : Control
         { "800x600", new Vector2I(800, 600) }
     };
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");

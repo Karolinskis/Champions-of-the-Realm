@@ -13,9 +13,6 @@ public partial class DamagePopup : Marker2D
     Vector2 maxSize = new Vector2(1, 1);
     private CharacterBody2D parent;
 
-    /// <summary>
-    /// Called when the node enters the scene tree for the first time.
-    /// </summary>
     public override void _Ready()
     {
         label = GetNode<Label>("FloatingText");

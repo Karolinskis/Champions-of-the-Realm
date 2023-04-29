@@ -27,9 +27,6 @@ public partial class EnemySpawner : Node2D
     private float limitTop = 20f; //map coordinates limit top
     private float limitBottom; //map coordinates limit bottom
 
-    /// <summary>
-    /// Called when the node enters the scene tree for the first time.
-    /// </summary>
     public override void _Ready()
     {
         base._Ready();

@@ -8,7 +8,6 @@ public partial class PauseMenu : Control
 
     private Godot.Collections.Dictionary<string, Variant> data; // Dictionary containing settings data
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         // Pausing the game

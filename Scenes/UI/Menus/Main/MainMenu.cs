@@ -7,7 +7,6 @@ public partial class MainMenu : Control
     protected bool LoadNew;
     private Godot.Collections.Dictionary<string, Variant> data; // Dictionary containing settings data
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");

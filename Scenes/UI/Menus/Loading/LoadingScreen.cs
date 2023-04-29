@@ -7,7 +7,6 @@ public partial class LoadingScreen : Control
     private AnimationPlayer animationPlayer;    // animation player node
     private string nextScene; // stores next scene path
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         control = GetNode<Control>("CanvasLayer/Control/");

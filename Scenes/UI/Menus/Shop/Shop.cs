@@ -8,7 +8,6 @@ public partial class Shop : CanvasLayer
     private TabBar weaponTab;   // Weapon type tab
     private PackedScene weaponSlot = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Shop/WeaponSlot.tscn"); // Weapon slot resource
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");

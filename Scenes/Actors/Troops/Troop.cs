@@ -5,7 +5,6 @@ public partial class Troop : Actor
     [Signal] public delegate void TroopDiedEventHandler();
     protected Globals globals; // global variables and functionality
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();

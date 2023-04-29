@@ -22,11 +22,6 @@ public partial class Weapon : Node2D
 
     protected Team.Teams team;
 
-    // Called when the node enters the scene tree for the first time.
-    //public override void _Ready()
-    //{
-    //}
-
     public void Initialize(Team.Teams teamName) => team = teamName;
 
     public virtual bool CanAttack()

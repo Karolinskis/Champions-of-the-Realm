@@ -8,7 +8,6 @@ public partial class Footman : Infantry
     private Melee weapon;
     private Sprite2D sprite; // Actor texture
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
@@ -19,7 +18,6 @@ public partial class Footman : Infantry
         sprite = GetNode<Sprite2D>("Sprite2D");
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
