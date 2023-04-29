@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 public partial class GameOver : Control
 {
     private Globals globals; // global variables and functionality

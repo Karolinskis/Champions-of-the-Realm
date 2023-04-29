@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 public partial class Weapon : Node2D
 {
     /// <summary>

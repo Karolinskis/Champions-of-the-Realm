@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 public partial class Shop : CanvasLayer
 {
     [Export] private Godot.Collections.Array<PackedScene> weapons; // Weapons array

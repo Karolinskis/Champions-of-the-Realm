@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 public partial class PauseMenu : Control
 {
     private PackedScene settingsScene;	// Settings resources.

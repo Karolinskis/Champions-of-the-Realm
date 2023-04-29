@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 public partial class Troop : Actor
 {
     [Signal] public delegate void TroopDiedEventHandler();

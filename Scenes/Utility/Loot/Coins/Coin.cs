@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 public partial class Coin : CharacterBody2D, IPoolable
 {
     [Signal] public delegate void CoinRemovedEventHandler(Coin coin); // coin removed handler.

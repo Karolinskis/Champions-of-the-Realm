@@ -1,7 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-
 public partial class WeaponSlot : Panel
 {
     private Weapon weapon;  // Weapon to be bought

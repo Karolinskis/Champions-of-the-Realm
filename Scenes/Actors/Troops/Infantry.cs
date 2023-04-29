@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 public partial class Infantry : Troop
 {
     public MeleeAI AI { get; set; } // MeleeAI for Infantry troops

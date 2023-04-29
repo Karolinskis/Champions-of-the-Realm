@@ -1,8 +1,6 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
 using Godot.Collections;
-using System;
 
 /// <summary>
 /// Class dedicated to implement Player functionality

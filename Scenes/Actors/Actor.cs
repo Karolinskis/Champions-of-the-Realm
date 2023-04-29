@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 /// <summary>
 /// Class for basic actor implementation 
 /// </summary>

@@ -1,7 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
 public partial class LootManager : Node2D
 {
     [Export] private int goldenCount = 100; // Max amount of gold coins in a scene.

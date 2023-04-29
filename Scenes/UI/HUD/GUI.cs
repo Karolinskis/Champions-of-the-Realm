@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 /// <summary>
 /// GUI class that contains graphical UI elements and methods to change them
 /// </summary>

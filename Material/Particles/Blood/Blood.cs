@@ -1,7 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-
 /// <summary>
 /// Class for handeling blood particles
 /// </summary>

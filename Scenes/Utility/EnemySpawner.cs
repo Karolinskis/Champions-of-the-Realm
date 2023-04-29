@@ -1,8 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
-using System;
-
 /// <summary>
 /// Enemy spawner class to spawn enemies in a random position in the map. It is possible to set a custom start and end time,
 /// set a delay between spawns and change the amount of enemies that are spawned.

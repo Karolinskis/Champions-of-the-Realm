@@ -1,6 +1,5 @@
 namespace ChampionsOfTheRealm;
 
-using Godot;
 using Godot.Collections;
 
 /// <summary>
