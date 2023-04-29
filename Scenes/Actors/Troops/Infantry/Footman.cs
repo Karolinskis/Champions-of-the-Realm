@@ -138,8 +138,5 @@ public partial class Footman : Infantry
     /// <summary>
     /// Method for handling attack timer timeout
     /// </summary>
-    private void AttackTimerTimeout()
-    {
-        isAttacking = false;
-    }
+    private void AttackTimerTimeout() => isAttacking = false;
 }

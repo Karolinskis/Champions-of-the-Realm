@@ -21,10 +21,7 @@ public partial class Shop : CanvasLayer
     /// Method for loading player.
     /// </summary>
     /// <param name="p">Player</param>
-    public void Initialize(Player p)
-    {
-        this.player = p;
-    }
+    public void Initialize(Player p) => this.player = p;
 
     /// <summary>
     /// Loads new weapons into the shop

@@ -46,10 +46,7 @@ public partial class Actor : CharacterBody2D
     /// <summary>
     /// Method for handling death and removing actor from scene
     /// </summary>
-    public virtual void Die()
-    {
-        QueueFree();
-    }
+    public virtual void Die() => QueueFree();
 
     /// <summary>
     /// Method for handling received knockback
@@ -68,10 +65,7 @@ public partial class Actor : CharacterBody2D
     /// Return the team object of the actor
     /// </summary>
     /// <returns>the team object of the actor</returns>
-    public Team.Teams GetTeam()
-    {
-        return Team.TeamName;
-    }
+    public Team.Teams GetTeam() => Team.TeamName;
 
     /// <summary>
     /// Method for getting velocity vector towards certain location
@@ -100,6 +94,7 @@ public partial class Actor : CharacterBody2D
         }
         Rotation = r;
     }
+
     /// <summary>
     /// Old implementation for handling actor rotation
     /// </summary>

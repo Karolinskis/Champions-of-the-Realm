@@ -30,10 +30,8 @@ public partial class Melee : Weapon
     /// Check if the weapon is currently off cool-down and can be used
     /// </summary>
     /// <returns></returns>
-    public override bool CanAttack()
-    {
-        return cooldownTimer.IsStopped() && attackTimer.IsStopped();
-    }
+    public override bool CanAttack() =>
+        cooldownTimer.IsStopped() && attackTimer.IsStopped();
 
     /// <summary>
     /// Define the behavior when the player is not attacking
@@ -87,13 +85,7 @@ public partial class Melee : Weapon
     /// <summary>
     /// Reset isDelivered flag and reenable weapon's collisionShape when cooldownTimer reaches zero.
     /// </summary>
-    private void CooldownTimerTimeout()
-    {
-        isDelivered = false;
-    }
+    private void CooldownTimerTimeout() => isDelivered = false;
 
-    private void AttackTimerTimeout()
-    {
-        Deliver();
-    }
+    private void AttackTimerTimeout() => Deliver();
 }

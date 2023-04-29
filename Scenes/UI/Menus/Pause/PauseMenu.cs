@@ -51,10 +51,7 @@ public partial class PauseMenu : Control
     /// <summary>
     /// Button for saving current game session.
     /// </summary>
-    private void ButtonSavePressed()
-    {
-        globals.SaveGame();
-    }
+    private void ButtonSavePressed() => globals.SaveGame();
 
     /// <summary>
     /// Button for loading existing save file.

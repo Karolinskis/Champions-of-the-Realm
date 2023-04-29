@@ -147,9 +147,7 @@ public partial class Globals : Node
     public Dictionary<string, Variant> LoadSettings()
     {
         if (!FileAccess.FileExists(settingsPath))
-        {
             return null;
-        }
 
         FileAccess saveFile = FileAccess.Open(settingsPath, FileAccess.ModeFlags.Read);
         Dictionary<string, Variant> data = (Dictionary<string, Variant>)Json.ParseString(saveFile.GetLine());

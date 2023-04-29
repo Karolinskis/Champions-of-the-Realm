@@ -61,8 +61,5 @@ public partial class MainMenu : Control
     /// <summary>
     /// Button for quiting the game.
     /// </summary>
-    private void ButtonQuitPressed()
-    {
-        GetTree().Quit();
-    }
+    private void ButtonQuitPressed() => GetTree().Quit();
 }

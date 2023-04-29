@@ -44,8 +44,5 @@ public partial class GameOver : Control
     /// <summary>
     /// Button for quiting to desktop.
     /// </summary>
-    private void ButtonQuitPressed()
-    {
-        GetTree().Quit();
-    }
+    private void ButtonQuitPressed() => GetTree().Quit();
 }

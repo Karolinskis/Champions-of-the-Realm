@@ -34,10 +34,7 @@ public partial class Coin : CharacterBody2D, IPoolable
     /// <summary>
     /// Method for removing coin if it wasn't picked up in time.
     /// </summary>
-    private void TimerTimeout()
-    {
-        RemoveFromScene();
-    }
+    private void TimerTimeout() => RemoveFromScene();
 
     /// <summary>
     /// Method for when coin reaches player.

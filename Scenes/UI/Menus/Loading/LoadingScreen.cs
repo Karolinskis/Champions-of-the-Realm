@@ -33,10 +33,7 @@ public partial class LoadingScreen : Control
     /// Changes value of the loading bar.
     /// </summary>
     /// <param name="value">new loading bar value.</param>
-    private void ChangeLoadingBarValue(int value)
-    {
-        loadingBar.Value = value;
-    }
+    private void ChangeLoadingBarValue(int value) => loadingBar.Value = value;
 
     /// <summary>
     /// Loads a new scene.
@@ -92,8 +89,5 @@ public partial class LoadingScreen : Control
     /// <summary>
     /// Deletes this scene.
     /// </summary>
-    public void DeleteScene()
-    {
-        QueueFree();
-    }
+    public void DeleteScene() => QueueFree();
 }

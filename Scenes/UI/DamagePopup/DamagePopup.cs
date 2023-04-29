@@ -57,8 +57,5 @@ public partial class DamagePopup : Marker2D
     /// <summary>
     /// Method for removing damage popup from screen when the animation is finished
     /// </summary>
-    private void TweenAllCompleted()
-    {
-        QueueFree();
-    }
+    private void TweenAllCompleted() => QueueFree();
 }

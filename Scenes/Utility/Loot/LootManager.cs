@@ -87,26 +87,17 @@ public partial class LootManager : Node2D
     /// Method for releasing gold coin to pool (made non-usable).
     /// </summary>
     /// <param name="coin">Gold coin scene</param>
-    private void ReleaseGoldenCoin(Coin coin)
-    {
-        goldenCoinsPool.Release(coin);
-    }
+    private void ReleaseGoldenCoin(Coin coin) => goldenCoinsPool.Release(coin);
 
     /// <summary>
     /// Method for releasing silver coin to pool (made non-usable).
     /// </summary>
     /// <param name="coin">Silver coin scene</param>
-    private void ReleaseSilverCoin(Coin coin)
-    {
-        silverCoinsPool.Release(coin);
-    }
+    private void ReleaseSilverCoin(Coin coin) => silverCoinsPool.Release(coin);
 
     /// <summary>
     /// Method for releasing bronze coin to pool (made non-usable).
     /// </summary>
     /// <param name="coin">Bronze coin scene</param>
-    private void ReleaseBronzeCoin(Coin coin)
-    {
-        bronzeCoinsPool.Release(coin);
-    }
+    private void ReleaseBronzeCoin(Coin coin) => bronzeCoinsPool.Release(coin);
 }
