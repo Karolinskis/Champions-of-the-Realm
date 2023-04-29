@@ -1,3 +1,5 @@
+namespace ChampionsOfTheRealm;
+
 using Godot;
 
 public partial class LoadingScreen : Control

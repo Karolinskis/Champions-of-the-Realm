@@ -1,3 +1,5 @@
+namespace ChampionsOfTheRealm;
+
 using Godot;
 using System;
 public partial class LootManager : Node2D

@@ -2,6 +2,8 @@ using Godot;
 using Godot.Collections;
 using System;
 
+namespace ChampionsOfTheRealm;
+
 /// <summary>
 /// Class for handling global actions (Scene switching, save/load functionality)
 /// </summary>

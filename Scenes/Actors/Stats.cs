@@ -1,3 +1,5 @@
+namespace ChampionsOfTheRealm;
+
 using Godot;
 
 /// <summary>
