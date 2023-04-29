@@ -46,7 +46,7 @@ public partial class GUI : Control
         goldenCoinSprite = GetNode<Sprite2D>("HUD/MarginContainer/Rows/TopRow/CurrenctContainer/GoldenCoinSprite");
 
         baseGoldCoinCoordinates.X = goldenCoinSprite.Position.X;
-        baseGoldCoinCoordinates.Y = goldenCoinSprite.Position.Y; 
+        baseGoldCoinCoordinates.Y = goldenCoinSprite.Position.Y;
 
         itemArray = new Button[3];
 
@@ -117,7 +117,7 @@ public partial class GUI : Control
     /// <param name="newCurrency">New currency value</param>
     private void ChangeCurrency(int oldCurrency, int newCurrency)
     {
-        goldenCoinSprite.Set("modulate", new Color(1,1,1,1));
+        goldenCoinSprite.Set("modulate", new Color(1, 1, 1, 1));
         goldenCoinSprite.Set("position", new Vector2(baseGoldCoinCoordinates.X, baseGoldCoinCoordinates.Y));
 
         //Tweening gold text
@@ -129,8 +129,8 @@ public partial class GUI : Control
         //Tweening golden coin sprite
         Tween coinTween = CreateTween().SetParallel(true);
         coinTween.SetTrans(Tween.TransitionType.Quart);
-        coinTween.TweenProperty(goldenCoinSprite, "position",   
-            new Vector2(goldenCoinSprite.Position.X, goldenCoinSprite.Position.Y-10), 1f);
+        coinTween.TweenProperty(goldenCoinSprite, "position",
+            new Vector2(goldenCoinSprite.Position.X, goldenCoinSprite.Position.Y - 10), 1f);
         coinTween.TweenProperty(goldenCoinSprite, "modulate:a", 0, 0.5f).SetDelay(0.5f);
     }
 

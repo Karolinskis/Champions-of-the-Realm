@@ -62,7 +62,7 @@ public partial class LoadingScreen : Control
             switch (sceneLoadStatus)
             {
                 case ResourceLoader.ThreadLoadStatus.InProgress:
-                break;
+                    break;
 
                 case ResourceLoader.ThreadLoadStatus.Loaded:
                     PackedScene loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;

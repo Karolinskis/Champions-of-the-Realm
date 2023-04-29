@@ -20,7 +20,7 @@ public partial class Actor : CharacterBody2D
         Team = GetNode<Team>("Team");
         collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
     }
-    
+
     public override void _PhysicsProcess(double delta)
     {
         knockBack = knockBack.MoveToward(Vector2.Zero, Convert.ToSingle(delta * 150));

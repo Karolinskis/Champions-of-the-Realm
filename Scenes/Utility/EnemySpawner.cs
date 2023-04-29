@@ -18,7 +18,7 @@ public partial class EnemySpawner : Node2D
 
     private int time; //variable to keep count of the time that has passed since spawning started
 
-    private int enemySpawnDistanceLimit = 400; //variable to change how far from the player enemies should spawn
+    [Export] public int enemySpawnDistanceLimit = 400; //variable to change how far from the player enemies should spawn
 
     private float limitLeft = 20f; //map coordinates limit left
     private float limitRight; //map coordinates limit right
@@ -56,10 +56,8 @@ public partial class EnemySpawner : Node2D
     {
         Vector2 position = Globals.GetRandomPositionWithinRadius(target.Position, enemySpawnDistanceLimit);
 
-        while (position.Y < limitTop || position.Y > limitBottom || position.X < limitLeft || position.X > limitRight)
-        {
-            position = Globals.GetRandomPositionWithinRadius(target.Position, enemySpawnDistanceLimit);
-        }
+        position.X = Math.Clamp(position.X, limitLeft, limitRight);
+        position.Y = Math.Clamp(position.Y, limitTop, limitBottom);
 
         return position;
     }
