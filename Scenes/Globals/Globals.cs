@@ -1,6 +1,8 @@
-using Godot;
+global using Godot;
+global using System;
+global using System.Linq;
+
 using Godot.Collections;
-using System;
 
 namespace ChampionsOfTheRealm;
 
