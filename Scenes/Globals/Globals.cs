@@ -161,12 +161,12 @@ public partial class Globals : Node
         return (float)scaled;
     }
 
-    /// <summary>
-    /// Method to get a random position within a set radius
-    /// </summary>
-    /// <param name="playerPosition">Player coordinates</param>
-    /// <param name="limit">Radius limit</param>
-    /// <returns>Vector2 object with position coordinates</returns>
+	/// <summary>
+	/// Method to get a random position within a set radius
+	/// </summary>
+	/// <param name="globalPosition">Player coordinates</param>
+	/// <param name="limit">Radius limit</param>
+	/// <returns>Vector2 object with position coordinates</returns>
 	public static Vector2 GetRandomPositionWithinRadius(Vector2 globalPosition, int limit)
     {
         float x = GetRandomFloat(globalPosition.X - limit, globalPosition.X + limit);

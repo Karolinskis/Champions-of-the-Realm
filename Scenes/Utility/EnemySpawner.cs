@@ -18,7 +18,10 @@ public partial class EnemySpawner : Node2D
 
     private int time; //variable to keep count of the time that has passed since spawning started
 
-    [Export] public int enemySpawnDistanceLimit = 400; //variable to change how far from the player enemies should spawn
+	/// <summary>
+	/// Export variable to change how far from the player enemies should spawn
+	/// </summary>
+	[Export] public int enemySpawnDistanceLimit = 400;
 
     private float limitLeft = 20f; //map coordinates limit left
     private float limitRight; //map coordinates limit right
