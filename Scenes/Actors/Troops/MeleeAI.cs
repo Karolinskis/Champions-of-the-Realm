@@ -2,6 +2,11 @@ using Godot;
 
 public partial class MeleeAI : Node2D
 {
+    /// <summary>
+    /// Enables debugging options
+    /// </summary>
+    [Export] bool DEBUG = false;
+
     public enum State
     {
         Idle = 0,   // Waits for next event
@@ -20,8 +25,6 @@ public partial class MeleeAI : Node2D
     /// </summary>
     private NavigationAgent2D navAgent;
     private TileMap map;
-
-    private bool DEBUG = false; // Enables debugging options
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
