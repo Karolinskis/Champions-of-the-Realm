@@ -15,7 +15,10 @@ public partial class MeleeAI : Node2D
     private Actor target;
     private Infantry parent;
     private State currentState = State.Idle;
-    private NavigationAgent2D navAgent; // 2D navigation agent to reach a position while avoiding obstacles
+    /// <summary>
+    /// 2D navigation agent to reach a position while avoiding obstacles
+    /// </summary>
+    private NavigationAgent2D navAgent;
     private TileMap map;
 
     private bool DEBUG = false; // Enables debugging options
