@@ -5,7 +5,7 @@ public partial class MeleeAI : Node2D
     /// <summary>
     /// Enables debugging options
     /// </summary>
-    [Export] bool DEBUG = false;
+    [Export] bool DEBUG { get; set; } = false;
 
     public enum State
     {
