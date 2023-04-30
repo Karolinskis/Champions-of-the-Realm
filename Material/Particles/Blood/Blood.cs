@@ -5,14 +5,14 @@ namespace ChampionsOfTheRealm;
 /// </summary>
 public partial class Blood : GpuParticles2D
 {
-    private Tween Tween { get; set; } // to interpolate opacity
+    private Tween tween; // to interpolate opacity
 
     public override void _Ready()
     {
         Emitting = true;
-        Tween = CreateTween();
-        Tween.TweenProperty(this, "modulate:a", 0, 2.5f); // interpolation
-        Tween.TweenCallback(new Callable(this, "TweenAllCompleted"));
+        tween = CreateTween();
+        tween.TweenProperty(this, "modulate:a", 0, 2.5f); // interpolation
+        tween.TweenCallback(new Callable(this, "TweenAllCompleted"));
     }
 
     /// <summary>

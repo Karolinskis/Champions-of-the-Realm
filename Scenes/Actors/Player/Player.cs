@@ -13,83 +13,74 @@ public partial class Player : Actor
     [Signal] public delegate void PlayerXpChangedEventHandler(float newXp);
     [Signal] public delegate void PlayerDiedEventHandler();
 
-    [Export] float SwingDuration  { get; set; } = 0.5f; // TODO: swing stab pierce hit
-    [Export] float ReloadDuration { get; set; } = 1f;
+    [Export] float swingDuration = 0.5f; // TODO: swing stab pierce hit
+    [Export] float reloadDuration = 1f;
 
     //TODO: lacking Joystick scene implementation
     //private Joystick movementJoystick;
     //private Joystick attackJoystick;
 
+    /// <summary>
+    /// Weapons manager for handeling weapons
+    /// </summary>
     public WeaponsManager WeaponsManager { get; set; }
 
-    private AnimationPlayer AnimationPlayer { get; set; }
+    private AnimationPlayer animationPlayer;
 
     // Camera transform for setting camera movement according to player movement
-    private RemoteTransform2D CameraTransform { get; set; }
+    private RemoteTransform2D cameraTransform;
+    private AudioStreamPlayer coinsSound; // Sound which is played when currency is received
 
-    // Sound which is played when currency is received
-    private AudioStreamPlayer CoinsSound { get; set; } 
-
-    // Movement Direction, in which player walks
-    private Vector2 MovementDirection { get; set; } = Vector2.Zero; 
-
-    // Attack Direction, in which player attacks
-    private Vector2 AttackDirection { get; set; } = Vector2.Zero; 
+    private Vector2 movementDirection = Vector2.Zero; // Movement Direction, in which player walks
+    private Vector2 attackDirection = Vector2.Zero; // Attack Direction, in which player attacks
 
     // Level system, whcih handels obtained xp, levelUp and obtaining skills
-    private LevelSystem LevelSystem { get; set; }
+    private LevelSystem levelSystem;
+    private PackedScene bloodScene; // Blood scene for emiting blood particales
+    private PackedScene damagePopup; // DamagePopup scene for showing received damage
 
-    // Blood scene for emiting blood particales
-    private PackedScene BloodScene { get; set; }
+    private bool canPause = true; // variable for deciding whether pausing is allowed.
 
-    // DamagePopup scene for showing received damage
-    private PackedScene DamagePopup { get; set; }
-
-    // Variable for deciding whether pausing is allowed
-    private bool CanPause { get; set; } = true;
-
-    // Object which handel Global actions (Saving, Loading)
-    private Globals Globals { get; set; } 
+    private Globals globals; // Object which handel Global actions (Saving, Loading)
 
     // Timer for increasing player armour for certain amount of time
-    private Timer DefendTimer { get; set; }
+    private Timer defendTimer;
 
-    private GpuParticles2D WalkingTrail { get; set; }
+    private GpuParticles2D walkingTrail;
 
     // Audio
-    private AudioStreamPlayer2D DamagePlayer { get; set; }
-    private AudioStream[] DamageSounds { get; set; }
+    private AudioStreamPlayer2D damagePlayer;
+    private AudioStream[] damageSounds;
 
     public override void _Ready()
     {
         base._Ready();
         // Loading packed scenes
-        BloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
-        DamagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
+        bloodScene = ResourceLoader.Load<PackedScene>("res://Material/Particles/Blood/Blood.tscn");
+        damagePopup = ResourceLoader.Load<PackedScene>("res://Scenes/UI/DamagePopup/DamagePopup.tscn");
 
         // Load audio streams
-        DamageSounds = new AudioStream[]
+        damageSounds = new AudioStream[]
         {
             GD.Load<AudioStream>("res://Sounds/SFX/Characters/Player/Damage/PlayerHurt1.mp3"),
             GD.Load<AudioStream>("res://Sounds/SFX/Characters/Player/Damage/PlayerHurt2.mp3")
         };
 
         // Getting nodes
-        AnimationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         WeaponsManager = GetNode<WeaponsManager>("WeaponsManager");
-        CameraTransform = GetNode<RemoteTransform2D>("CameraTransform");
+        cameraTransform = GetNode<RemoteTransform2D>("CameraTransform");
         Stats = GetNode<Stats>("Stats");
-        Globals = GetNode<Globals>("/root/Globals");
-        DefendTimer = GetNode<Timer>("DefendTimer");
-        LevelSystem = GetNode<LevelSystem>("LevelSystem");
-        WalkingTrail = GetNode<GpuParticles2D>("WalkingTrail");
-        CoinsSound = GetNode<AudioStreamPlayer>("CoinsSound");
-        DamagePlayer = GetNode<AudioStreamPlayer2D>("DamageSoundPlayer");
+        globals = GetNode<Globals>("/root/Globals");
+        defendTimer = GetNode<Timer>("DefendTimer");
+        levelSystem = GetNode<LevelSystem>("LevelSystem");
+        walkingTrail = GetNode<GpuParticles2D>("WalkingTrail");
+        coinsSound = GetNode<AudioStreamPlayer>("CoinsSound");
+        damagePlayer = GetNode<AudioStreamPlayer2D>("DamageSoundPlayer");
 
         // Initializing nodes
         WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
     }
-
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -103,17 +94,17 @@ public partial class Player : Actor
             if (Velocity != Vector2.Zero)
             {
                 PlayWalking();
-                WalkingTrail.Emitting = true;
+                walkingTrail.Emitting = true;
                 return;
             }
             else
             {
                 PlayIdle();
-                WalkingTrail.Emitting = false;
+                walkingTrail.Emitting = false;
             }
         }
 
-        WalkingTrail.Emitting = false;
+        walkingTrail.Emitting = false;
     }
 
     /// <summary>
@@ -125,7 +116,7 @@ public partial class Player : Actor
         base._Input(@event);
         if (@event is InputEventMouseButton eventMouseButton)
         {
-            if (eventMouseButton.ButtonIndex == MouseButton.Left && eventMouseButton.IsPressed() && DefendTimer.IsStopped())
+            if (eventMouseButton.ButtonIndex == MouseButton.Left && eventMouseButton.IsPressed() && defendTimer.IsStopped())
             {
                 float angle = GetGlobalTransformWithCanvas().Origin.AngleToPoint(eventMouseButton.Position);
                 if (WeaponsManager.Attack(angle))
@@ -133,25 +124,25 @@ public partial class Player : Actor
                     PlayAttackAnimation(angle);
                 }
             }
-            if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.IsPressed() && DefendTimer.IsStopped())
+            if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.IsPressed() && defendTimer.IsStopped())
             {
                 Stats.Armour += 10;
                 Modulate = new Color("50aaff"); // Defend color
-                DefendTimer.Start();
+                defendTimer.Start();
             }
         }
         else if (@event is InputEventKey eventKeyboardKey)
         {
             if (eventKeyboardKey.Keycode == Key.Escape && eventKeyboardKey.IsPressed())
             {
-                if (CanPause)
+                if (canPause)
                 {
-                    CanPause = false;
+                    canPause = false;
                     GetParent().Call("Pause");
                 }
                 else
                 {
-                    CanPause = true;
+                    canPause = true;
                 }
             }
         }
@@ -165,21 +156,21 @@ public partial class Player : Actor
     public override void HandleHit(float baseDamage, Vector2 impactPosition)
     {
         // Showing blood
-        Blood blood = BloodScene.Instantiate() as Blood;
+        Blood blood = bloodScene.Instantiate() as Blood;
         GetParent().AddChild(blood);
         blood.GlobalPosition = GlobalPosition;
         blood.Rotation = impactPosition.DirectionTo(GlobalPosition).Angle();
 
         // Showing inflicted damage
-        DamagePopup popup = DamagePopup.Instantiate() as DamagePopup;
+        DamagePopup popup = damagePopup.Instantiate() as DamagePopup;
         popup.Amount = (int)baseDamage;
         popup.Type = "Damage";
         AddChild(popup);
 
         // Play hit sound
-        int damageIndex = new Random().Next(0, DamageSounds.Length);
-        DamagePlayer.Stream = DamageSounds[damageIndex];
-        DamagePlayer.Play();
+        int damageIndex = new Random().Next(0, damageSounds.Length);
+        damagePlayer.Stream = damageSounds[damageIndex];
+        damagePlayer.Play();
 
         base.HandleHit(baseDamage, impactPosition);
         EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
@@ -212,7 +203,7 @@ public partial class Player : Actor
     {
         int oldGold = Stats.Gold;
         Stats.Gold += newGold;
-        CoinsSound.Play();
+        coinsSound.Play();
         EmitSignal(nameof(PLayerGoldChanged), oldGold, Stats.Gold);
     }
 
@@ -243,8 +234,8 @@ public partial class Player : Actor
     /// <param name="obtainedXp">Received xp</param>
     public void GetXp(float obtainedXp)
     {
-        LevelSystem.GetXp(obtainedXp);
-        EmitSignal(nameof(PlayerXpChanged), LevelSystem.CurrrentXp);
+        levelSystem.GetXp(obtainedXp);
+        EmitSignal(nameof(PlayerXpChanged), levelSystem.CurrrentXp);
     }
 
     // TODO: lacks WeaponsManager scene implementation
@@ -288,19 +279,19 @@ public partial class Player : Actor
     /// </summary>
     public void PlayIdle()
     {
-        switch (AnimationPlayer.CurrentAnimation)
+        switch (animationPlayer.CurrentAnimation)
         {
             case ("WalkBack"):
-                AnimationPlayer.Play("IdleBack");
+                animationPlayer.Play("IdleBack");
                 break;
             case ("WalkFront"):
-                AnimationPlayer.Play("IdleFront");
+                animationPlayer.Play("IdleFront");
                 break;
             case ("WalkLeft"):
-                AnimationPlayer.Play("IdleLeft");
+                animationPlayer.Play("IdleLeft");
                 break;
             case ("WalkRight"):
-                AnimationPlayer.Play("IdleRight");
+                animationPlayer.Play("IdleRight");
                 break;
         }
     }
@@ -312,19 +303,19 @@ public partial class Player : Actor
     {
         if (Input.IsActionPressed("UP"))
         {
-            AnimationPlayer.Play("WalkBack");
+            animationPlayer.Play("WalkBack");
         }
         else if (Input.IsActionPressed("DOWN"))
         {
-            AnimationPlayer.Play("WalkFront");
+            animationPlayer.Play("WalkFront");
         }
         else if (Input.IsActionPressed("LEFT"))
         {
-            AnimationPlayer.Play("WalkLeft");
+            animationPlayer.Play("WalkLeft");
         }
         else if (Input.IsActionPressed("RIGHT"))
         {
-            AnimationPlayer.Play("WalkRight");
+            animationPlayer.Play("WalkRight");
         }
         //WeaponsManager.Walking();
     }
@@ -376,7 +367,7 @@ public partial class Player : Actor
     /// <param name="cameraPath">Path of the camera</param>
     public void SetCameraTransform(NodePath cameraPath)
     {
-        CameraTransform.RemotePath = cameraPath;
+        cameraTransform.RemotePath = cameraPath;
     }
 
     /// <summary>
@@ -398,7 +389,7 @@ public partial class Player : Actor
             { "Stats.Speed", Stats.Speed },
             { "Stats.Gold", Stats.Gold },
             { "WeaponsManager", WeaponsManager.Save() },
-            { "LevelSystem", LevelSystem.Save() }
+            { "LevelSystem", levelSystem.Save() }
         };
     }
 
@@ -416,7 +407,7 @@ public partial class Player : Actor
         Stats.Speed = (float)data["Stats.Speed"];
         Stats.Gold = (int)data["Stats.Gold"];
         WeaponsManager.Load(new Dictionary<string, Variant>((Dictionary)data["WeaponsManager"]));
-        LevelSystem.Load(new Dictionary<string, Variant>((Dictionary)data["LevelSystem"]));
+        levelSystem.Load(new Dictionary<string, Variant>((Dictionary)data["LevelSystem"]));
         EmitSignal(nameof(PLayerGoldChanged), Stats.Gold, Stats.Gold);
         EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
         EmitSignal(nameof(PlayerMaxHealthChanged), Stats.MaxHealth);
