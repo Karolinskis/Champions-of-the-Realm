@@ -16,6 +16,7 @@ public partial class MeleeAI : Node2D
     private Infantry parent;
     private State currentState = State.Idle;
     private NavigationAgent2D navAgent;
+    private NavigationAgent2D navAgent; // 2D navigation agent to reach a position while avoiding obstacles
     private TileMap map;
 
     // Called when the node enters the scene tree for the first time.
@@ -25,6 +26,7 @@ public partial class MeleeAI : Node2D
         attackZone = GetNode<Area2D>("AttackArea");
         target = GetNode<Actor>("/root/Main/Player");
         navAgent = parent.GetNode<NavigationAgent2D>("NavigationAgent2D");
+        navAgent = GetNode<NavigationAgent2D>("../NavigationAgent2D");
         map = GetNode<TileMap>("/root/Main/TileMap");
         navAgent.SetNavigationMap(map.GetNavigationMap(0));
         navAgent.AvoidanceEnabled = true;
