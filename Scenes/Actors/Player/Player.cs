@@ -13,8 +13,8 @@ public partial class Player : Actor
     [Signal] public delegate void PlayerXpChangedEventHandler(float newXp);
     [Signal] public delegate void PlayerDiedEventHandler();
 
-    [Export] float swingDuration = 0.5f; // TODO: swing stab pierce hit
-    [Export] float reloadDuration = 1f;
+    [Export] float SwingDuration  { get; set; } = 0.5f; // TODO: swing stab pierce hit
+    [Export] float ReloadDuration { get; set; } = 1f;
 
     //TODO: lacking Joystick scene implementation
     //private Joystick movementJoystick;
