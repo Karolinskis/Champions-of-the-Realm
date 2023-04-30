@@ -15,9 +15,10 @@ public partial class MeleeAI : Node2D
     private Actor target;
     private Infantry parent;
     private State currentState = State.Idle;
-    private NavigationAgent2D navAgent;
     private NavigationAgent2D navAgent; // 2D navigation agent to reach a position while avoiding obstacles
     private TileMap map;
+
+    private bool DEBUG = false; // Enables debugging options
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -25,22 +26,25 @@ public partial class MeleeAI : Node2D
         parent = GetParent<Infantry>();
         attackZone = GetNode<Area2D>("AttackArea");
         target = GetNode<Actor>("/root/Main/Player");
-        navAgent = parent.GetNode<NavigationAgent2D>("NavigationAgent2D");
         navAgent = GetNode<NavigationAgent2D>("../NavigationAgent2D");
         map = GetNode<TileMap>("/root/Main/TileMap");
         navAgent.SetNavigationMap(map.GetNavigationMap(0));
-        navAgent.AvoidanceEnabled = true;
         if (target is not null)
         {
             currentState = State.Engage;
         }
+
+        navAgent.DebugEnabled = DEBUG;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _PhysicsProcess(double delta)
     {
-        navAgent.TargetPosition = target.GlobalPosition;
-
+        if (target is not null || !IsInstanceValid(target)) // Check to see if we actualy have a target
+        {
+            navAgent.TargetPosition = target.GlobalPosition;
+        }
+        
         switch (currentState)
         {
             case State.Idle:
