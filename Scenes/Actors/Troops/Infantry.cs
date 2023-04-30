@@ -3,9 +3,19 @@ using System;
 
 public partial class Infantry : Troop
 {
-    public MeleeAI AI { get; set; } // MeleeAI for Infantry troops
-    protected PackedScene bloodScene; // blood particales
-    protected PackedScene damagePopup; // For displaying inflicted damage
+    /// <summary>
+    /// MeleeAI for Infantry troops
+    /// </summary>
+    public MeleeAI AI { get; set; }
+    /// <summary>
+    /// Blood particles
+    /// </summary>
+    protected PackedScene bloodScene;
+    /// <summary>
+    /// For displaying inflicted damage
+    /// </summary>
+    protected PackedScene damagePopup;
+
     public override void _Ready()
     {
         base._Ready();
