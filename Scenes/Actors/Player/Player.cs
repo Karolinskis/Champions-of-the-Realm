@@ -88,19 +88,16 @@ public partial class Player : Actor
         RotateWeapon(); // Rotating weapon according to mouse position
 
         Direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
-        if (!WeaponsManager.IsAttacking())
+        if (Velocity != Vector2.Zero)
         {
-            if (Velocity != Vector2.Zero)
-            {
-                PlayWalking();
-                walkingTrail.Emitting = true;
-                return;
-            }
-            else
-            {
-                PlayIdle();
-                walkingTrail.Emitting = false;
-            }
+            PlayWalking();
+            walkingTrail.Emitting = true;
+            return;
+        }
+        else
+        {
+            PlayIdle();
+            walkingTrail.Emitting = false;
         }
         walkingTrail.Emitting = false;
     }

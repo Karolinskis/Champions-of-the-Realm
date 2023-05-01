@@ -81,7 +81,7 @@ public partial class Melee : Weapon
     /// <summary>
     /// Reset isDelivered flag and reenable weapon's collisionShape when cooldownTimer reaches zero.
     /// </summary>
-    //private void CooldownTimerTimeout()
-    //{
-    //}
+    private void CooldownTimerTimeout()
+    {
+    }
 }
