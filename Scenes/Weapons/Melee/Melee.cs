@@ -7,6 +7,10 @@ public partial class Melee : Weapon
     /// </summary>
     private Timer cooldownTimer;
 
+    /// <summary>
+    /// Animation player for playing idle, attacking weapon animations
+    /// Majority of weapon functionality is handled by AnimationPlayer
+    /// </summary>
     private AnimationPlayer animationPlayer;
 
     public override void _Ready()
@@ -75,7 +79,8 @@ public partial class Melee : Weapon
     }
 
     /// <summary>
-    /// Reset isDelivered flag and reenable weapon's collisionShape when cooldownTimer reaches zero.
+    /// Timeout signal is still connected, but the method is no longer used
+    /// Method might be used in the future if needed, to implement new functionality
     /// </summary>
     private void CooldownTimerTimeout()
     {
