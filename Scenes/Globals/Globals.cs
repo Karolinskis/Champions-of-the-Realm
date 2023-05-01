@@ -141,7 +141,7 @@ public partial class Globals : Node
         Vector2I size = new Vector2I((int)data["ResolutionX"], (int)data["ResolutionY"]);
         DisplayServer.WindowSetSize(size);
         AudioServer.SetBusVolumeDb(1, (int)data["MusicBusValue"]);
-        AudioServer.SetBusVolumeDb(2, (int)data["SfxBusValue"]); 
+        AudioServer.SetBusVolumeDb(2, (int)data["SfxBusValue"]);
         saveFile.Close();
         return data;
     }
@@ -159,6 +159,20 @@ public partial class Globals : Node
         double sample = rand.NextDouble();
         double scaled = (sample * range) + min;
         return (float)scaled;
+    }
+
+	/// <summary>
+	/// Method to get a random position within a set radius
+	/// </summary>
+	/// <param name="globalPosition">Player coordinates</param>
+	/// <param name="limit">Radius limit</param>
+	/// <returns>Vector2 object with position coordinates</returns>
+	public static Vector2 GetRandomPositionWithinRadius(Vector2 globalPosition, int limit)
+    {
+        float x = GetRandomFloat(globalPosition.X - limit, globalPosition.X + limit);
+        float y = GetRandomFloat(globalPosition.Y - limit, globalPosition.Y + limit);
+
+        return new Vector2(x, y);
     }
 
     /// <summary>

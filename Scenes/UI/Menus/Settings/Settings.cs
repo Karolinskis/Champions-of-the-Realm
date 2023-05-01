@@ -99,7 +99,7 @@ public partial class Settings : Control
     /// </summary>
     private void AddItems()
     {
-        foreach (var resolution in Resolutions) 
+        foreach (var resolution in Resolutions)
         {
             resolutionMenu.AddItem(resolution.Key);
         }

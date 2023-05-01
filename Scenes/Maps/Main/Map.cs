@@ -32,7 +32,7 @@ public partial class Map : Node2D
         globals = GetNode<Globals>("/root/Globals");
         hud = GetNode<GUI>("HUD");
         camera = GetNode<Camera2D>("Camera");
-        ground = GetNode<TileMap>("TileMapGround");
+        ground = GetNode<TileMap>("TileMap");
         playerSpawn = GetNode<Marker2D>("PlayerSpawn");
         enemySpawner = GetNode<EnemySpawner>("EnemySpawner");
         lootManager = GetNode<LootManager>("LootManager");
@@ -86,10 +86,10 @@ public partial class Map : Node2D
         Rect2 mapLimits = ground.GetUsedRect();
         Vector2 mapCellSize = ground.TileSet.TileSize;
         // 96px (two tiles of obstacle tilemap)
-        camera.LimitLeft = (int)(mapLimits.Position.X * mapCellSize.X) - 96;
-        camera.LimitRight = (int)(mapLimits.End.X * mapCellSize.X) - 96;
-        camera.LimitTop = (int)(mapLimits.Position.Y * mapCellSize.Y) - 96;
-        camera.LimitBottom = (int)(mapLimits.End.Y * mapCellSize.Y) - 96;
+        camera.LimitLeft = (int)(mapLimits.Position.X * mapCellSize.X);
+        camera.LimitRight = (int)(mapLimits.End.X * mapCellSize.X);
+        camera.LimitTop = (int)(mapLimits.Position.Y * mapCellSize.Y);
+        camera.LimitBottom = (int)(mapLimits.End.Y * mapCellSize.Y);
     }
 
     /// <summary>
@@ -165,7 +165,7 @@ public partial class Map : Node2D
         AddChild(player);
         player.SetCameraTransform(camera.GetPath());
         player.Connect("PlayerDied", new Callable(this, "ShowGameOver"));
-        
+
         hud.Initialize(player);
 
         player.Load(globals.Player);
