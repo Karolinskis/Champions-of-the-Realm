@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Melee : Weapon
+public partial class EnemyMeleeWeapon : Weapon
 {
     /// <summary>
     /// Flag inficating whether the weapon has already delivered damage to an object
@@ -12,12 +12,11 @@ public partial class Melee : Weapon
     /// </summary>
     private Timer cooldownTimer;
 
+    private Timer attackTimer;
     /// <summary>
     /// Represents the hitbox for the weapon
     /// </summary>
     private CollisionShape2D collisionShape;
-
-    private AnimationPlayer animationPlayer;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -25,7 +24,7 @@ public partial class Melee : Weapon
         base._Ready();
         collisionShape = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
         cooldownTimer = GetNode<Timer>("CooldownTimer");
-        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        attackTimer = GetNode<Timer>("AttackTimer");
     }
 
     /// <summary>
@@ -34,7 +33,7 @@ public partial class Melee : Weapon
     /// <returns></returns>
     public override bool CanAttack()
     {
-        return cooldownTimer.IsStopped();
+        return cooldownTimer.IsStopped() && attackTimer.IsStopped();
     }
 
     /// <summary>
@@ -42,7 +41,6 @@ public partial class Melee : Weapon
     /// </summary>
     public override void Idle()
     {
-        animationPlayer.Play("Idle");
     }
 
     /// <summary>
@@ -52,12 +50,14 @@ public partial class Melee : Weapon
     {
         if (CanAttack())
         {
-            animationPlayer.Play("Attack");
+            collisionShape.Disabled = false;
+            attackTimer.Start();
         }
     }
     // Give the weapon damage to the to the object that was hit
     public override void Deliver()
     {
+        collisionShape.Disabled = true;
         cooldownTimer.Start();
     }
 
@@ -91,5 +91,9 @@ public partial class Melee : Weapon
     private void CooldownTimerTimeout()
     {
         isDelivered = false;
+    }
+    private void AttackTimerTimeout()
+    {
+        Deliver();
     }
 }

@@ -2,13 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://b86f45ix6ghog" path="res://Scenes/Weapons/Weapon.tscn" id="1_bweml"]
 [ext_resource type="Script" path="res://Scenes/Weapons/Melee/Melee.cs" id="2_r085i"]
-[ext_resource type="Texture2D" uid="uid://34lwwajh0ndp" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="3_70sy7"]
+[ext_resource type="Texture2D" uid="uid://dolvcvmls57c3" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="3_70sy7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6slnw"]
 size = Vector2(2.73716, 13.1771)
 
 [node name="Melee" instance=ExtResource("1_bweml")]
-rotation = -1.5708
+position = Vector2(25, 87.5)
+rotation = 1.0451
 script = ExtResource("2_r085i")
 damage = 20.0
 Icon = ExtResource("3_70sy7")
@@ -18,20 +19,16 @@ rotation = -0.785398
 texture = ExtResource("3_70sy7")
 
 [node name="Area2D" type="Area2D" parent="." index="1"]
+collision_layer = 0
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
 position = Vector2(0.0390883, -3.29892)
 shape = SubResource("RectangleShape2D_6slnw")
-disabled = true
 
 [node name="CooldownTimer" type="Timer" parent="." index="2"]
 wait_time = 0.5
 one_shot = true
 
-[node name="AttackTimer" type="Timer" parent="." index="3"]
-wait_time = 0.1
-one_shot = true
-
 [connection signal="body_entered" from="Area2D" to="." method="Area2dBodyEntered"]
 [connection signal="timeout" from="CooldownTimer" to="." method="CooldownTimerTimeout"]
-[connection signal="timeout" from="AttackTimer" to="." method="AttackTimerTimeout"]

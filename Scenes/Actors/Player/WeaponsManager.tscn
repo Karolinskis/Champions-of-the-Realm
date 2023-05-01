@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://4r0a53kg5j02"]
 
 [ext_resource type="Script" path="res://Scenes/Actors/Player/WeaponsManager.cs" id="1_td0cc"]
-[ext_resource type="Texture2D" uid="uid://duxjiu1mhijhi" path="res://Sprites/Weapons/GoldSword/Player/PlayerIdle/IdleFront/PlayerIdleFront1.png" id="2_7441g"]
+[ext_resource type="Texture2D" uid="uid://cbkf72xawyj3k" path="res://Sprites/Weapons/GoldSword/Player/PlayerIdle/IdleFront/PlayerIdleFront1.png" id="2_7441g"]
 [ext_resource type="PackedScene" uid="uid://c7v7atlwcp2ug" path="res://Scenes/Weapons/Melee/LongSword.tscn" id="3_wxs6q"]
 
 [node name="WeaponsManager" type="Node2D"]
@@ -13,5 +13,9 @@ position = Vector2(0, 32)
 texture = ExtResource("2_7441g")
 
 [node name="LongSword" parent="." instance=ExtResource("3_wxs6q")]
+
+[node name="Area2D" parent="LongSword" index="1"]
+collision_layer = 1
+collision_mask = 1
 
 [editable path="LongSword"]

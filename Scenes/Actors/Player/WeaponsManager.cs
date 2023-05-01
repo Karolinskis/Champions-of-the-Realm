@@ -29,13 +29,9 @@ public partial class WeaponsManager : Node2D
     // Team of the actor
     private Team.Teams team;
 
-    // Time of attack
-    private Timer attackTimer;
-
     public override void _Ready()
     {
         CurrentWeapon = GetNode<Weapon>("LongSword");
-        attackTimer = GetNode<Timer>("LongSword/AttackTimer");
 
         int weaponAmmount = 2;
         weapons = GetChildren()
@@ -144,7 +140,6 @@ public partial class WeaponsManager : Node2D
     {
         if (CurrentWeapon != null && CurrentWeapon.CanAttack())
         {
-            GD.Print("hhhhhhhh");
             CurrentWeapon.Attack();
             return true;
         }
@@ -169,7 +164,7 @@ public partial class WeaponsManager : Node2D
     {
         if (IsAttacking)
         {
-            if (CurrentWeapon is Melee melee && attackTimer.IsStopped())
+            if (CurrentWeapon is Melee melee)
             {
                 IsAttacking = false;
                 melee.Deliver();
@@ -195,17 +190,6 @@ public partial class WeaponsManager : Node2D
     public Weapon[] GetWeapons()
     {
         return weapons;
-    }
-
-    /// <summary>
-    /// If the attack timer runs out it automaticaly delivers damage
-    /// </summary>
-    private void AttackTimerTimeout()
-    {
-        if (CurrentWeapon is Melee)
-        {
-            Deliver();
-        }
     }
 
     /// <summary>
