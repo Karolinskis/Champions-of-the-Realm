@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class Infantry : Troop
 {

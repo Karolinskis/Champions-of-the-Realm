@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class Footman : Infantry
 {
@@ -8,7 +7,7 @@ public partial class Footman : Infantry
     private AnimationPlayer animationPlayer;
     private EnemyMeleeWeapon weapon;
     private Sprite2D sprite; // Actor texture
-    // Called when the node enters the scene tree for the first time.
+
     public override void _Ready()
     {
         base._Ready();
@@ -19,7 +18,6 @@ public partial class Footman : Infantry
         sprite = GetNode<Sprite2D>("Sprite2D");
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _PhysicsProcess(double delta)
     {
         base._PhysicsProcess(delta);
@@ -138,8 +136,5 @@ public partial class Footman : Infantry
     /// <summary>
     /// Method for handling attack timer timeout
     /// </summary>
-    private void AttackTimerTimeout()
-    {
-        isAttacking = false;
-    }
+    private void AttackTimerTimeout() => isAttacking = false;
 }

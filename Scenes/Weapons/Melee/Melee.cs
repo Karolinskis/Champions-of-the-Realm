@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class Melee : Weapon
 {
@@ -10,7 +9,6 @@ public partial class Melee : Weapon
 
     private AnimationPlayer animationPlayer;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
@@ -22,10 +20,8 @@ public partial class Melee : Weapon
     /// Check if the weapon is currently off cool-down and can be used
     /// </summary>
     /// <returns></returns>
-    public override bool CanAttack()
-    {
-        return cooldownTimer.IsStopped() && !IsAttacking;
-    }
+    public override bool CanAttack() =>
+        cooldownTimer.IsStopped() && !IsAttacking;
 
     /// <summary>
     /// Define the behavior when the player is not attacking

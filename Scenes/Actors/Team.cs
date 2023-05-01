@@ -1,4 +1,5 @@
-using Godot;
+namespace ChampionsOfTheRealm;
+
 /// <summary>
 /// Class dedicated for getting and setting actors team
 /// </summary>

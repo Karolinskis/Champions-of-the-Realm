@@ -1,3 +1,5 @@
+namespace ChampionsOfTheRealm;
+
 using System.Collections.Concurrent;
 
 /// <summary>

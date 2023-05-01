@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 /// <summary>
 /// Enemy spawner class to spawn enemies in a random position in the map. It is possible to set a custom start and end time,
@@ -28,9 +27,6 @@ public partial class EnemySpawner : Node2D
     private float limitTop = 20f; //map coordinates limit top
     private float limitBottom; //map coordinates limit bottom
 
-    /// <summary>
-    /// Called when the node enters the scene tree for the first time.
-    /// </summary>
     public override void _Ready()
     {
         base._Ready();

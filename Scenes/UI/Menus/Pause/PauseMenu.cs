@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class PauseMenu : Control
 {
@@ -9,7 +8,6 @@ public partial class PauseMenu : Control
 
     private Godot.Collections.Dictionary<string, Variant> data; // Dictionary containing settings data
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         // Pausing the game
@@ -52,10 +50,7 @@ public partial class PauseMenu : Control
     /// <summary>
     /// Button for saving current game session.
     /// </summary>
-    private void ButtonSavePressed()
-    {
-        globals.SaveGame();
-    }
+    private void ButtonSavePressed() => globals.SaveGame();
 
     /// <summary>
     /// Button for loading existing save file.
@@ -76,6 +71,7 @@ public partial class PauseMenu : Control
         data = globals.LoadSettings();
         Settings settingsScreen = settingsScene.Instantiate<Settings>();
         AddChild(settingsScreen);
+        
         if (data != null)
         {
             // Setting resolution drop down and volume sliders
@@ -85,6 +81,7 @@ public partial class PauseMenu : Control
             settingsScreen.ResolutionDropDownItemSelected(resolution);
             settingsScreen.SetSliderValues(musicBusValue, sfxBusValue);
         }
+
         Control control = GetNode<Control>("CanvasLayer/Control");
         control.Hide();
     }

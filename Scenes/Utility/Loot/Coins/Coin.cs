@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class Coin : CharacterBody2D, IPoolable
 {
@@ -15,6 +14,7 @@ public partial class Coin : CharacterBody2D, IPoolable
     private Area2D slideArea; // coin slide area
     private Timer timer; // coin removed after certain amount of time.
     private Tween tween; // coin magnet.
+
     public override void _Ready()
     {
         takeArea = GetNode<Area2D>("Area2DTake");
@@ -34,10 +34,7 @@ public partial class Coin : CharacterBody2D, IPoolable
     /// <summary>
     /// Method for removing coin if it wasn't picked up in time.
     /// </summary>
-    private void TimerTimeout()
-    {
-        RemoveFromScene();
-    }
+    private void TimerTimeout() => RemoveFromScene();
 
     /// <summary>
     /// Method for when coin reaches player.
@@ -96,10 +93,12 @@ public partial class Coin : CharacterBody2D, IPoolable
     public void RemoveFromScene()
     {
         Hide();
+
         if (tween != null) // TODO
         {
             tween.Stop();
         }
+
         timer.Stop();
         GlobalPosition = new Vector2(-100, -100);
         movementDirection = GlobalPosition;

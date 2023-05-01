@@ -1,6 +1,6 @@
-using Godot;
+namespace ChampionsOfTheRealm;
+
 using Godot.Collections;
-using System;
 
 /// <summary>
 /// Class dedicated to implement Player functionality
@@ -13,8 +13,8 @@ public partial class Player : Actor
     [Signal] public delegate void PlayerXpChangedEventHandler(float newXp);
     [Signal] public delegate void PlayerDiedEventHandler();
 
-    [Export] float swingDuration = 0.5f; // TODO: swing stab pierce hit
-    [Export] float reloadDuration = 1f;
+    [Export] float SwingDuration  { get; set; } = 0.5f; // TODO: swing stab pierce hit
+    [Export] float ReloadDuration { get; set; } = 1f;
 
     //TODO: lacking Joystick scene implementation
     //private Joystick movementJoystick;
@@ -88,6 +88,7 @@ public partial class Player : Actor
         RotateWeapon(); // Rotating weapon according to mouse position
 
         Direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
+
         if (Velocity != Vector2.Zero)
         {
             PlayWalking();
@@ -99,6 +100,7 @@ public partial class Player : Actor
             PlayIdle();
             walkingTrail.Emitting = false;
         }
+
         walkingTrail.Emitting = false;
     }
 

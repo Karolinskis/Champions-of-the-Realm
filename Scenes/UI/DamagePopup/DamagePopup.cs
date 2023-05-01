@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class DamagePopup : Marker2D
 {
@@ -14,14 +13,12 @@ public partial class DamagePopup : Marker2D
     Vector2 maxSize = new Vector2(1, 1);
     private CharacterBody2D parent;
 
-    /// <summary>
-    /// Called when the node enters the scene tree for the first time.
-    /// </summary>
     public override void _Ready()
     {
         label = GetNode<Label>("FloatingText");
         label.Text = Amount.ToString();
         parent = GetParent() as CharacterBody2D;
+
         switch (Type)
         {
             case "Heal":
@@ -34,6 +31,7 @@ public partial class DamagePopup : Marker2D
                 label.Set("theme_override_colors/font_color", damageColor);
                 break;
         }
+
         Random rand = new Random();
         float sideMovementx = (rand.Next() % 81) - 61; //side movement variable
         float sideMovementy = (rand.Next() % 81) - 61; //side movement variable
@@ -56,8 +54,5 @@ public partial class DamagePopup : Marker2D
     /// <summary>
     /// Method for removing damage popup from screen when the animation is finished
     /// </summary>
-    private void TweenAllCompleted()
-    {
-        QueueFree();
-    }
+    private void TweenAllCompleted() => QueueFree();
 }

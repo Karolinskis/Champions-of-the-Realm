@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 /// <summary>
 /// GUI class that contains graphical UI elements and methods to change them
@@ -159,28 +158,22 @@ public partial class GUI : Control
     /// Method to change the text of xp label
     /// </summary>
     /// <param name="value"></param>
-    private void ChangeXPText(int value)
-    {
+    private void ChangeXPText(int value) => 
         XPLabel.Text = value.ToString();
-    }
 
     /// <summary>
     /// Method to change the current ammo value
     /// </summary>
     /// <param name="newAmmo">New ammo value</param>
-    private void ChangeCurrentAmmo(float newAmmo)
-    {
+    private void ChangeCurrentAmmo(float newAmmo) =>
         currentAmmoLabel.Text = newAmmo.ToString();
-    }
 
     /// <summary>
     /// Method to change the max ammo value
     /// </summary>
     /// <param name="newAmmo">New ammo value</param>
-    private void ChangeMaxAmmo(float newAmmo)
-    {
+    private void ChangeMaxAmmo(float newAmmo) =>
         maxAmmoLabel.Text = newAmmo.ToString();
-    }
 
     /// <summary>
     /// Change current item in index to given weapon
@@ -201,8 +194,5 @@ public partial class GUI : Control
     /// Switch item in index
     /// </summary>
     /// <param name="index">Index to switch from</param>
-    private void SwitchItem(int index)
-    {
-        currentItemIndex = index;
-    }
+    private void SwitchItem(int index) => currentItemIndex = index;
 }
