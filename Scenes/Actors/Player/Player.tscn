@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://brn45ugr5ycne" path="res://Scenes/Actors/Actor.tscn" id="1_vbg0f"]
 [ext_resource type="PackedScene" uid="uid://4r0a53kg5j02" path="res://Scenes/Actors/Player/WeaponsManager.tscn" id="2_mlpjm"]
 [ext_resource type="Script" path="res://Scenes/Actors/Player/Player.cs" id="2_ye4xq"]
+
 [ext_resource type="PackedScene" uid="uid://c7v7atlwcp2ug" path="res://Scenes/Weapons/Melee/LongSword.tscn" id="4_o6pcw"]
 [ext_resource type="Texture2D" uid="uid://c8gwxpxhdfi5y" path="res://Sprites/Actors/Player/PlayerAttack/RightAttacking/MainAttackRight1.png" id="4_qi82x"]
 [ext_resource type="Texture2D" uid="uid://bspq5b18lhk64" path="res://Sprites/Actors/Player/PlayerIdle/IdleFront/PlayerIdleFront1.png" id="5_gq5a5"]
@@ -158,127 +159,12 @@
 [ext_resource type="Texture2D" uid="uid://dtyj171mlg6rk" path="res://Sprites/Actors/Player/PlayerAttack/RightAttacking/MainAttackRight10.png" id="155_8oe7n"]
 [ext_resource type="PackedScene" uid="uid://b5331g7wgjpr8" path="res://Scenes/UI/CharacterMenu/LevelSystem.tscn" id="157_i8vkq"]
 [ext_resource type="AudioStream" uid="uid://dbuyjhokwiay5" path="res://Sounds/SFX/Utility/Loot/coins.mp3" id="157_kwdsl"]
+
 [ext_resource type="PackedScene" uid="uid://dja0qhoksthgh" path="res://Particles/Trails/WalkingTrail.tscn" id="158_hq1he"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4udlr"]
 radius = 19.0
 height = 55.5969
-
-[sub_resource type="Animation" id="Animation_nscb1"]
-resource_name = "AttackBack"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("117_cdvvg"), ExtResource("118_0kdjh"), ExtResource("119_o1d52"), ExtResource("120_a7vd4"), ExtResource("121_acvlx"), ExtResource("122_edemm"), ExtResource("123_4i385"), ExtResource("124_kfk55"), ExtResource("125_5rwwq"), ExtResource("126_wm33k")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["IdleBack", -1, 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_q5oyk"]
-resource_name = "AttackFront"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("127_ow48c"), ExtResource("128_ie2tx"), ExtResource("129_sjir8"), ExtResource("130_nrj68"), ExtResource("131_rwu36"), ExtResource("132_g4i01"), ExtResource("133_isvac"), ExtResource("134_fcml2"), ExtResource("135_6gig7"), ExtResource("136_dmuuv")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["IdleFront", -1, 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_50j3t"]
-resource_name = "AttackLeft"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("137_0r1gs"), ExtResource("138_hyjii"), ExtResource("139_8v12q"), ExtResource("140_od2dw"), ExtResource("141_ydl26"), ExtResource("142_e50g4"), ExtResource("143_23mtd"), ExtResource("144_jtqar"), ExtResource("145_6c01g"), ExtResource("146_g587c")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["IdleLeft", -1, 1.0, false],
-"method": &"play"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_mlvx5"]
-resource_name = "AttackRight"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("4_qi82x"), ExtResource("147_ux6fm"), ExtResource("148_lg4b5"), ExtResource("149_h541n"), ExtResource("150_7mb35"), ExtResource("151_tojkr"), ExtResource("152_v0jiw"), ExtResource("153_0asnn"), ExtResource("154_farwl"), ExtResource("155_8oe7n")]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("AnimationPlayer")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(1),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": ["IdleRight", -1, 1.0, false],
-"method": &"play"
-}]
-}
 
 [sub_resource type="Animation" id="Animation_6rfhl"]
 resource_name = "IdleBack"
@@ -414,10 +300,6 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_naqt1"]
 _data = {
-"AttackBack": SubResource("Animation_nscb1"),
-"AttackFront": SubResource("Animation_q5oyk"),
-"AttackLeft": SubResource("Animation_50j3t"),
-"AttackRight": SubResource("Animation_mlvx5"),
 "IdleBack": SubResource("Animation_6rfhl"),
 "IdleFront": SubResource("Animation_nf5ek"),
 "IdleLeft": SubResource("Animation_c40j8"),
@@ -442,7 +324,7 @@ position = Vector2(0, 26)
 scale = Vector2(1.00239, 1)
 
 [node name="Sprite2D" parent="." index="2"]
-texture = ExtResource("9_jabxl")
+texture = ExtResource("116_o3biv")
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, 7.94242)
