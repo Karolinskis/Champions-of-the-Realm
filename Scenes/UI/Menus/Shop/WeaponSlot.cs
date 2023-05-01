@@ -1,4 +1,4 @@
-using Godot;
+namespace ChampionsOfTheRealm;
 
 public partial class WeaponSlot : Panel
 {
@@ -22,6 +22,7 @@ public partial class WeaponSlot : Panel
     /// </summary>
     private void BuyWeaponButtonPressed()
     {
+        // Todo: Logic for buying weapon
         QueueFree();
     }
 }

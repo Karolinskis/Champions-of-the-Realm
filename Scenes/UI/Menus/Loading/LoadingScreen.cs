@@ -1,4 +1,4 @@
-using Godot;
+namespace ChampionsOfTheRealm;
 
 public partial class LoadingScreen : Control
 {
@@ -7,7 +7,6 @@ public partial class LoadingScreen : Control
     private AnimationPlayer animationPlayer;    // animation player node
     private string nextScene; // stores next scene path
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         control = GetNode<Control>("CanvasLayer/Control/");
@@ -33,10 +32,7 @@ public partial class LoadingScreen : Control
     /// Changes value of the loading bar.
     /// </summary>
     /// <param name="value">new loading bar value.</param>
-    private void ChangeLoadingBarValue(int value)
-    {
-        loadingBar.Value = value;
-    }
+    private void ChangeLoadingBarValue(int value) => loadingBar.Value = value;
 
     /// <summary>
     /// Loads a new scene.
@@ -55,6 +51,7 @@ public partial class LoadingScreen : Control
     {
         ResourceLoader.LoadThreadedRequest(nextScene);  // Begin loading
         ResourceLoader.ThreadLoadStatus sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
+        
         while (sceneLoadStatus != ResourceLoader.ThreadLoadStatus.Loaded)
         {
             sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
@@ -91,8 +88,5 @@ public partial class LoadingScreen : Control
     /// <summary>
     /// Deletes this scene.
     /// </summary>
-    public void DeleteScene()
-    {
-        QueueFree();
-    }
+    public void DeleteScene() => QueueFree();
 }

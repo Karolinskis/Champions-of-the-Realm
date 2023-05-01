@@ -1,8 +1,4 @@
-using Godot;
-using Godot.Collections;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+namespace ChampionsOfTheRealm;
 
 // Class dedicated for storing weapons with switching functionality
 public partial class WeaponsManager : Node2D

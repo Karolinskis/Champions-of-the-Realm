@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class Weapon : Node2D
 {
@@ -23,35 +22,23 @@ public partial class Weapon : Node2D
 
     protected Team.Teams team;
 
-    // Called when the node enters the scene tree for the first time.
-    //public override void _Ready()
-    //{
-    //}
-
-    public void Initialize(Team.Teams teamName)
-    {
-        team = teamName;
-    }
+    public void Initialize(Team.Teams teamName) => team = teamName;
 
     public virtual bool CanAttack()
     {
         GD.PushError("Calling CanAttack method from weapon class");
         return false;
     }
-    public virtual void Idle()
-    {
+
+    public virtual void Idle() =>
         GD.PushError("Calling Idle method from weapon class");
-    }
-    public virtual void Attack()
-    {
+
+    public virtual void Attack() =>
         GD.PushError("Calling Attack method from weapon class");
-    }
-    public virtual void Deliver()
-    {
+
+    public virtual void Deliver() =>
         GD.PushError("Calling Deliver method from weapon class");
-    }
-    public virtual void Walking()
-    {
+
+    public virtual void Walking() =>
         GD.PushError("Calling Walking method from weapon class");
-    }
 }

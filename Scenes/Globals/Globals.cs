@@ -1,6 +1,10 @@
-using Godot;
+global using Godot;
+global using System;
+global using System.Linq;
+
 using Godot.Collections;
-using System;
+
+namespace ChampionsOfTheRealm;
 
 /// <summary>
 /// Class for handling global actions (Scene switching, save/load functionality)
@@ -39,6 +43,7 @@ public partial class Globals : Node
         {
             DirAccess.MakeDirRecursiveAbsolute(SaveDir); // if not create one
         }
+
         // opening file and encrpypting file with password
         FileAccess saveFile = FileAccess.OpenEncryptedWithPass(savePath, FileAccess.ModeFlags.Write, "nekompiliuoja");
         if (saveFile.GetError() != Error.Ok) // checking if opened JSON file without errors
@@ -46,6 +51,7 @@ public partial class Globals : Node
             GD.PushError("Failed to save data!"); // for debuging purposes
             return false;
         }
+
         Array<Node> saveNodes = GetTree().GetNodesInGroup("Persist");
         foreach (Node saveNode in saveNodes)
         {
@@ -59,6 +65,7 @@ public partial class Globals : Node
             GD.Print(data); // for debugging purposes
             saveFile.StoreLine(Json.Stringify(data)); // parsing dictionary to JSON file
         }
+
         saveFile.Close();
         return true;
     }
@@ -75,23 +82,27 @@ public partial class Globals : Node
             GetTree().ChangeSceneToFile("res://Scenes/UI/Menus/Main/MainMenu.tscn");
             return;
         }
+
         // getting all unwanted save nodes in current scene
         Array<Node> saveNodes = GetTree().GetNodesInGroup("Presist");
         foreach (Node saveNode in saveNodes)
         {
             saveNode.QueueFree(); // removing all unwanted save nodes
         }
+
         GetTree().CurrentScene.QueueFree(); // Big bug
         if (saveNodes.Count > 0)
         {
             // Giving small amount of time to fully remove all unwanted nodes (It takes time to free from memory)
             await ToSignal(GetTree().CreateTimer(0.00001f), "timeout"); // TODO: implement better solution, without async
         }
+
         FileAccess saveFile = FileAccess.OpenEncryptedWithPass(savePath, FileAccess.ModeFlags.Read, "nekompiliuoja");
         if (saveFile.GetError() != Error.Ok) // Checking if saveFile was loaded without any errors
         {
             GD.PushError("Failed to load data!"); // for debuging purposes
         }
+
         while (saveFile.GetPosition() < saveFile.GetLength()) // reading every JSON line
         {
             // Loading data about saved nodes and parsing it to dictionaries
@@ -104,6 +115,7 @@ public partial class Globals : Node
             GetNode(data["Parent"].ToString()).AddChild(newObject);
             newObject.Call("Load", data);
         }
+
         saveFile.Close();
         // Calling method to load player inside scene
         GetTree().CurrentScene.Call("LoadSavedPlayer");
@@ -117,11 +129,13 @@ public partial class Globals : Node
     public bool SaveSettings(Godot.Collections.Dictionary<string, Variant> data)
     {
         FileAccess saveFile = FileAccess.Open(settingsPath, FileAccess.ModeFlags.Write);
+        
         if (saveFile.GetError() != Error.Ok)
         {
             GD.PushError("Failed to save settings!");
             return false;
         }
+
         saveFile.StoreLine(Json.Stringify(data));
         saveFile.Close();
         return true;
@@ -133,9 +147,8 @@ public partial class Globals : Node
     public Dictionary<string, Variant> LoadSettings()
     {
         if (!FileAccess.FileExists(settingsPath))
-        {
             return null;
-        }
+
         FileAccess saveFile = FileAccess.Open(settingsPath, FileAccess.ModeFlags.Read);
         Dictionary<string, Variant> data = (Dictionary<string, Variant>)Json.ParseString(saveFile.GetLine());
         Vector2I size = new Vector2I((int)data["ResolutionX"], (int)data["ResolutionY"]);

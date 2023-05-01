@@ -1,7 +1,6 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
+
 using System.Collections.Generic;
-using System.Linq;
 
 public partial class Settings : Control
 {
@@ -29,7 +28,6 @@ public partial class Settings : Control
         { "800x600", new Vector2I(800, 600) }
     };
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");
@@ -135,6 +133,7 @@ public partial class Settings : Control
     public void Save()
     {
         Vector2I resolution = DisplayServer.WindowGetSize();
+        
         Godot.Collections.Dictionary<string, Variant> data = new Godot.Collections.Dictionary<string, Variant>()
         {
             { "ResolutionIndex", resolutionIndex },
@@ -143,6 +142,7 @@ public partial class Settings : Control
             { "MusicBusValue", AudioServer.GetBusVolumeDb(musicBus)},
             { "SfxBusValue", AudioServer.GetBusVolumeDb(sfxBus)}
         };
+
         globals.SaveSettings(data);
     }
 }

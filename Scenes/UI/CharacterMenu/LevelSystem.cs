@@ -1,4 +1,5 @@
-using Godot;
+namespace ChampionsOfTheRealm;
+
 using Godot.Collections;
 
 /// <summary>

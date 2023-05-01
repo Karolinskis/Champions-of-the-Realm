@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class Melee : Weapon
 {
@@ -18,7 +17,6 @@ public partial class Melee : Weapon
     /// </summary>
     private CollisionShape2D collisionShape;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
@@ -31,10 +29,8 @@ public partial class Melee : Weapon
     /// Check if the weapon is currently off cool-down and can be used
     /// </summary>
     /// <returns></returns>
-    public override bool CanAttack()
-    {
-        return cooldownTimer.IsStopped() && attackTimer.IsStopped();
-    }
+    public override bool CanAttack() =>
+        cooldownTimer.IsStopped() && attackTimer.IsStopped();
 
     /// <summary>
     /// Define the behavior when the player is not attacking
@@ -88,12 +84,7 @@ public partial class Melee : Weapon
     /// <summary>
     /// Reset isDelivered flag and reenable weapon's collisionShape when cooldownTimer reaches zero.
     /// </summary>
-    private void CooldownTimerTimeout()
-    {
-        isDelivered = false;
-    }
-    private void AttackTimerTimeout()
-    {
-        Deliver();
-    }
+    private void CooldownTimerTimeout() => isDelivered = false;
+
+    private void AttackTimerTimeout() => Deliver();
 }

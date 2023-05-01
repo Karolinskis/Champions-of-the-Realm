@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 /// <summary>
 /// Interface for objects which will be pooled and reused (Usually projectiles)

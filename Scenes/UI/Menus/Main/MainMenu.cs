@@ -1,5 +1,4 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class MainMenu : Control
 {
@@ -8,7 +7,6 @@ public partial class MainMenu : Control
     protected bool LoadNew;
     private Godot.Collections.Dictionary<string, Variant> data; // Dictionary containing settings data
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");
@@ -44,6 +42,7 @@ public partial class MainMenu : Control
         data = globals.LoadSettings();
         Settings settingsScreen = settingsScene.Instantiate<Settings>();
         AddChild(settingsScreen);
+        
         if (data != null)
         {
             // Setting resolution drop down and volume sliders
@@ -53,6 +52,7 @@ public partial class MainMenu : Control
             settingsScreen.ResolutionDropDownItemSelected(resolution);
             settingsScreen.SetSliderValues(musicBusValue, sfxBusValue);
         }
+
         Control control = GetNode<Control>("CanvasLayer/Control");
         control.Hide();
     }
@@ -60,8 +60,5 @@ public partial class MainMenu : Control
     /// <summary>
     /// Button for quiting the game.
     /// </summary>
-    private void ButtonQuitPressed()
-    {
-        GetTree().Quit();
-    }
+    private void ButtonQuitPressed() => GetTree().Quit();
 }

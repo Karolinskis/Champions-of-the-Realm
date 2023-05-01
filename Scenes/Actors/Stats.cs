@@ -1,4 +1,4 @@
-using Godot;
+namespace ChampionsOfTheRealm;
 
 /// <summary>
 /// Class dedicated for storing actors stats (Health, MaxHealth Armor, Speed, Gold)

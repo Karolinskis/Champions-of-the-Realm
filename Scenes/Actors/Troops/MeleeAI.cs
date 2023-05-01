@@ -1,4 +1,4 @@
-using Godot;
+namespace ChampionsOfTheRealm;
 
 public partial class MeleeAI : Node2D
 {
@@ -26,7 +26,6 @@ public partial class MeleeAI : Node2D
     private NavigationAgent2D navAgent;
     private TileMap map;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         parent = GetParent<Infantry>();
@@ -43,7 +42,6 @@ public partial class MeleeAI : Node2D
         navAgent.DebugEnabled = DEBUG;
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _PhysicsProcess(double delta)
     {
         if (target is not null || !IsInstanceValid(target)) // Check to see if we actualy have a target

@@ -1,11 +1,9 @@
-using Godot;
-using System;
+namespace ChampionsOfTheRealm;
 
 public partial class GameOver : Control
 {
     private Globals globals; // global variables and functionality
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         GetTree().Paused = true;
@@ -45,8 +43,5 @@ public partial class GameOver : Control
     /// <summary>
     /// Button for quiting to desktop.
     /// </summary>
-    private void ButtonQuitPressed()
-    {
-        GetTree().Quit();
-    }
+    private void ButtonQuitPressed() => GetTree().Quit();
 }

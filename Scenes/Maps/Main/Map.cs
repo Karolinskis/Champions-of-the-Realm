@@ -1,4 +1,5 @@
-using Godot;
+namespace ChampionsOfTheRealm;
+
 using Godot.Collections;
 
 /// <summary>
@@ -19,7 +20,6 @@ public partial class Map : Node2D
     protected EnemySpawner enemySpawner; //Enemy spawner
     protected LootManager lootManager; // Loot manager
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         // Loading resources
@@ -55,6 +55,7 @@ public partial class Map : Node2D
                 GD.PushError("Map instantiated without loading form!");
                 break;
         }
+
         SetCameraLimits(); // Setting camera limits so the camera won't go beyond borders
         SetEnemySpawnLimits();
         GetTree().CurrentScene = this;
