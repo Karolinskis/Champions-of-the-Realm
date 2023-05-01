@@ -80,6 +80,10 @@ PAUSE={
 2d_physics/layer_4="Projectile"
 2d_physics/layer_5="Obstacle"
 
+[navigation]
+
+2d/default_edge_connection_margin=32
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

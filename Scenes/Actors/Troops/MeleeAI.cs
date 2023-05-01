@@ -2,6 +2,11 @@ namespace ChampionsOfTheRealm;
 
 public partial class MeleeAI : Node2D
 {
+    /// <summary>
+    /// Enables debugging options
+    /// </summary>
+    [Export] bool DEBUG { get; set; } = false;
+
     public enum State
     {
         Idle = 0,   // Waits for next event
@@ -15,20 +20,35 @@ public partial class MeleeAI : Node2D
     private Actor target;
     private Infantry parent;
     private State currentState = State.Idle;
+    /// <summary>
+    /// 2D navigation agent to reach a position while avoiding obstacles
+    /// </summary>
+    private NavigationAgent2D navAgent;
+    private TileMap map;
 
     public override void _Ready()
     {
         parent = GetParent<Infantry>();
         attackZone = GetNode<Area2D>("AttackArea");
         target = GetNode<Actor>("/root/Main/Player");
+        navAgent = GetNode<NavigationAgent2D>("../NavigationAgent2D");
+        map = GetNode<TileMap>("/root/Main/TileMap");
+        navAgent.SetNavigationMap(map.GetNavigationMap(0));
         if (target is not null)
         {
             currentState = State.Engage;
         }
+
+        navAgent.DebugEnabled = DEBUG;
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        if (target is not null || !IsInstanceValid(target)) // Check to see if we actualy have a target
+        {
+            navAgent.TargetPosition = target.GlobalPosition;
+        }
+        
         switch (currentState)
         {
             case State.Idle:
@@ -40,7 +60,7 @@ public partial class MeleeAI : Node2D
                     break;
                 }
                 Rotation = GlobalPosition.DirectionTo(target.GlobalPosition).Angle();
-                parent.Direction = parent.GlobalPosition.DirectionTo(target.GlobalPosition);
+                parent.Direction = parent.GlobalPosition.DirectionTo(navAgent.GetNextPathPosition());
                 break;
 
             case State.Attack:
