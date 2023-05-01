@@ -1,0 +1,128 @@
+[gd_scene load_steps=7 format=3 uid="uid://c7v7atlwcp2ug"]
+
+[ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="1_lxlsb"]
+[ext_resource type="Texture2D" uid="uid://34lwwajh0ndp" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="2_nhwga"]
+
+[sub_resource type="Animation" id="Animation_1otha"]
+resource_name = "Attack"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(10, 0), Vector2(20, 0), Vector2(40, 0), Vector2(60, 30), Vector2(80, 40), Vector2(70, 60), Vector2(40, 80), Vector2(10, 95), Vector2(-10, 95), Vector2(-20, 95), Vector2(-30, 90), Vector2(0, 90), Vector2(40, 80), Vector2(70, 60), Vector2(80, 40), Vector2(60, 30), Vector2(20, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.7001, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-1.5708, -1.39626, -1.0472, -0.523599, -0.349066, 0.698132, 1.74533, 2.0944, -1.0472, 3.14159, 3.49066, 3.83972, 4.18879, 3.14159, 2.0944, 1.74533, 0.698132, -0.349066, -1.0472, -1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_41000"]
+resource_name = "Deliver"
+
+[sub_resource type="Animation" id="Animation_qj001"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_nhwga")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-1.5708]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Area2D/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vfa72"]
+_data = {
+"Attack": SubResource("Animation_1otha"),
+"Deliver": SubResource("Animation_41000"),
+"Idle": SubResource("Animation_qj001")
+}
+
+[node name="LongSword" instance=ExtResource("1_lxlsb")]
+scale = Vector2(3.34, 3.34)
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+disabled = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_vfa72")
+}

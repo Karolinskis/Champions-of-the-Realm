@@ -79,7 +79,7 @@ public partial class Player : Actor
         damagePlayer = GetNode<AudioStreamPlayer2D>("DamageSoundPlayer");
 
         // Initializing nodes
-        WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
+        WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/LongSword"));
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -116,11 +116,7 @@ public partial class Player : Actor
         {
             if (eventMouseButton.ButtonIndex == MouseButton.Left && eventMouseButton.IsPressed() && defendTimer.IsStopped())
             {
-                float angle = GetGlobalTransformWithCanvas().Origin.AngleToPoint(eventMouseButton.Position);
-                if (WeaponsManager.Attack(angle))
-                {
-                    PlayAttackAnimation(angle);
-                }
+                WeaponsManager.Attack();
             }
             if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.IsPressed() && defendTimer.IsStopped())
             {

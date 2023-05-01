@@ -18,6 +18,8 @@ public partial class Melee : Weapon
     /// </summary>
     private CollisionShape2D collisionShape;
 
+    private AnimationPlayer animationPlayer;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -25,6 +27,7 @@ public partial class Melee : Weapon
         collisionShape = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
         cooldownTimer = GetNode<Timer>("CooldownTimer");
         attackTimer = GetNode<Timer>("AttackTimer");
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
 
     /// <summary>
@@ -41,6 +44,7 @@ public partial class Melee : Weapon
     /// </summary>
     public override void Idle()
     {
+        animationPlayer.Play("Idle");
     }
 
     /// <summary>
@@ -50,7 +54,7 @@ public partial class Melee : Weapon
     {
         if (CanAttack())
         {
-            collisionShape.Disabled = false;
+            animationPlayer.Play("Attack");
             attackTimer.Start();
         }
     }

@@ -34,8 +34,8 @@ public partial class WeaponsManager : Node2D
 
     public override void _Ready()
     {
-        CurrentWeapon = GetNode<Weapon>("Melee");
-        attackTimer = GetNode<Timer>("Melee/AttackTimer");
+        CurrentWeapon = GetNode<Weapon>("LongSword");
+        attackTimer = GetNode<Timer>("LongSword/AttackTimer");
 
         int weaponAmmount = 2;
         weapons = GetChildren()
@@ -48,7 +48,7 @@ public partial class WeaponsManager : Node2D
             })
             .ToArray();
 
-        CurrentWeapon.Hide();
+        CurrentWeapon.Show();
     }
 
     /// <summary>
@@ -139,14 +139,12 @@ public partial class WeaponsManager : Node2D
     /// <summary>
     /// Method for handling weapon when attacking
     /// </summary>
-    /// <param name="rotation"></param>
     /// <returns>If can attack</returns>
-    public bool Attack(float rotation)
+    public bool Attack()
     {
         if (CurrentWeapon != null && CurrentWeapon.CanAttack())
         {
-            GD.Print(rotation);
-            Rotation = rotation;
+            GD.Print("hhhhhhhh");
             CurrentWeapon.Attack();
             return true;
         }
