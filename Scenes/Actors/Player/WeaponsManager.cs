@@ -21,11 +21,6 @@ public partial class WeaponsManager : Node2D
     /// </summary>
     public Weapon[] weapons;
 
-    /// <summary>
-    /// Check if the actor is currently attacking
-    /// </summary>
-    public bool IsAttacking { get; set; } = false;
-
     // Team of the actor
     private Team.Teams team;
 
@@ -57,6 +52,7 @@ public partial class WeaponsManager : Node2D
         team = setTeam;
         weapon.Initialize(team);
         CurrentWeapon = weapon;
+        CurrentWeapon.Show();
 
         for (int i = 0; i < weapons.Length; i++)
         {
@@ -121,6 +117,15 @@ public partial class WeaponsManager : Node2D
     }
 
     /// <summary>
+    /// Method for checking if current weapon is attacking
+    /// </summary>
+    /// <returns>True if attacking, false if not attacking</returns>
+    public bool IsAttacking()
+    {
+        return CurrentWeapon.IsAttacking;
+    }
+
+    /// <summary>
     /// Method for handling weapon when idle
     /// </summary>
     public void Idle()
@@ -151,10 +156,7 @@ public partial class WeaponsManager : Node2D
     /// </summary>
     public void CancelAttack()
     {
-        IsAttacking = false;
-        Player player = GetParent() as Player;
-        player.PlayIdle();
-        //CurrentWeapon.StartCooldown();
+        CurrentWeapon.Deliver();
     }
 
     /// <summary>
@@ -162,11 +164,10 @@ public partial class WeaponsManager : Node2D
     /// </summary>
     public void Deliver()
     {
-        if (IsAttacking)
+        if (IsAttacking())
         {
             if (CurrentWeapon is Melee melee)
             {
-                IsAttacking = false;
                 melee.Deliver();
             }
         }

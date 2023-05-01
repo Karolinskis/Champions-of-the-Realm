@@ -88,7 +88,7 @@ public partial class Player : Actor
         RotateWeapon(); // Rotating weapon according to mouse position
 
         Direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
-        if (!WeaponsManager.IsAttacking)
+        if (!WeaponsManager.IsAttacking())
         {
             if (Velocity != Vector2.Zero)
             {
@@ -254,8 +254,11 @@ public partial class Player : Actor
     /// </summary>
     private void RotateWeapon()
     {
+        if (WeaponsManager.IsAttacking()) return;
+
         Vector2 mouseCords = GetGlobalMousePosition();
         float angle = GetAngleTo(mouseCords);
+
         if (angle >= -Math.PI / 2 && angle <= Math.PI / 2)
         {
             WeaponsManager.Scale = new Vector2(Scale.X, 1);

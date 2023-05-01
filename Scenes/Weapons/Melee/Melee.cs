@@ -4,18 +4,9 @@ using System;
 public partial class Melee : Weapon
 {
     /// <summary>
-    /// Flag inficating whether the weapon has already delivered damage to an object
-    /// </summary>
-    protected bool isDelivered = false;
-    /// <summary>
     /// Keeps track of the cool-down time for the weapon
     /// </summary>
     private Timer cooldownTimer;
-
-    /// <summary>
-    /// Represents the hitbox for the weapon
-    /// </summary>
-    private CollisionShape2D collisionShape;
 
     private AnimationPlayer animationPlayer;
 
@@ -23,7 +14,6 @@ public partial class Melee : Weapon
     public override void _Ready()
     {
         base._Ready();
-        collisionShape = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
         cooldownTimer = GetNode<Timer>("CooldownTimer");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }
@@ -34,7 +24,7 @@ public partial class Melee : Weapon
     /// <returns></returns>
     public override bool CanAttack()
     {
-        return cooldownTimer.IsStopped();
+        return cooldownTimer.IsStopped() && !IsAttacking;
     }
 
     /// <summary>
@@ -43,6 +33,7 @@ public partial class Melee : Weapon
     public override void Idle()
     {
         animationPlayer.Play("Idle");
+        IsAttacking = false;
     }
 
     /// <summary>
@@ -52,13 +43,18 @@ public partial class Melee : Weapon
     {
         if (CanAttack())
         {
+            IsAttacking = true;
             animationPlayer.Play("Attack");
         }
     }
-    // Give the weapon damage to the to the object that was hit
+    /// <summary>
+    /// Method for placing the weapon on cool-down
+    /// </summary>
     public override void Deliver()
     {
+        animationPlayer.Play("Idle");
         cooldownTimer.Start();
+        IsAttacking = false;
     }
 
     /// <summary>
@@ -75,21 +71,17 @@ public partial class Melee : Weapon
     public virtual void Area2dBodyEntered(Node body)
     {
         if (body is Actor actor &&
-            actor.GetTeam() != team &&
-            !isDelivered)
+            actor.GetTeam() != team)
         {
             actor.HandleHit(damage, GlobalPosition);
             actor.HandleKnockback(knockback, GlobalPosition);
-            CallDeferred("Deliver");
-            isDelivered = true;
         }
     }
 
     /// <summary>
     /// Reset isDelivered flag and reenable weapon's collisionShape when cooldownTimer reaches zero.
     /// </summary>
-    private void CooldownTimerTimeout()
-    {
-        isDelivered = false;
-    }
+    //private void CooldownTimerTimeout()
+    //{
+    //}
 }

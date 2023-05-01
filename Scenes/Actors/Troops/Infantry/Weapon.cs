@@ -21,6 +21,8 @@ public partial class Weapon : Node2D
     /// <value>Texture2D icon of weapon</value>
     [Export] public Texture2D Icon { get; set; }
 
+    public bool IsAttacking { get; set; } = false;
+
     protected Team.Teams team;
 
     // Called when the node enters the scene tree for the first time.
