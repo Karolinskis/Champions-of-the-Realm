@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://nvmkw0sntxuw"]
+
+[ext_resource type="PackedScene" uid="uid://b86f45ix6ghog" path="res://Scenes/Weapons/Weapon.tscn" id="1_bweml"]
+[ext_resource type="Script" path="res://Scenes/Weapons/EnemyWeapons/EnemyMeleeWeapon.cs" id="2_t5fcy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6slnw"]
+size = Vector2(65.5, 29.086)
+
+[node name="EnemyMelee" instance=ExtResource("1_bweml")]
+script = ExtResource("2_t5fcy")
+damage = 25.0
+knockback = 1.5
+
+[node name="Area2D" type="Area2D" parent="." index="1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource("RectangleShape2D_6slnw")
+disabled = true
+
+[node name="CooldownTimer" type="Timer" parent="." index="2"]
+wait_time = 0.5
+one_shot = true
+
+[node name="AttackTimer" type="Timer" parent="." index="3"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="Area2dBodyEntered"]
+[connection signal="timeout" from="CooldownTimer" to="." method="CooldownTimerTimeout"]
+[connection signal="timeout" from="AttackTimer" to="." method="AttackTimerTimeout"]

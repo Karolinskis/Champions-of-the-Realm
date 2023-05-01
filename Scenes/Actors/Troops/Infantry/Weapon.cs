@@ -20,6 +20,8 @@ public partial class Weapon : Node2D
     /// <value>Texture2D icon of weapon</value>
     [Export] public Texture2D Icon { get; set; }
 
+    public bool IsAttacking { get; set; } = false;
+
     protected Team.Teams team;
 
     public void Initialize(Team.Teams teamName) => team = teamName;

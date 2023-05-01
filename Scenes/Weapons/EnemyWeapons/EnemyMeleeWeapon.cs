@@ -1,39 +1,45 @@
 namespace ChampionsOfTheRealm;
 
-public partial class Melee : Weapon
+public partial class EnemyMeleeWeapon : Weapon
 {
+    /// <summary>
+    /// Flag inficating whether the weapon has already delivered damage to an object
+    /// </summary>
+    protected bool isDelivered = false;
     /// <summary>
     /// Keeps track of the cool-down time for the weapon
     /// </summary>
     private Timer cooldownTimer;
 
+    private Timer attackTimer;
     /// <summary>
-    /// Animation player for playing idle, attacking weapon animations
-    /// Majority of weapon functionality is handled by AnimationPlayer
+    /// Represents the hitbox for the weapon
     /// </summary>
-    private AnimationPlayer animationPlayer;
+    private CollisionShape2D collisionShape;
 
+    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         base._Ready();
+        collisionShape = GetNode<CollisionShape2D>("Area2D/CollisionShape2D");
         cooldownTimer = GetNode<Timer>("CooldownTimer");
-        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        attackTimer = GetNode<Timer>("AttackTimer");
     }
 
     /// <summary>
     /// Check if the weapon is currently off cool-down and can be used
     /// </summary>
     /// <returns></returns>
-    public override bool CanAttack() =>
-        cooldownTimer.IsStopped() && !IsAttacking;
+    public override bool CanAttack()
+    {
+        return cooldownTimer.IsStopped() && attackTimer.IsStopped();
+    }
 
     /// <summary>
     /// Define the behavior when the player is not attacking
     /// </summary>
     public override void Idle()
     {
-        animationPlayer.Play("Idle");
-        IsAttacking = false;
     }
 
     /// <summary>
@@ -43,18 +49,15 @@ public partial class Melee : Weapon
     {
         if (CanAttack())
         {
-            IsAttacking = true;
-            animationPlayer.Play("Attack");
+            collisionShape.Disabled = false;
+            attackTimer.Start();
         }
     }
-    /// <summary>
-    /// Method for placing the weapon on cool-down
-    /// </summary>
+    // Give the weapon damage to the to the object that was hit
     public override void Deliver()
     {
-        animationPlayer.Play("Idle");
+        collisionShape.Disabled = true;
         cooldownTimer.Start();
-        IsAttacking = false;
     }
 
     /// <summary>
@@ -71,18 +74,25 @@ public partial class Melee : Weapon
     public virtual void Area2dBodyEntered(Node body)
     {
         if (body is Actor actor &&
-            actor.GetTeam() != team)
+            actor.GetTeam() != team &&
+            !isDelivered)
         {
             actor.HandleHit(damage, GlobalPosition);
             actor.HandleKnockback(knockback, GlobalPosition);
+            CallDeferred("Deliver");
+            isDelivered = true;
         }
     }
 
     /// <summary>
-    /// Timeout signal is still connected, but the method is no longer used
-    /// Method might be used in the future if needed, to implement new functionality
+    /// Reset isDelivered flag and reenable weapon's collisionShape when cooldownTimer reaches zero.
     /// </summary>
     private void CooldownTimerTimeout()
     {
+        isDelivered = false;
+    }
+    private void AttackTimerTimeout()
+    {
+        Deliver();
     }
 }

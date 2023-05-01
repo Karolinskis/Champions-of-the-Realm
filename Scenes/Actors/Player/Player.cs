@@ -79,7 +79,7 @@ public partial class Player : Actor
         damagePlayer = GetNode<AudioStreamPlayer2D>("DamageSoundPlayer");
 
         // Initializing nodes
-        WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/Melee"));
+        WeaponsManager.Initialize(Team.TeamName, GetNode<Weapon>("WeaponsManager/LongSword"));
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -89,19 +89,16 @@ public partial class Player : Actor
 
         Direction = Input.GetVector("LEFT", "RIGHT", "UP", "DOWN");
 
-        if (!WeaponsManager.IsAttacking)
+        if (Velocity != Vector2.Zero)
         {
-            if (Velocity != Vector2.Zero)
-            {
-                PlayWalking();
-                walkingTrail.Emitting = true;
-                return;
-            }
-            else
-            {
-                PlayIdle();
-                walkingTrail.Emitting = false;
-            }
+            PlayWalking();
+            walkingTrail.Emitting = true;
+            return;
+        }
+        else
+        {
+            PlayIdle();
+            walkingTrail.Emitting = false;
         }
 
         walkingTrail.Emitting = false;
@@ -118,11 +115,7 @@ public partial class Player : Actor
         {
             if (eventMouseButton.ButtonIndex == MouseButton.Left && eventMouseButton.IsPressed() && defendTimer.IsStopped())
             {
-                float angle = GetGlobalTransformWithCanvas().Origin.AngleToPoint(eventMouseButton.Position);
-                if (WeaponsManager.Attack(angle))
-                {
-                    PlayAttackAnimation(angle);
-                }
+                WeaponsManager.Attack();
             }
             if (eventMouseButton.ButtonIndex == MouseButton.Right && eventMouseButton.IsPressed() && defendTimer.IsStopped())
             {
@@ -260,8 +253,11 @@ public partial class Player : Actor
     /// </summary>
     private void RotateWeapon()
     {
+        if (WeaponsManager.IsAttacking()) return;
+
         Vector2 mouseCords = GetGlobalMousePosition();
         float angle = GetAngleTo(mouseCords);
+
         if (angle >= -Math.PI / 2 && angle <= Math.PI / 2)
         {
             WeaponsManager.Scale = new Vector2(Scale.X, 1);

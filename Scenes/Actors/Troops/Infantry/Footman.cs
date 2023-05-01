@@ -5,7 +5,7 @@ public partial class Footman : Infantry
     private bool isAttacking = false;
     private Timer attackTimer;
     private AnimationPlayer animationPlayer;
-    private Melee weapon;
+    private EnemyMeleeWeapon weapon;
     private Sprite2D sprite; // Actor texture
 
     public override void _Ready()
@@ -13,7 +13,7 @@ public partial class Footman : Infantry
         base._Ready();
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         attackTimer = GetNode<Timer>("AttackTimer");
-        weapon = GetNode<Melee>("MeleeAI/Melee");
+        weapon = GetNode<EnemyMeleeWeapon>("MeleeAI/EnemyMelee");
         weapon.Initialize(Team.TeamName);
         sprite = GetNode<Sprite2D>("Sprite2D");
     }

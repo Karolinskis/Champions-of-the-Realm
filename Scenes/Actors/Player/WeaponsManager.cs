@@ -17,21 +17,12 @@ public partial class WeaponsManager : Node2D
     /// </summary>
     public Weapon[] weapons;
 
-    /// <summary>
-    /// Check if the actor is currently attacking
-    /// </summary>
-    public bool IsAttacking { get; set; } = false;
-
     // Team of the actor
     private Team.Teams team;
 
-    // Time of attack
-    private Timer attackTimer;
-
     public override void _Ready()
     {
-        CurrentWeapon = GetNode<Weapon>("Melee");
-        attackTimer = GetNode<Timer>("Melee/AttackTimer");
+        CurrentWeapon = GetNode<Weapon>("LongSword");
 
         int weaponAmmount = 2;
         weapons = GetChildren()
@@ -44,7 +35,7 @@ public partial class WeaponsManager : Node2D
             })
             .ToArray();
 
-        CurrentWeapon.Hide();
+        CurrentWeapon.Show();
     }
 
     /// <summary>
@@ -57,6 +48,7 @@ public partial class WeaponsManager : Node2D
         team = setTeam;
         weapon.Initialize(team);
         CurrentWeapon = weapon;
+        CurrentWeapon.Show();
 
         for (int i = 0; i < weapons.Length; i++)
         {
@@ -121,6 +113,15 @@ public partial class WeaponsManager : Node2D
     }
 
     /// <summary>
+    /// Method for checking if current weapon is attacking
+    /// </summary>
+    /// <returns>True if attacking, false if not attacking</returns>
+    public bool IsAttacking()
+    {
+        return CurrentWeapon.IsAttacking;
+    }
+
+    /// <summary>
     /// Method for handling weapon when idle
     /// </summary>
     public void Idle()
@@ -135,14 +136,11 @@ public partial class WeaponsManager : Node2D
     /// <summary>
     /// Method for handling weapon when attacking
     /// </summary>
-    /// <param name="rotation"></param>
     /// <returns>If can attack</returns>
-    public bool Attack(float rotation)
+    public bool Attack()
     {
         if (CurrentWeapon != null && CurrentWeapon.CanAttack())
         {
-            GD.Print(rotation);
-            Rotation = rotation;
             CurrentWeapon.Attack();
             return true;
         }
@@ -154,10 +152,7 @@ public partial class WeaponsManager : Node2D
     /// </summary>
     public void CancelAttack()
     {
-        IsAttacking = false;
-        Player player = GetParent() as Player;
-        player.PlayIdle();
-        //CurrentWeapon.StartCooldown();
+        CurrentWeapon.Deliver();
     }
 
     /// <summary>
@@ -165,11 +160,10 @@ public partial class WeaponsManager : Node2D
     /// </summary>
     public void Deliver()
     {
-        if (IsAttacking)
+        if (IsAttacking())
         {
-            if (CurrentWeapon is Melee melee && attackTimer.IsStopped())
+            if (CurrentWeapon is Melee melee)
             {
-                IsAttacking = false;
                 melee.Deliver();
             }
         }
@@ -193,17 +187,6 @@ public partial class WeaponsManager : Node2D
     public Weapon[] GetWeapons()
     {
         return weapons;
-    }
-
-    /// <summary>
-    /// If the attack timer runs out it automaticaly delivers damage
-    /// </summary>
-    private void AttackTimerTimeout()
-    {
-        if (CurrentWeapon is Melee)
-        {
-            Deliver();
-        }
     }
 
     /// <summary>
