@@ -29,7 +29,11 @@ public partial class Globals : Node
     }
     public LoadingForms LoadingForm { get; set; } = LoadingForms.New;
 
-    public Dictionary<string, Variant> PlayerSave { get; set; } // For transfering player between scenes
+    /// <summary>
+    /// Dictionary for storing player data
+    /// Used for saving, loading and passing player data between scenes
+    /// </summary>
+    public Dictionary<string, Variant> PlayerSave { get; set; }
 
     PackedScene loadingScreenScene = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Loading/LoadingScreen.tscn"); // Loading scene resource
 

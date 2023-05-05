@@ -98,8 +98,5 @@ public partial class LoadingScreen : Control
     /// <summary>
     /// Deletes this scene.
     /// </summary>
-    public void DeleteScene()
-    {
-        QueueFree();
-    }
+    public void DeleteScene() => QueueFree();
 }
