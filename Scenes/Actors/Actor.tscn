@@ -30,3 +30,5 @@ Speed = 150.0
 [node name="Team" parent="." instance=ExtResource("4_36kou")]
 
 [node name="DamageSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+volume_db = -20.0
+bus = &"New Bus 2"
