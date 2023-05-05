@@ -407,6 +407,8 @@ public partial class Player : Actor
         EmitSignal(nameof(PLayerGoldChanged), Stats.Gold, Stats.Gold);
         EmitSignal(nameof(PlayerHealthChanged), Stats.Health);
         EmitSignal(nameof(PlayerMaxHealthChanged), Stats.MaxHealth);
-        EmitSignal(nameof(PlayerXpChanged));
+
+        // TODO: Lacks GUI implementation
+        //EmitSignal(nameof(PlayerXpChanged), levelSystem.CurrrentXp);
     }
 }

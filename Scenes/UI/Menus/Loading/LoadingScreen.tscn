@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cyr2k81xmtc6"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Loading/LoadingScreen.cs" id="1_sg3yx"]
-[ext_resource type="Texture2D" uid="uid://bel40box60snl" path="res://Sprites/UI/LoadingScreen/Menus_Abstract.jpeg" id="2_ihjaj"]
+[ext_resource type="Texture2D" uid="uid://bg366q84ho1fa" path="res://Sprites/UI/LoadingScreen/Menus_Abstract.jpeg" id="2_ihjaj"]
 
 [sub_resource type="Animation" id="Animation_qre75"]
 length = 0.001
