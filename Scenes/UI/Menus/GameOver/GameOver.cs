@@ -15,8 +15,7 @@ public partial class GameOver : Control
     /// </summary>
     private void ButtonRestartPressed()
     {
-        GetTree().Paused = false;
-        GetTree().ReloadCurrentScene();
+        ButtonLoadPressed();
     }
 
     /// <summary>
@@ -24,9 +23,9 @@ public partial class GameOver : Control
     /// </summary>
     private void ButtonLoadPressed()
     {
+        GetTree().Paused = false; // resuming process
         globals.LoadingForm = Globals.LoadingForms.Save;
         globals.LoadGame(); // Changing scene through globals
-        GetTree().Paused = false; // resuming process
         QueueFree(); // removing pauseMenu
     }
 

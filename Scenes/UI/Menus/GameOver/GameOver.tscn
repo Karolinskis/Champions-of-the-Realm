@@ -58,7 +58,7 @@ text = "Game over"
 [node name="ButtonRestart" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
-text = "Restart"
+text = "Play again"
 
 [node name="HSeparator2" type="HSeparator" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
