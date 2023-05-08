@@ -59,6 +59,7 @@ public partial class Map : Node2D
 
         SetCameraLimits(); // Setting camera limits so the camera won't go beyond borders
         SetEnemySpawnLimits();
+        GetTree().CurrentScene = this;
     }
 
     /// <summary>
@@ -131,7 +132,7 @@ public partial class Map : Node2D
 
         // Alternative: hud.Initialize(player);
 
-        globals.SaveGame(player);
+        globals.SaveGame(player.Save());
 
         LoadShop(); // Loading shop
     }
@@ -143,7 +144,6 @@ public partial class Map : Node2D
     protected void LoadSavedPlayer(Dictionary<string, Variant> save)
     {
         player = playerScene.Instantiate<Player>();
-        player.Position = playerSpawn.Position;
         AddChild(player);
         player.Load(save);
         player.SetCameraTransform(camera.GetPath());
@@ -151,6 +151,7 @@ public partial class Map : Node2D
 
         hud.Initialize(player);
         globals.PlayerSave = player.Save(); // loading player to globals
+        player.Position = playerSpawn.Position;
 
         LoadShop(); // Loading shop
     }
@@ -161,7 +162,6 @@ public partial class Map : Node2D
     protected void LoadPlayer()
     {
         player = playerScene.Instantiate<Player>();
-        player.Position = playerSpawn.Position;
         AddChild(player);
         player.SetCameraTransform(camera.GetPath());
         player.Connect("PlayerDied", new Callable(this, "ShowGameOver"));
@@ -170,6 +170,7 @@ public partial class Map : Node2D
 
         player.Load(globals.PlayerSave);
         player = GetNode<Player>("Player");
+        player.Position = playerSpawn.Position;
 
         LoadShop(); // Loading shop
 

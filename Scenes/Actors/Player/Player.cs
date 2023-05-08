@@ -13,7 +13,7 @@ public partial class Player : Actor
     [Signal] public delegate void PlayerXpChangedEventHandler(float newXp);
     [Signal] public delegate void PlayerDiedEventHandler();
 
-    [Export] float SwingDuration  { get; set; } = 0.5f; // TODO: swing stab pierce hit
+    [Export] float SwingDuration { get; set; } = 0.5f; // TODO: swing stab pierce hit
     [Export] float ReloadDuration { get; set; } = 1f;
 
     //TODO: lacking Joystick scene implementation
@@ -174,6 +174,7 @@ public partial class Player : Actor
     /// </summary>
     public override void Die()
     {
+        globals.SaveGame(Save());
         EmitSignal(nameof(PlayerDied));
         base.Die();
     }
@@ -378,7 +379,9 @@ public partial class Player : Actor
             { "Parent", GetParent().GetPath() },
             { "PosX", Position.X },
             { "PosY", Position.Y },
-            { "Stats.Health", Stats.Health },
+
+            // Because player is saved only when player dies so it is not necessary to save current health
+            { "Stats.Health", Stats.MaxHealth },
             { "Stats.MaxHealth", Stats.MaxHealth },
             { "Stats.DamageMultiplier", Stats.DamageMultiplier },
             { "Stats.Armour", Stats.Armour },

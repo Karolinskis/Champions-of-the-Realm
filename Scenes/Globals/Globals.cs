@@ -41,7 +41,7 @@ public partial class Globals : Node
     /// Method which saves all nodes in Persist group by parsing dictionary to JSON file
     /// </summary>
     /// <returns>Returns true, if saved successfully, otherwise false</returns>
-    public bool SaveGame(Player player)
+    public bool SaveGame(Dictionary<string, Variant> playerData)
     {
         if (!DirAccess.DirExistsAbsolute(SaveDir)) // Checks if directory exists
         {
@@ -56,7 +56,7 @@ public partial class Globals : Node
             return false;
         }
         // Saving player data to JSON file
-        PlayerSave = player.Save();
+        PlayerSave = playerData;
         saveFile.StoreLine(Json.Stringify(PlayerSave));
         // GD.Print(PlayerSave); // For debuging purposes
         saveFile.Close();
@@ -85,7 +85,6 @@ public partial class Globals : Node
 
         // Loading main scene
         LoadingForm = LoadingForms.Load;
-        GetTree().CurrentScene.QueueFree();
         ChangeScene("res://Scenes/Maps/Main/Main.tscn");
     }
 
@@ -97,7 +96,7 @@ public partial class Globals : Node
     public bool SaveSettings(Godot.Collections.Dictionary<string, Variant> data)
     {
         FileAccess saveFile = FileAccess.Open(settingsPath, FileAccess.ModeFlags.Write);
-        
+
         if (saveFile.GetError() != Error.Ok)
         {
             GD.PushError("Failed to save settings!");
@@ -142,13 +141,13 @@ public partial class Globals : Node
         return (float)scaled;
     }
 
-	/// <summary>
-	/// Method to get a random position within a set radius
-	/// </summary>
-	/// <param name="globalPosition">Player coordinates</param>
-	/// <param name="limit">Radius limit</param>
-	/// <returns>Vector2 object with position coordinates</returns>
-	public static Vector2 GetRandomPositionWithinRadius(Vector2 globalPosition, int limit)
+    /// <summary>
+    /// Method to get a random position within a set radius
+    /// </summary>
+    /// <param name="globalPosition">Player coordinates</param>
+    /// <param name="limit">Radius limit</param>
+    /// <returns>Vector2 object with position coordinates</returns>
+    public static Vector2 GetRandomPositionWithinRadius(Vector2 globalPosition, int limit)
     {
         float x = GetRandomFloat(globalPosition.X - limit, globalPosition.X + limit);
         float y = GetRandomFloat(globalPosition.Y - limit, globalPosition.Y + limit);
@@ -162,6 +161,15 @@ public partial class Globals : Node
     /// <param name="scenePath">Path to the next scene</param>
     public void ChangeScene(string scenePath)
     {
+        // Deleting all nodes except for the globals
+        Array<Node> nodes = GetNode<Node>("/root").GetChildren();
+        foreach (Node node in nodes)
+        {
+            if (node != this)
+            {
+                node.QueueFree();
+            }
+        }
         // Loading screen is loaded.
         LoadingScreen loadingScreen = loadingScreenScene.Instantiate<LoadingScreen>();
         AddChild(loadingScreen);
