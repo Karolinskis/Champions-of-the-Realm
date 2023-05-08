@@ -44,21 +44,17 @@ public partial class MeleeAI : Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-        if (target is not null || !IsInstanceValid(target)) // Check to see if we actualy have a target
+        if (target is null || !IsInstanceValid(target)) // Check to see if we actualy have a target
         {
-            navAgent.TargetPosition = target.GlobalPosition;
+            return;
         }
-        
+        navAgent.TargetPosition = target.GlobalPosition;
         switch (currentState)
         {
             case State.Idle:
                 break;
 
             case State.Engage:
-                if (target is null || !IsInstanceValid(target)) // Check to see if we actualy have a target
-                {
-                    break;
-                }
                 Rotation = GlobalPosition.DirectionTo(target.GlobalPosition).Angle();
                 parent.Direction = parent.GlobalPosition.DirectionTo(navAgent.GetNextPathPosition());
                 break;
