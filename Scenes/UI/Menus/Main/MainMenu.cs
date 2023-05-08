@@ -31,7 +31,7 @@ public partial class MainMenu : Control
     {
         globals.LoadingForm = Globals.LoadingForms.Save;
         globals.LoadGame(); // Changing scene through globals
-        //QueueFree(); // Removing main menu
+        QueueFree(); // Removing main menu
     }
 
     /// <summary>

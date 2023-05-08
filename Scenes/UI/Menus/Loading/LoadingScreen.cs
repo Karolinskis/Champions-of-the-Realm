@@ -5,14 +5,14 @@ public partial class LoadingScreen : Control
     private Control control;    // control node
     private ProgressBar loadingBar; // loading bar node
     private AnimationPlayer animationPlayer;    // animation player node
-    private string nextScene; // stores next scene path
+    private string nextScene = ""; // stores next scene path
 
     public override void _Ready()
     {
         control = GetNode<Control>("CanvasLayer/Control/");
         loadingBar = GetNode<ProgressBar>("CanvasLayer/Control/TextureRect/CenterContainer/PanelContainer/VBoxContainer/ProgressBar");
         animationPlayer = GetNode<AnimationPlayer>("CanvasLayer/Control/LoadingAnimation");
-        AnimateLoadingBar(95, 1.5);
+        animationPlayer.Play("TransIn");
     }
 
     /// <summary>
@@ -41,7 +41,7 @@ public partial class LoadingScreen : Control
     public void LoadNewScene(string scenePath)
     {
         nextScene = scenePath;
-        animationPlayer.Play("TransIn");
+        AnimateLoadingBar(95, 1.5);
     }
 
     /// <summary>
@@ -51,7 +51,13 @@ public partial class LoadingScreen : Control
     {
         ResourceLoader.LoadThreadedRequest(nextScene);  // Begin loading
         ResourceLoader.ThreadLoadStatus sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
-        
+
+        // Checking if scene was cached to avoid loading it again.
+        if (ResourceLoader.HasCached(nextScene) || sceneLoadStatus == ResourceLoader.ThreadLoadStatus.Loaded)
+        {
+            AddScene();
+            return;
+        }
         while (sceneLoadStatus != ResourceLoader.ThreadLoadStatus.Loaded)
         {
             sceneLoadStatus = ResourceLoader.LoadThreadedGetStatus(nextScene);
@@ -62,12 +68,7 @@ public partial class LoadingScreen : Control
                     break;
 
                 case ResourceLoader.ThreadLoadStatus.Loaded:
-                    PackedScene loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
-                    Node newRootNode = loadedScene.Instantiate<Node>();
-                    GetNode("/root").AddChild(newRootNode);
-                    AnimateLoadingBar(100, 1.5);
-                    animationPlayer.Play("TransOut");
-                    //GetTree().Paused = true; todo
+                    AddScene();
                     break;
 
                 case ResourceLoader.ThreadLoadStatus.Failed:
@@ -83,6 +84,15 @@ public partial class LoadingScreen : Control
                     return;
             }
         }
+    }
+
+    private void AddScene()
+    {
+        PackedScene loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;
+        Node newRootNode = loadedScene.Instantiate<Node>();
+        GetNode("/root").AddChild(newRootNode);
+        AnimateLoadingBar(100, 1);
+        animationPlayer.Play("TransOut");
     }
 
     /// <summary>

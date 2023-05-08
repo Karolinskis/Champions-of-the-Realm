@@ -78,11 +78,6 @@ text = "Resume"
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ButtonSave" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
-text = "Save game"
-
 [node name="ButtonLoad" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
@@ -108,7 +103,6 @@ theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
 text = "Exit"
 
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonResume" to="." method="ButtonResumePressed"]
-[connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonSave" to="." method="ButtonSavePressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonLoad" to="." method="ButtonLoadPressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonSettings" to="." method="ButtonSettingsPressed"]
 [connection signal="pressed" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonQuitToMainMenu" to="." method="ButtonQuitMainMenuPressed"]
