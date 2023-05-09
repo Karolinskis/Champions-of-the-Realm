@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://syfmsjeuejk6"]
+[gd_scene load_steps=8 format=3 uid="uid://syfmsjeuejk6"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Shop/Shop.cs" id="1_6wyba"]
 [ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="2_i1utb"]
-[ext_resource type="Texture2D" uid="uid://4qv2mdpra4vb" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_xuusi"]
+[ext_resource type="Texture2D" uid="uid://dswbo25622gh1" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_xuusi"]
+[ext_resource type="FontFile" uid="uid://djd1dtiawjj4s" path="res://Fonts/Arvo-Bold.ttf" id="3_yjlo8"]
+[ext_resource type="FontFile" uid="uid://dueesb3m2y77e" path="res://Fonts/Arvo-Regular.ttf" id="5_cjsy3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3ob0"]
 bg_color = Color(0, 0, 0, 0.796078)
@@ -43,6 +45,7 @@ theme_override_constants/separation = 8
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("3_yjlo8")
 theme_override_font_sizes/font_size = 32
 text = "Item shop"
 
@@ -60,6 +63,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_dvb5c")
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/line_spacing = 0
+theme_override_fonts/font = ExtResource("3_yjlo8")
 text = "Currency:"
 
 [node name="GoldenCoinSprite" type="Sprite2D" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer/PanelContainer"]
@@ -70,16 +74,19 @@ texture = ExtResource("2_xuusi")
 [node name="CurrencyLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("3_yjlo8")
 text = "0"
 
 [node name="TabContainer" type="TabContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(250, 200)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_yjlo8")
 tab_alignment = 1
 
 [node name="Melee" type="TabBar" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer"]
 process_mode = 3
 layout_mode = 2
+theme_override_fonts/font = ExtResource("5_cjsy3")
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -92,6 +99,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_yjlo8")
 text = "Start"
 
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ButtonsContainer/ButtonStart" to="." method="ButtonStartPressed"]

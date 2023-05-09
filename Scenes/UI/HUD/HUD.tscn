@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cxrn3bt2jbpg0"]
+[gd_scene load_steps=9 format=3 uid="uid://cxrn3bt2jbpg0"]
 
 [ext_resource type="Script" path="res://Scenes/UI/HUD/GUI.cs" id="1_ujh52"]
-[ext_resource type="Texture2D" uid="uid://co41urkl0i32q" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_s8hb3"]
+[ext_resource type="FontFile" uid="uid://dueesb3m2y77e" path="res://Fonts/Arvo-Regular.ttf" id="2_0m84m"]
+[ext_resource type="Texture2D" uid="uid://dswbo25622gh1" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_s8hb3"]
 [ext_resource type="PackedScene" uid="uid://dj2jplbqn401k" path="res://Scenes/UI/HUD/IntentoryItems.tscn" id="2_yhl6b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_not3w"]
@@ -84,11 +85,15 @@ layout_mode = 2
 [node name="CurrencyText" type="Label" parent="HUD/MarginContainer/Rows/TopRow/CurrenctContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Currency:"
+theme_override_fonts/font = ExtResource("2_0m84m")
+theme_override_font_sizes/font_size = 25
+text = "CURRENCY:"
 
 [node name="CurrencyLabel" type="Label" parent="HUD/MarginContainer/Rows/TopRow/CurrenctContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_0m84m")
+theme_override_font_sizes/font_size = 25
 text = "0"
 
 [node name="GoldenCoinSprite" type="Sprite2D" parent="HUD/MarginContainer/Rows/TopRow/CurrenctContainer"]
@@ -104,11 +109,15 @@ alignment = 2
 [node name="XPText" type="Label" parent="HUD/MarginContainer/Rows/TopRow/XPContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_0m84m")
+theme_override_font_sizes/font_size = 25
 text = "XP:"
 
 [node name="XPLabel" type="Label" parent="HUD/MarginContainer/Rows/TopRow/XPContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_0m84m")
+theme_override_font_sizes/font_size = 25
 text = "0"
 
 [node name="MiddleRow" type="HBoxContainer" parent="HUD/MarginContainer/Rows"]
@@ -191,12 +200,18 @@ alignment = 2
 
 [node name="MaxAmmo" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0m84m")
+theme_override_font_sizes/font_size = 25
 text = "30"
 
 [node name="AmmoSep" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0m84m")
+theme_override_font_sizes/font_size = 25
 text = "/"
 
 [node name="CurrentAmmo" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_0m84m")
+theme_override_font_sizes/font_size = 25
 text = "30"

@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cyr2k81xmtc6"]
+[gd_scene load_steps=9 format=3 uid="uid://cyr2k81xmtc6"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Loading/LoadingScreen.cs" id="1_sg3yx"]
-[ext_resource type="Texture2D" uid="uid://bg366q84ho1fa" path="res://Sprites/UI/LoadingScreen/Menus_Abstract.jpeg" id="2_ihjaj"]
+[ext_resource type="Texture2D" uid="uid://b3mxhqbdkjkfv" path="res://Sprites/UI/LoadingScreen/Menus_Abstract.jpeg" id="2_ihjaj"]
+[ext_resource type="FontFile" uid="uid://djd1dtiawjj4s" path="res://Fonts/Arvo-Bold.ttf" id="3_b2ffp"]
+[ext_resource type="FontFile" uid="uid://dueesb3m2y77e" path="res://Fonts/Arvo-Regular.ttf" id="4_t51v3"]
 
 [sub_resource type="Animation" id="Animation_qre75"]
 length = 0.001
@@ -146,8 +148,10 @@ theme_override_constants/separation = 8
 [node name="Title" type="Label" parent="CanvasLayer/Control/TextureRect/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("3_b2ffp")
 theme_override_font_sizes/font_size = 32
 text = "Loading..."
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Control/TextureRect/CenterContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("4_t51v3")

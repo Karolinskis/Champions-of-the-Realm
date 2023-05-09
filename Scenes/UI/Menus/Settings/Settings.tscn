@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://chq6j643dyo63"]
+[gd_scene load_steps=4 format=3 uid="uid://chq6j643dyo63"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Settings/Settings.cs" id="1_xaj1n"]
+[ext_resource type="FontFile" uid="uid://djd1dtiawjj4s" path="res://Fonts/Arvo-Bold.ttf" id="2_4ylps"]
+[ext_resource type="FontFile" uid="uid://dueesb3m2y77e" path="res://Fonts/Arvo-Regular.ttf" id="3_f1rxe"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3
@@ -51,6 +53,7 @@ theme_override_constants/separation = 8
 [node name="Settings" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_4ylps")
 theme_override_font_sizes/font_size = 32
 text = "Settings"
 
@@ -59,6 +62,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_f1rxe")
 text = "Audio settings"
 
 [node name="MusicContainer" type="HBoxContainer" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer"]
@@ -73,6 +77,7 @@ theme_override_colors/font_hover_pressed_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_focus_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0.501961, 0, 1)
+theme_override_fonts/font = ExtResource("3_f1rxe")
 button_pressed = true
 text = "Music"
 
@@ -98,6 +103,7 @@ theme_override_colors/font_focus_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_disabled_color = Color(1, 0.501961, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 0.501961, 0, 1)
 theme_override_constants/h_separation = 22
+theme_override_fonts/font = ExtResource("3_f1rxe")
 button_pressed = true
 text = "SFX"
 
@@ -117,6 +123,7 @@ theme_override_constants/separation = 8
 
 [node name="Label" type="Label" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_f1rxe")
 text = "Resolution"
 
 [node name="ResolutionDropDown" type="OptionButton" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionContainer"]
@@ -124,10 +131,12 @@ custom_minimum_size = Vector2(200, 2.08165e-12)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("3_f1rxe")
 
 [node name="ButtonBack" type="Button" parent="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("2_4ylps")
 text = "Back"
 
 [connection signal="toggled" from="CanvasLayer/Control/CenterContainer/PanelContainer/MarginContainer/VBoxContainer/AudioContainer/MusicContainer/MusicToggle" to="." method="MusicToggled"]
