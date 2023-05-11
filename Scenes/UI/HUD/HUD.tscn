@@ -85,6 +85,8 @@ layout_mode = 2
 [node name="CurrencyText" type="Label" parent="HUD/MarginContainer/Rows/TopRow/CurrenctContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.717647, 0.298039, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_0m84m")
 theme_override_font_sizes/font_size = 25
 text = "CURRENCY:"
@@ -92,6 +94,8 @@ text = "CURRENCY:"
 [node name="CurrencyLabel" type="Label" parent="HUD/MarginContainer/Rows/TopRow/CurrenctContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 0.717647, 0.298039, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_0m84m")
 theme_override_font_sizes/font_size = 25
 text = "0"
@@ -109,6 +113,8 @@ alignment = 2
 [node name="XPText" type="Label" parent="HUD/MarginContainer/Rows/TopRow/XPContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.866667, 0.705882, 0.862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_0m84m")
 theme_override_font_sizes/font_size = 25
 text = "XP:"
@@ -116,6 +122,8 @@ text = "XP:"
 [node name="XPLabel" type="Label" parent="HUD/MarginContainer/Rows/TopRow/XPContainer"]
 layout_mode = 2
 size_flags_vertical = 0
+theme_override_colors/font_color = Color(0.866667, 0.705882, 0.862745, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_0m84m")
 theme_override_font_sizes/font_size = 25
 text = "0"
@@ -200,18 +208,21 @@ alignment = 2
 
 [node name="MaxAmmo" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_0m84m")
 theme_override_font_sizes/font_size = 25
 text = "30"
 
 [node name="AmmoSep" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_0m84m")
 theme_override_font_sizes/font_size = 25
 text = "/"
 
 [node name="CurrentAmmo" type="Label" parent="HUD/MarginContainer/Rows/BottomRow/AmmoContainer"]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_0m84m")
 theme_override_font_sizes/font_size = 25
 text = "30"
