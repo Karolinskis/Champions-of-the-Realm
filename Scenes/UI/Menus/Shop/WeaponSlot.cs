@@ -5,6 +5,7 @@ public partial class WeaponSlot : Panel
     [Export] private Weapon weapon;  // Weapon to be bought
     private Player player; // used for getting players gold
     private Label currency; // for displaying currency
+    private Label error;
 
     /// <summary>
     /// Method for initializing weapon, player and currency variables into shop scene.
@@ -12,8 +13,9 @@ public partial class WeaponSlot : Panel
     /// <param name="weapon">Weapon</param>
     /// <param name="player">Player</param>
     /// <param name="currency">Currency label</param>
-    public void Initialize(Weapon weapon, Player player, Label currency)
+    public void Initialize(Weapon weapon, Player player, Label currency, Label error)
     {
+        // Setting labels to display weapon information
         GetNode<Label>("VBoxContainer/Name").Text = "Melee";    // Weapon name
         GetNode<Button>("VBoxContainer/BuyWeaponButton").Icon = weapon.Icon;    // Buy weapon button
         GetNode<Label>("VBoxContainer/HBoxContainer/DamageValue").Text = weapon.getDamage().ToString();    // Weapon damage stats
@@ -22,6 +24,7 @@ public partial class WeaponSlot : Panel
         this.weapon = weapon;
         this.player = player;
         this.currency = currency;
+        this.error = error;
     }
 
     /// <summary>
@@ -29,11 +32,13 @@ public partial class WeaponSlot : Panel
     /// </summary>
     private void BuyWeaponButtonPressed()
     {
+        error.Visible = false;
         if (player.Stats.Gold >= weapon.getPrice())
         {
             if (player.WeaponsManager.GetChildCount() == 3)
             {
-                GD.Print("Inventory full.");
+                error.Text = "Inventory full";
+                error.Visible = true;
             }
             else
             {
@@ -48,7 +53,8 @@ public partial class WeaponSlot : Panel
         }
         else
         {
-            GD.Print("Not enough gold.");
+            error.Text = "Not enough gold.";
+            error.Visible = true;
         }
     }
 }

@@ -137,7 +137,7 @@ rotation = -1.5708
 scale = Vector2(3.34, 3.34)
 damage = 30.0
 knockback = 6.0
-price = 3.0
+price = 60.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {
