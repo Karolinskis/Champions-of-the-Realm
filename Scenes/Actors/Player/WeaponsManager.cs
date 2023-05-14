@@ -56,21 +56,26 @@ public partial class WeaponsManager : Node2D
     /// Add weapon to currently carrying weapon list
     /// </summary>
     /// <param name="index">Index to put in to</param>
-    public void AddWeapon(Weapon weapon, int index)
+    public bool AddWeapon(Weapon weapon, int index)
     {
-        if (index >= weapons.Length)
+        if (this.GetChildCount() > 2)
         {
-            Array.Resize(ref weapons, index + 1);
+            return false;
         }
-
-        if (weapons[index] != null)
-            weapons[index].QueueFree();
-
-        AddChild(weapon);
-        weapons[index] = weapon;
-        weapon.Hide();
-
-        EmitSignal(nameof(WeaponChanged), index, weapons[index]);
+        else
+        {
+            if (index >= weapons.Length)
+            {
+                Array.Resize(ref weapons, index + 1);
+            }
+            if (weapons[index] != null)
+                weapons[index].QueueFree();
+            AddChild(weapon);
+            weapons[index] = weapon;
+            weapon.Hide();
+            EmitSignal(nameof(WeaponChanged), index, weapons[index]);
+            return true;
+        }
     }
 
     /// <summary>
@@ -87,16 +92,11 @@ public partial class WeaponsManager : Node2D
     /// </summary>
     public void ChangeWeapon(int indexToChangeTo)
     {
-        int index = System.Array.IndexOf(weapons, CurrentWeapon);
-        for (int i = index; i < weapons.Length - 1; i++)
+        if (weapons[indexToChangeTo] != null)
         {
-            if (weapons[i + 1] != null)
-            {
-                SwitchWeapon(weapons[i + 1]);
-                return;
-            }
+            SwitchWeapon(weapons[indexToChangeTo]);
+            return;
         }
-        SwitchWeapon(weapons[indexToChangeTo]);
     }
 
     /// <summary>
@@ -110,7 +110,6 @@ public partial class WeaponsManager : Node2D
         CurrentWeapon.Hide();
         weapon.Show();
         CurrentWeapon = weapon;
-        EmitSignal(nameof(WeaponChanged), CurrentWeapon);
     }
 
     /// <summary>
