@@ -55,7 +55,9 @@ public partial class WeaponsManager : Node2D
     /// <summary>
     /// Add weapon to currently carrying weapon list
     /// </summary>
-    /// <param name="index">Index to put in to</param>
+    /// <param name="weapon">Weapon to be added</param>
+    /// <param name="index">Index to which weapon should be added to</param>
+    /// <returns>True if weapon added succesfully, false otherwise</returns>
     public bool AddWeapon(Weapon weapon, int index)
     {
         if (this.GetChildCount() > 2)
@@ -90,6 +92,7 @@ public partial class WeaponsManager : Node2D
     /// <summary>
     /// Change the current weapon the user is holding
     /// </summary>
+    /// <param name="indexToChangeTo">Index of the weapon to switch to</param>
     public void ChangeWeapon(int indexToChangeTo)
     {
         if (weapons[indexToChangeTo] != null)

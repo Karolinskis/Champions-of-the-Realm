@@ -53,6 +53,13 @@ public partial class GUI : Control
         itemArray[0] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems");
         itemArray[1] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems2");
         itemArray[2] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems3");
+
+        // Assigns each button to SwitchItem method.
+        for (int i = 0; i < itemArray.Length; i++)
+        {
+            int currentIndex = i;
+            itemArray[i].Pressed += () => SwitchItem(currentIndex);
+        }
     }
 
     /// <summary>
@@ -203,29 +210,5 @@ public partial class GUI : Control
             currentItemIndex = index;
             player.WeaponsManager.ChangeWeapon(currentItemIndex);
         }
-    }
-
-    /// <summary>
-    /// Switches weapon to the first one in weaponsManager.
-    /// </summary>
-    private void ItemPressed1()
-    {
-        SwitchItem(0);
-    }
-
-    /// <summary>
-    /// Switches weapon to the second one in weaponsManager.
-    /// </summary>
-    private void ItemPressed2()
-    {
-        SwitchItem(1);
-    }
-
-    /// <summary>
-    /// Switches weapon to the third one in weaponsManager.
-    /// </summary>
-    private void ItemPressed3()
-    {
-        SwitchItem(2);
     }
 }

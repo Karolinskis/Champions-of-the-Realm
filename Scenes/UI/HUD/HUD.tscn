@@ -226,7 +226,3 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_0m84m")
 theme_override_font_sizes/font_size = 25
 text = "30"
-
-[connection signal="pressed" from="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems" to="." method="ItemPressed1"]
-[connection signal="pressed" from="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems2" to="." method="ItemPressed2"]
-[connection signal="pressed" from="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems3" to="." method="ItemPressed3"]
