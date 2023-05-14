@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://cxrn3bt2jbpg0"]
 
 [ext_resource type="Script" path="res://Scenes/UI/HUD/GUI.cs" id="1_ujh52"]
-[ext_resource type="FontFile" uid="uid://dueesb3m2y77e" path="res://Fonts/Arvo-Regular.ttf" id="2_0m84m"]
-[ext_resource type="Texture2D" uid="uid://dswbo25622gh1" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_s8hb3"]
+[ext_resource type="FontFile" uid="uid://n3rgq5lbx0xe" path="res://Fonts/Arvo-Regular.ttf" id="2_0m84m"]
+[ext_resource type="Texture2D" uid="uid://02lxn08mvhbb" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_s8hb3"]
 [ext_resource type="PackedScene" uid="uid://dj2jplbqn401k" path="res://Scenes/UI/HUD/IntentoryItems.tscn" id="2_yhl6b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_not3w"]
@@ -226,3 +226,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_0m84m")
 theme_override_font_sizes/font_size = 25
 text = "30"
+
+[connection signal="pressed" from="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems" to="." method="ItemPressed1"]
+[connection signal="pressed" from="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems2" to="." method="ItemPressed2"]
+[connection signal="pressed" from="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems3" to="." method="ItemPressed3"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dilqy6mp8inng"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Shop/WeaponSlot.cs" id="1_exo7o"]
-[ext_resource type="FontFile" uid="uid://djd1dtiawjj4s" path="res://Fonts/Arvo-Bold.ttf" id="2_8llp7"]
-[ext_resource type="FontFile" uid="uid://dueesb3m2y77e" path="res://Fonts/Arvo-Regular.ttf" id="3_t0pys"]
+[ext_resource type="FontFile" uid="uid://brryd65wgxriy" path="res://Fonts/Arvo-Bold.ttf" id="2_8llp7"]
+[ext_resource type="FontFile" uid="uid://n3rgq5lbx0xe" path="res://Fonts/Arvo-Regular.ttf" id="3_t0pys"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2frd2"]
 bg_color = Color(0, 0, 0, 0.796078)

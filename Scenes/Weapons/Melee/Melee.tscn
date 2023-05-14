@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://n7p6gc4n6gwd"]
 
 [ext_resource type="PackedScene" uid="uid://b86f45ix6ghog" path="res://Scenes/Weapons/Weapon.tscn" id="1_bweml"]
-[ext_resource type="Script" path="res://Scenes/Weapons/Melee/Melee.cs" id="2_r085i"]
-[ext_resource type="Texture2D" uid="uid://bcxvbh1xtqfpj" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="3_70sy7"]
+[ext_resource type="Script" path="res://Scenes/Weapons/Melee/Melee.cs" id="2_0cj13"]
+[ext_resource type="Texture2D" uid="uid://ce5e6mtjqyn8q" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="3_70sy7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6slnw"]
 size = Vector2(2.73716, 13.1771)
@@ -10,7 +10,7 @@ size = Vector2(2.73716, 13.1771)
 [node name="Melee" instance=ExtResource("1_bweml")]
 position = Vector2(25, 87.5)
 rotation = 1.0451
-script = ExtResource("2_r085i")
+script = ExtResource("2_0cj13")
 damage = 20.0
 Icon = ExtResource("3_70sy7")
 

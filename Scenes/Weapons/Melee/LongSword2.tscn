@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch7nkx2a5nm2o"]
+[gd_scene load_steps=7 format=3 uid="uid://hlqb6s3l2ahs"]
 
-[ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="1_x4pr0"]
-[ext_resource type="Texture2D" uid="uid://ce5e6mtjqyn8q" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="2_5idky"]
+[ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="1_lxlsb"]
+[ext_resource type="Texture2D" uid="uid://ce5e6mtjqyn8q" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="2_nhwga"]
 
 [sub_resource type="Animation" id="Animation_1otha"]
 resource_name = "Attack"
@@ -17,7 +17,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky"), ExtResource("2_5idky")]
+"values": [ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga"), ExtResource("2_nhwga")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -85,7 +85,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_5idky")]
+"values": [ExtResource("2_nhwga")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -131,15 +131,13 @@ _data = {
 "Idle": SubResource("Animation_qj001")
 }
 
-[node name="LongSword" instance=ExtResource("1_x4pr0")]
+[node name="LongSword" instance=ExtResource("1_lxlsb")]
 position = Vector2(0, -35)
 rotation = -1.5708
 scale = Vector2(3.34, 3.34)
-knockback = 1.5
-price = 1.0
-
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-disabled = true
+damage = 30.0
+knockback = 3.5
+price = 2.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {

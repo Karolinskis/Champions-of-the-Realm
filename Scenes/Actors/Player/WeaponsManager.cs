@@ -22,9 +22,7 @@ public partial class WeaponsManager : Node2D
 
     public override void _Ready()
     {
-        CurrentWeapon = GetNode<Weapon>("LongSword");
-
-        int weaponAmmount = 2;
+        int weaponAmmount = 3;
         weapons = GetChildren()
             .OfType<Weapon>()
             .Take(weaponAmmount)
@@ -34,8 +32,6 @@ public partial class WeaponsManager : Node2D
                 return weapon;
             })
             .ToArray();
-
-        CurrentWeapon.Show();
     }
 
     /// <summary>
@@ -62,6 +58,11 @@ public partial class WeaponsManager : Node2D
     /// <param name="index">Index to put in to</param>
     public void AddWeapon(Weapon weapon, int index)
     {
+        if (index >= weapons.Length)
+        {
+            Array.Resize(ref weapons, index + 1);
+        }
+
         if (weapons[index] != null)
             weapons[index].QueueFree();
 
@@ -84,7 +85,7 @@ public partial class WeaponsManager : Node2D
     /// <summary>
     /// Change the current weapon the user is holding
     /// </summary>
-    public void ChangeWeapon()
+    public void ChangeWeapon(int indexToChangeTo)
     {
         int index = System.Array.IndexOf(weapons, CurrentWeapon);
         for (int i = index; i < weapons.Length - 1; i++)
@@ -95,7 +96,7 @@ public partial class WeaponsManager : Node2D
                 return;
             }
         }
-        SwitchWeapon(weapons[0]);
+        SwitchWeapon(weapons[indexToChangeTo]);
     }
 
     /// <summary>

@@ -5,6 +5,7 @@ namespace ChampionsOfTheRealm;
 /// </summary>
 public partial class GUI : Control
 {
+    private Player player;
     private ProgressBar healthBar;
     private ProgressBar healthBarUnder;
     private Label currencyLabel;
@@ -80,6 +81,7 @@ public partial class GUI : Control
         {
             ChangeItem(i, weaponsArray[i]);
         }
+        this.player = player;
     }
 
     /// <summary>
@@ -158,7 +160,7 @@ public partial class GUI : Control
     /// Method to change the text of xp label
     /// </summary>
     /// <param name="value"></param>
-    private void ChangeXPText(int value) => 
+    private void ChangeXPText(int value) =>
         XPLabel.Text = value.ToString();
 
     /// <summary>
@@ -194,5 +196,36 @@ public partial class GUI : Control
     /// Switch item in index
     /// </summary>
     /// <param name="index">Index to switch from</param>
-    private void SwitchItem(int index) => currentItemIndex = index;
+    private void SwitchItem(int index)
+    {
+        if (index < player.WeaponsManager.GetChildCount())
+        {
+            currentItemIndex = index;
+            player.WeaponsManager.ChangeWeapon(currentItemIndex);
+        }
+    }
+
+    /// <summary>
+    /// Switches weapon to the first one in weaponsManager.
+    /// </summary>
+    private void ItemPressed1()
+    {
+        SwitchItem(0);
+    }
+
+    /// <summary>
+    /// Switches weapon to the second one in weaponsManager.
+    /// </summary>
+    private void ItemPressed2()
+    {
+        SwitchItem(1);
+    }
+
+    /// <summary>
+    /// Switches weapon to the third one in weaponsManager.
+    /// </summary>
+    private void ItemPressed3()
+    {
+        SwitchItem(2);
+    }
 }

@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://chq6j643dyo63"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Settings/Settings.cs" id="1_xaj1n"]
-[ext_resource type="FontFile" uid="uid://djd1dtiawjj4s" path="res://Fonts/Arvo-Bold.ttf" id="2_4ylps"]
-[ext_resource type="FontFile" uid="uid://dueesb3m2y77e" path="res://Fonts/Arvo-Regular.ttf" id="3_f1rxe"]
+[ext_resource type="FontFile" uid="uid://brryd65wgxriy" path="res://Fonts/Arvo-Bold.ttf" id="2_4ylps"]
+[ext_resource type="FontFile" uid="uid://n3rgq5lbx0xe" path="res://Fonts/Arvo-Regular.ttf" id="3_f1rxe"]
 
 [node name="Settings" type="Control"]
 layout_mode = 3

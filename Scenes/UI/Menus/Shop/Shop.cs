@@ -5,14 +5,15 @@ public partial class Shop : CanvasLayer
     [Export] private Godot.Collections.Array<PackedScene> weapons; // Weapons array
     private Globals globals; // global variables and functionality
     private Player player;  // Player character
-    private TabBar weaponTab;   // Weapon type tab
+    private HBoxContainer weaponTab;   // Weapon type tab
+    private Label currencyLabel; // currency label
     private PackedScene weaponSlot = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Shop/WeaponSlot.tscn"); // Weapon slot resource
 
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");
-        weaponTab = GetNode<TabBar>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Melee"); // loading melee weapons tab
-        InitializeWeapons();    // loading weapons into their slots.
+        weaponTab = GetNode<HBoxContainer>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Melee/HBoxContainer"); // loading melee weapons tab
+        currencyLabel = GetNode<Label>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer/CurrencyLabel"); // loading currency label
         GetTree().Paused = true;
     }
 
@@ -20,7 +21,11 @@ public partial class Shop : CanvasLayer
     /// Method for loading player.
     /// </summary>
     /// <param name="p">Player</param>
-    public void Initialize(Player p) => this.player = p;
+    public void Initialize(Player p)
+    {
+        this.player = p;
+        currencyLabel.Text = player.Stats.Gold.ToString();
+    }
 
     /// <summary>
     /// Loads new weapons into the shop
@@ -33,7 +38,7 @@ public partial class Shop : CanvasLayer
             {
                 Weapon weapon = weaponScene.Instantiate<Weapon>();
                 WeaponSlot slot = weaponSlot.Instantiate<WeaponSlot>();
-                slot.Initialize(weapon);
+                slot.Initialize(weapon, player, currencyLabel);
                 weaponTab.AddChild(slot);
             }
         }
@@ -45,7 +50,15 @@ public partial class Shop : CanvasLayer
     private void ButtonStartPressed()
     {
         // TODO: start new wave
-        GetTree().Paused = false;
-        QueueFree();
+        if (player.WeaponsManager.GetChildCount() == 0)
+        {
+            GD.Print("No weapons selected.");
+
+        }
+        else
+        {
+            GetTree().Paused = false;
+            QueueFree();
+        }
     }
 }
