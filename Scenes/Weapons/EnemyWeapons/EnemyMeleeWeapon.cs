@@ -77,8 +77,8 @@ public partial class EnemyMeleeWeapon : Weapon
             actor.GetTeam() != team &&
             !isDelivered)
         {
-            actor.HandleHit(damage, GlobalPosition);
-            actor.HandleKnockback(knockback, GlobalPosition);
+            actor.HandleHit(Damage, GlobalPosition);
+            actor.HandleKnockback(Knockback, GlobalPosition);
             CallDeferred("Deliver");
             isDelivered = true;
         }

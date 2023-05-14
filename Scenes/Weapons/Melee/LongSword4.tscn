@@ -135,9 +135,9 @@ _data = {
 position = Vector2(0, -35)
 rotation = -1.5708
 scale = Vector2(3.34, 3.34)
-damage = 40.0
-knockback = 12.0
-price = 4.0
+Damage = 40.0
+Knockback = 12.0
+Price = 4.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {

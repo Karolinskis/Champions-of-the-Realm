@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ch7nkx2a5nm2o"]
+[gd_scene load_steps=7 format=3 uid="uid://b7p0fa35hauvv"]
 
 [ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="1_x4pr0"]
 [ext_resource type="Texture2D" uid="uid://ce5e6mtjqyn8q" path="res://Sprites/Weapons/DefaultSword/Icon/DefaultSwordIcon.png" id="2_5idky"]
@@ -135,8 +135,8 @@ _data = {
 position = Vector2(0, -35)
 rotation = -1.5708
 scale = Vector2(3.34, 3.34)
-knockback = 1.5
-price = 1.0
+Damage = 20.0
+Knockback = 1.5
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
 disabled = true

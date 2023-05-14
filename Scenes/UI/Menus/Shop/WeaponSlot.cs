@@ -18,9 +18,9 @@ public partial class WeaponSlot : Panel
         // Setting labels to display weapon information
         GetNode<Label>("VBoxContainer/Name").Text = "Melee";    // Weapon name
         GetNode<Button>("VBoxContainer/BuyWeaponButton").Icon = weapon.Icon;    // Buy weapon button
-        GetNode<Label>("VBoxContainer/HBoxContainer/DamageValue").Text = weapon.getDamage().ToString();    // Weapon damage stats
-        GetNode<Label>("VBoxContainer/HBoxContainer2/KnockbackValue").Text = weapon.getKnockback().ToString("G");   // Weapon knockback stats
-        GetNode<Label>("VBoxContainer/HBoxContainer3/CostValue").Text = weapon.getPrice().ToString();   // Weapon cost
+        GetNode<Label>("VBoxContainer/HBoxContainer/DamageValue").Text = weapon.Damage.ToString();    // Weapon damage stats
+        GetNode<Label>("VBoxContainer/HBoxContainer2/KnockbackValue").Text = weapon.Knockback.ToString("G");   // Weapon knockback stats
+        GetNode<Label>("VBoxContainer/HBoxContainer3/CostValue").Text = weapon.Price.ToString();   // Weapon cost
         this.weapon = weapon;
         this.player = player;
         this.currency = currency;
@@ -33,13 +33,13 @@ public partial class WeaponSlot : Panel
     private void BuyWeaponButtonPressed()
     {
         error.Visible = false;
-        if (player.Stats.Gold >= weapon.getPrice())
+        if (player.Stats.Gold >= weapon.Price)
         {
             int currIndex = player.GetNode<WeaponsManager>("WeaponsManager").GetChildCount();
             bool status = player.GetNode<WeaponsManager>("WeaponsManager").AddWeapon(weapon, currIndex);
             if (status)
             {
-                player.SetGold(player.Stats.Gold - (int)weapon.getPrice());
+                player.SetGold(player.Stats.Gold - (int)weapon.Price);
 
                 // Updating gold label in shop menu.
                 currency.Text = player.Stats.Gold.ToString();

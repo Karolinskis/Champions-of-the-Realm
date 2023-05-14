@@ -73,8 +73,8 @@ public partial class Melee : Weapon
         if (body is Actor actor &&
             actor.GetTeam() != team)
         {
-            actor.HandleHit(damage, GlobalPosition);
-            actor.HandleKnockback(knockback, GlobalPosition);
+            actor.HandleHit(Damage, GlobalPosition);
+            actor.HandleKnockback(Knockback, GlobalPosition);
         }
     }
 

@@ -6,34 +6,19 @@ public partial class Weapon : Node2D
     /// Amount of damage weapon can inflict
     /// </summary>
     /// <value>float damage value</value>
-    [Export] protected float damage { get; set; }
-
-    public float getDamage()
-    {
-        return damage;
-    }
+    [Export] public float Damage { get; set; }
 
     /// <summary>
     /// Amount of knockback weapon can inflict
     /// </summary>
     /// <value>float knockback value</value>
-    [Export] protected float knockback { get; set; }
-
-    public float getKnockback()
-    {
-        return knockback;
-    }
+    [Export] public float Knockback { get; set; }
 
     /// <summary>
     /// The price of the weapon in the shop
     /// </summary>
     /// <value>float knockback value</value>
-    [Export] protected float price { get; set; }
-
-    public float getPrice()
-    {
-        return price;
-    }
+    [Export] public float Price { get; set; }
 
     /// <summary>
     /// Current Weapon icon

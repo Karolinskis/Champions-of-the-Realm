@@ -11,7 +11,7 @@ size = Vector2(2.73716, 13.1771)
 position = Vector2(25, 87.5)
 rotation = 1.0451
 script = ExtResource("2_0cj13")
-damage = 20.0
+Damage = 20.0
 Icon = ExtResource("3_70sy7")
 
 [node name="Sprite2D" parent="." index="0"]
