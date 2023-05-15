@@ -18,8 +18,8 @@ public partial class LoadingScreen : Control
     /// <summary>
     /// Animates the loading bar.
     /// </summary>
-    /// <param name="progress">max progress</param>
-    /// <param name="duration">duration of the tween.</param>
+    /// <param name="progress">Max progress</param>
+    /// <param name="duration">Duration of the tween.</param>
     private void AnimateLoadingBar(float progress, double duration)
     {
         Tween loadingTween = CreateTween();
@@ -31,7 +31,7 @@ public partial class LoadingScreen : Control
     /// <summary>
     /// Changes value of the loading bar.
     /// </summary>
-    /// <param name="value">new loading bar value.</param>
+    /// <param name="value">New loading bar value.</param>
     private void ChangeLoadingBarValue(int value) => loadingBar.Value = value;
 
     /// <summary>
@@ -86,6 +86,9 @@ public partial class LoadingScreen : Control
         }
     }
 
+    /// <summary>
+    /// Adds the loaded scene to the current scene hierarchy and plays the transition animation.
+    /// </summary>
     private void AddScene()
     {
         PackedScene loadedScene = ResourceLoader.LoadThreadedGet(nextScene) as PackedScene;

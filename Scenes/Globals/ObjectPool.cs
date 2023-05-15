@@ -9,12 +9,24 @@ using System.Collections.Concurrent;
 /// <typeparam name="T">Any object with IPoolable interface</typeparam>
 public partial class ObjectPool<T> where T : IPoolable, new()
 {
-    private readonly ConcurrentBag<T> items; // items.
-    private int counter = 0; // items currently in the pool.
-    private int max; // maximum amount of items in a pool.
+    /// <summary>
+    /// Colletion of items in the object pool
+    /// </summary>
+    private readonly ConcurrentBag<T> items;
 
     /// <summary>
-    /// Method for creating object pool and setting the max amount of items in a pool.
+    /// Number of items currently in the pool
+    /// </summary>
+    private int counter = 0;
+
+    /// <summary>
+    /// Maximum amount of items in the pool
+    /// </summary>
+    private int max;
+
+    /// <summary>
+    /// Method for creating object pool
+    ///  and setting the max amount of items in a pool.
     /// </summary>
     /// <param name="max">Pool size</param>
     public ObjectPool(int max = 100)
@@ -37,8 +49,11 @@ public partial class ObjectPool<T> where T : IPoolable, new()
     }
 
     /// <summary>
-    /// Method for getting an item from the pool..
+    /// Method for retrieving object from the pool.
+    /// If an item is available in the pool, it is returned.
+    /// Otherwise, a new item is created and added to the pool
     /// </summary>
+    /// <returns>Returns an object of type T</returns>
     public T Get()
     {
         T item;

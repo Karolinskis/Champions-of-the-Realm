@@ -72,7 +72,7 @@ public partial class Map : Node2D
     }
 
     /// <summary>
-    /// Realoading scene after player death
+    /// Shows the game over screen
     /// </summary>
     public void ShowGameOver()
     {
@@ -87,7 +87,7 @@ public partial class Map : Node2D
     {
         Rect2 mapLimits = ground.GetUsedRect();
         Vector2 mapCellSize = ground.TileSet.TileSize;
-        // 96px (two tiles of obstacle tilemap)
+
         camera.LimitLeft = (int)(mapLimits.Position.X * mapCellSize.X);
         camera.LimitRight = (int)(mapLimits.End.X * mapCellSize.X);
         camera.LimitTop = (int)(mapLimits.Position.Y * mapCellSize.Y);
@@ -130,8 +130,6 @@ public partial class Map : Node2D
 
         hud.Initialize(player);
 
-        // Alternative: hud.Initialize(player);
-
         globals.SaveGame(player.Save());
 
         LoadShop(); // Loading shop
@@ -140,7 +138,7 @@ public partial class Map : Node2D
     /// <summary>
     /// Method for loading saved player
     /// </summary>
-    /// <param name="save"></param>
+    /// <param name="save">The dictionary containing saved player data</param>
     protected void LoadSavedPlayer(Dictionary<string, Variant> save)
     {
         player = playerScene.Instantiate<Player>();

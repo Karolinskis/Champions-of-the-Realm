@@ -158,7 +158,7 @@ public partial class GUI : Control
     /// Method to change the text of xp label
     /// </summary>
     /// <param name="value"></param>
-    private void ChangeXPText(int value) => 
+    private void ChangeXPText(int value) =>
         XPLabel.Text = value.ToString();
 
     /// <summary>
