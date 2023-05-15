@@ -5,6 +5,7 @@ namespace ChampionsOfTheRealm;
 /// </summary>
 public partial class GUI : Control
 {
+    [Signal] public delegate void WeaponSwitchedEventHandler(int index);
     private Player player;
     private ProgressBar healthBar;
     private ProgressBar healthBarUnder;
@@ -53,13 +54,6 @@ public partial class GUI : Control
         itemArray[0] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems");
         itemArray[1] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems2");
         itemArray[2] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems3");
-
-        // Assigns each button to SwitchItem method.
-        foreach (Button button in itemArray)
-        {
-            int ButtonIndex = Array.IndexOf(itemArray, button);
-            button.Pressed += () => SwitchItem(ButtonIndex);
-        }
     }
 
     /// <summary>
