@@ -107,15 +107,11 @@ public partial class Globals : Node
         saveFile.Close();
         return true;
     }
-
+    
     /// <summary>
     /// Method for loading resolution and settings values.
     /// </summary>
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
+    /// <returns>Returns the loaded settings data as a Dictionary.</returns>
     public Dictionary<string, Variant> LoadSettings()
     {
         if (!FileAccess.FileExists(settingsPath))

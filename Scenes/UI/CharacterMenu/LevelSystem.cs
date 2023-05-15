@@ -3,7 +3,7 @@ namespace ChampionsOfTheRealm;
 using Godot.Collections;
 
 /// <summary>
-/// Class for handeling xp, level ups and obtaining new skills (Lacking UI, skills)
+/// Class for handling xp, level ups and obtaining new skills (Lacking UI, skills)
 /// </summary>
 public partial class LevelSystem : Control
 {
@@ -14,7 +14,7 @@ public partial class LevelSystem : Control
     /// <summary>
     /// Method of handeling obtained xp
     /// </summary>
-    /// <param name="obtainedXp"></param>
+    /// <param name="obtainedXp">The ammount of XP obtained</param>
     public void GetXp(float obtainedXp)
     {
         float leftXp = 0;

@@ -130,8 +130,6 @@ public partial class Map : Node2D
 
         hud.Initialize(player);
 
-        // Alternative: hud.Initialize(player);
-
         globals.SaveGame(player.Save());
 
         LoadShop(); // Loading shop
@@ -140,7 +138,7 @@ public partial class Map : Node2D
     /// <summary>
     /// Method for loading saved player
     /// </summary>
-    /// <param name="save"></param>
+    /// <param name="save">The dictionary containing the save player data</param>
     protected void LoadSavedPlayer(Dictionary<string, Variant> save)
     {
         player = playerScene.Instantiate<Player>();
