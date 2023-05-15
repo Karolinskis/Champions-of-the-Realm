@@ -5,7 +5,6 @@ namespace ChampionsOfTheRealm;
 /// </summary>
 public partial class GUI : Control
 {
-    [Signal] public delegate void WeaponSwitchedEventHandler(int index);
     private Player player;
     private ProgressBar healthBar;
     private ProgressBar healthBarUnder;
