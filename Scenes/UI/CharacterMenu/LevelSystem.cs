@@ -12,7 +12,7 @@ public partial class LevelSystem : Control
     [Export] public float LevelUpXp { get; set; } = 0;
 
     /// <summary>
-    /// Method of handeling obtained xp
+    /// Method of handling obtained xp
     /// </summary>
     /// <param name="obtainedXp">The ammount of XP obtained</param>
     public void GetXp(float obtainedXp)

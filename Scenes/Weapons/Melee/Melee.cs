@@ -24,7 +24,7 @@ public partial class Melee : Weapon
     }
 
     /// <summary>
-    /// CHecks if the weapon is currently off cool-down and can be used
+    /// Checks if the weapon is currently off cool-down and can be used
     /// </summary>
     /// <returns>True if the wepaon can be used, false otherwise</returns>
     public override bool CanAttack() =>
