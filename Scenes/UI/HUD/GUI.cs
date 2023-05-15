@@ -55,10 +55,10 @@ public partial class GUI : Control
         itemArray[2] = GetNode<Button>("HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer/IntentoryItems3");
 
         // Assigns each button to SwitchItem method.
-        for (int i = 0; i < itemArray.Length; i++)
+        foreach (Button button in itemArray)
         {
-            int currentIndex = i;
-            itemArray[i].Pressed += () => SwitchItem(currentIndex);
+            int ButtonIndex = Array.IndexOf(itemArray, button);
+            button.Pressed += () => SwitchItem(ButtonIndex);
         }
     }
 
