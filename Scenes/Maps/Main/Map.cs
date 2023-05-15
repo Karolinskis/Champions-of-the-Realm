@@ -138,7 +138,7 @@ public partial class Map : Node2D
     /// <summary>
     /// Method for loading saved player
     /// </summary>
-    /// <param name="save">The dictionary containing the save player data</param>
+    /// <param name="save">The dictionary containing saved player data</param>
     protected void LoadSavedPlayer(Dictionary<string, Variant> save)
     {
         player = playerScene.Instantiate<Player>();
