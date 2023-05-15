@@ -11,10 +11,6 @@ public partial class LevelSystem : Control
     [Export] public float CurrrentXp { get; set; } = 0;
     [Export] public float LevelUpXp { get; set; } = 0;
 
-    //public override void _Ready()
-    //{
-    //}
-
     /// <summary>
     /// Method of handeling obtained xp
     /// </summary>
