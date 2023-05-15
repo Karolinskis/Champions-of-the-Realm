@@ -19,7 +19,6 @@ public partial class Melee : Weapon
     public override void _Ready()
     {
         base._Ready();
-        base.Idle();
         cooldownTimer = GetNode<Timer>("CooldownTimer");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
     }

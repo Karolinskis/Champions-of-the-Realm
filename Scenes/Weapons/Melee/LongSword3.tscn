@@ -143,6 +143,7 @@ Price = 3.0
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_vfa72")
 }
