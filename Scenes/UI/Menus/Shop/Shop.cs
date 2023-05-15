@@ -23,9 +23,9 @@ public partial class Shop : CanvasLayer
     /// Initializes the shop with the specified player
     /// </summary>
     /// <param name="p">Player</param>
-    public void Initialize(Player p)
+    public void Initialize(Player player)
     {
-        this.player = p;
+        this.player = player;
         currencyLabel.Text = player.Stats.Gold.ToString();
         InitializeWeapons();
     }
