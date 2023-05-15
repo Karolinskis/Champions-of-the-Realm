@@ -22,7 +22,7 @@ public partial class Shop : CanvasLayer
     /// <summary>
     /// Initializes the shop with the specified player
     /// </summary>
-    /// <param name="p">Player</param>
+    /// <param name="player">Player</param>
     public void Initialize(Player player)
     {
         this.player = player;
