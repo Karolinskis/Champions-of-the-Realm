@@ -1,15 +1,18 @@
 namespace ChampionsOfTheRealm;
 
+/// <summary>
+/// Melee weapon class representing a melee wepaon used by the player
+/// </summary>
 public partial class Melee : Weapon
 {
     /// <summary>
-    /// Keeps track of the cool-down time for the weapon
+    /// Timer for the cool-down time of the weapon
     /// </summary>
     private Timer cooldownTimer;
 
     /// <summary>
-    /// Animation player for playing idle, attacking weapon animations
-    /// Majority of weapon functionality is handled by AnimationPlayer
+    /// Animation player for playing idle and attacking weapon animations
+    /// The majority of weapon functionality is handled by the AnimationPlayer
     /// </summary>
     private AnimationPlayer animationPlayer;
 
@@ -21,14 +24,14 @@ public partial class Melee : Weapon
     }
 
     /// <summary>
-    /// Check if the weapon is currently off cool-down and can be used
+    /// Checks if the weapon is currently off cool-down and can be used
     /// </summary>
-    /// <returns></returns>
+    /// <returns>True if the wepaon can be used, false otherwise</returns>
     public override bool CanAttack() =>
         cooldownTimer.IsStopped() && !IsAttacking;
 
     /// <summary>
-    /// Define the behavior when the player is not attacking
+    /// Defines the behavior of the weapon when the player is not attacking
     /// </summary>
     public override void Idle()
     {
@@ -37,7 +40,7 @@ public partial class Melee : Weapon
     }
 
     /// <summary>
-    /// Define the behavior when the player initiates an attack
+    /// Defines the behavior of the weapon when the player initiates an attack
     /// </summary>
     public override void Attack()
     {
@@ -47,8 +50,9 @@ public partial class Melee : Weapon
             animationPlayer.Play("Attack");
         }
     }
+
     /// <summary>
-    /// Method for placing the weapon on cool-down
+    /// Places the wepaon on cool-down
     /// </summary>
     public override void Deliver()
     {
@@ -58,16 +62,16 @@ public partial class Melee : Weapon
     }
 
     /// <summary>
-    /// Define the behavior when the player is moving
+    /// Defines the behavior of the weapon when the player is walking
     /// </summary>
     public override void Walking()
     {
     }
 
     /// <summary>
-    /// Call when the weapon's collisionShape enters the collision area of another object
+    /// Called when the weapon's collisionShape enters the collision area of another object
     /// </summary>
-    /// <param name="body">What body the weapon's collisionShape has entered</param>
+    /// <param name="body">The body the weapon's collision shape has entered</param>
     public virtual void Area2dBodyEntered(Node body)
     {
         if (body is Actor actor &&

@@ -20,7 +20,7 @@ public partial class Shop : CanvasLayer
     }
 
     /// <summary>
-    /// Method for loading player.
+    /// Initializes the shop with the specified player
     /// </summary>
     /// <param name="p">Player</param>
     public void Initialize(Player p)
@@ -31,7 +31,7 @@ public partial class Shop : CanvasLayer
     }
 
     /// <summary>
-    /// Loads new weapons into the shop
+    /// Initializes the weapons in the shop by loading them into slots
     /// </summary>
     public void InitializeWeapons()
     {
@@ -48,7 +48,7 @@ public partial class Shop : CanvasLayer
     }
 
     /// <summary>
-    /// Quits shop.
+    /// Quits the shop and starts a new wave
     /// </summary>
     private void ButtonStartPressed()
     {

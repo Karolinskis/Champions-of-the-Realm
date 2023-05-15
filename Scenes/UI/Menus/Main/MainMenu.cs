@@ -15,7 +15,7 @@ public partial class MainMenu : Control
     }
 
     /// <summary>
-    /// Button for starting a new game.
+    /// Starts a new game when the "Start new" button is pressed.
     /// </summary>
     private void ButtonStartNewPressed()
     {
@@ -25,7 +25,7 @@ public partial class MainMenu : Control
     }
 
     /// <summary>
-    /// Button for loading an existing save file.
+    /// Loads an existing save file when the "Load" button is pressed.
     /// </summary>
     private void ButtonLoadPressed()
     {
@@ -35,14 +35,14 @@ public partial class MainMenu : Control
     }
 
     /// <summary>
-    /// Button for accessing the settings menu.
+    /// Accesses the settings menu when the "Settings" button is pressed.
     /// </summary>
     private void ButtonSettingsPressed()
     {
         data = globals.LoadSettings();
         Settings settingsScreen = settingsScene.Instantiate<Settings>();
         AddChild(settingsScreen);
-        
+
         if (data != null)
         {
             // Setting resolution drop down and volume sliders
@@ -58,7 +58,7 @@ public partial class MainMenu : Control
     }
 
     /// <summary>
-    /// Button for quiting the game.
+    /// Quits the game when the "Quit" button is pressed.
     /// </summary>
     private void ButtonQuitPressed() => GetTree().Quit();
 }

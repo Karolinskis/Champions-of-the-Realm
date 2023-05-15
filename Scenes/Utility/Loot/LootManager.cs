@@ -2,14 +2,14 @@ namespace ChampionsOfTheRealm;
 
 public partial class LootManager : Node2D
 {
-    [Export] private int goldenCount = 100; // Max amount of gold coins in a scene.
-    [Export] private int silverCount = 100; // Max amount of silver and bronze coins in a scene.
+    [Export] private int goldenCount = 100; // Maximum number of gold coins in a scene.
+    [Export] private int silverCount = 100; // Max number of silver and bronze coins in a scene.
     private PackedScene goldenCoinScene; // Gold coin resource
     private PackedScene silverCoinScene; // Silver coin resource
     private PackedScene bronzeCoinScene; // Bronze coin resource
-    private ObjectPool<Coin> goldenCoinsPool; // Gold coin pool
-    private ObjectPool<Coin> silverCoinsPool; // Silver coin pool
-    private ObjectPool<Coin> bronzeCoinsPool; // Bronze coin pool
+    private ObjectPool<Coin> goldenCoinsPool; // Pool for gold coins
+    private ObjectPool<Coin> silverCoinsPool; // Pool for silver coins
+    private ObjectPool<Coin> bronzeCoinsPool; // Pool for bronze coins
 
     public override void _Ready()
     {
@@ -50,10 +50,10 @@ public partial class LootManager : Node2D
     }
 
     /// <summary>
-    /// Handles dropped coins.
+    /// Handles the spawning of dropped coins
     /// </summary>
-    /// <param name="coin">Silver coin scene.</param>
-    /// <param name="position">Coin position.</param>
+    /// <param name="coin">The number of coins to spawn</param>
+    /// <param name="position">The position where the coins should be spawned</param>
     public void HandleCoinsSpawned(int coins, Vector2 position)
     {
         Coin temp;
@@ -84,19 +84,19 @@ public partial class LootManager : Node2D
     }
 
     /// <summary>
-    /// Method for releasing gold coin to pool (made non-usable).
+    /// Releases a gold coin back to the pool (makes it non-usable)
     /// </summary>
     /// <param name="coin">Gold coin scene</param>
     private void ReleaseGoldenCoin(Coin coin) => goldenCoinsPool.Release(coin);
 
     /// <summary>
-    /// Method for releasing silver coin to pool (made non-usable).
+    /// Releases a silver coin back to the pool (makes it non-usable)
     /// </summary>
     /// <param name="coin">Silver coin scene</param>
     private void ReleaseSilverCoin(Coin coin) => silverCoinsPool.Release(coin);
 
     /// <summary>
-    /// Method for releasing bronze coin to pool (made non-usable).
+    /// Releases a bronze coin back to the pool (makes it non-usable)
     /// </summary>
     /// <param name="coin">Bronze coin scene</param>
     private void ReleaseBronzeCoin(Coin coin) => bronzeCoinsPool.Release(coin);

@@ -1,31 +1,31 @@
 namespace ChampionsOfTheRealm;
 
 /// <summary>
-/// Enemy spawner class to spawn enemies in a random position in the map. It is possible to set a custom start and end time,
-/// set a delay between spawns and change the amount of enemies that are spawned.
+/// Enemy spawner class responsible for spawning enemies in random positions on the map.
+/// It allows customization of start and end times, spawn delay, and the number enemies to be spawned.
 /// </summary>
 public partial class EnemySpawner : Node2D
 {
     /// <summary>
-    /// //Export array to store spawn point info
+    /// Array of eneemy scenes to be spawned.
     /// </summary>
-    /// <value>Array of SpawnInfo objects</value>
+    /// <value>An array of PackedScene objects representing enemy scenes</value>
     [Export] public Godot.Collections.Array<PackedScene> Enemies { get; set; }
 
     private Timer timer;
     private Player target;
 
-    private int time; //variable to keep count of the time that has passed since spawning started
+    private int time; // Variable to keep track of the time that has passed since spawning started
 
-	/// <summary>
-	/// Export variable to change how far from the player enemies should spawn
-	/// </summary>
-	[Export] public int enemySpawnDistanceLimit = 400;
+    /// <summary>
+    /// Export variable to change how far from the player enemies should spawn
+    /// </summary>
+    [Export] public int enemySpawnDistanceLimit = 400;
 
-    private float limitLeft = 20f; //map coordinates limit left
-    private float limitRight; //map coordinates limit right
-    private float limitTop = 20f; //map coordinates limit top
-    private float limitBottom; //map coordinates limit bottom
+    private float limitLeft = 20f; // Map coordinates limit left
+    private float limitRight; // Map coordinates limit right
+    private float limitTop = 20f; // Map coordinates limit top
+    private float limitBottom; // Map coordinates limit bottom
 
     public override void _Ready()
     {
@@ -34,9 +34,10 @@ public partial class EnemySpawner : Node2D
     }
 
     /// <summary>
-    /// Initialize method for initializing limit values
+    /// Initializes the enemy spawner with the map limit values and targer player.
     /// </summary>
-    /// <param name="vector">Vector with limit values</param>
+    /// <param name="vector">Vector containing the limit values of the map</param>
+    /// <param name="player">The player object that enemies target</param>
     public void Initialize(Vector2 vector, Player player)
     {
         limitRight = vector.X; //Setting right limit of the map
@@ -48,9 +49,9 @@ public partial class EnemySpawner : Node2D
     }
 
     /// <summary>
-    /// Method to get a random enemy spawn position which is within the bounds of the map
+    /// Gets a random enemy spawn position within the bounds of the map
     /// </summary>
-    /// <returns>Vector2 object with position coordinates</returns>
+    /// <returns>A Vector2 object representing the position coordinates</returns>
     private Vector2 GetEnemSpawnPosition()
     {
         Vector2 position = Globals.GetRandomPositionWithinRadius(target.Position, enemySpawnDistanceLimit);
@@ -62,7 +63,7 @@ public partial class EnemySpawner : Node2D
     }
 
     /// <summary>
-    /// Method to spawn enemy on timer timeout
+    /// Spawns an enemy when the timer times out
     /// </summary>
     private void OnTimerTimeout()
     {

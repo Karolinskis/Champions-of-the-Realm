@@ -4,20 +4,17 @@ using System.Collections.Generic;
 
 public partial class Settings : Control
 {
-    // globals
-    private Globals globals;
+    private Globals globals;    // Global variables and functionality
 
-    // audio variables
-    private int musicBus;
-    private int sfxBus;
-    private Slider musicSlider;
-    private Slider sfxSlider;
+    private int musicBus;   // Music audio bus index
+    private int sfxBus;    // SFX audio bus index
+    private Slider musicSlider; // Music volume slider
+    private Slider sfxSlider;   // SFX volume slider
 
-    // resolution variables
-    private OptionButton resolutionMenu;
-    int resolutionIndex = 3;
+    private OptionButton resolutionMenu;   // Resolution drop down menu
+    int resolutionIndex = 3;   // Index of the current resolution
 
-    // Resolution values for drop down menu.
+    // Resolution values for drop-down menu
     private Dictionary<string, Vector2I> Resolutions = new Dictionary<string, Vector2I>
     {
         { "1920x1080", new Vector2I(1920, 1080) },
@@ -46,10 +43,10 @@ public partial class Settings : Control
     }
 
     /// <summary>
-    /// Changes musicSlider and sfxSlider to correctly represent musicBus and sfxBus volume values.
+    /// Sets the values of musicSlider and sfxSlider to correctly represent the musicBus and sfxBus volume values
     /// </summary>
-    /// <param name="musicBusValue">musicBus volume value</param>
-    /// <param name="sfxBusValue">sfxBus volume value</param>
+    /// <param name="musicBusValue">Music bus volume value</param>
+    /// <param name="sfxBusValue">SFX bus volume value</param>
     public void SetSliderValues(int musicBusValue, int sfxBusValue)
     {
         musicSlider.Value = musicBusValue;
@@ -57,7 +54,7 @@ public partial class Settings : Control
     }
 
     /// <summary>
-    /// Method for enabling or disabling music.
+    /// Toggles the music on/off
     /// </summary>
     /// <param name="button_pressed">Music toggle</param>
     private void MusicToggled(bool buttonPressed)
@@ -66,7 +63,7 @@ public partial class Settings : Control
     }
 
     /// <summary>
-    /// Method for enabling or disabling sfx.
+    /// Toggles the SFX on/off
     /// </summary>
     /// <param name="button_pressed">Sfx toggle</param>
     private void SfxToggled(bool buttonPressed)
@@ -75,7 +72,7 @@ public partial class Settings : Control
     }
 
     /// <summary>
-    /// Music volume slider
+    /// Event handler for music volume slider
     /// </summary>
     private void MusicSliderVolumeChanged(double value)
     {
@@ -84,7 +81,7 @@ public partial class Settings : Control
     }
 
     /// <summary>
-    /// SFX volume slider
+    /// Event handler for SFX volume slider
     /// </summary>
     private void SfxSliderVolumeChanged(double value)
     {
@@ -93,7 +90,7 @@ public partial class Settings : Control
     }
 
     /// <summary>
-    /// Adds dictionary items to the resolution drop down menu
+    /// Adds dictionary items to the resolution drop-down menu
     /// </summary>
     private void AddItems()
     {
@@ -104,7 +101,7 @@ public partial class Settings : Control
     }
 
     /// <summary>
-    /// Resolution drop down menu
+    /// Event handler for the resolution drop-down menu
     /// </summary>
     /// <param name="index">The index of selected entry</param>
     public void ResolutionDropDownItemSelected(int index)
@@ -117,7 +114,7 @@ public partial class Settings : Control
     }
 
     /// <summary>
-    /// Goes back to the previous scene.
+    /// Returns to the previous scene
     /// </summary>
     private void ButtonBackPressed()
     {
@@ -128,12 +125,12 @@ public partial class Settings : Control
     }
 
     /// <summary>
-    /// Method for saving Resolution and volume sliders.
+    /// Saves the resolution and volume slider settings
     /// </summary>
     public void Save()
     {
         Vector2I resolution = DisplayServer.WindowGetSize();
-        
+
         Godot.Collections.Dictionary<string, Variant> data = new Godot.Collections.Dictionary<string, Variant>()
         {
             { "ResolutionIndex", resolutionIndex },
