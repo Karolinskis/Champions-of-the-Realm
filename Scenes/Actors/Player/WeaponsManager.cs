@@ -111,6 +111,7 @@ public partial class WeaponsManager : Node2D
         // Should cancel weapon attack
         CurrentWeapon.Hide();
         weapon.Show();
+        weapon.Idle();
         CurrentWeapon = weapon;
     }
 
