@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://syfmsjeuejk6"]
+[gd_scene load_steps=10 format=3 uid="uid://cugjv62038ee8"]
 
 [ext_resource type="Script" path="res://Scenes/UI/Menus/Shop/Shop.cs" id="1_6wyba"]
-[ext_resource type="PackedScene" uid="uid://n7p6gc4n6gwd" path="res://Scenes/Weapons/Melee/Melee.tscn" id="2_i1utb"]
-[ext_resource type="Texture2D" uid="uid://dswbo25622gh1" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_xuusi"]
-[ext_resource type="FontFile" uid="uid://djd1dtiawjj4s" path="res://Fonts/Arvo-Bold.ttf" id="3_yjlo8"]
-[ext_resource type="FontFile" uid="uid://dueesb3m2y77e" path="res://Fonts/Arvo-Regular.ttf" id="5_cjsy3"]
+[ext_resource type="PackedScene" uid="uid://hlqb6s3l2ahs" path="res://Scenes/Weapons/Melee/LongSword2.tscn" id="2_um57g"]
+[ext_resource type="Texture2D" uid="uid://02lxn08mvhbb" path="res://Sprites/Loot/Coins/GoldenCoin.png" id="2_xuusi"]
+[ext_resource type="FontFile" uid="uid://brryd65wgxriy" path="res://Fonts/Arvo-Bold.ttf" id="3_yjlo8"]
+[ext_resource type="PackedScene" uid="uid://c3d0ejgm6sa8p" path="res://Scenes/Weapons/Melee/LongSword4.tscn" id="4_24ya0"]
+[ext_resource type="PackedScene" uid="uid://j6njggmbp8bb" path="res://Scenes/Weapons/Melee/LongSword3.tscn" id="4_wenwh"]
+[ext_resource type="FontFile" uid="uid://n3rgq5lbx0xe" path="res://Fonts/Arvo-Regular.ttf" id="5_cjsy3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d3ob0"]
 bg_color = Color(0, 0, 0, 0.796078)
@@ -15,7 +17,7 @@ content_margin_left = 20.0
 [node name="Shop" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_6wyba")
-weapons = Array[PackedScene]([ExtResource("2_i1utb")])
+weapons = Array[PackedScene]([ExtResource("2_um57g"), ExtResource("4_wenwh"), ExtResource("4_24ya0")])
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchors_preset = 15
@@ -25,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
-custom_minimum_size = Vector2(1024, 640)
+custom_minimum_size = Vector2(640, 360)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_d3ob0")
 
@@ -88,6 +90,22 @@ tab_alignment = 1
 process_mode = 3
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_cjsy3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Melee"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ErrorLabel" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_yjlo8")
+text = "error"
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2

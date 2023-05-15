@@ -22,9 +22,7 @@ public partial class WeaponsManager : Node2D
 
     public override void _Ready()
     {
-        CurrentWeapon = GetNode<Weapon>("LongSword");
-
-        int weaponAmmount = 2;
+        int weaponAmmount = 3;
         weapons = GetChildren()
             .OfType<Weapon>()
             .Take(weaponAmmount)
@@ -34,8 +32,6 @@ public partial class WeaponsManager : Node2D
                 return weapon;
             })
             .ToArray();
-
-        CurrentWeapon.Show();
     }
 
     /// <summary>
@@ -59,17 +55,28 @@ public partial class WeaponsManager : Node2D
     /// <summary>
     /// Add weapon to currently carrying weapon list
     /// </summary>
-    /// <param name="index">Index to put in to</param>
-    public void AddWeapon(Weapon weapon, int index)
+    /// <param name="weapon">Weapon to be added</param>
+    /// <param name="index">Index to which weapon should be added to</param>
+    /// <returns>True if weapon added succesfully, false otherwise</returns>
+    public bool AddWeapon(Weapon weapon, int index)
     {
+        if (this.GetChildCount() > 2)
+        {
+            return false;
+        }
+        if (index >= weapons.Length)
+        {
+            Array.Resize(ref weapons, index + 1);
+        }
         if (weapons[index] != null)
+        {
             weapons[index].QueueFree();
-
+        }
         AddChild(weapon);
         weapons[index] = weapon;
         weapon.Hide();
-
         EmitSignal(nameof(WeaponChanged), index, weapons[index]);
+        return true;
     }
 
     /// <summary>
@@ -84,18 +91,14 @@ public partial class WeaponsManager : Node2D
     /// <summary>
     /// Change the current weapon the user is holding
     /// </summary>
-    public void ChangeWeapon()
+    /// <param name="indexToChangeTo">Index of the weapon to switch to</param>
+    public void ChangeWeapon(int indexToChangeTo)
     {
-        int index = System.Array.IndexOf(weapons, CurrentWeapon);
-        for (int i = index; i < weapons.Length - 1; i++)
+        if (weapons[indexToChangeTo] != null)
         {
-            if (weapons[i + 1] != null)
-            {
-                SwitchWeapon(weapons[i + 1]);
-                return;
-            }
+            SwitchWeapon(weapons[indexToChangeTo]);
+            return;
         }
-        SwitchWeapon(weapons[0]);
     }
 
     /// <summary>
@@ -108,8 +111,8 @@ public partial class WeaponsManager : Node2D
         // Should cancel weapon attack
         CurrentWeapon.Hide();
         weapon.Show();
+        weapon.Idle();
         CurrentWeapon = weapon;
-        EmitSignal(nameof(WeaponChanged), CurrentWeapon);
     }
 
     /// <summary>

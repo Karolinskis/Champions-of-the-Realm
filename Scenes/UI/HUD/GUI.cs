@@ -5,6 +5,7 @@ namespace ChampionsOfTheRealm;
 /// </summary>
 public partial class GUI : Control
 {
+    private Player player;
     private ProgressBar healthBar;
     private ProgressBar healthBarUnder;
     private Label currencyLabel;
@@ -80,6 +81,7 @@ public partial class GUI : Control
         {
             ChangeItem(i, weaponsArray[i]);
         }
+        this.player = player;
     }
 
     /// <summary>
@@ -186,7 +188,8 @@ public partial class GUI : Control
         {
             itemArray[index].Icon = null;
         }
-
+        itemArray[index].Disabled = false;
+        itemArray[index].FocusMode = Godot.Control.FocusModeEnum.All;
         itemArray[index].Icon = weapon.Icon;
     }
 
@@ -194,5 +197,12 @@ public partial class GUI : Control
     /// Switch item in index
     /// </summary>
     /// <param name="index">Index to switch from</param>
-    private void SwitchItem(int index) => currentItemIndex = index;
+    private void SwitchItem(int index)
+    {
+        if (index < player.WeaponsManager.GetChildCount())
+        {
+            currentItemIndex = index;
+            player.WeaponsManager.ChangeWeapon(currentItemIndex);
+        }
+    }
 }

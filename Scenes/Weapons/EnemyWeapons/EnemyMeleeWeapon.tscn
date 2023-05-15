@@ -8,8 +8,8 @@ size = Vector2(65.5, 29.086)
 
 [node name="EnemyMelee" instance=ExtResource("1_bweml")]
 script = ExtResource("2_t5fcy")
-damage = 25.0
-knockback = 1.5
+Damage = 25.0
+Knockback = 1.5
 
 [node name="Area2D" type="Area2D" parent="." index="1"]
 

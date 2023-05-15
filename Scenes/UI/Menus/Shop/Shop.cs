@@ -5,22 +5,30 @@ public partial class Shop : CanvasLayer
     [Export] private Godot.Collections.Array<PackedScene> weapons; // Weapons array
     private Globals globals; // global variables and functionality
     private Player player;  // Player character
-    private TabBar weaponTab;   // Weapon type tab
+    private HBoxContainer weaponTab;   // Weapon type tab
+    private Label currencyLabel; // currency label
+    private Label errorLabel; // shows errors to the user related to purchasing weapons.
     private PackedScene weaponSlot = ResourceLoader.Load<PackedScene>("res://Scenes/UI/Menus/Shop/WeaponSlot.tscn"); // Weapon slot resource
 
     public override void _Ready()
     {
         globals = GetNode<Globals>("/root/Globals");
-        weaponTab = GetNode<TabBar>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Melee"); // loading melee weapons tab
-        InitializeWeapons();    // loading weapons into their slots.
+        weaponTab = GetNode<HBoxContainer>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/TabContainer/Melee/HBoxContainer"); // loading melee weapons tab
+        currencyLabel = GetNode<Label>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/CurrenctContainer/CurrencyLabel"); // loading currency label
+        errorLabel = GetNode<Label>("CenterContainer/PanelContainer/MarginContainer/VBoxContainer/ErrorLabel");
         GetTree().Paused = true;
     }
 
     /// <summary>
     /// Initializes the shop with the specified player
     /// </summary>
-    /// <param name="p">The player character</param>
-    public void Initialize(Player p) => this.player = p;
+    /// <param name="player">Player</param>
+    public void Initialize(Player player)
+    {
+        this.player = player;
+        currencyLabel.Text = player.Stats.Gold.ToString();
+        InitializeWeapons();
+    }
 
     /// <summary>
     /// Initializes the weapons in the shop by loading them into slots
@@ -33,7 +41,7 @@ public partial class Shop : CanvasLayer
             {
                 Weapon weapon = weaponScene.Instantiate<Weapon>();
                 WeaponSlot slot = weaponSlot.Instantiate<WeaponSlot>();
-                slot.Initialize(weapon);
+                slot.Initialize(weapon, player, currencyLabel, errorLabel);
                 weaponTab.AddChild(slot);
             }
         }
