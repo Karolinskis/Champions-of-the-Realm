@@ -66,7 +66,7 @@ public partial class Globals : Node
     /// <summary>
     /// Method for loading saved game and its state from JSON file
     /// </summary>
-    public async void LoadGame()
+    public void LoadGame()
     {
         // Checking if save path exists
         if (!FileAccess.FileExists(savePath))
@@ -111,6 +111,11 @@ public partial class Globals : Node
     /// <summary>
     /// Method for loading resolution and settings values.
     /// </summary>
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns></returns>
     public Dictionary<string, Variant> LoadSettings()
     {
         if (!FileAccess.FileExists(settingsPath))

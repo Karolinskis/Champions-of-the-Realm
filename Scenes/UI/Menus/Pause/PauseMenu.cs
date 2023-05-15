@@ -23,7 +23,7 @@ public partial class PauseMenu : Control
     }
 
     /// <summary>
-    /// Method for handeling Input
+    /// Handles input events.
     /// </summary>
     /// <param name="event">Input event</param>
     public override void _Input(InputEvent @event)
@@ -39,7 +39,7 @@ public partial class PauseMenu : Control
     }
 
     /// <summary>
-    /// Button for resuming the game.
+    /// Resumes the game when the "Resume" button is pressed.
     /// </summary>
     private void ButtonResumePressed()
     {
@@ -48,7 +48,7 @@ public partial class PauseMenu : Control
     }
 
     /// <summary>
-    /// Button for loading existing save file.
+    /// Loads an existing save file when the "Load" button is pressed.
     /// </summary>
     private void ButtonLoadPressed()
     {
@@ -59,7 +59,7 @@ public partial class PauseMenu : Control
     }
 
     /// <summary>
-    /// Button for accessing the settings menu.
+    /// Accesses the settings menu when the "Settings" button is pressed.
     /// </summary>
     private void ButtonSettingsPressed()
     {
@@ -82,7 +82,7 @@ public partial class PauseMenu : Control
     }
 
     /// <summary>
-    /// Button for quitting the game.
+    /// Quits to the main menu when the "Quit to main menu" button is pressed.
     /// </summary>
     private void ButtonQuitMainMenuPressed()
     {
@@ -92,7 +92,7 @@ public partial class PauseMenu : Control
     }
 
     /// <summary>
-    /// Button for quitting the game.
+    /// Quits the game when the "Quit" button is pressed.
     /// </summary>
     private void ButtonQuitPressed()
     {
