@@ -131,13 +131,15 @@ _data = {
 "Idle": SubResource("Animation_qj001")
 }
 
-[node name="LongSword" instance=ExtResource("1_lxlsb")]
+[node name="LongSword2" instance=ExtResource("1_lxlsb")]
 position = Vector2(0, -35)
 rotation = -1.5708
 scale = Vector2(3.34, 3.34)
-Damage = 20.0
 Knockback = 3.0
 Price = 2.0
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 libraries = {

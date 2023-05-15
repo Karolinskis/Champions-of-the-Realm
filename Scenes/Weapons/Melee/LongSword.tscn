@@ -135,7 +135,6 @@ _data = {
 position = Vector2(0, -35)
 rotation = -1.5708
 scale = Vector2(3.34, 3.34)
-Damage = 20.0
 Knockback = 1.5
 
 [node name="CollisionShape2D" parent="Area2D" index="0"]
