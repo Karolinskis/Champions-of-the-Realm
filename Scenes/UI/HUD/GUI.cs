@@ -195,7 +195,8 @@ public partial class GUI : Control
         {
             itemArray[index].Icon = null;
         }
-
+        itemArray[index].Disabled = false;
+        itemArray[index].FocusMode = Godot.Control.FocusModeEnum.All;
         itemArray[index].Icon = weapon.Icon;
     }
 

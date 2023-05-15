@@ -115,7 +115,6 @@ public partial class Map : Node2D
         Shop shopScreen = shopScene.Instantiate<Shop>();
         AddChild(shopScreen);
         shopScreen.Initialize(player);
-        shopScreen.InitializeWeapons();
     }
 
     /// <summary>

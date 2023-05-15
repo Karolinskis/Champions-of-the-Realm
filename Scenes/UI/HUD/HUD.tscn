@@ -183,6 +183,8 @@ theme_override_constants/separation = 25
 [node name="IntentoryItems" parent="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_yhl6b")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+focus_mode = 0
+disabled = true
 keep_pressed_outside = true
 icon = null
 expand_icon = true
@@ -190,6 +192,8 @@ expand_icon = true
 [node name="IntentoryItems2" parent="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_yhl6b")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+focus_mode = 0
+disabled = true
 keep_pressed_outside = true
 icon = null
 expand_icon = true
@@ -197,6 +201,8 @@ expand_icon = true
 [node name="IntentoryItems3" parent="HUD/MarginContainer/Rows/BottomRow/InventoryContainer/MarginContainer/VBoxContainer" instance=ExtResource("2_yhl6b")]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+focus_mode = 0
+disabled = true
 keep_pressed_outside = true
 icon = null
 expand_icon = true

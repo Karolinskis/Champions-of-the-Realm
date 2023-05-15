@@ -27,6 +27,7 @@ public partial class Shop : CanvasLayer
     {
         this.player = p;
         currencyLabel.Text = player.Stats.Gold.ToString();
+        InitializeWeapons();
     }
 
     /// <summary>

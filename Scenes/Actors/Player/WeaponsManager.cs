@@ -64,20 +64,19 @@ public partial class WeaponsManager : Node2D
         {
             return false;
         }
-        else
+        if (index >= weapons.Length)
         {
-            if (index >= weapons.Length)
-            {
-                Array.Resize(ref weapons, index + 1);
-            }
-            if (weapons[index] != null)
-                weapons[index].QueueFree();
-            AddChild(weapon);
-            weapons[index] = weapon;
-            weapon.Hide();
-            EmitSignal(nameof(WeaponChanged), index, weapons[index]);
-            return true;
+            Array.Resize(ref weapons, index + 1);
         }
+        if (weapons[index] != null)
+        {
+            weapons[index].QueueFree();
+        }
+        AddChild(weapon);
+        weapons[index] = weapon;
+        weapon.Hide();
+        EmitSignal(nameof(WeaponChanged), index, weapons[index]);
+        return true;
     }
 
     /// <summary>

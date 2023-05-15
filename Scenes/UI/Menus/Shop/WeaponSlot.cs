@@ -33,28 +33,25 @@ public partial class WeaponSlot : Panel
     private void BuyWeaponButtonPressed()
     {
         error.Visible = false;
-        if (player.Stats.Gold >= weapon.Price)
-        {
-            int currIndex = player.GetNode<WeaponsManager>("WeaponsManager").GetChildCount();
-            bool status = player.GetNode<WeaponsManager>("WeaponsManager").AddWeapon(weapon, currIndex);
-            if (status)
-            {
-                player.SetGold(player.Stats.Gold - (int)weapon.Price);
-
-                // Updating gold label in shop menu.
-                currency.Text = player.Stats.Gold.ToString();
-                QueueFree();
-            }
-            else
-            {
-                error.Text = "Inventory full";
-                error.Visible = true;
-            }
-        }
-        else
+        if (player.Stats.Gold < weapon.Price)
         {
             error.Text = "Not enough gold.";
             error.Visible = true;
+            return;
         }
+
+        int currIndex = player.GetNode<WeaponsManager>("WeaponsManager").GetChildCount();
+        bool status = player.GetNode<WeaponsManager>("WeaponsManager").AddWeapon(weapon, currIndex);
+        if (!status)
+        {
+            error.Text = "Inventory full";
+            error.Visible = true;
+            return;
+        }
+        player.SetGold(player.Stats.Gold - (int)weapon.Price);
+
+        // Updating gold label in shop menu.
+        currency.Text = player.Stats.Gold.ToString();
+        QueueFree();
     }
 }
