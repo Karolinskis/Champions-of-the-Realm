@@ -66,7 +66,7 @@ public partial class PauseMenu : Control
         data = globals.LoadSettings();
         Settings settingsScreen = settingsScene.Instantiate<Settings>();
         AddChild(settingsScreen);
-        
+
         if (data != null)
         {
             // Setting resolution drop down and volume sliders

@@ -87,7 +87,7 @@ public partial class Map : Node2D
     {
         Rect2 mapLimits = ground.GetUsedRect();
         Vector2 mapCellSize = ground.TileSet.TileSize;
-        
+
         camera.LimitLeft = (int)(mapLimits.Position.X * mapCellSize.X);
         camera.LimitRight = (int)(mapLimits.End.X * mapCellSize.X);
         camera.LimitTop = (int)(mapLimits.Position.Y * mapCellSize.Y);

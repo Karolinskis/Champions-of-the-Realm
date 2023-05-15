@@ -130,7 +130,7 @@ public partial class Settings : Control
     public void Save()
     {
         Vector2I resolution = DisplayServer.WindowGetSize();
-        
+
         Godot.Collections.Dictionary<string, Variant> data = new Godot.Collections.Dictionary<string, Variant>()
         {
             { "ResolutionIndex", resolutionIndex },
